@@ -182,13 +182,7 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-               <contextMenu>
-                  <ContextMenu>
-                    <items>
-                      <MenuItem fx:id="deleteUsers" mnemonicParsing="false" text="Delete" />
-                    </items>
-                  </ContextMenu>
-               </contextMenu>
+              
             </TableView>
          </children>
       </VBox>
