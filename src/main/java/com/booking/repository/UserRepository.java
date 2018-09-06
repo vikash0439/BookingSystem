@@ -11,4 +11,6 @@ import com.booking.bean.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByEmail(String email);
+
+	User findAllById(Long id);
 }

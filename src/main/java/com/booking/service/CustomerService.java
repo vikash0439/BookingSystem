@@ -1,4 +1,4 @@
-package com.booking.service.impl;
+package com.booking.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,11 @@ import com.booking.bean.Customer;
 import com.booking.repository.CustomerRepository;
 
 @Service
-public class CustomerServiceImpl {
+public class CustomerService {
 	
 	private final CustomerRepository customerRepository;
 	
-	public CustomerServiceImpl(CustomerRepository customerRepository) {
+	public CustomerService(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
 	}
 	

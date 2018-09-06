@@ -1,5 +1,8 @@
 package com.booking;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
+import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,11 +15,14 @@ import javafx.stage.Stage;
 
 @SpringBootApplication
 public class BookingSystemApplication extends Application{
+	
+	private static final Logger LOG = getLogger(BookingSystemApplication.class);
 
 	protected ConfigurableApplicationContext springContext;
     protected StageManager stageManager;
 
     public static void main(final String[] args) {
+    	LOG.info("Main application started");
         Application.launch(args);
     }
 

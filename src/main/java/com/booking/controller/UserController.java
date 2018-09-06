@@ -1,5 +1,7 @@
 package com.booking.controller;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -9,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -35,7 +38,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,6 +55,8 @@ import javafx.util.Callback;
 
 @Controller
 public class UserController implements Initializable{
+	
+	private static final Logger LOG = getLogger(UserController.class);
 	
 	@FXML
     private Button btnLogin;
@@ -161,7 +165,7 @@ public class UserController implements Initializable{
     @FXML
     private void login(ActionEvent event) throws IOException{
     	if(userService.authenticate(getEmail(), getPassword())){
-    		    		
+    		LOG.info("New Log in the system");    		
     		stageManager.switchScene(FxmlView.DASHBOARD);
     		
     	}else{

@@ -152,6 +152,14 @@
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clients">
+                     <HBox.margin>
+                        <Insets right="500.0" top="7.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Text>
                   <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="70.0" styleClass="background" text="Logout" textFill="#fff9f9" textOverrun="CLIP">
                      <font>
                         <Font size="14.0" />
@@ -165,7 +173,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="customerTable" prefHeight="300.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="customerTable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="colcustomerid" maxWidth="700.0" prefWidth="20.0" text="ID" />
                 <TableColumn fx:id="colcustomerName" maxWidth="4000.0" prefWidth="75.0" text="Name" />

@@ -33,6 +33,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Booking">
             <items>
+                  <MenuItem mnemonicParsing="false" text="Dashboard" />
               <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
             </items>
           </Menu>
@@ -41,21 +42,17 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" onAction="#customer" text="Customer">
+          <Menu mnemonicParsing="false" text="Customer">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Service">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" onAction="#service" text="VIew" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Miscellanous">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
-            </Menu>
+            <Menu mnemonicParsing="false" text="Miscellanous" />
         </menus>
       </MenuBar>
    </top>

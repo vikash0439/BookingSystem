@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Customer;
 import com.booking.config.StageManager;
-import com.booking.service.impl.CustomerServiceImpl;
+import com.booking.service.CustomerService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -88,7 +88,7 @@ public class CustomerController implements Initializable {
 	private Button reset;
 
 	@Autowired
-	private CustomerServiceImpl customerServiceImpl;
+	private CustomerService customerServiceImpl;
 
 	@Lazy
 	@Autowired
