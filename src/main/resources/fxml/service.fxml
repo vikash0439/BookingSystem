@@ -78,7 +78,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="serviceid">
+                  <Label fx:id="ServiceID">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -88,19 +88,19 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="serviceName" prefHeight="30.0" prefWidth="246.0" promptText="ServiceName">
+            <TextField fx:id="ServiceName" prefHeight="30.0" prefWidth="246.0" promptText="ServiceName">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="use" prefHeight="30.0" prefWidth="246.0" promptText="Service In Use">
+            <TextField fx:id="ServiceInUse" prefHeight="30.0" prefWidth="246.0" promptText="Service In Use">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="charges" prefHeight="30.0" prefWidth="246.0" promptText="Service Charges">
+            <TextField fx:id="ServiceCharges" prefHeight="30.0" prefWidth="246.0" promptText="Service Charges">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="cancel" prefHeight="30.0" prefWidth="246.0" promptText="Cancel Charges">
+            <TextField fx:id="CancelCharges" prefHeight="30.0" prefWidth="246.0" promptText="Cancel Charges">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -112,7 +112,7 @@
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
                   </Button>
-                  <Button fx:id="saveService" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveService" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -163,13 +163,13 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="customerTable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="servicetable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colserviceid" maxWidth="700.0" prefWidth="20.0" text="ID" />
-                <TableColumn fx:id="colserviceName" maxWidth="4000.0" prefWidth="75.0" text="Service Name" />
-                  <TableColumn fx:id="coluse" maxWidth="4000.0" prefWidth="75.0" text="Service In use" />
-                  <TableColumn fx:id="colcharges" maxWidth="4000.0" prefWidth="75.0" text="Service Charges" />
-                  <TableColumn fx:id="colcancel" maxWidth="4000.0" prefWidth="60.0" text="Cancel Charges" />
+                <TableColumn fx:id="colServiceID" maxWidth="700.0" prefWidth="20.0" text="ID" />
+                <TableColumn fx:id="colServiceName" maxWidth="4000.0" prefWidth="75.0" text="Service Name" />
+                  <TableColumn fx:id="colServiceInUse" maxWidth="4000.0" prefWidth="75.0" text="Service In use" />
+                  <TableColumn fx:id="colServiceCharges" maxWidth="4000.0" prefWidth="75.0" text="Service Charges" />
+                  <TableColumn fx:id="colCancelCharges" maxWidth="4000.0" prefWidth="60.0" text="Cancel Charges" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>
