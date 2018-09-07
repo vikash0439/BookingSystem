@@ -10,6 +10,7 @@ import com.booking.view.FxmlView;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -36,6 +37,8 @@ public class StageManager {
         //scene.getStylesheets().add("/styles/Styles.css");
         
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        Image applicationIcon = new Image(getClass().getResourceAsStream("/images/favicon.jpg"));   // setting favicon icon
+        primaryStage.getIcons().add(applicationIcon);
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();

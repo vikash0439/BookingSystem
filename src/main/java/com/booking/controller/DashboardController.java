@@ -48,7 +48,12 @@ public class DashboardController implements Initializable{
 		stageManager.switchScene(FxmlView.SERVICE); 
 		
 		
-	}	
+	}
+	
+	@FXML
+	public void tax(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.TAX); 		
+	}
 	
 	@FXML
 	public void booking(ActionEvent event) throws IOException {	

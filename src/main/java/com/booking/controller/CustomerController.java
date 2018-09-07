@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Customer;
+import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
+import com.booking.service.RepService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -88,13 +90,29 @@ public class CustomerController implements Initializable {
 	private Button reset;
 
 	@Autowired
-	private CustomerService customerServiceImpl;
+	private CustomerService customerService;
 
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
 
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
+	
+	/* Rep Table details */
+	
+	@FXML
+	private TextField repname;
+	
+	@FXML
+	private TextField repemail;
+	
+	@FXML
+	private TextField repmobile;
+	
+	@Autowired
+	private RepService repService;
+	
+	/* Event Methods */
 
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
@@ -131,9 +149,15 @@ public class CustomerController implements Initializable {
 			customer.setLandline(landline.getText());
 			customer.setAddress(address.getText());
 			customer.setCategory(category.getText());
-			customer.setRemark(remark.getText());
-
-			customerServiceImpl.save(customer);
+			customer.setRemark(remark.getText());	
+			
+			Rep rep = new Rep();			
+			rep.setRepname(repname.getText());
+			rep.setEmail(repemail.getText());
+			rep.setMob(repmobile.getText());
+			
+			customer.setRep(rep);
+			customerService.save(customer);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
@@ -141,15 +165,15 @@ public class CustomerController implements Initializable {
 			alert.setContentText("The customer " + customerName.getText() + "  has been saved.");
 			alert.showAndWait();
 		} else {
-			Customer customer = customerServiceImpl.find(Long.parseLong(customerid.getText()));
+			Customer customer = customerService.find(Long.parseLong(customerid.getText()));
 			customer.setCustomerName(customerName.getText());
 			customer.setWebsite(website.getText());
 			customer.setLandline(landline.getText());
 			customer.setAddress(address.getText());
 			customer.setCategory(category.getText());
 			customer.setRemark(remark.getText());
-
-			customerServiceImpl.save(customer);
+        		
+			customerService.save(customer);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
@@ -184,7 +208,7 @@ public class CustomerController implements Initializable {
 		colEdit.setCellFactory(cellFactory);
 
 		customerList.clear();
-		customerList.addAll(customerServiceImpl.getCustomer());
+		customerList.addAll(customerService.getCustomer());
 		customerTable.setItems(customerList);
 	}
 

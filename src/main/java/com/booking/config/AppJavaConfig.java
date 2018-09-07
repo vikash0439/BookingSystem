@@ -29,6 +29,7 @@ public class AppJavaConfig {
      * Useful when dumping stack trace to a string for logging.
      * @return ExceptionWriter contains logging utility methods
      */
+    
     @Bean
     @Scope("prototype")
     public ExceptionWriter exceptionWriter() {
