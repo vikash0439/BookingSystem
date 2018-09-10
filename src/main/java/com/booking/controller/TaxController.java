@@ -129,7 +129,7 @@ public class TaxController implements Initializable{
 			tax.setTaxname(TaxName.getText());
 			tax.setTaxform(Percentage.isSelected() ? "Percentage" : "Amount");
 			tax.setTaxcharges(TaxCharges.getText());
-			tax.setApplied(Directly.isSelected() ? "Directly" : "On Tax");
+			tax.setApplied(Directly.isSelected() ? "Directly" : "Tax");
 			tax.setTaxinuse(Yes.isSelected() ? "Yes"  : "No");
 			
 			taxService.save(tax);

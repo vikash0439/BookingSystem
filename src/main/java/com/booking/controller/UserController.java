@@ -158,6 +158,11 @@ public class UserController implements Initializable{
     }
     
     @FXML
+	private void dashboard(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.DASHBOARD);
+	}
+    
+    @FXML
     void reset(ActionEvent event) {
     	clearFields();
     }

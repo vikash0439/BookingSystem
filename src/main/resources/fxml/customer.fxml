@@ -137,7 +137,7 @@
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
                   </Button>
-                  <Button fx:id="saveCustomer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
+                  <Button  alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -175,7 +175,7 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="70.0" styleClass="background" text="Logout" textFill="#fff9f9" textOverrun="CLIP">
+                  <Button mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="70.0" styleClass="background" text="Logout" textFill="#fff9f9" textOverrun="CLIP">
                      <font>
                         <Font size="14.0" />
                      </font>
