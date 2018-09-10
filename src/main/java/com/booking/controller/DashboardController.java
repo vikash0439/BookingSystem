@@ -62,17 +62,18 @@ public class DashboardController implements Initializable{
 	
 	@FXML
 	public void users(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.USER);
-		
-		
+		stageManager.switchScene(FxmlView.USER);		
 	}
 	
 	
 	@FXML
-	public void miscellanous(ActionEvent event) throws IOException {	
+	public void reserve(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RESERVE);		
+	}
 	
-		
-		
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RECEIPT);		
 	}
 	
 	
