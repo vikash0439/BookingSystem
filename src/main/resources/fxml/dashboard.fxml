@@ -42,7 +42,7 @@
           <Menu mnemonicParsing="false" text="Accounting">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
-                  <MenuItem mnemonicParsing="false" text="Invoice" />
+                  <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
                   <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
             </items>
           </Menu>
@@ -59,6 +59,8 @@
             <Menu mnemonicParsing="false" text="Miscellanous">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                  <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
                </items></Menu>
         </menus>
       </MenuBar>
@@ -81,7 +83,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userId">
+                  <Label fx:id="ContractID">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -91,7 +93,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="firstName" prefHeight="30.0" prefWidth="246.0" promptText="Date">
+            <TextField fx:id="ShowDate" prefHeight="30.0" prefWidth="246.0" promptText="Date">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
@@ -148,11 +150,11 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="TOP_RIGHT" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_RIGHT" prefHeight="430.0" prefWidth="531.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0">
                <children>
-                  <Label text="Booking Status">
+                  <Label text="All Bookings">
                      <HBox.margin>
                         <Insets right="400.0" top="10.0" />
                      </HBox.margin>
@@ -173,10 +175,10 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="userTable" prefHeight="512.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="contracttable" prefHeight="512.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colUserId" maxWidth="4000.0" prefWidth="63.0" text="Day" />
-                <TableColumn fx:id="colFirstName" maxWidth="4000.0" prefWidth="50.0" text="Date" />
+                <TableColumn fx:id="colContractID" maxWidth="4000.0" prefWidth="63.0" text="ID" />
+                <TableColumn fx:id="colShowDate" maxWidth="4000.0" prefWidth="50.0" text="Date" />
                   <TableColumn fx:id="colLastName" maxWidth="4000.0" prefWidth="75.0" text="Slot" />
                   <TableColumn fx:id="colDOB" maxWidth="4000.0" prefWidth="75.0" text="Service" />
                   <TableColumn fx:id="colGender" maxWidth="4000.0" prefWidth="60.0" text="Client" />

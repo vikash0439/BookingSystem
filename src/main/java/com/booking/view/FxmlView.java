@@ -102,6 +102,39 @@ public enum FxmlView {
   		public String getFxmlFile() {
               return "/fxml/Receipt.fxml";
           }
+      },
+	INVOICE {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("invoice.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Invoice.fxml";
+          }
+      },
+	SLOT {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("slot.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Slot.fxml";
+          }
+      },
+	PURPOSE {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("purpose.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Purpose.fxml";
+          }
       };
     
     public abstract String getTitle();

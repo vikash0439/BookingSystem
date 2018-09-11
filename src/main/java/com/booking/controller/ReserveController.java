@@ -41,16 +41,12 @@ public class ReserveController implements Initializable{
 	
 	@FXML
 	private Label ReserveID;
-
 	@FXML
-	private DatePicker ServiceDate;
-	
+	private DatePicker ServiceDate;	
 	@FXML
-	private TextField ServiceTime;
-	
+	private TextField ServiceTime;	
 	@FXML
-	private ComboBox<String> ServiceID;
-	
+	private ComboBox<String> ServiceID;	
 	@FXML
 	private ComboBox<String> CustomerID;
 	@FXML
@@ -58,14 +54,11 @@ public class ReserveController implements Initializable{
 	@FXML
 	private TextField InternalUsage;
 	@FXML
-	private DatePicker BookingDate;
-	
+	private DatePicker BookingDate;	
 	@FXML
 	private TableView<Reserve> reservetable;
-
 	@FXML
-	private TableColumn<Reserve, Long> colReserveID;
-	
+	private TableColumn<Reserve, Long> colReserveID;	
 	@FXML
 	private TableColumn<Reserve, LocalDate> colServiceDate;
 	@FXML
@@ -168,6 +161,7 @@ public class ReserveController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		serviceNameList.clear();
 		serviceNameList.addAll(serviceService.findName());
 		ServiceID.setItems(serviceNameList);
 		customerNameList.addAll(customerService.findName());
