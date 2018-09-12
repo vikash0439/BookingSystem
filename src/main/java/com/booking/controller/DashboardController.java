@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Contract;
-import com.booking.bean.Reserve;
-import com.booking.bean.Tax;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.view.FxmlView;
@@ -29,7 +27,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -43,7 +40,20 @@ public class DashboardController implements Initializable{
 	@FXML
 	private Label ContractID;
 	@FXML
-	private TextField ShowDate;
+	private Label ShowDate;
+	@FXML
+	private Label Purpose;
+	@FXML
+	private Label CustomerName;
+	@FXML
+	private Label ShowName;
+	@FXML
+	private Label Slot;
+	@FXML
+	private Label Services;
+	@FXML
+	private Label Total;
+	
 	@FXML
 	private TableView<Contract> contracttable;
 	@FXML
@@ -183,7 +193,13 @@ public class DashboardController implements Initializable{
 		
 		
 		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
+		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
 		colShowDate.setCellValueFactory(new PropertyValueFactory<>("showdate"));
+		colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customername"));
+		colShowName.setCellValueFactory(new PropertyValueFactory<>("showname"));
+		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colServices.setCellValueFactory(new PropertyValueFactory<>("services"));
+		colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
 		colEdit.setCellFactory(cellFactory);
 
 		contractList.clear();
@@ -226,7 +242,13 @@ public class DashboardController implements Initializable{
 
 				private void updateContract(Contract contract) {
 					ContractID.setText(Long.toString(contract.getContractid()));
-					
+					ShowDate.setVisible(true);
+				    Purpose.setText(contract.getPurpose());
+					CustomerName.setText(contract.getCustomername());
+					ShowName.setText(contract.getShowname());
+					Slot.setText(contract.getSlot());
+					Services.setText(contract.getServices());
+					Total.setText(contract.getTotal());
 				}
 			};
 			return cell;

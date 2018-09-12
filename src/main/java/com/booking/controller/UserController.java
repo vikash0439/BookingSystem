@@ -175,6 +175,7 @@ public class UserController implements Initializable{
     		
     	}else{
     		lblLogin.setText("Login Failed.");
+    		lblLogin.setStyle("-fx-text-fill: red");
     	}
     }
     

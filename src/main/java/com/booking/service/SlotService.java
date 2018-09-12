@@ -32,6 +32,13 @@ public class SlotService {
 		return slotRepository.findAllBySlotid(slotid);
 	}
 
+	public List<String> findSlot() {
+		// TODO Auto-generated method stub
+		List<String> sname = new ArrayList<String>();
+		slotRepository.findSlot().forEach(sname :: add);
+		return sname;
+	}
+
 	
 
 }

@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.DashboardController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.DashboardController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
         <menus>
@@ -78,7 +78,7 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" ID - " textFill="#f8f7f7">
+                  <Label text=" Contract ID - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -93,53 +93,127 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="ShowDate" prefHeight="30.0" prefWidth="246.0" promptText="Date">
+             <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Date - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ShowDate">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin></TextField>
-            <TextField fx:id="lastName" prefHeight="30.0" prefWidth="246.0" promptText="Slot">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin></TextField>
-            <TextField fx:id="email" prefHeight="30.0" prefWidth="246.0" promptText="Website">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin></TextField>
-            <TextField fx:id="email1" prefHeight="30.0" prefWidth="246.0" promptText="Landline">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastName1" prefHeight="30.0" prefWidth="246.0" promptText="Address">
+            </HBox>
+             <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Slot - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Slot">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastName2" prefHeight="30.0" prefWidth="246.0" promptText="Category">
+            </HBox>
+            
+             <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Purpose - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Purpose">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastName21" prefHeight="30.0" prefWidth="246.0" promptText="Category">
+            </HBox>
+             <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Services - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Services">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastName22" prefHeight="30.0" prefWidth="246.0" promptText="Category">
+            </HBox>
+           <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Show Name - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ShowName">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastName23" prefHeight="30.0" prefWidth="246.0" promptText="Category">
+            </HBox>
+           <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Customer Name - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CustomerName">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="lastName24" prefHeight="30.0" prefWidth="246.0" promptText="Category">
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text=" Total Amount - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Total">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
-            </TextField>
+            </HBox>
+           
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -175,21 +249,16 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="contracttable" prefHeight="512.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="contracttable" prefHeight="707.0" prefWidth="1179.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colContractID" maxWidth="4000.0" prefWidth="63.0" text="ID" />
                 <TableColumn fx:id="colShowDate" maxWidth="4000.0" prefWidth="50.0" text="Date" />
-                  <TableColumn fx:id="colLastName" maxWidth="4000.0" prefWidth="75.0" text="Slot" />
-                  <TableColumn fx:id="colDOB" maxWidth="4000.0" prefWidth="75.0" text="Service" />
-                  <TableColumn fx:id="colGender" maxWidth="4000.0" prefWidth="60.0" text="Client" />
-                  <TableColumn fx:id="colRole" maxWidth="4000.0" prefWidth="75.0" text="ContractID" />
-                  <TableColumn fx:id="colEmail" maxWidth="6000.0" prefWidth="130.0" text="Booking Date" />
-                  <TableColumn prefWidth="75.0" text="Pact" />
-                  <TableColumn prefWidth="75.0" text="Payment Status" />
-                  <TableColumn prefWidth="75.0" text="Estimated Cost" />
-                  <TableColumn prefWidth="75.0" text="Receipt" />
-                  <TableColumn prefWidth="75.0" text="Invoice" />
-                  <TableColumn prefWidth="75.0" text="Remaining" />
+                <TableColumn fx:id="colContractID" maxWidth="4000.0" prefWidth="63.0" text="ID" />
+                  <TableColumn fx:id="colSlot" maxWidth="4000.0" prefWidth="75.0" text="Slot" />
+                  <TableColumn fx:id="colServices" maxWidth="4000.0" prefWidth="75.0" text="Services" />
+                  <TableColumn fx:id="colCustomerName" maxWidth="4000.0" prefWidth="60.0" text="Client" />
+                  <TableColumn fx:id="colShowName" maxWidth="4000.0" prefWidth="75.0" text="ShowName" />
+                  <TableColumn fx:id="colTotal" maxWidth="6000.0" prefWidth="130.0" text="Total Amount" />
+                  <TableColumn fx:id="colPurpose" prefWidth="75.0" text="Purpose" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />
               </columns>
                <VBox.margin>

@@ -28,7 +28,7 @@ public class Contract {
 	private String showname;
 	private String showdetail;
 	private String showtime;
-	private String CustomerName;
+	private String customername;
 	private String repname;
 	private String repemail;
 	private String repmobile;
@@ -72,11 +72,11 @@ public class Contract {
 	public void setShowtime(String showtime) {
 		this.showtime = showtime;
 	}
-	public String getCustomerName() {
-		return CustomerName;
+	public String getCustomername() {
+		return customername;
 	}
-	public void setCustomerName(String customerName) {
-		CustomerName = customerName;
+	public void setCustomername(String customername) {
+		this.customername = customername;
 	}
 	public Customer getCustomer() {
 		return customer;

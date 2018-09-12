@@ -11,9 +11,15 @@ import org.springframework.stereotype.Controller;
 import com.booking.bean.Contract;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
+import com.booking.service.CustomerService;
+import com.booking.service.PurposeService;
+import com.booking.service.ServiceService;
+import com.booking.service.SlotService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,7 +69,19 @@ public class ContractController implements Initializable {
 	private StageManager stageManager;
 	@Autowired
 	private ContractService contractService;
+	@Autowired
+	private PurposeService purposeService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private SlotService slotService;
+	@Autowired
+	private ServiceService serviceService;
 	
+	private ObservableList<String> purposeList = FXCollections.observableArrayList();
+	private ObservableList<String> customerList = FXCollections.observableArrayList();
+	private ObservableList<String> slotList = FXCollections.observableArrayList();
+	private ObservableList<String> serviceList = FXCollections.observableArrayList();
 	
 
 	@FXML
@@ -89,7 +107,7 @@ public class ContractController implements Initializable {
         	 contract.setShowname(ShowName.getText());
         	 contract.setShowdetail(ShowDetail.getText());
         	 contract.setShowtime(ShowTime.getText());
-        	 contract.setCustomerName(CustomerName.getSelectionModel().getSelectedItem());
+        	 contract.setCustomername(CustomerName.getSelectionModel().getSelectedItem());
         	 contract.setRepname(RepName.getText());
         	 contract.setRepemail(RepEmail.getText());
         	 contract.setRepmobile(RepMobile.getText());
@@ -113,5 +131,18 @@ public class ContractController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		purposeList.clear();
+		purposeList.addAll(purposeService.findPurpose());
+		Purpose.setItems(purposeList);
+		customerList.clear();
+		customerList.addAll(customerService.findName());
+		CustomerName.setItems(customerList);
+		slotList.clear();
+		slotList.addAll(slotService.findSlot());
+		Slot.setItems(slotList);
+		serviceList.clear();
+		serviceList.addAll(serviceService.findName());
+		Services.setItems(serviceList);
+		
 	}
 }

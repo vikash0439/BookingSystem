@@ -34,6 +34,12 @@ public class PurposeService {
 		return purposeRepository.findAllByPurposeid(purposeid);
 	}
 
+	public List<String> findPurpose() {
+		List<String> pname = new ArrayList<String>();
+		purposeRepository.findPurpose().forEach(pname :: add);
+		return pname;
+	}
+
 	
 
 }
