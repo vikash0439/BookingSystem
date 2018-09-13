@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ServiceController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ServiceController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
         <menus>
@@ -180,6 +180,17 @@
                </columnResizePolicy>
               
             </TableView>
+            <Button mnemonicParsing="false" onAction="#print" prefHeight="22.0" prefWidth="70.0" styleClass="background" text="Print" textFill="#fff9f9" textOverrun="CLIP">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="#00000091" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </center>

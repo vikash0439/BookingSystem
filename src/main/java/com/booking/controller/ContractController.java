@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Contract;
+import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
@@ -126,6 +127,15 @@ public class ContractController implements Initializable {
  			alert.setContentText("Contract of " + CustomerName.getSelectionModel().getSelectedItem() + "  has been created of Amount: "+Total.getText());
  			alert.showAndWait();
 //         }
+	}
+	
+	public void serviceDetail() {
+		String ser = Services.getValue();
+		Service service = serviceService.getDetail(ser);
+		Charges.setText(service.getServicecharges());
+		TaxAmount.setText("200");
+		Total.setText("200000");
+	
 	}
 
 	@Override

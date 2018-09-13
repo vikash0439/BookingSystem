@@ -228,6 +228,11 @@
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0">
                <children>
+                  <TextField fx:id="searchField" prefHeight="31.0" prefWidth="362.0" promptText="Search Bookings">
+                     <HBox.margin>
+                        <Insets right="50.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
                   <Label text="All Bookings">
                      <HBox.margin>
                         <Insets right="400.0" top="10.0" />

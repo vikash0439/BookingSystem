@@ -14,4 +14,6 @@ public interface ServiceRepository extends JpaRepository<Service, Integer>{
 	@Query(value = "select servicename from service;", nativeQuery = true)
 	public List<String> findName();
 
+	Service findByServicename(String ser);
+
 }

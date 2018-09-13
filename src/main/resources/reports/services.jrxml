@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="services" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9760220a-8bd4-4043-a503-d977fd86f81f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="33" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Shri Ram Centre For Performing Arts]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="20" width="50" height="50" uuid="a6f00938-ba41-4a35-a761-a1a39ae25665"/>
+				<imageExpression><![CDATA["E:/Software/ABS/V1/BookingSystem/src/main/resources/images/favicon.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="7" width="100" height="30" uuid="2e165705-b4ba-4b28-9431-ff25857ff596"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Services]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="30" width="100" height="14" uuid="9b0d3364-fe78-4fc4-a1ca-7423e61ed1b5"/>
+				<text><![CDATA[SRCPA @ 2018]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="13" width="570" height="30" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
+				<textElement textAlignment="Center">
+					<font isBold="false" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[This report is generated according to the database available in the Auditorium Booking Sofftware]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

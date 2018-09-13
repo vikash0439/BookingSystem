@@ -1,7 +1,10 @@
 package com.booking.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 @Controller
 public class ServiceController implements Initializable{
@@ -218,6 +229,37 @@ public class ServiceController implements Initializable{
 			return cell;
 		}
 	};
+	
+	public void print(ActionEvent event) throws JRException {
+		
+		 // First, compile jrxml file.
+        JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/services.jrxml");
+       
+        // Parameters for report .
+        Map<String, Object> parameters = new HashMap<String, Object>();
+//        parameters.put("id", "1");
+//        parameters.put("servicename", "Show");
+//        parameters.put("serviceinuse", "Yes");
+//        parameters.put("servicecharges", "1000");
+//        parameters.put("cancelcharges", "2000");
+        
+        // DataSource
+        // This is simple example, no database.
+        // then using empty datasource.
+        JRDataSource dataSource = new JREmptyDataSource();
+  
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+  
+     
+        // Make sure the output directory exists.
+        File outDir = new File("D:/Reports");
+        outDir.mkdirs();
+  
+        // Export to PDF.
+        JasperExportManager.exportReportToPdfFile(jasperPrint, "D:/Reports/Services.pdf");
+         
+        System.out.println("Done!");
+	}
 	
 	private void clearFields() {
 		ServiceID.setText(null);

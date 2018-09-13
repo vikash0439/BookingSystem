@@ -28,7 +28,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ContractController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ContractController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
         <menus>
@@ -141,7 +141,7 @@
             </HBox>
             <HBox prefHeight="52.0" prefWidth="694.0">
                <children>
-                  <ComboBox fx:id="Services" prefHeight="31.0" prefWidth="154.0" promptText="Services">
+                  <ComboBox fx:id="Services" onAction="#serviceDetail" prefHeight="31.0" prefWidth="261.0" promptText="Services">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></ComboBox>

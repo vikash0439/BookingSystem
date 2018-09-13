@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -18,6 +19,8 @@ import com.booking.view.FxmlView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -53,6 +57,8 @@ public class DashboardController implements Initializable{
 	private Label Services;
 	@FXML
 	private Label Total;
+	@FXML
+	private TextField searchField;
 	
 	@FXML
 	private TableView<Contract> contracttable;
@@ -96,6 +102,7 @@ public class DashboardController implements Initializable{
 	private ContractService contractService;
 	
 	private ObservableList<Contract> contractList = FXCollections.observableArrayList();
+
 	
 	@FXML
     private void logout(ActionEvent event) throws IOException {
@@ -205,6 +212,24 @@ public class DashboardController implements Initializable{
 		contractList.clear();
 		contractList.addAll(contractService.getContract());
 		contracttable.setItems(contractList);
+		
+		FilteredList<Contract> filteredData = new FilteredList<>(contractList, e -> true);
+		searchField.setOnKeyReleased(e ->{
+			searchField.textProperty().addListener((obeservableValue, oldValue, newValue) ->{
+				filteredData.setPredicate((Predicate< ?  super Contract>) contract ->{
+					if(newValue == null || newValue.isEmpty()) {
+					return true;
+				    }
+				    if(contract.getShowname().toLowerCase().contains(newValue)) {
+				    	return true;
+				    }
+					return false;
+				});
+			});
+			SortedList<Contract> sortedData = new SortedList<>(filteredData);
+			sortedData.comparatorProperty().bind(contracttable.comparatorProperty());
+			contracttable.setItems(sortedData);
+		});
 	}
 
 	Callback<TableColumn<Contract, Boolean>, TableCell<Contract, Boolean>> cellFactory = new Callback<TableColumn<Contract, Boolean>, TableCell<Contract, Boolean>>() {

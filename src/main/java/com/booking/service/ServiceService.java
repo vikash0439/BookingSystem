@@ -38,4 +38,9 @@ private final ServiceRepository serviceRepository;
 		return sname;
 	}
 
+	public Service getDetail(String ser) {
+		// TODO Auto-generated method stub
+		return serviceRepository.findByServicename(ser);
+	}
+
 }
