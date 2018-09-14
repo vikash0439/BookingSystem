@@ -104,6 +104,14 @@
             </TextField>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveInvoice" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: black;" text="Report" textFill="WHITE">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
+                     </effect>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
@@ -122,7 +130,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="110.0" />
+                  <Insets left="25.0" />
                </VBox.margin>
             </HBox>
          </children>

@@ -2,8 +2,6 @@ package com.booking.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -32,11 +30,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 
 @Controller
 public class DashboardController implements Initializable{
@@ -49,6 +45,12 @@ public class DashboardController implements Initializable{
 	private Label Purpose;
 	@FXML
 	private Label CustomerName;
+	@FXML
+	private Label RepName;
+	@FXML
+	private Label RepEmail;
+	@FXML
+	private Label RepMobile;
 	@FXML
 	private Label ShowName;
 	@FXML
@@ -81,7 +83,7 @@ public class DashboardController implements Initializable{
 	@FXML
 	private TableColumn<Contract, String> colRepMobile;
 	@FXML
-	private TableColumn<Contract, LocalDate> colShowDate;
+	private TableColumn<Contract, String> colShowDate;
 	@FXML
 	private TableColumn<Contract, String> colSlot;
 	@FXML
@@ -176,31 +178,11 @@ public class DashboardController implements Initializable{
 		/*
 		 * Set All userTable column properties
 		 */
-		colShowDate.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-			 String pattern = "dd-MM-yyyy";
-			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-		     @Override 
-		     public String toString(LocalDate date) {
-		         if (date != null) {
-		             return dateFormatter.format(date);
-		         } else {
-		             return "";
-		         }
-		     }
 
-		     @Override 
-		     public LocalDate fromString(String string) {
-		         if (string != null && !string.isEmpty()) {
-		             return LocalDate.parse(string, dateFormatter);
-		         } else {
-		             return null;
-		         }
-		     }
-		 }));
 		
 		
 		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
-		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
+		colShowDetail.setCellValueFactory(new PropertyValueFactory<>("showdetail"));
 		colShowDate.setCellValueFactory(new PropertyValueFactory<>("showdate"));
 		colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customername"));
 		colShowName.setCellValueFactory(new PropertyValueFactory<>("showname"));
@@ -214,15 +196,21 @@ public class DashboardController implements Initializable{
 		contracttable.setItems(contractList);
 		
 		FilteredList<Contract> filteredData = new FilteredList<>(contractList, e -> true);
-		searchField.setOnKeyReleased(e ->{
+		searchField.setOnKeyPressed(e ->{
 			searchField.textProperty().addListener((obeservableValue, oldValue, newValue) ->{
 				filteredData.setPredicate((Predicate< ?  super Contract>) contract ->{
 					if(newValue == null || newValue.isEmpty()) {
 					return true;
 				    }
-				    if(contract.getShowname().toLowerCase().contains(newValue)) {
+					if(Long.toString(contract.getContractid()).contains(newValue)) {
 				    	return true;
-				    }
+				    }else if(contract.getShowdate().contains(newValue)){
+				    	return true;
+				    }else if(contract.getShowname().toLowerCase().contains(newValue)) {
+				    	return true;
+				    }else if(contract.getShowname().toLowerCase().contains(newValue)) {
+				    	return true;
+				    }	
 					return false;
 				});
 			});
@@ -267,9 +255,12 @@ public class DashboardController implements Initializable{
 
 				private void updateContract(Contract contract) {
 					ContractID.setText(Long.toString(contract.getContractid()));
-					ShowDate.setVisible(true);
-				    Purpose.setText(contract.getPurpose());
 					CustomerName.setText(contract.getCustomername());
+					RepName.setText(contract.getRepname());
+					RepEmail.setText(contract.getRepemail());
+					RepMobile.setText(contract.getRepmobile());
+				    Purpose.setText(contract.getPurpose());
+				    ShowDate.setText(contract.getShowdate());;
 					ShowName.setText(contract.getShowname());
 					Slot.setText(contract.getSlot());
 					Services.setText(contract.getServices());

@@ -30,6 +30,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 @Controller
 public class ContractController implements Initializable {
@@ -64,6 +65,8 @@ public class ContractController implements Initializable {
 	private TextField TaxAmount;
 	@FXML
 	private TextField Total;
+	@FXML
+	private HBox serviceHBox;
 	
 	@Lazy
 	@Autowired
@@ -112,7 +115,7 @@ public class ContractController implements Initializable {
         	 contract.setRepname(RepName.getText());
         	 contract.setRepemail(RepEmail.getText());
         	 contract.setRepmobile(RepMobile.getText());
-        	 contract.setShowdate(ShowDate.getValue());
+        	 contract.setShowdate((String)ShowDate.getEditor().getText());
         	 contract.setSlot(Slot.getSelectionModel().getSelectedItem());
         	 contract.setServices(Services.getSelectionModel().getSelectedItem());
         	 contract.setCharges(Charges.getText());
@@ -136,6 +139,11 @@ public class ContractController implements Initializable {
 		TaxAmount.setText("200");
 		Total.setText("200000");
 	
+	}
+	
+	public void addMore() {
+		System.out.println("Add more button ");
+		
 	}
 
 	@Override

@@ -139,7 +139,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="52.0" prefWidth="694.0">
+            <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0">
                <children>
                   <ComboBox fx:id="Services" onAction="#serviceDetail" prefHeight="31.0" prefWidth="261.0" promptText="Services">
                      <HBox.margin>
@@ -155,7 +155,7 @@
                         <Insets right="5.0" />
                      </HBox.margin></TextField>
                   <TextField fx:id="Total" promptText="Total" />
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" text="Add +">
+                  <Button mnemonicParsing="false" onAction="#addMore" prefHeight="31.0" prefWidth="91.0" text="Add +">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -165,15 +165,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <TableView prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-               <VBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </VBox.margin>
-            </TableView>
             <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="545.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="269.0" style="-fx-background-color: gray;" styleClass="btnGreen" text="Reset" textFill="WHITE">
@@ -194,7 +185,6 @@
                   </Button>
                </children>
             </HBox>
-            <DatePicker prefHeight="72.0" prefWidth="291.0" />
          </children>
       </VBox>
    </center>

@@ -1,7 +1,5 @@
 package com.booking.bean;
 
-import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +30,7 @@ public class Contract {
 	private String repname;
 	private String repemail;
 	private String repmobile;
-	private LocalDate showdate;
+	private String showdate;
 	private String slot;
 	private String services;
 	private String charges;
@@ -102,10 +100,10 @@ public class Contract {
 	public void setRepmobile(String repmobile) {
 		this.repmobile = repmobile;
 	}
-	public LocalDate getShowdate() {
+	public String getShowdate() {
 		return showdate;
 	}
-	public void setShowdate(LocalDate showdate) {
+	public void setShowdate(String showdate) {
 		this.showdate = showdate;
 	}
 	public String getSlot() {

@@ -3,7 +3,11 @@ package com.booking.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -36,13 +40,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class ServiceController implements Initializable{
@@ -161,11 +165,9 @@ public class ServiceController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 		servicetable();
-		clearFields();
-		
+		clearFields();		
 	}
 	
 	public void servicetable() {
@@ -237,28 +239,36 @@ public class ServiceController implements Initializable{
        
         // Parameters for report .
         Map<String, Object> parameters = new HashMap<String, Object>();
-//        parameters.put("id", "1");
-//        parameters.put("servicename", "Show");
-//        parameters.put("serviceinuse", "Yes");
-//        parameters.put("servicecharges", "1000");
-//        parameters.put("cancelcharges", "2000");
+        
+        List<Service> list = serviceService.getService();
+        JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
+        parameters.put("jRDataSource", list);
         
         // DataSource
         // This is simple example, no database.
         // then using empty datasource.
-        JRDataSource dataSource = new JREmptyDataSource();
+//        JRDataSource dataSource = new JREmptyDataSource();
   
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
   
      
         // Make sure the output directory exists.
         File outDir = new File("D:/Reports");
         outDir.mkdirs();
-  
+      
+        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+        Date date=new java.util.Date();
+        System.out.println(date);
+        String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+        
         // Export to PDF.
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "D:/Reports/Services.pdf");
-         
-        System.out.println("Done!");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+        
+        Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Report");
+		alert.setHeaderText(null);
+		alert.setContentText("Report downloaded successfully.");
+		alert.showAndWait();
 	}
 	
 	private void clearFields() {
