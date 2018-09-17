@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,37 +22,44 @@ public class Invoice{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "invoiceid", updatable = false, nullable = false)
-	private long invoiceid;
-	private LocalDate invoicedate;
-	private String invoiceamount;
-	private String validity;
+	private long invoiceid;	
+	private int invoicedate;
+	private boolean cancelled;
 	
-	
+	@OneToOne(mappedBy = "invoice")
+	private Contract contract;
+
 	public long getInvoiceid() {
 		return invoiceid;
 	}
+
 	public void setInvoiceid(long invoiceid) {
 		this.invoiceid = invoiceid;
 	}
-	public LocalDate getInvoicedate() {
+
+	public int getInvoicedate() {
 		return invoicedate;
 	}
-	public void setInvoicedate(LocalDate invoicedate) {
+
+	public void setInvoicedate(int invoicedate) {
 		this.invoicedate = invoicedate;
 	}
-	public String getInvoiceamount() {
-		return invoiceamount;
-	}
-	public void setInvoiceamount(String invoiceamount) {
-		this.invoiceamount = invoiceamount;
-	}
-	public String getValidity() {
-		return validity;
-	}
-	public void setValidity(String validity) {
-		this.validity = validity;
-	}
-	
-	
 
+	public boolean isCancelled() {
+		return cancelled;
+	}
+
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+	
+	
 }

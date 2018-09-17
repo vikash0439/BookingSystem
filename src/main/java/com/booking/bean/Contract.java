@@ -1,12 +1,16 @@
 package com.booking.bean;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,23 +26,50 @@ public class Contract {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "contractid", updatable = false, nullable = false)
 	private long contractid;
+	private String bookingdate;
 	private String purpose;
-	private String showname;
-	private String showdetail;
-	private String showtime;
-	private String customername;
-	private String repname;
-	private String repemail;
-	private String repmobile;
-	private String showdate;
-	private String slot;
-	private String services;
-	private String charges;
+	private String baseprice;
 	private String taxamount;
-	private String total;
+	private String pact;
+	private String paymentstatus;
+	private String override;
+	private String slabno;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Customer customer;
+	
+	
+	
+	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
+	private List<Booking> bookings;	
+	@OneToMany(targetEntity = Performance.class, mappedBy = "contract", cascade=CascadeType.ALL)
+	private List<Performance> performances;	
+	@OneToOne
+	@JoinColumn
+	private Invoice invoice;
+	@OneToMany(targetEntity = Performance.class, mappedBy = "contract", cascade=CascadeType.ALL)
+	private List<Allocation> allocation;
+	
+	public Invoice getInvoice() {
+		return invoice;
+	}
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+	public List<Performance> getPerformances() {
+		return performances;
+	}
+	public void setPerformances(List<Performance> performances) {
+		this.performances = performances;
+	}
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+	
+	
+	
+	
 	
 	public long getContractid() {
 		return contractid;
@@ -46,83 +77,23 @@ public class Contract {
 	public void setContractid(long contractid) {
 		this.contractid = contractid;
 	}
+	public String getBookingdate() {
+		return bookingdate;
+	}
+	public void setBookingdate(String bookingdate) {
+		this.bookingdate = bookingdate;
+	}
 	public String getPurpose() {
 		return purpose;
 	}
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
-	public String getShowname() {
-		return showname;
+	public String getBaseprice() {
+		return baseprice;
 	}
-	public void setShowname(String showname) {
-		this.showname = showname;
-	}
-	public String getShowdetail() {
-		return showdetail;
-	}
-	public void setShowdetail(String showdetail) {
-		this.showdetail = showdetail;
-	}
-	public String getShowtime() {
-		return showtime;
-	}
-	public void setShowtime(String showtime) {
-		this.showtime = showtime;
-	}
-	public String getCustomername() {
-		return customername;
-	}
-	public void setCustomername(String customername) {
-		this.customername = customername;
-	}
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	public String getRepname() {
-		return repname;
-	}
-	public void setRepname(String repname) {
-		this.repname = repname;
-	}
-	public String getRepemail() {
-		return repemail;
-	}
-	public void setRepemail(String repemail) {
-		this.repemail = repemail;
-	}
-	public String getRepmobile() {
-		return repmobile;
-	}
-	public void setRepmobile(String repmobile) {
-		this.repmobile = repmobile;
-	}
-	public String getShowdate() {
-		return showdate;
-	}
-	public void setShowdate(String showdate) {
-		this.showdate = showdate;
-	}
-	public String getSlot() {
-		return slot;
-	}
-	public void setSlot(String slot) {
-		this.slot = slot;
-	}
-	public String getServices() {
-		return services;
-	}
-	public void setServices(String services) {
-		this.services = services;
-	}
-	public String getCharges() {
-		return charges;
-	}
-	public void setCharges(String charges) {
-		this.charges = charges;
+	public void setBaseprice(String baseprice) {
+		this.baseprice = baseprice;
 	}
 	public String getTaxamount() {
 		return taxamount;
@@ -130,11 +101,33 @@ public class Contract {
 	public void setTaxamount(String taxamount) {
 		this.taxamount = taxamount;
 	}
-	public String getTotal() {
-		return total;
+	public String getPact() {
+		return pact;
 	}
-	public void setTotal(String total) {
-		this.total = total;
+	public void setPact(String pact) {
+		this.pact = pact;
 	}
+	public String getPaymentstatus() {
+		return paymentstatus;
+	}
+	public void setPaymentstatus(String paymentstatus) {
+		this.paymentstatus = paymentstatus;
+	}
+	public String getOverride() {
+		return override;
+	}
+	public void setOverride(String override) {
+		this.override = override;
+	}
+	public String getSlabno() {
+		return slabno;
+	}
+	public void setSlabno(String slabno) {
+		this.slabno = slabno;
+	}
+	
+	
+	
+	
 
 }

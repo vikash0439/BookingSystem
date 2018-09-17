@@ -88,6 +88,11 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
+            <ComboBox fx:id="cID" prefHeight="31.0" prefWidth="247.0" promptText="Select   --ContractID--">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
             <DatePicker fx:id="ReceiptDate" prefHeight="31.0" prefWidth="251.0" promptText="Receipt Date">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
@@ -126,12 +131,20 @@
                         <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
                      </effect>
                   </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#report" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: black;" styleClass="btnGreen" text="Report" textFill="WHITE">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
+                     </effect>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="110.0" />
+                  <Insets left="20.0" />
                </VBox.margin>
             </HBox>
          </children>

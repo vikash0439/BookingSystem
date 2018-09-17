@@ -11,7 +11,10 @@ public interface ContractRepository extends JpaRepository<Contract, Integer>{
 
 	Contract findAllByContractid(Long contractid);
 	
-	@Query(value = "select customer_name from contract;", nativeQuery = true)
+	@Query(value = "select * from contract;", nativeQuery = true)
 	public List<String> findName();
+	
+	@Query(value = "select contractid from contract;", nativeQuery = true)
+	public List<String> findContractID();
      
 }

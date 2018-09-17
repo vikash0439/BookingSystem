@@ -88,7 +88,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="customerName" prefHeight="30.0" prefWidth="246.0" promptText="Customer Name">
+            <TextField fx:id="customername" prefHeight="30.0" prefWidth="246.0" promptText="Customer Name">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
@@ -110,22 +110,12 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
+            <TextField fx:id="gstno" prefHeight="30.0" prefWidth="246.0" promptText="GST No">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
             <TextField fx:id="remark" prefHeight="30.0" prefWidth="246.0" promptText="Remark">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="repname" prefHeight="30.0" prefWidth="246.0" promptText="Rep Name">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="repemail" prefHeight="30.0" prefWidth="246.0" promptText="Rep Email">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="repmobile" prefHeight="30.0" prefWidth="246.0" promptText="Rep mobile">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -191,11 +181,12 @@
             <TableView fx:id="customerTable" prefHeight="360.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="colcustomerid" maxWidth="700.0" prefWidth="20.0" text="ID" />
-                <TableColumn fx:id="colcustomerName" maxWidth="4000.0" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="colcustomername" maxWidth="4000.0" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="collandline" maxWidth="4000.0" prefWidth="75.0" text="Landline" />
                   <TableColumn fx:id="colwebsite" maxWidth="4000.0" prefWidth="75.0" text="Website" />
                   <TableColumn fx:id="coladdress" maxWidth="4000.0" prefWidth="60.0" text="Address" />
                   <TableColumn fx:id="colcategory" maxWidth="4000.0" prefWidth="75.0" text="Category" />
+                  <TableColumn fx:id="colgstno" maxWidth="4000.0" prefWidth="75.0" text="GST " />
                   <TableColumn fx:id="colremark" maxWidth="6000.0" prefWidth="130.0" text="Remark" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>

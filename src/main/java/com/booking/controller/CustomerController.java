@@ -9,10 +9,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Customer;
-import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
-import com.booking.service.RepService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -42,7 +40,7 @@ public class CustomerController implements Initializable {
 	private Label customerid;
 
 	@FXML
-	private TextField customerName;
+	private TextField customername;
 
 	@FXML
 	private TextField landline;
@@ -55,6 +53,8 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private TextField category;
+	@FXML
+	private TextField gstno;
 
 	@FXML
 	private TextField remark;
@@ -66,7 +66,7 @@ public class CustomerController implements Initializable {
 	private TableColumn<Customer, Long> colcustomerid;
 
 	@FXML
-	private TableColumn<Customer, String> colcustomerName;
+	private TableColumn<Customer, String> colcustomername;
 
 	@FXML
 	private TableColumn<Customer, String> collandline;
@@ -79,6 +79,8 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private TableColumn<Customer, String> colcategory;
+	@FXML
+	private TableColumn<Customer, String> colgstno;
 
 	@FXML
 	private TableColumn<Customer, String> colremark;
@@ -97,20 +99,6 @@ public class CustomerController implements Initializable {
 	private StageManager stageManager;
 
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
-	
-	/* Rep Table details */
-	
-	@FXML
-	private TextField repname;
-	
-	@FXML
-	private TextField repemail;
-	
-	@FXML
-	private TextField repmobile;
-	
-	@Autowired
-	private RepService repService;
 	
 	/* Event Methods */
 
@@ -144,33 +132,29 @@ public class CustomerController implements Initializable {
 
 		if (customerid.getText() == null || customerid.getText() == "") {
 			Customer customer = new Customer();
-			customer.setCustomerName(customerName.getText());
+			customer.setCustomername(customername.getText());
 			customer.setWebsite(website.getText());
 			customer.setLandline(landline.getText());
 			customer.setAddress(address.getText());
 			customer.setCategory(category.getText());
+			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());	
 			
-			Rep rep = new Rep();			
-			rep.setRepname(repname.getText());
-			rep.setEmail(repemail.getText());
-			rep.setMob(repmobile.getText());
-			
-			customer.setRep(rep);
 			customerService.save(customer);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
 			alert.setHeaderText(null);
-			alert.setContentText("The customer " + customerName.getText() + "  has been saved.");
+			alert.setContentText("The customer " + customername.getText() + "  has been saved.");
 			alert.showAndWait();
 		} else {
 			Customer customer = customerService.find(Long.parseLong(customerid.getText()));
-			customer.setCustomerName(customerName.getText());
+			customer.setCustomername(customername.getText());
 			customer.setWebsite(website.getText());
 			customer.setLandline(landline.getText());
 			customer.setAddress(address.getText());
 			customer.setCategory(category.getText());
+			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());
         		
 			customerService.save(customer);
@@ -178,7 +162,7 @@ public class CustomerController implements Initializable {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
 			alert.setHeaderText(null);
-			alert.setContentText("The customer " + customerName.getText() + "  has been updated.");
+			alert.setContentText("The customer " + customername.getText() + "  has been updated.");
 			alert.showAndWait();
 		}
 		customertable();
@@ -199,11 +183,12 @@ public class CustomerController implements Initializable {
 		 * Set All userTable column properties
 		 */
 		colcustomerid.setCellValueFactory(new PropertyValueFactory<>("customerid"));
-		colcustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+		colcustomername.setCellValueFactory(new PropertyValueFactory<>("customerName"));
 		collandline.setCellValueFactory(new PropertyValueFactory<>("landline"));
 		colwebsite.setCellValueFactory(new PropertyValueFactory<>("website"));
 		coladdress.setCellValueFactory(new PropertyValueFactory<>("address"));
 		colcategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+		colgstno.setCellValueFactory(new PropertyValueFactory<>("gstno"));
 		colremark.setCellValueFactory(new PropertyValueFactory<>("remark"));
 		colEdit.setCellFactory(cellFactory);
 
@@ -247,11 +232,12 @@ public class CustomerController implements Initializable {
 
 				private void updateCustomer(Customer customer) {
 					customerid.setText(Long.toString(customer.getCustomerid()));
-					customerName.setText(customer.getCustomerName());
+					customername.setText(customer.getCustomername());
 					website.setText(customer.getWebsite());
 					landline.setText(customer.getLandline());
 					address.setText(customer.getAddress());
 					category.setText(customer.getCategory());
+					gstno.setText(customer.getGstno());
 					remark.setText(customer.getRemark());
 				}
 			};
@@ -261,11 +247,12 @@ public class CustomerController implements Initializable {
 	
 	private void clearFields() {
 		customerid.setText(null);
-		customerName.clear();
+		customername.clear();
 		website.clear();
 		landline.clear();
 		address.clear();
 		category.clear();
+		gstno.clear();	
 		remark.clear();
 	}
 

@@ -108,9 +108,9 @@ public class InvoiceController implements Initializable{
 	private void saveInvoice(ActionEvent event) {
 		if (InvoiceID.getText() == null || InvoiceID.getText() == "") {
 			Invoice invoice = new Invoice();
-			invoice.setInvoicedate(InvoiceDate.getValue());
-			invoice.setInvoiceamount(InvoiceAmount.getText());
-			invoice.setValidity(Validity.getText());
+//			invoice.setInvoicedate(InvoiceDate.getValue());
+//			invoice.setInvoiceamount(InvoiceAmount.getText());
+//			invoice.setValidity(Validity.getText());
 			
 			invoiceService.save(invoice);
 
@@ -210,8 +210,8 @@ public class InvoiceController implements Initializable{
 
 				private void updateInvoice(Invoice invoice) {
 					InvoiceID.setText(Long.toString(invoice.getInvoiceid()));
-					InvoiceAmount.setText(invoice.getInvoiceamount());
-					Validity.setText(invoice.getValidity());
+//					InvoiceAmount.setText(invoice.getInvoiceamount());
+//					Validity.setText(invoice.getValidity());
 					
 				}
 			};

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Contract;
+import com.booking.bean.Rep;
 import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
@@ -31,42 +32,18 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 @Controller
 public class ContractController implements Initializable {
 
 	@FXML
 	private Label ContractID;
-	@FXML
-	private ComboBox<String> Purpose;
-	@FXML
-	private TextField ShowName;
-	@FXML
-	private TextField ShowDetail;
-	@FXML
-	private TextField ShowTime;
-	@FXML
-	private ComboBox<String> CustomerName;
-	@FXML
-	private TextField RepName;
-	@FXML
-	private TextField RepEmail;
-	@FXML
-	private TextField RepMobile;
-	@FXML
-	private DatePicker ShowDate;
-	@FXML
-	private ComboBox<String> Slot;
-	@FXML
-	private ComboBox<String> Services;
-	@FXML
-	private TextField Charges;
-	@FXML
-	private TextField TaxAmount;
-	@FXML
-	private TextField Total;
+	
 	@FXML
 	private HBox serviceHBox;
+	@FXML
+	private VBox serviceVBox;
 	
 	@Lazy
 	@Autowired
@@ -106,61 +83,42 @@ public class ContractController implements Initializable {
 	@FXML
 	private void saveContract(ActionEvent event) {
 //         if(ContractID.getText() == null || ContractID.getText() == "") {
+		
+		     
         	 Contract contract = new Contract();
-        	 contract.setPurpose(Purpose.getSelectionModel().getSelectedItem());
-        	 contract.setShowname(ShowName.getText());
-        	 contract.setShowdetail(ShowDetail.getText());
-        	 contract.setShowtime(ShowTime.getText());
-        	 contract.setCustomername(CustomerName.getSelectionModel().getSelectedItem());
-        	 contract.setRepname(RepName.getText());
-        	 contract.setRepemail(RepEmail.getText());
-        	 contract.setRepmobile(RepMobile.getText());
-        	 contract.setShowdate((String)ShowDate.getEditor().getText());
-        	 contract.setSlot(Slot.getSelectionModel().getSelectedItem());
-        	 contract.setServices(Services.getSelectionModel().getSelectedItem());
-        	 contract.setCharges(Charges.getText());
-        	 contract.setTaxamount(TaxAmount.getText());
-        	 contract.setTotal(Total.getText());
+        	
+        	
         	 
         	 contractService.save(contract);
 
  			Alert alert = new Alert(AlertType.INFORMATION);
  			alert.setTitle("Contract");
  			alert.setHeaderText(null);
- 			alert.setContentText("Contract of " + CustomerName.getSelectionModel().getSelectedItem() + "  has been created of Amount: "+Total.getText());
+ 			alert.setContentText("Contract of   has been created of Amount: ");
  			alert.showAndWait();
 //         }
 	}
 	
 	public void serviceDetail() {
-		String ser = Services.getValue();
-		Service service = serviceService.getDetail(ser);
-		Charges.setText(service.getServicecharges());
-		TaxAmount.setText("200");
-		Total.setText("200000");
+		
 	
 	}
 	
 	public void addMore() {
 		System.out.println("Add more button ");
+		HBox serviceHBox2 = new HBox();
+		TextField charges = new TextField();
+		ComboBox<String> services = new ComboBox<String>();
+		serviceHBox2.getChildren().add(services);
+		serviceHBox2.getChildren().add(charges);
+		serviceVBox.getChildren().add(serviceHBox2);
 		
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		purposeList.clear();
-		purposeList.addAll(purposeService.findPurpose());
-		Purpose.setItems(purposeList);
-		customerList.clear();
-		customerList.addAll(customerService.findName());
-		CustomerName.setItems(customerList);
-		slotList.clear();
-		slotList.addAll(slotService.findSlot());
-		Slot.setItems(slotList);
-		serviceList.clear();
-		serviceList.addAll(serviceService.findName());
-		Services.setItems(serviceList);
+	
 		
 	}
 }

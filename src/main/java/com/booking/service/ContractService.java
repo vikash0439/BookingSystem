@@ -30,5 +30,9 @@ private final ContractRepository contractRepository;
 	public Contract find(Long contractid) {
 		return contractRepository.findAllByContractid(contractid);
 	}
+	
+	public List<String> getContractID() {
+		return contractRepository.findContractID();
+	}
 
 }

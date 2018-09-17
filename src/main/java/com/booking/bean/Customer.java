@@ -1,13 +1,14 @@
 package com.booking.bean;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,27 +24,17 @@ public class Customer {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "customerid", updatable = false, nullable = false)
 	private long customerid;
-	private String customerName;
+	private String customername;
 	private String landline;
 	private String website;
 	private String address;
 	private String category;
+	private String gstno;
 	private String remark;
-    
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "repid")
-	private Rep rep;
 	
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-//	private Collection<Rep> rep=new ArrayList<Rep>();
-	
-	
-	public Rep getRep() {
-		return rep;
-	}
-	public void setRep(Rep rep) {
-		this.rep = rep;
-	}
+	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", cascade=CascadeType.ALL)
+	private List<Rep> rep;	
+
 
 	public long getCustomerid() {
 		return customerid;
@@ -51,11 +42,18 @@ public class Customer {
 	public void setCustomerid(long customerid) {
 		this.customerid = customerid;
 	}
-	public String getCustomerName() {
-		return customerName;
+	
+	public String getCustomername() {
+		return customername;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCustomername(String customername) {
+		this.customername = customername;
+	}
+	public String getGstno() {
+		return gstno;
+	}
+	public void setGstno(String gstno) {
+		this.gstno = gstno;
 	}
 	public String getLandline() {
 		return landline;
@@ -87,14 +85,6 @@ public class Customer {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Customer [customerid=" + customerid + ", customerName=" + customerName + ", landline=" + landline
-				+ ", website=" + website + ", address=" + address + ", category=" + category + ", remark=" + remark
-				+ ", rep=" + rep + "]";
-	}
-	
+
 
 }

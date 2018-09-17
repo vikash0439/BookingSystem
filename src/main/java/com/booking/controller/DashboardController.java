@@ -117,33 +117,34 @@ public class DashboardController implements Initializable{
     }
 	
 	@FXML
+    private void report(ActionEvent event) throws IOException {
+    	   	
+    }
+	@FXML
+    private void cancel(ActionEvent event) throws IOException {
+      	
+    }	
+	@FXML
     private void customer(ActionEvent event) throws IOException {
     	stageManager.switchScene(FxmlView.CUSTOMER);    	
-    }
-	
+    }	
 	@FXML
 	public void service(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SERVICE); 
-		
-		
-	}
-	
+		stageManager.switchScene(FxmlView.SERVICE); 		
+	}	
 	@FXML
 	public void tax(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.TAX); 		
-	}
-	
+	}	
 	@FXML
 	public void contract(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.CONTRACT);	
-	}
-	
+	}	
 	@FXML
 	public void users(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.USER);		
 	}
-	
-	
+		
 	@FXML
 	public void reserve(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.RESERVE);		
@@ -177,9 +178,7 @@ public class DashboardController implements Initializable{
 	public void contracttable() {
 		/*
 		 * Set All userTable column properties
-		 */
-
-		
+		 */	
 		
 		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
 		colShowDetail.setCellValueFactory(new PropertyValueFactory<>("showdetail"));
@@ -204,11 +203,7 @@ public class DashboardController implements Initializable{
 				    }
 					if(Long.toString(contract.getContractid()).contains(newValue)) {
 				    	return true;
-				    }else if(contract.getShowdate().contains(newValue)){
-				    	return true;
-				    }else if(contract.getShowname().toLowerCase().contains(newValue)) {
-				    	return true;
-				    }else if(contract.getShowname().toLowerCase().contains(newValue)) {
+				    }else if(contract.getBookingdate().contains(newValue)){
 				    	return true;
 				    }	
 					return false;
@@ -255,16 +250,9 @@ public class DashboardController implements Initializable{
 
 				private void updateContract(Contract contract) {
 					ContractID.setText(Long.toString(contract.getContractid()));
-					CustomerName.setText(contract.getCustomername());
-					RepName.setText(contract.getRepname());
-					RepEmail.setText(contract.getRepemail());
-					RepMobile.setText(contract.getRepmobile());
 				    Purpose.setText(contract.getPurpose());
-				    ShowDate.setText(contract.getShowdate());;
-					ShowName.setText(contract.getShowname());
-					Slot.setText(contract.getSlot());
-					Services.setText(contract.getServices());
-					Total.setText(contract.getTotal());
+				    ShowDate.setText(contract.getBookingdate());				
+					Total.setText(contract.getPact());
 				}
 			};
 			return cell;

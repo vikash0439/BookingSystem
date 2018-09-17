@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +30,17 @@ public class Receipt{
 	private String paymentmode;
 	private String finalpayment;
 	
+	@ManyToOne
+	@JoinColumn(name ="contractid", insertable = false, updatable = false)
+	private Contract contract;
 	
+	
+	public Contract getContract() {
+		return contract;
+	}
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
 	public long getReceiptid() {
 		return receiptid;
 	}
