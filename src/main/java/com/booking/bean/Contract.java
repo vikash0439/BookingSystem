@@ -37,40 +37,26 @@ public class Contract {
 	
 	
 	
-	
+	@OneToOne
+	@JoinColumn
+	private Invoice invoice;
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Booking> bookings;	
 	@OneToMany(targetEntity = Performance.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Performance> performances;	
-	@OneToOne
-	@JoinColumn
-	private Invoice invoice;
-	@OneToMany(targetEntity = Performance.class, mappedBy = "contract", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity = Allocation.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Allocation> allocation;
-	
-	public Invoice getInvoice() {
-		return invoice;
-	}
-	public void setInvoice(Invoice invoice) {
-		this.invoice = invoice;
-	}
-	public List<Performance> getPerformances() {
-		return performances;
-	}
-	public void setPerformances(List<Performance> performances) {
-		this.performances = performances;
-	}
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}
+	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL)
+	private List<Receipt> receipt;
 	
 	
 	
-	
-	
+	public List<Receipt> getReceipt() {
+		return receipt;
+	}
+	public void setReceipt(List<Receipt> receipt) {
+		this.receipt = receipt;
+	}
 	public long getContractid() {
 		return contractid;
 	}
@@ -125,9 +111,29 @@ public class Contract {
 	public void setSlabno(String slabno) {
 		this.slabno = slabno;
 	}
-	
-	
-	
-	
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+	public List<Performance> getPerformances() {
+		return performances;
+	}
+	public void setPerformances(List<Performance> performances) {
+		this.performances = performances;
+	}
+	public Invoice getInvoice() {
+		return invoice;
+	}
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+	public List<Allocation> getAllocation() {
+		return allocation;
+	}
+	public void setAllocation(List<Allocation> allocation) {
+		this.allocation = allocation;
+	}
 
 }

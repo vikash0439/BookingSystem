@@ -11,7 +11,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
 	Customer findAllByCustomerid(Long customerid);
 	
-	@Query(value = "select * from customer;", nativeQuery = true)
+	@Query(value = "select customername from customer;", nativeQuery = true)
 	public List<String> findName();
      
 }

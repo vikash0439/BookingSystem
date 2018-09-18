@@ -33,6 +33,12 @@ public class Booking{
 	private Contract contract;
 	
 	
+	public Contract getContract() {
+		return contract;
+	}
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
 	public long getServiceid() {
 		return serviceid;
 	}

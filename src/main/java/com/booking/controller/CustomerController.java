@@ -2,6 +2,8 @@ package com.booking.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Customer;
+import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
+import com.booking.service.RepService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -26,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -54,13 +59,23 @@ public class CustomerController implements Initializable {
 	@FXML
 	private TextField category;
 	@FXML
+	private TextField statecode;
+	@FXML
 	private TextField gstno;
 
 	@FXML
 	private TextField remark;
+	@FXML
+	private TextField repname;
+	@FXML
+	private TextField repmobile;
+	@FXML
+	private TextField repemail;
 
 	@FXML
 	private TableView<Customer> customerTable;
+	@FXML
+	private TableView<Rep> repTable;
 
 	@FXML
 	private TableColumn<Customer, Long> colcustomerid;
@@ -76,6 +91,8 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private TableColumn<Customer, String> coladdress;
+	@FXML
+	private TableColumn<Customer, String> colstatecode;
 
 	@FXML
 	private TableColumn<Customer, String> colcategory;
@@ -84,6 +101,15 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private TableColumn<Customer, String> colremark;
+	@FXML
+	private TableColumn<Customer, Long> colrepid;
+
+	@FXML
+	private TableColumn<Customer, String> colrepname;
+	@FXML
+	private TableColumn<Customer, String> colrepmobile;
+	@FXML
+	private TableColumn<Customer, String> colrepemail;
 
 	@FXML
 	private TableColumn<Customer, Boolean> colEdit;
@@ -93,12 +119,15 @@ public class CustomerController implements Initializable {
 
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private RepService repService;
 
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
 
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
+	private ObservableList<Rep> repList = FXCollections.observableArrayList();
 	
 	/* Event Methods */
 
@@ -136,11 +165,25 @@ public class CustomerController implements Initializable {
 			customer.setWebsite(website.getText());
 			customer.setLandline(landline.getText());
 			customer.setAddress(address.getText());
+			customer.setStatecode(statecode.getText());
 			customer.setCategory(category.getText());
 			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());	
 			
+			Rep r = new Rep();
+			r.setRepname(repname.getText());
+			r.setRepmobile(repmobile.getText());
+			r.setRepemail(repemail.getText());
+			
+			List<Rep> rep = new ArrayList<Rep>();
+			rep.add(r);
+			
+			/* establishing link in onetomany and manytoone way */
+			r.setCustomer(customer);			
+			customer.setRep(rep);
+			
 			customerService.save(customer);
+			repService.save(r);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
@@ -166,6 +209,7 @@ public class CustomerController implements Initializable {
 			alert.showAndWait();
 		}
 		customertable();
+		reptable();
 		clearFields();
 	}
 
@@ -174,6 +218,7 @@ public class CustomerController implements Initializable {
 		// TODO Auto-generated method stub
 
 		customertable();
+		reptable();
 		clearFields();
 
 	}
@@ -183,10 +228,11 @@ public class CustomerController implements Initializable {
 		 * Set All userTable column properties
 		 */
 		colcustomerid.setCellValueFactory(new PropertyValueFactory<>("customerid"));
-		colcustomername.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+		colcustomername.setCellValueFactory(new PropertyValueFactory<>("customername"));
 		collandline.setCellValueFactory(new PropertyValueFactory<>("landline"));
 		colwebsite.setCellValueFactory(new PropertyValueFactory<>("website"));
 		coladdress.setCellValueFactory(new PropertyValueFactory<>("address"));
+		colstatecode.setCellValueFactory(new PropertyValueFactory<>("statecode"));
 		colcategory.setCellValueFactory(new PropertyValueFactory<>("category"));
 		colgstno.setCellValueFactory(new PropertyValueFactory<>("gstno"));
 		colremark.setCellValueFactory(new PropertyValueFactory<>("remark"));
@@ -195,6 +241,16 @@ public class CustomerController implements Initializable {
 		customerList.clear();
 		customerList.addAll(customerService.getCustomer());
 		customerTable.setItems(customerList);
+	}
+	public void reptable() {
+		colrepid.setCellValueFactory(new PropertyValueFactory<>("repid"));
+		colrepname.setCellValueFactory(new PropertyValueFactory<>("repname"));
+		colrepemail.setCellValueFactory(new PropertyValueFactory<>("repemail"));
+		colrepmobile.setCellValueFactory(new PropertyValueFactory<>("repmobile"));
+		
+		repList.clear();
+		repList.addAll(repService.getRep());
+		repTable.setItems(repList);
 	}
 
 	Callback<TableColumn<Customer, Boolean>, TableCell<Customer, Boolean>> cellFactory = new Callback<TableColumn<Customer, Boolean>, TableCell<Customer, Boolean>>() {
@@ -244,6 +300,19 @@ public class CustomerController implements Initializable {
 			return cell;
 		}
 	};
+	
+	 @FXML
+	    private void repClient(ActionEvent event){
+		 
+		 TablePosition<?, ?> pos = customerTable.getSelectionModel().getSelectedCells().get(0);
+		 long id = pos.getRow();
+		 System.out.println("From context menu table:" +id);
+		 repList.clear();
+			repList.addAll(repService.getByCustomerid(id));
+			repTable.setItems(repList);
+	    			
+	    	
+	    }
 	
 	private void clearFields() {
 		customerid.setText(null);

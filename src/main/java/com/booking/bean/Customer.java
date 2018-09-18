@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,11 +29,12 @@ public class Customer {
 	private String landline;
 	private String website;
 	private String address;
+	private String statecode;
 	private String category;
 	private String gstno;
 	private String remark;
 	
-	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Rep> rep;	
 
 
@@ -85,6 +87,19 @@ public class Customer {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public String getStatecode() {
+		return statecode;
+	}
+	public void setStatecode(String statecode) {
+		this.statecode = statecode;
+	}
+	public List<Rep> getRep() {
+		return rep;
+	}
+	public void setRep(List<Rep> rep) {
+		this.rep = rep;
+	}
+	
 
 
 }

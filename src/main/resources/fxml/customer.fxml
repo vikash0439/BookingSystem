@@ -105,6 +105,11 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
+            <TextField fx:id="statecode" prefHeight="30.0" prefWidth="246.0" promptText="State Code">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
             <TextField fx:id="category" prefHeight="30.0" prefWidth="246.0" promptText="Category">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
@@ -116,6 +121,21 @@
                </VBox.margin>
             </TextField>
             <TextField fx:id="remark" prefHeight="30.0" prefWidth="246.0" promptText="Remark">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="repname" prefHeight="30.0" prefWidth="246.0" promptText="Rep Name">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="repmobile" prefHeight="30.0" prefWidth="246.0" promptText="Rep Mobile">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="repemail" prefHeight="30.0" prefWidth="246.0" promptText="Rep Email">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -185,6 +205,7 @@
                   <TableColumn fx:id="collandline" maxWidth="4000.0" prefWidth="75.0" text="Landline" />
                   <TableColumn fx:id="colwebsite" maxWidth="4000.0" prefWidth="75.0" text="Website" />
                   <TableColumn fx:id="coladdress" maxWidth="4000.0" prefWidth="60.0" text="Address" />
+                  <TableColumn fx:id="colstatecode" maxWidth="4000.0" prefWidth="60.0" text="State Code" />
                   <TableColumn fx:id="colcategory" maxWidth="4000.0" prefWidth="75.0" text="Category" />
                   <TableColumn fx:id="colgstno" maxWidth="4000.0" prefWidth="75.0" text="GST " />
                   <TableColumn fx:id="colremark" maxWidth="6000.0" prefWidth="130.0" text="Remark" />
@@ -196,7 +217,13 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-              
+              <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#repClient" text="Rep" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
             <Label alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="700.0" text="Rep Detail (Select Clients from above table )" textAlignment="CENTER" textFill="#4340e8">
                <VBox.margin>
@@ -206,16 +233,17 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TableView prefHeight="152.0" prefWidth="652.0">
+            <TableView fx:id="repTable" prefHeight="152.0" prefWidth="652.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Rep ID" />
-                <TableColumn prefWidth="212.0" text="Rep Name" />
-                  <TableColumn minWidth="0.0" prefWidth="170.0" text="Mobile" />
-                  <TableColumn prefWidth="221.0" text="Email" />
+                <TableColumn fx:id="colrepid" prefWidth="75.0" text="Rep ID" />
+                <TableColumn fx:id="colrepname" prefWidth="212.0" text="Rep Name" />
+                  <TableColumn fx:id="colrepmobile" minWidth="0.0" prefWidth="170.0" text="Mobile" />
+                  <TableColumn fx:id="colrepemail" prefWidth="221.0" text="Email" />
               </columns>
                <VBox.margin>
                   <Insets left="10.0" right="5.0" />
                </VBox.margin>
+               
             </TableView>
          </children>
       </VBox>

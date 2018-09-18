@@ -31,5 +31,12 @@ public class RepService {
 	public Rep find(Long repid) {
 		return repRepository.findAllByRepid(repid);
 	}
+	public Rep getByCustomerid(Long repid){
+		Rep c = new Rep();
+		repRepository.findAllByRepid(repid);
+		return c;
+	}
+	
+
 
 }

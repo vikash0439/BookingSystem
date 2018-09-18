@@ -24,8 +24,8 @@ public class Rep{
 	@Column(name = "repid", updatable = false, nullable = false)
 	private long repid;
 	private String repname;
-	private String mob;
-	private String email;
+	private String repmobile;
+	private String repemail;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerid")
@@ -47,20 +47,22 @@ public class Rep{
 		this.repname = repname;
 	}
 
-	public String getMob() {
-		return mob;
+	
+
+	public String getRepmobile() {
+		return repmobile;
 	}
 
-	public void setMob(String mob) {
-		this.mob = mob;
+	public void setRepmobile(String repmobile) {
+		this.repmobile = repmobile;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getRepemail() {
+		return repemail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setRepemail(String repemail) {
+		this.repemail = repemail;
 	}
 
 	public Customer getCustomer() {
