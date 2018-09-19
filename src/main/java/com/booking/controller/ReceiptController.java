@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.booking.bean.Contract;
 import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
@@ -60,7 +61,7 @@ public class ReceiptController implements Initializable{
 	@FXML 
 	private Label ReceiptID;
 	@FXML
-	private ComboBox<String> cID;
+	private ComboBox<Long> cID;
 	@FXML
 	private DatePicker ReceiptDate;
 	@FXML
@@ -98,7 +99,7 @@ public class ReceiptController implements Initializable{
 	private ContractService contractService;
 	
     private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
-    private ObservableList<String> cIDList = FXCollections.observableArrayList();
+    private ObservableList<Long> cIDList = FXCollections.observableArrayList();
 	
 	/* Tax Event methods */
 
@@ -136,13 +137,15 @@ public class ReceiptController implements Initializable{
 			receipt.setTaxamount(TaxAmount.getText());
 			receipt.setPaymentmode(PaymentMode.getText());
 			receipt.setFinalpayment(FinalPayment.getText());
-			
+			Long id = (long) 4;
+			Contract contract = contractService.find(id);
+			receipt.setContract(contract);
 			receiptService.save(receipt);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Tax updated successfully.");
 			alert.setHeaderText(null);
-			alert.setContentText("Amount:  " + PaidAmount.getText() + "  invoice created.");
+			alert.setContentText("Amount:  " + PaidAmount.getText() + "  receipt created.");
 			alert.showAndWait();
 		} else {
 			System.out.println("Nothing to update");

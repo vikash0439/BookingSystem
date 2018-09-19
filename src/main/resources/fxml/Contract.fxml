@@ -126,7 +126,7 @@
                         <Insets left="25.0" right="25.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="cost1" prefHeight="30.0" prefWidth="169.0">
+                  <Label prefHeight="30.0" prefWidth="169.0">
                      <HBox.margin>
                         <Insets top="8.0" />
                      </HBox.margin>
@@ -142,7 +142,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </DatePicker>
-                        <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="191.0" promptText="Services">
+                        <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -183,9 +183,9 @@
                   </Label>
                </children>
             </HBox>
-            <VBox fx:id="serviceVBox1" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f2f2f2;">
+            <VBox fx:id="showVBox" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f2f2f2;">
                <children>
-                  <HBox fx:id="serviceHBox1" prefHeight="52.0" prefWidth="694.0">
+                  <HBox prefHeight="52.0" prefWidth="694.0">
                      <children>
                         <TextField fx:id="ShowName" promptText="Show name">
                            <HBox.margin>
@@ -207,7 +207,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#addMore" prefHeight="31.0" prefWidth="91.0" text="Add +" />
+                        <Button mnemonicParsing="false" onAction="#addMoreService" prefHeight="31.0" prefWidth="91.0" text="Add +" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

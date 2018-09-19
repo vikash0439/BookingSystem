@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class Contract {
 	
 	
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	@JoinColumn
 	private Invoice invoice;
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
@@ -46,7 +47,7 @@ public class Contract {
 	private List<Performance> performances;	
 	@OneToMany(targetEntity = Allocation.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Allocation> allocation;
-	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<Receipt> receipt;
 	
 	
@@ -129,10 +130,10 @@ public class Contract {
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
-	public List<Allocation> getAllocation() {
+	public List<Allocation> getAllocation() {     // IOC class setter inhjection
 		return allocation;
 	}
-	public void setAllocation(List<Allocation> allocation) {
+	public void setAllocation(List<Allocation> allocation) {   // IOC class with getter injection
 		this.allocation = allocation;
 	}
 

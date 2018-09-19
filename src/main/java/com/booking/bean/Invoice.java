@@ -1,7 +1,5 @@
 package com.booking.bean;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class Invoice{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "invoiceid", updatable = false, nullable = false)
 	private long invoiceid;	
-	private int invoicedate;
+	private String invoicedate;
 	private boolean cancelled;
 	
 	@OneToOne(mappedBy = "invoice")
@@ -37,11 +35,11 @@ public class Invoice{
 		this.invoiceid = invoiceid;
 	}
 
-	public int getInvoicedate() {
+	public String getInvoicedate() {
 		return invoicedate;
 	}
 
-	public void setInvoicedate(int invoicedate) {
+	public void setInvoicedate(String invoicedate) {
 		this.invoicedate = invoicedate;
 	}
 
@@ -60,6 +58,8 @@ public class Invoice{
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
+
+	
 	
 	
 }

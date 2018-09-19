@@ -88,6 +88,11 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
+            <ComboBox fx:id="contractid" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
             <DatePicker fx:id="InvoiceDate" prefHeight="31.0" prefWidth="251.0" promptText="Invoice Date">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

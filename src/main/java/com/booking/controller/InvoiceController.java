@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.booking.bean.Contract;
 import com.booking.bean.Invoice;
 import com.booking.config.StageManager;
+import com.booking.service.ContractService;
 import com.booking.service.InvoiceService;
 import com.booking.view.FxmlView;
 
@@ -25,6 +27,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -49,6 +52,8 @@ public class InvoiceController implements Initializable{
 	private TextField InvoiceAmount;
 	@FXML
 	private TextField Validity;
+	@FXML
+	private ComboBox<Long> contractid;
 	
 	@FXML
 	private TableView<Invoice> invoicetable;
@@ -74,9 +79,13 @@ public class InvoiceController implements Initializable{
 	private StageManager stageManager;
 	@Autowired 
 	private InvoiceService invoiceService;
+	@Autowired 
+	private ContractService contractService;
 	
     private ObservableList<Invoice> invoiceList = FXCollections.observableArrayList();
+    private ObservableList<Long> contractList = FXCollections.observableArrayList();
 	
+ 
 	/* Tax Event methods */
 
 	@FXML
@@ -104,13 +113,18 @@ public class InvoiceController implements Initializable{
 		stageManager.switchScene(FxmlView.CUSTOMER);
 	}
 	
+	public void getContract() {
+		
+	}
+	
 	@FXML
 	private void saveInvoice(ActionEvent event) {
 		if (InvoiceID.getText() == null || InvoiceID.getText() == "") {
 			Invoice invoice = new Invoice();
-//			invoice.setInvoicedate(InvoiceDate.getValue());
-//			invoice.setInvoiceamount(InvoiceAmount.getText());
-//			invoice.setValidity(Validity.getText());
+			invoice.setInvoicedate((String)InvoiceDate.getEditor().getText());
+ 
+			Contract contract = contractService.find(contractid.getValue());
+	       invoice.setContract(contract);
 			
 			invoiceService.save(invoice);
 
@@ -131,6 +145,10 @@ public class InvoiceController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		contractList.clear();
+		contractList.addAll(contractService.getContractID());
+		System.out.println(contractList);
+		contractid.setItems(contractList);
 		
 		invoicetable();
 		clearFields();

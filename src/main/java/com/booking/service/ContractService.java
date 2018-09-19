@@ -13,9 +13,11 @@ public class ContractService {
 	
 private final ContractRepository contractRepository;
 	
-	public ContractService(ContractRepository contractRepository) {
+	public ContractService(ContractRepository contractRepository) {   // constructor injection with IOC
 		this.contractRepository = contractRepository;
 	}
+	
+	
 	
 	public Contract save(Contract invoice) {
 		return contractRepository.save(invoice);		
@@ -31,7 +33,7 @@ private final ContractRepository contractRepository;
 		return contractRepository.findAllByContractid(contractid);
 	}
 	
-	public List<String> getContractID() {
+	public List<Long> getContractID() {
 		return contractRepository.findContractID();
 	}
 

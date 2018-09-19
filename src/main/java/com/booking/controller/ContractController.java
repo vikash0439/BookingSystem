@@ -48,9 +48,12 @@ public class ContractController implements Initializable {
 	@FXML
 	private VBox serviceVBox;
 	@FXML
+	private VBox showVBox;
+	@FXML
 	private Label cost;
 	@FXML
 	private TextField charges;
+	
 	/* Contract Table */
 	@FXML
 	private DatePicker BookingDate;
@@ -111,6 +114,59 @@ public class ContractController implements Initializable {
 	private void exit(ActionEvent event) {
 		Platform.exit();
 	}
+	
+	public void addMore() {
+		System.out.println("Add more button ");
+		HBox serviceHBox = new HBox();
+		serviceHBox.setSpacing(10);
+		serviceVBox.setSpacing(10);
+
+		TextField charges = new TextField();
+		charges.setPromptText("Chargers");
+		charges.setId("ServiceCost");
+		
+		ComboBox<String> slot = new ComboBox<String>();
+		slot.setPromptText("Slot");
+		slot.setId("Slot");
+		slot.setItems(slotList);
+
+		ComboBox<String> services = new ComboBox<String>();
+		services.setPromptText("Services");
+		services.setId("ServiceName");
+		services.setItems(serviceList);
+		services.setOnAction( new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				String ser = services.getValue();
+				Service service = serviceService.getDetail(ser);
+				charges.setText(service.getServicecharges());				
+			}
+		});
+		
+		DatePicker date = new DatePicker();
+		date.setId("ServiceDate");
+		
+		serviceHBox.getChildren().add(date);
+		serviceHBox.getChildren().add(services);
+		serviceHBox.getChildren().add(slot);
+		serviceHBox.getChildren().add(charges);
+		serviceVBox.getChildren().add(serviceHBox);
+
+		cost.setText(charges.getText());
+	}
+	
+	public void addMoreService() {
+		HBox showHBox = new HBox();
+		showHBox.getChildren().add(ShowName);
+		showHBox.getChildren().add(ShowDate);
+		showHBox.getChildren().add(ShowTime);
+		showHBox.getChildren().add(ShowDetails);
+		
+		showVBox.getChildren().add(showHBox);
+	
+	}
 
 	@FXML
 	private void saveContract(ActionEvent event) {
@@ -123,6 +179,12 @@ public class ContractController implements Initializable {
 		b.setServicedate((String) ServiceDate.getEditor().getText());
 		b.setServicecost(ServiceCost.getText());
         b.setContract(contract);
+        
+        System.out.println("From save contract :"+(String) ServiceDate.getEditor().getText());
+        ObservableList<String> s = FXCollections.observableArrayList((String)ServiceName.getEditor().getText());
+		for(String service : s) {
+			System.out.println("From add more services: "+service);
+		}
         
 		List<Booking> booking = new ArrayList<Booking>();
 		booking.add(b);
@@ -150,51 +212,11 @@ public class ContractController implements Initializable {
 	}
 
 	public void serviceDetail() {
+		
 		String ser = ServiceName.getValue();
 		Service service = serviceService.getDetail(ser);
 		ServiceCost.setText(service.getServicecharges());
 
-	}
-
-	public void addMore() {
-		System.out.println("Add more button ");
-		HBox serviceHBox = new HBox();
-		serviceHBox.setSpacing(10);
-		serviceVBox.setSpacing(10);
-
-		TextField charges = new TextField();
-		charges.setPromptText("Chargers");
-		
-		ComboBox<String> slot = new ComboBox<String>();
-		slot.setPromptText("Slot");
-		slot.setId("slot2");
-		slot.setItems(slotList);
-
-		ComboBox<String> services = new ComboBox<String>();
-		services.setPromptText("Services");
-		services.setId("service2");
-		services.setItems(serviceList);
-		services.setOnAction( new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				String ser = services.getValue();
-				Service service = serviceService.getDetail(ser);
-				charges.setText(service.getServicecharges());
-				
-			}
-		});
-		
-		DatePicker date = new DatePicker();
-		date.setId("BookingDate");
-		serviceHBox.getChildren().add(date);
-		serviceHBox.getChildren().add(services);
-		serviceHBox.getChildren().add(slot);
-		serviceHBox.getChildren().add(charges);
-		serviceVBox.getChildren().add(serviceHBox);
-
-		cost.setText(charges.getText());
 	}
 
 	@Override

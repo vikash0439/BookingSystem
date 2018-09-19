@@ -31,7 +31,7 @@ public class Receipt{
 	private String finalpayment;
 	
 	@ManyToOne
-	@JoinColumn(name ="contractid", insertable = false, updatable = false)
+	@JoinColumn(name ="contractid")
 	private Contract contract;
 	
 	
