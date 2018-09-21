@@ -71,24 +71,18 @@ public class CustomerController implements Initializable {
 	private TextField repmobile;
 	@FXML
 	private TextField repemail;
-
 	@FXML
 	private TableView<Customer> customerTable;
 	@FXML
 	private TableView<Rep> repTable;
-
 	@FXML
 	private TableColumn<Customer, Long> colcustomerid;
-
 	@FXML
 	private TableColumn<Customer, String> colcustomername;
-
 	@FXML
 	private TableColumn<Customer, String> collandline;
-
 	@FXML
 	private TableColumn<Customer, String> colwebsite;
-
 	@FXML
 	private TableColumn<Customer, String> coladdress;
 	@FXML
@@ -103,17 +97,14 @@ public class CustomerController implements Initializable {
 	private TableColumn<Customer, String> colremark;
 	@FXML
 	private TableColumn<Customer, Long> colrepid;
-
 	@FXML
 	private TableColumn<Customer, String> colrepname;
 	@FXML
 	private TableColumn<Customer, String> colrepmobile;
 	@FXML
 	private TableColumn<Customer, String> colrepemail;
-
 	@FXML
 	private TableColumn<Customer, Boolean> colEdit;
-
 	@FXML
 	private Button reset;
 

@@ -67,6 +67,8 @@ public class DashboardController implements Initializable{
 	@FXML
 	private TableColumn<Contract, String> colContractID;
 	@FXML
+	private TableColumn<Contract, String> colBookingDate;
+	@FXML
 	private TableColumn<Contract, String> colPurpose;
 	@FXML
 	private TableColumn<Contract, String> colShowName;
@@ -96,7 +98,6 @@ public class DashboardController implements Initializable{
 	private TableColumn<Contract, String> colTotal;
 	@FXML
 	private TableColumn<Contract, Boolean> colEdit;
-
 	@Lazy
     @Autowired
     private StageManager stageManager;
@@ -180,11 +181,11 @@ public class DashboardController implements Initializable{
 		 * Set All userTable column properties
 		 */	
 		
+		colBookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingdate"));
 		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
-		colShowDetail.setCellValueFactory(new PropertyValueFactory<>("showdetail"));
-		colShowDate.setCellValueFactory(new PropertyValueFactory<>("showdate"));
+		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
 		colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customername"));
-		colShowName.setCellValueFactory(new PropertyValueFactory<>("showname"));
+		colShowDate.setCellValueFactory(new PropertyValueFactory<>("showdate"));
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colServices.setCellValueFactory(new PropertyValueFactory<>("services"));
 		colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));

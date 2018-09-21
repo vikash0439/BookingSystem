@@ -73,6 +73,4 @@ public class Rep{
 		this.customer = customer;
 	}
 	
-	
-
 }

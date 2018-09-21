@@ -15,6 +15,7 @@ import com.booking.bean.Contract;
 import com.booking.bean.Performance;
 import com.booking.bean.Service;
 import com.booking.config.StageManager;
+import com.booking.service.BookingService;
 import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
 import com.booking.service.PurposeService;
@@ -44,6 +45,8 @@ public class ContractController implements Initializable {
 	@FXML
 	private Label ContractID;
 	@FXML
+	private Label bookingCost;
+	@FXML
 	private HBox serviceHBox;
 	@FXML
 	private VBox serviceVBox;
@@ -61,15 +64,26 @@ public class ContractController implements Initializable {
 	private ComboBox<String> Purpose;
 	@FXML
 	private ComboBox<String> Customer;
+	@FXML
+	private Label baseprice;
+	@FXML
+	private Label taxamount;
+	@FXML
+	private Label pact;
+	
 	/* Booking table */
 	@FXML
 	private DatePicker ServiceDate;
 	@FXML
-	private ComboBox<String> ServiceName;
+	private TextField ServiceTime;
 	@FXML
 	private ComboBox<String> Slot;
 	@FXML
 	private TextField ServiceCost;
+	@FXML
+	private TextField ServiceUsed;
+	@FXML
+	private ComboBox<String> ServiceName;
 
 	/* Performance Table */
 	@FXML
@@ -94,11 +108,18 @@ public class ContractController implements Initializable {
 	private SlotService slotService;
 	@Autowired
 	private ServiceService serviceService;
+	@Autowired
+	private BookingService bookingService;
 
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
 	private ObservableList<String> slotList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceList = FXCollections.observableArrayList();
+	
+	List<String> SCost = new ArrayList<>();
+    List<String> STime = new ArrayList<>();
+    List<String> s = new ArrayList<>();
+    
 
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
@@ -115,6 +136,10 @@ public class ContractController implements Initializable {
 		Platform.exit();
 	}
 	
+	
+		
+	
+	
 	public void addMore() {
 		System.out.println("Add more button ");
 		HBox serviceHBox = new HBox();
@@ -124,11 +149,22 @@ public class ContractController implements Initializable {
 		TextField charges = new TextField();
 		charges.setPromptText("Chargers");
 		charges.setId("ServiceCost");
+		charges.setOnAction(e -> SCost.add(charges.getText()));
 		
 		ComboBox<String> slot = new ComboBox<String>();
 		slot.setPromptText("Slot");
 		slot.setId("Slot");
 		slot.setItems(slotList);
+		slot.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				s.add(Slot.getEditor().getText());	
+
+			}
+			
+		});
 
 		ComboBox<String> services = new ComboBox<String>();
 		services.setPromptText("Services");
@@ -141,28 +177,47 @@ public class ContractController implements Initializable {
 				// TODO Auto-generated method stub
 				String ser = services.getValue();
 				Service service = serviceService.getDetail(ser);
-				charges.setText(service.getServicecharges());				
+				charges.setText(service.getServicecharges());	
+				baseprice.setText(service.getServicecharges());
 			}
+			
 		});
 		
 		DatePicker date = new DatePicker();
 		date.setId("ServiceDate");
 		
+		TextField ServiceTime = new TextField();
+		ServiceTime.setPromptText("Service Time");
+		ServiceTime.setOnAction(e ->  STime.add(ServiceTime.getText()));
+		
 		serviceHBox.getChildren().add(date);
 		serviceHBox.getChildren().add(services);
 		serviceHBox.getChildren().add(slot);
 		serviceHBox.getChildren().add(charges);
+		serviceHBox.getChildren().add(ServiceTime);
 		serviceVBox.getChildren().add(serviceHBox);
 
 		cost.setText(charges.getText());
 	}
 	
-	public void addMoreService() {
+	public void addMoreShow() {
 		HBox showHBox = new HBox();
-		showHBox.getChildren().add(ShowName);
-		showHBox.getChildren().add(ShowDate);
-		showHBox.getChildren().add(ShowTime);
-		showHBox.getChildren().add(ShowDetails);
+		serviceVBox.setSpacing(10);
+		showHBox.setSpacing(10);
+		
+		TextField showName = new TextField();
+		showName.setPromptText("Show name");
+		
+		DatePicker ShowDate = new DatePicker();
+		ShowDate.setPromptText("Show Date");
+		
+		TextField ShowTime = new TextField();
+		ShowTime.setPromptText("Show Time");
+		
+		TextField ShowDetails = new TextField();
+		ShowDetails.setPromptText("Show Details");
+		
+		showHBox.getChildren().addAll(showName, ShowDate, ShowTime, ShowDetails);
 		
 		showVBox.getChildren().add(showHBox);
 	
@@ -175,20 +230,25 @@ public class ContractController implements Initializable {
 		contract.setBookingdate((String) BookingDate.getEditor().getText());
 		contract.setPurpose(Purpose.getSelectionModel().getSelectedItem());
 		
+		
+		SCost.add(ServiceCost.getText());
+		STime.add(ServiceTime.getText());
+
 		Booking b = new Booking();
+		for (int i =0; i< SCost.size(); i++) {
 		b.setServicedate((String) ServiceDate.getEditor().getText());
-		b.setServicecost(ServiceCost.getText());
+		b.setServicecost(SCost.get(i));
+		b.setServicetime(ServiceTime.getText());
+		b.setSlot(Slot.getEditor().getText());
+//		b.setServiceused(ServiceUsed.getText());
         b.setContract(contract);
+        System.out.println("From booking loop  SCost size : "+SCost.size());
         
-        System.out.println("From save contract :"+(String) ServiceDate.getEditor().getText());
-        ObservableList<String> s = FXCollections.observableArrayList((String)ServiceName.getEditor().getText());
-		for(String service : s) {
-			System.out.println("From add more services: "+service);
 		}
         
 		List<Booking> booking = new ArrayList<Booking>();
 		booking.add(b);
-
+		
 		Performance p = new Performance();
 		p.setShowname(ShowName.getText());
 		p.setShowtime(ShowTime.getText());
@@ -202,6 +262,7 @@ public class ContractController implements Initializable {
 		contract.setBookings(booking);
 		
 		contractService.save(contract);
+		bookingService.save(b);
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Contract");
@@ -216,7 +277,10 @@ public class ContractController implements Initializable {
 		String ser = ServiceName.getValue();
 		Service service = serviceService.getDetail(ser);
 		ServiceCost.setText(service.getServicecharges());
-
+		baseprice.setText(service.getServicecharges());
+		bookingCost.setText(service.getServicecharges());
+		taxamount.setText("18%");
+		pact.setText("total here");
 	}
 
 	@Override

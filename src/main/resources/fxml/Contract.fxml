@@ -92,6 +92,62 @@
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
             </TextField>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Base Price - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="baseprice">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="2.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Tax Amount - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="taxamount">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Pact  - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="pact">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <ComboBox fx:id="paymentstatus" prefHeight="31.0" prefWidth="275.0" promptText="Payment Status">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </ComboBox>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -121,7 +177,7 @@
             </HBox>
             <HBox prefHeight="48.0" prefWidth="994.0">
                <children>
-                  <Label prefHeight="32.0" prefWidth="217.0" text="Service Details :">
+                  <Label prefHeight="32.0" prefWidth="217.0" text="Service Details (Booking)">
                      <HBox.margin>
                         <Insets left="25.0" right="25.0" top="5.0" />
                      </HBox.margin>
@@ -142,6 +198,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </DatePicker>
+                        <TextField fx:id="ServiceTime" promptText="Time" />
                         <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
@@ -171,7 +228,21 @@
             </VBox>
             <HBox prefHeight="48.0" prefWidth="994.0">
                <children>
-                  <Label prefHeight="32.0" prefWidth="217.0" text="Show Details">
+                  <Label prefHeight="32.0" prefWidth="217.0" text="Total Booking Cost : ">
+                     <HBox.margin>
+                        <Insets left="350.0" right="25.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="bookingCost" prefHeight="30.0" prefWidth="169.0">
+                     <HBox.margin>
+                        <Insets top="8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="48.0" prefWidth="994.0">
+               <children>
+                  <Label prefHeight="32.0" prefWidth="217.0" text="Show Details (Performance)">
                      <HBox.margin>
                         <Insets left="25.0" right="25.0" top="5.0" />
                      </HBox.margin>
@@ -207,7 +278,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#addMoreService" prefHeight="31.0" prefWidth="91.0" text="Add +" />
+                        <Button mnemonicParsing="false" onAction="#addMoreShow" prefHeight="31.0" prefWidth="91.0" text="Add +" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -215,20 +286,6 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox prefHeight="48.0" prefWidth="994.0">
-               <children>
-                  <Label prefHeight="32.0" prefWidth="217.0" text="Total Booking Cost : ">
-                     <HBox.margin>
-                        <Insets left="25.0" right="25.0" top="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="cost" prefHeight="30.0" prefWidth="169.0">
-                     <HBox.margin>
-                        <Insets top="8.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="545.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="269.0" style="-fx-background-color: gray;" styleClass="btnGreen" text="Reset" textFill="WHITE">
