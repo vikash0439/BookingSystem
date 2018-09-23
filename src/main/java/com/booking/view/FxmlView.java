@@ -69,6 +69,72 @@ public enum FxmlView {
 		public String getFxmlFile() {
             return "/fxml/Tax.fxml";
         }
+      },
+	CONTRACT {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("contract.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Contract.fxml";
+          }
+      },
+	RESERVE {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("reserve.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Reserve.fxml";
+          }
+      },
+	RECEIPT {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("receipt.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Receipt.fxml";
+          }
+      },
+	INVOICE {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("invoice.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Invoice.fxml";
+          }
+      },
+	SLOT {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("slot.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Slot.fxml";
+          }
+      },
+	PURPOSE {
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("purpose.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/Purpose.fxml";
+          }
       };
     
     public abstract String getTitle();

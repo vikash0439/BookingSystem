@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="rep")
+@Table(name="rep" , schema = "srcpa")
 public class Rep{
 	
 	@Id

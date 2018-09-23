@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="services" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9760220a-8bd4-4043-a503-d977fd86f81f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="fafe8102-d876-4762-9c6f-96dd9aa805b6">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="serviceid" class="java.lang.Long"/>
+	<field name="servicename" class="java.lang.String"/>
+	<field name="serviceinuse" class="java.lang.String"/>
+	<field name="servicecharges" class="java.lang.String"/>
+	<field name="cancelcharges" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="33" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Indian National Theatre Trust
+
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="20" width="50" height="50" uuid="a6f00938-ba41-4a35-a761-a1a39ae25665"/>
+				<imageExpression><![CDATA["E:/Software/ABS/V1/BookingSystem/src/main/resources/images/favicon.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="170" y="57" width="190" height="13" uuid="2320e7b4-a85e-4f4f-8422-772fcd9852b9"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Shri Ram Centre – Auditorium)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="73" width="130" height="15" uuid="68dd9906-c2e0-4373-80e3-5e7e3a591911"/>
+				<text><![CDATA[GST No. 07AAATI1040E1ZB]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="450" y="26" width="100" height="18" uuid="5a2dddba-b9be-482d-901b-46dbd04fa0ef"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="514" y="44" width="31" height="16" uuid="7e72bac4-64a5-4233-8138-64fe27e12ee1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="7" width="360" height="30" uuid="2e165705-b4ba-4b28-9431-ff25857ff596"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[4, Safdar Hashmi Marg, New Delhi-110001
+Telephone: 011-23714307
+]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="210" y="15" width="100" height="30" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Services]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="325" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="20" y="29" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{serviceid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="-1" width="100" height="30" uuid="21a70481-64a1-4bcb-b31e-36810251f6a5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
+				</reportElement>
+				<text><![CDATA[Service ID]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="29" width="100" height="30" uuid="936ab62f-861d-4185-be65-e2674f0fd2f1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="-1" width="100" height="30" uuid="c9c6be79-f7e2-43cf-b6a4-7a26367b2719">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
+				</reportElement>
+				<text><![CDATA[Service Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="218" y="29" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{serviceinuse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="245ea026-f6fc-409a-8a85-f957e1200ba2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
+				</reportElement>
+				<text><![CDATA[In Use]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="30" width="100" height="30" uuid="e8ad9664-38e4-4279-b42e-80d7b0ca0b4a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{servicecharges}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="-1" width="100" height="30" uuid="990f09cb-c17b-44a7-b579-7185fc41f8e0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
+				</reportElement>
+				<text><![CDATA[Service Charges]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="422" y="30" width="100" height="30" uuid="85b97ebd-068e-45d9-91aa-a2beaa10d5e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cancelcharges}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="422" y="-1" width="100" height="30" uuid="c65fd1c3-d3f9-4901-a29a-3861a2ba88f6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
+				</reportElement>
+				<text><![CDATA[Cancel Charges]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="54" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="32" width="570" height="16" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[This report is generated according to the data available in the Auditorium Booking Software Database.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="14" width="350" height="14" uuid="9b0d3364-fe78-4fc4-a1ca-7423e61ed1b5"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[shriramcentre@srcpa.in || www.srcpa.in]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="257" y="47" width="100" height="13" uuid="7319a2cc-ef45-4fb4-8827-eb9d13dc3abd"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="43" splitType="Stretch"/>
+	</summary>
+</jasperReport>

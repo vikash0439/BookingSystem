@@ -32,6 +32,12 @@ public class CustomerService {
 		return customerRepository.findAllByCustomerid(customerid);
 	}
 	
+	public List<String> findName(){
+		List<String> cname = new ArrayList<String>();
+		customerRepository.findName().forEach(cname :: add);
+		return cname;
+	}
+	
 	
 
 }

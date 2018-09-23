@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="service")
+@Table(name="service" , schema = "srcpa")
 public class Service {
 	
 	@Id

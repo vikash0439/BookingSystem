@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="User")
+@Table(name="User" , schema = "srcpa")
 public class User {
 
 	@Id

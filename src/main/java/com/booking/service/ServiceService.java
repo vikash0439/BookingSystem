@@ -32,4 +32,15 @@ private final ServiceRepository serviceRepository;
 		return serviceRepository.findAllByServiceid(serviceid);
 	}
 
+	public List<String> findName() {		
+		List<String> sname = new ArrayList<String>();
+		serviceRepository.findName().forEach(sname :: add);
+		return sname;
+	}
+
+	public Service getDetail(String ser) {
+		// TODO Auto-generated method stub
+		return serviceRepository.findByServicename(ser);
+	}
+
 }
