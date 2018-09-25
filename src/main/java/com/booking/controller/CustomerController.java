@@ -143,8 +143,46 @@ public class CustomerController implements Initializable {
 	}
 
 	@FXML
-	private void customer(ActionEvent event) throws IOException {
-		stageManager.switchScene(FxmlView.CUSTOMER);
+    private void customer(ActionEvent event) throws IOException {
+    	stageManager.switchScene(FxmlView.CUSTOMER);    	
+    }	
+	@FXML
+	public void service(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SERVICE); 		
+	}	
+	@FXML
+	public void tax(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.TAX); 		
+	}	
+	@FXML
+	public void contract(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.CONTRACT);	
+	}	
+	@FXML
+	public void users(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.USER);		
+	}
+		
+	@FXML
+	public void reserve(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RESERVE);		
+	}
+	
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RECEIPT);		
+	}
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.INVOICE);		
+	}
+	@FXML
+	public void slot(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SLOT);		
+	}
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
 
 	@FXML
@@ -314,6 +352,9 @@ public class CustomerController implements Initializable {
 		category.clear();
 		gstno.clear();	
 		remark.clear();
+		repname.clear();
+		repemail.clear();
+		repmobile.clear();
 	}
 
 }

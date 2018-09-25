@@ -23,6 +23,12 @@ import javax.persistence.Table;
 @Table(name="contract" , schema = "srcpa")
 public class Contract {
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "contractid", updatable = false, nullable = false)
@@ -37,9 +43,10 @@ public class Contract {
 	private String slabno;
 	
 	
+	/* Mapping */
 	
-	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-	@JoinColumn
+	
+	@OneToOne(mappedBy = "contract")
 	private Invoice invoice;
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Booking> bookings;	
@@ -49,6 +56,9 @@ public class Contract {
 	private List<Allocation> allocation;
 	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<Receipt> receipt;
+	@OneToOne
+	@JoinColumn
+	private Customer customer;
 	
 	
 	

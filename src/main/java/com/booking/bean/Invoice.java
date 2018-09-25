@@ -1,10 +1,13 @@
 package com.booking.bean;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,12 +22,14 @@ public class Invoice{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "invoiceid", updatable = false, nullable = false)
+	@Column(name = "invoiceid")
 	private long invoiceid;	
 	private String invoicedate;
-	private boolean cancelled;
+	private String cancelled;
 	
-	@OneToOne(mappedBy = "invoice")
+	/* Mapping */
+	@OneToOne
+	@JoinColumn
 	private Contract contract;
 
 	public long getInvoiceid() {
@@ -43,11 +48,11 @@ public class Invoice{
 		this.invoicedate = invoicedate;
 	}
 
-	public boolean isCancelled() {
+	public String isCancelled() {
 		return cancelled;
 	}
 
-	public void setCancelled(boolean cancelled) {
+	public void setCancelled(String cancelled) {
 		this.cancelled = cancelled;
 	}
 

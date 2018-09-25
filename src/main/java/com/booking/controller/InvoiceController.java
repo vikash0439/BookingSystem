@@ -1,9 +1,17 @@
 package com.booking.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +20,15 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Contract;
 import com.booking.bean.Invoice;
+import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.InvoiceService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +37,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -40,6 +52,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class InvoiceController implements Initializable{
@@ -49,26 +69,23 @@ public class InvoiceController implements Initializable{
 	@FXML
 	private DatePicker InvoiceDate;
 	@FXML
-	private TextField InvoiceAmount;
+	private TextField cancelled;
 	@FXML
-	private TextField Validity;
+	private ComboBox<String> contractid;
+	
 	@FXML
-	private ComboBox<Long> contractid;
+	private Label InvoiceAmount;
 	
 	@FXML
 	private TableView<Invoice> invoicetable;
-
 	@FXML
 	private TableColumn<Invoice, Long> colInvoiceID;
-	
 	@FXML
-	private TableColumn<Invoice, LocalDate> colInvoiceDate;
-	
+	private TableColumn<Invoice, String> colcontractid;
 	@FXML
-	private TableColumn<Invoice, String> colInvoiceAmount;
-	
+	private TableColumn<Invoice, LocalDate> colInvoiceDate;	
 	@FXML
-	private TableColumn<Invoice, String> colValidity;
+	private TableColumn<Invoice, String> colCancelled;
 	@FXML
 	private TableColumn<Invoice, Boolean> colEdit;
 
@@ -83,7 +100,7 @@ public class InvoiceController implements Initializable{
 	private ContractService contractService;
 	
     private ObservableList<Invoice> invoiceList = FXCollections.observableArrayList();
-    private ObservableList<Long> contractList = FXCollections.observableArrayList();
+    private ObservableList contractList = FXCollections.observableArrayList();
 	
  
 	/* Tax Event methods */
@@ -107,14 +124,56 @@ public class InvoiceController implements Initializable{
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
 	}
-
 	@FXML
-	private void customer(ActionEvent event) throws IOException {
-		stageManager.switchScene(FxmlView.CUSTOMER);
+    private void customer(ActionEvent event) throws IOException {
+    	stageManager.switchScene(FxmlView.CUSTOMER);    	
+    }	
+	@FXML
+	public void service(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SERVICE); 		
+	}	
+	@FXML
+	public void tax(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.TAX); 		
+	}	
+	@FXML
+	public void contract(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.CONTRACT);	
+	}	
+	@FXML
+	public void users(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.USER);		
+	}
+		
+	@FXML
+	public void reserve(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RESERVE);		
+	}
+	
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RECEIPT);		
+	}
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.INVOICE);		
+	}
+	@FXML
+	public void slot(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SLOT);		
+	}
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
 	
 	public void getContract() {
 		
+	}
+	
+	public void getContractDetail() {
+		Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem()));
+		InvoiceAmount.setText(contract.getBaseprice());
 	}
 	
 	@FXML
@@ -122,23 +181,56 @@ public class InvoiceController implements Initializable{
 		if (InvoiceID.getText() == null || InvoiceID.getText() == "") {
 			Invoice invoice = new Invoice();
 			invoice.setInvoicedate((String)InvoiceDate.getEditor().getText());
+			invoice.setCancelled(cancelled.getText());
  
-			Contract contract = contractService.find(contractid.getValue());
-	       invoice.setContract(contract);
+			Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem()));
+	        invoice.setContract(contract);
 			
 			invoiceService.save(invoice);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Invoice created.");
 			alert.setHeaderText(null);
-			alert.setContentText("Amount:  " + InvoiceAmount.getText() + "  invoice created.");
+			alert.setContentText("Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
 			alert.showAndWait();
+			try {
+				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/Invoice.jrxml");
+				 Map<String, Object> parameters = new HashMap<String, Object>();
+				 List<Invoice> inv = new ArrayList<Invoice>();
+				 inv.add(invoice);
+			     JRDataSource jRDataSource = new JRBeanCollectionDataSource(inv);
+			     parameters.put("jRDataSource", inv);
+			     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+			     File outDir = new File("D:/Reports/Invoice");
+			       outDir.mkdirs();
+			     
+			       DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+			       Date date=new java.util.Date();
+			       System.out.println(date);
+			       String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+			       JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+			       
+			       Alert a = new Alert(AlertType.INFORMATION);
+					a.setTitle("Report");
+					a.setHeaderText(null);
+					a.setContentText("Report downloaded successfully.");
+					a.showAndWait();
+				
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				System.out.println("JR Exception");
+				e.printStackTrace();
+			}
+			
 		} else {
 			System.out.println("Nothing to update");
 		}
 		invoicetable();
 		clearFields();
 	}
+	
+	
 
 	
 
@@ -147,7 +239,6 @@ public class InvoiceController implements Initializable{
 		// TODO Auto-generated method stub
 		contractList.clear();
 		contractList.addAll(contractService.getContractID());
-		System.out.println(contractList);
 		contractid.setItems(contractList);
 		
 		invoicetable();
@@ -159,33 +250,16 @@ public class InvoiceController implements Initializable{
 		/*
 		 * Set All userTable column properties
 		 */
-		colInvoiceDate.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-			 String pattern = "dd-MM-yyyy";
-			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-		     @Override 
-		     public String toString(LocalDate date) {
-		         if (date != null) {
-		             return dateFormatter.format(date);
-		         } else {
-		             return "";
-		         }
-		     }
+		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Invoice,String>,ObservableValue<String>>(){
 
-		     @Override 
-		     public LocalDate fromString(String string) {
-		         if (string != null && !string.isEmpty()) {
-		             return LocalDate.parse(string, dateFormatter);
-		         } else {
-		             return null;
-		         }
-		     }
-		 }));
-	
-		
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Invoice, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+            }
+        });
 		colInvoiceID.setCellValueFactory(new PropertyValueFactory<>("invoiceid"));
 		colInvoiceDate.setCellValueFactory(new PropertyValueFactory<>("invoicedate"));
-		colInvoiceAmount.setCellValueFactory(new PropertyValueFactory<>("invoiceamount"));
-		colValidity.setCellValueFactory(new PropertyValueFactory<>("validity"));
+		colCancelled.setCellValueFactory(new PropertyValueFactory<>("cancelled"));
 		colEdit.setCellFactory(cellFactory);
 
 		invoiceList.clear();
@@ -228,8 +302,8 @@ public class InvoiceController implements Initializable{
 
 				private void updateInvoice(Invoice invoice) {
 					InvoiceID.setText(Long.toString(invoice.getInvoiceid()));
-//					InvoiceAmount.setText(invoice.getInvoiceamount());
-//					Validity.setText(invoice.getValidity());
+					InvoiceDate.getEditor().setText(invoice.getInvoicedate());
+//					cancelled.setText(invoice);
 					
 				}
 			};
@@ -238,10 +312,10 @@ public class InvoiceController implements Initializable{
 	};
 	
 	private void clearFields() {
+		contractid.getSelectionModel().clearSelection();
 		InvoiceID.setText(null);
 		InvoiceDate.getEditor().clear();
-		InvoiceAmount.clear();
-		Validity.clear();
+		cancelled.clear();
 		
 	}
 }

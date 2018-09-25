@@ -15,6 +15,8 @@ import com.booking.service.ContractService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -97,6 +100,14 @@ public class DashboardController implements Initializable{
 	@FXML
 	private TableColumn<Contract, String> colTotal;
 	@FXML
+	private TableColumn<Contract, String> colPaymentStatus;
+	@FXML
+	private TableColumn<Contract, String> colReceipt;
+	@FXML
+	private TableColumn<Contract, String> colInvoice;
+	@FXML
+	private TableColumn<Contract, String> colRemaining;
+	@FXML
 	private TableColumn<Contract, Boolean> colEdit;
 	@Lazy
     @Autowired
@@ -124,7 +135,11 @@ public class DashboardController implements Initializable{
 	@FXML
     private void cancel(ActionEvent event) throws IOException {
       	
-    }	
+    }
+	@FXML
+	private void dashboard(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.DASHBOARD);
+	}
 	@FXML
     private void customer(ActionEvent event) throws IOException {
     	stageManager.switchScene(FxmlView.CUSTOMER);    	
@@ -185,10 +200,19 @@ public class DashboardController implements Initializable{
 		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
 		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
 		colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customername"));
-		colShowDate.setCellValueFactory(new PropertyValueFactory<>("showdate"));
+		colShowDate.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
-		colServices.setCellValueFactory(new PropertyValueFactory<>("services"));
-		colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+		colTotal.setCellValueFactory(new PropertyValueFactory<>("pact"));
+		colPaymentStatus.setCellValueFactory(new PropertyValueFactory<>("paymentstatus"));
+		colReceipt.setCellValueFactory(new PropertyValueFactory<>("pact"));
+		colRemaining.setCellValueFactory(new PropertyValueFactory<>("pact"));
+		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Contract,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Contract, String> param) {
+                return new SimpleStringProperty(param.getValue().getInvoice().getInvoicedate());
+            }
+        });
 		colEdit.setCellFactory(cellFactory);
 
 		contractList.clear();

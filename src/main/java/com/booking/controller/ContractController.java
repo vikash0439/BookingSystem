@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
 import com.booking.bean.Contract;
+import com.booking.bean.Customer;
 import com.booking.bean.Performance;
 import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
 import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
+import com.booking.service.PerformanceService;
 import com.booking.service.PurposeService;
 import com.booking.service.ServiceService;
 import com.booking.service.SlotService;
@@ -42,10 +44,7 @@ import javafx.scene.layout.VBox;
 @Controller
 public class ContractController implements Initializable {
 
-	@FXML
-	private Label ContractID;
-	@FXML
-	private Label bookingCost;
+	
 	@FXML
 	private HBox serviceHBox;
 	@FXML
@@ -53,17 +52,20 @@ public class ContractController implements Initializable {
 	@FXML
 	private VBox showVBox;
 	@FXML
-	private Label cost;
-	@FXML
 	private TextField charges;
 	
+	
 	/* Contract Table */
+	@FXML
+	private Label ContractID;
 	@FXML
 	private DatePicker BookingDate;
 	@FXML
 	private ComboBox<String> Purpose;
 	@FXML
-	private ComboBox<String> Customer;
+	private ComboBox<String> CustomerName;
+	@FXML
+	private ComboBox<String> paymentstatus;
 	@FXML
 	private Label baseprice;
 	@FXML
@@ -110,15 +112,14 @@ public class ContractController implements Initializable {
 	private ServiceService serviceService;
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private PerformanceService performanceService;
 
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
 	private ObservableList<String> slotList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceList = FXCollections.observableArrayList();
-	
-	List<String> SCost = new ArrayList<>();
-    List<String> STime = new ArrayList<>();
-    List<String> s = new ArrayList<>();
+	private ObservableList<String> paymentStatusList = FXCollections.observableArrayList("Advanced" , "Final Payment");
     
 
 	@FXML
@@ -129,6 +130,48 @@ public class ContractController implements Initializable {
 	@FXML
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
+	}
+	@FXML
+    private void customer(ActionEvent event) throws IOException {
+    	stageManager.switchScene(FxmlView.CUSTOMER);    	
+    }	
+	@FXML
+	public void service(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SERVICE); 		
+	}	
+	@FXML
+	public void tax(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.TAX); 		
+	}	
+	@FXML
+	public void contract(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.CONTRACT);	
+	}	
+	@FXML
+	public void users(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.USER);		
+	}
+		
+	@FXML
+	public void reserve(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RESERVE);		
+	}
+	
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RECEIPT);		
+	}
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.INVOICE);		
+	}
+	@FXML
+	public void slot(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SLOT);		
+	}
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
 
 	@FXML
@@ -149,7 +192,6 @@ public class ContractController implements Initializable {
 		TextField charges = new TextField();
 		charges.setPromptText("Chargers");
 		charges.setId("ServiceCost");
-		charges.setOnAction(e -> SCost.add(charges.getText()));
 		
 		ComboBox<String> slot = new ComboBox<String>();
 		slot.setPromptText("Slot");
@@ -159,8 +201,7 @@ public class ContractController implements Initializable {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				s.add(Slot.getEditor().getText());	
+				// TODO Auto-generated method stub	
 
 			}
 			
@@ -187,17 +228,16 @@ public class ContractController implements Initializable {
 		date.setId("ServiceDate");
 		
 		TextField ServiceTime = new TextField();
-		ServiceTime.setPromptText("Service Time");
-		ServiceTime.setOnAction(e ->  STime.add(ServiceTime.getText()));
+		ServiceTime.setPromptText("Time");
 		
 		serviceHBox.getChildren().add(date);
+		serviceHBox.getChildren().add(ServiceTime);
 		serviceHBox.getChildren().add(services);
 		serviceHBox.getChildren().add(slot);
 		serviceHBox.getChildren().add(charges);
-		serviceHBox.getChildren().add(ServiceTime);
 		serviceVBox.getChildren().add(serviceHBox);
 
-		cost.setText(charges.getText());
+		baseprice.setText(charges.getText());
 	}
 	
 	public void addMoreShow() {
@@ -229,23 +269,23 @@ public class ContractController implements Initializable {
 		Contract contract = new Contract();
 		contract.setBookingdate((String) BookingDate.getEditor().getText());
 		contract.setPurpose(Purpose.getSelectionModel().getSelectedItem());
+		contract.setBaseprice(baseprice.getText());
+		contract.setTaxamount(taxamount.getText());
+		contract.setPact(pact.getText());
+		contract.setPaymentstatus(paymentstatus.getSelectionModel().getSelectedItem());
+		
+		Customer customer = customerService.findCustomer(CustomerName.getSelectionModel().getSelectedItem());
+		contract.setCustomer(customer);
 		
 		
-		SCost.add(ServiceCost.getText());
-		STime.add(ServiceTime.getText());
-
 		Booking b = new Booking();
-		for (int i =0; i< SCost.size(); i++) {
 		b.setServicedate((String) ServiceDate.getEditor().getText());
-		b.setServicecost(SCost.get(i));
+		b.setServicecost(baseprice.getText());
 		b.setServicetime(ServiceTime.getText());
 		b.setSlot(Slot.getEditor().getText());
 //		b.setServiceused(ServiceUsed.getText());
         b.setContract(contract);
-        System.out.println("From booking loop  SCost size : "+SCost.size());
-        
-		}
-        
+
 		List<Booking> booking = new ArrayList<Booking>();
 		booking.add(b);
 		
@@ -258,11 +298,13 @@ public class ContractController implements Initializable {
 		List<Performance> performance = new ArrayList<Performance>();
 		performance.add(p);
 		
-		contract.setPerformances(performance);
-		contract.setBookings(booking);
+		
+		
 		
 		contractService.save(contract);
 		bookingService.save(b);
+		performanceService.save(p);
+		
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Contract");
@@ -278,7 +320,7 @@ public class ContractController implements Initializable {
 		Service service = serviceService.getDetail(ser);
 		ServiceCost.setText(service.getServicecharges());
 		baseprice.setText(service.getServicecharges());
-		bookingCost.setText(service.getServicecharges());
+		baseprice.setText(service.getServicecharges());
 		taxamount.setText("18%");
 		pact.setText("total here");
 	}
@@ -296,10 +338,12 @@ public class ContractController implements Initializable {
 		
 		customerList.clear();
 		customerList.addAll(customerService.findName());
-		Customer.setItems(customerList);
+		CustomerName.setItems(customerList);
 		
 		slotList.clear();
 		slotList.addAll(slotService.findSlot());
 		Slot.setItems(slotList);
+	
+		paymentstatus.setItems(paymentStatusList);
 	}
 }

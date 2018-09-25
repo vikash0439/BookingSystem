@@ -19,14 +19,14 @@ import javax.persistence.Table;
 public class Performance {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "performanceid", updatable = false, nullable = false)
+	@Column(name = "performanceid")
 	private long performanceid;
 	private String showname;
 	private String showtime;
 	private String showdetails;
 	
 	@ManyToOne
-	@JoinColumn(name ="contractid", insertable = false, updatable = false)
+	@JoinColumn(name ="contractid")
 	private Contract contract;
 
 	public long getPerformanceid() {

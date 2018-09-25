@@ -1,7 +1,5 @@
 package com.booking.bean;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,20 +22,28 @@ public class Receipt{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "receiptid", updatable = false, nullable = false)
 	private long receiptid;
-	private LocalDate receiptdate;
+	private String receiptdate;
 	private String paidamount;
 	private String taxamount;
 	private String paymentmode;
 	private String finalpayment;
 	
+	/* Mappings */
+	
 	@ManyToOne
 	@JoinColumn(name ="contractid")
 	private Contract contract;
+	
+	/* Constructors */
+	public Receipt() {
+		super();
+	}
 	
 	
 	public Contract getContract() {
 		return contract;
 	}
+	
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
@@ -47,10 +53,10 @@ public class Receipt{
 	public void setReceiptid(long receiptid) {
 		this.receiptid = receiptid;
 	}
-	public LocalDate getReceiptdate() {
+	public String getReceiptdate() {
 		return receiptdate;
 	}
-	public void setReceiptdate(LocalDate receiptdate) {
+	public void setReceiptdate(String receiptdate) {
 		this.receiptdate = receiptdate;
 	}
 	public String getPaidamount() {

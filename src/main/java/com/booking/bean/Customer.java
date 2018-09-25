@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,10 +35,18 @@ public class Customer {
 	private String gstno;
 	private String remark;
 	
+	@OneToOne(mappedBy = "customer")
+	private Contract contract;
+	
 	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Rep> rep;	
 
-
+	public Contract getContract() {
+		return contract;
+	}
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
 	public long getCustomerid() {
 		return customerid;
 	}
@@ -99,7 +108,5 @@ public class Customer {
 	public void setRep(List<Rep> rep) {
 		this.rep = rep;
 	}
-	
-
 
 }

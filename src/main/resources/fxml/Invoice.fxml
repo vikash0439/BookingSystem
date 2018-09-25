@@ -30,34 +30,40 @@
 <BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.InvoiceController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
-        <menus>
-          <Menu mnemonicParsing="false" text="Booking">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
-              <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Accounting">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Customer">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+         <menus>
+            <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Accounting">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
+                  <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
+                  <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Service">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                  <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+               </items>
             </Menu>
-        </menus>
+         </menus>
       </MenuBar>
    </top>
    <left>
@@ -88,7 +94,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="contractid" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
+            <ComboBox fx:id="contractid" editable="true" onAction="#getContractDetail" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -98,11 +104,15 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </DatePicker>
-            <TextField fx:id="InvoiceAmount" prefHeight="30.0" prefWidth="246.0" promptText="Invoice Amount">
+            <Label text="Invoice Amount" textFill="#f8f7f7">
+               <font>
+                  <Font size="15.0" />
+               </font>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
-               </VBox.margin></TextField>
-            <TextField fx:id="Validity" prefHeight="30.0" prefWidth="246.0" promptText="Validity">
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="cancelled" prefHeight="30.0" prefWidth="246.0" promptText="Cancelled">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -137,6 +147,15 @@
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label fx:id="InvoiceAmount">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
             </HBox>
          </children>
          <padding>
@@ -175,10 +194,10 @@
             </HBox>
             <TableView fx:id="invoicetable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colInvoiceID" maxWidth="700.0" prefWidth="75.0" text="Receipt No" />
+                  <TableColumn fx:id="colcontractid" maxWidth="4000.0" prefWidth="202.0" text="Contract" />
+                <TableColumn fx:id="colInvoiceID" maxWidth="4000.0" prefWidth="178.0" text="Receipt No" />
                 <TableColumn fx:id="colInvoiceDate" maxWidth="4000.0" prefWidth="75.0" text="Invoice Date" />
-                  <TableColumn fx:id="colInvoiceAmount" maxWidth="4000.0" prefWidth="75.0" text="Invoice Amount" />
-                  <TableColumn fx:id="colValidity" maxWidth="4000.0" prefWidth="60.0" text="Validity" />
+                  <TableColumn fx:id="colCancelled" prefWidth="75.0" text="Cancelled" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>

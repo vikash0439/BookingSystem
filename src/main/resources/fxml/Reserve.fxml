@@ -30,34 +30,40 @@
 <BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ReserveController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
-        <menus>
-          <Menu mnemonicParsing="false" text="Booking">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
-              <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Accounting">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Customer">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+         <menus>
+            <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Accounting">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
+                  <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
+                  <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Service">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                  <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+               </items>
             </Menu>
-        </menus>
+         </menus>
       </MenuBar>
    </top>
    <left>

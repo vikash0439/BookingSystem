@@ -30,34 +30,40 @@
 <BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.CustomerController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
-        <menus>
-          <Menu mnemonicParsing="false" text="Booking">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
-              <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Accounting">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Customer">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+         <menus>
+            <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Accounting">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
+                  <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
+                  <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Service">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                  <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+               </items>
             </Menu>
-        </menus>
+         </menus>
       </MenuBar>
    </top>
    <left>
@@ -198,7 +204,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="customerTable" prefHeight="360.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="customerTable" prefHeight="432.0" prefWidth="979.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="colcustomerid" maxWidth="700.0" prefWidth="20.0" text="ID" />
                 <TableColumn fx:id="colcustomername" maxWidth="4000.0" prefWidth="75.0" text="Name" />
@@ -233,7 +239,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="repTable" prefHeight="152.0" prefWidth="652.0">
+            <TableView fx:id="repTable" prefHeight="252.0" prefWidth="979.0">
               <columns>
                 <TableColumn fx:id="colrepid" prefWidth="75.0" text="Rep ID" />
                 <TableColumn fx:id="colrepname" prefWidth="212.0" text="Rep Name" />

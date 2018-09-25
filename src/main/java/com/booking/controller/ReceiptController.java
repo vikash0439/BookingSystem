@@ -7,8 +7,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -24,6 +27,9 @@ import com.booking.service.ReceiptService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +44,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -54,6 +61,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class ReceiptController implements Initializable{
@@ -61,7 +69,7 @@ public class ReceiptController implements Initializable{
 	@FXML 
 	private Label ReceiptID;
 	@FXML
-	private ComboBox<Long> cID;
+	private ComboBox<String> cID;
 	@FXML
 	private DatePicker ReceiptDate;
 	@FXML
@@ -74,6 +82,8 @@ public class ReceiptController implements Initializable{
 	private TextField FinalPayment;	
 	@FXML
 	private TableView<Receipt> receipttable;
+	@FXML
+	private TableColumn<Receipt, String> colcontractid;
 	@FXML
 	private TableColumn<Receipt, Long> colReceiptID;	
 	@FXML
@@ -99,7 +109,7 @@ public class ReceiptController implements Initializable{
 	private ContractService contractService;
 	
     private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
-    private ObservableList<Long> cIDList = FXCollections.observableArrayList();
+    private ObservableList cIDList = FXCollections.observableArrayList();
 	
 	/* Tax Event methods */
 
@@ -122,25 +132,92 @@ public class ReceiptController implements Initializable{
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
 	}
-
 	@FXML
-	private void customer(ActionEvent event) throws IOException {
-		stageManager.switchScene(FxmlView.CUSTOMER);
+    private void customer(ActionEvent event) throws IOException {
+    	stageManager.switchScene(FxmlView.CUSTOMER);    	
+    }	
+	@FXML
+	public void service(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SERVICE); 		
+	}	
+	@FXML
+	public void tax(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.TAX); 		
+	}	
+	@FXML
+	public void contract(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.CONTRACT);	
+	}	
+	@FXML
+	public void users(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.USER);		
+	}
+		
+	@FXML
+	public void reserve(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RESERVE);		
+	}
+	
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RECEIPT);		
+	}
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.INVOICE);		
+	}
+	@FXML
+	public void slot(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SLOT);		
+	}
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
 	
 	@FXML
 	private void saveTax(ActionEvent event) {
 		if (ReceiptID.getText() == null || ReceiptID.getText() == "") {
 			Receipt receipt = new Receipt();
-			receipt.setReceiptdate(ReceiptDate.getValue());
+			receipt.setReceiptdate((String)ReceiptDate.getEditor().getText());
 			receipt.setPaidamount(PaidAmount.getText());
 			receipt.setTaxamount(TaxAmount.getText());
 			receipt.setPaymentmode(PaymentMode.getText());
 			receipt.setFinalpayment(FinalPayment.getText());
-			Long id = (long) 4;
-			Contract contract = contractService.find(id);
+			Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
 			receipt.setContract(contract);
 			receiptService.save(receipt);
+			
+			 try {
+				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
+				 Map<String, Object> parameters = new HashMap<String, Object>();
+				 List<Receipt> rec = new ArrayList<Receipt>();
+				 rec.add(receipt);
+			     JRDataSource jRDataSource = new JRBeanCollectionDataSource(rec);
+			     parameters.put("jRDataSource", rec);
+			     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+			     File outDir = new File("D:/Reports/Receipt");
+			       outDir.mkdirs();
+			     
+			       DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+			       Date date=new java.util.Date();
+			       System.out.println(date);
+			       String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+			       JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+			       
+			       Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Report");
+					alert.setHeaderText(null);
+					alert.setContentText("Report downloaded successfully.");
+					alert.showAndWait();
+				
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				System.out.println("JR Exception");
+				e.printStackTrace();
+			}
+			
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Tax updated successfully.");
@@ -155,7 +232,6 @@ public class ReceiptController implements Initializable{
 	}
 
 	
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -174,29 +250,21 @@ public class ReceiptController implements Initializable{
 		/*
 		 * Set All userTable column properties
 		 */
-		colReceiptDate.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-			 String pattern = "dd-MM-yyyy";
-			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-		     @Override 
-		     public String toString(LocalDate date) {
-		         if (date != null) {
-		             return dateFormatter.format(date);
-		         } else {
-		             return "";
-		         }
-		     }
-
-		     @Override 
-		     public LocalDate fromString(String string) {
-		         if (string != null && !string.isEmpty()) {
-		             return LocalDate.parse(string, dateFormatter);
-		         } else {
-		             return null;
-		         }
-		     }
-		 }));
 	
-		
+//		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Contract,Long>,ObservableValue<Long>>(){
+//
+//            @Override
+//            public SimpleLongProperty call(CellDataFeatures<Contract, Long> param) {
+//                return new SimpleLongProperty(param.getValue().getContractid());
+//            }
+//        });
+		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+            }
+        });
 		colReceiptID.setCellValueFactory(new PropertyValueFactory<>("receiptid"));
 		colReceiptDate.setCellValueFactory(new PropertyValueFactory<>("receiptdate"));
 		colPaidAmount.setCellValueFactory(new PropertyValueFactory<>("paidamount"));
@@ -245,11 +313,12 @@ public class ReceiptController implements Initializable{
 
 				private void updateTax(Receipt receipt) {
 					ReceiptID.setText(Long.toString(receipt.getReceiptid()));
+					((TextField)ReceiptDate.getEditor()).setText(receipt.getReceiptdate());
 					PaidAmount.setText(receipt.getPaidamount());
 					TaxAmount.setText(receipt.getTaxamount());
 					PaymentMode.setText(receipt.getPaidamount());
 					FinalPayment.setText(receipt.getFinalpayment());
-					ReceiptDate.getEditor().commitValue();
+					
 				}
 			};
 			return cell;
@@ -296,6 +365,7 @@ public class ReceiptController implements Initializable{
 	}
 	
 	private void clearFields() {
+		cID.getSelectionModel().clearSelection();
 		ReceiptID.setText(null);
 		ReceiptDate.getEditor().clear();
 		PaidAmount.clear();

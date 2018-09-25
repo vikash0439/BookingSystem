@@ -20,7 +20,7 @@ public class Booking{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "serviceid", updatable = false, nullable = false)
+	@Column(name = "serviceid")
 	private long serviceid;
 	private String servicedate;
 	private String servicetime;
@@ -30,7 +30,7 @@ public class Booking{
 
 	
 	@ManyToOne
-	@JoinColumn(name ="contractid", insertable = false, updatable = false)
+	@JoinColumn(name ="contractid")
 	private Contract contract;
 	
 	

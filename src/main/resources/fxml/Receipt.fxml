@@ -30,34 +30,40 @@
 <BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ReceiptController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
-        <menus>
-          <Menu mnemonicParsing="false" text="Booking">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
-              <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Accounting">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Customer">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+         <menus>
+            <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Accounting">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
+                  <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
+                  <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Service">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                  <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+               </items>
             </Menu>
-        </menus>
+         </menus>
       </MenuBar>
    </top>
    <left>
@@ -88,7 +94,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="cID" prefHeight="31.0" prefWidth="247.0" promptText="Select   --ContractID--">
+            <ComboBox fx:id="cID" editable="true" prefHeight="31.0" prefWidth="247.0" promptText="Select   --ContractID--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -184,7 +190,8 @@
             </HBox>
             <TableView fx:id="receipttable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colReceiptID" maxWidth="700.0" prefWidth="75.0" text="Receipt No" />
+                  <TableColumn fx:id="colcontractid" prefWidth="116.0" text="Contract ID" />
+                <TableColumn fx:id="colReceiptID" maxWidth="700.0" prefWidth="79.0" text="Receipt No" />
                 <TableColumn fx:id="colReceiptDate" maxWidth="4000.0" prefWidth="75.0" text="Receipt date" />
                   <TableColumn fx:id="colPaidAmount" maxWidth="4000.0" prefWidth="75.0" text="Paid Amount" />
                   <TableColumn fx:id="colTaxAmount" maxWidth="4000.0" prefWidth="75.0" text="Tax Amount" />

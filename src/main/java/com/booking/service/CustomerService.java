@@ -37,6 +37,11 @@ public class CustomerService {
 		customerRepository.findName().forEach(cname :: add);
 		return cname;
 	}
+
+	public Customer findCustomer(String customername) {
+		
+		return customerRepository.findByCustomername(customername);
+	}
 	
 	
 

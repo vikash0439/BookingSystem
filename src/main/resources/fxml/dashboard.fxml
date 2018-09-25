@@ -31,7 +31,7 @@
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
         <menus>
-          <Menu mnemonicParsing="false" text="Booking">
+          <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
             <items>
                   <MenuItem mnemonicParsing="false" text="Dashboard" />
                   <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
@@ -53,7 +53,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Service">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#service" text="VIew" />
+                <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
@@ -346,6 +346,10 @@
                   <TableColumn fx:id="colServices" maxWidth="4000.0" prefWidth="75.0" text="Services" />
                   <TableColumn fx:id="colShowDetail" prefWidth="75.0" text="Show Detail" />
                   <TableColumn fx:id="colTotal" maxWidth="6000.0" prefWidth="130.0" text="Total Amount" />
+                  <TableColumn fx:id="colPaymentStatus" maxWidth="6000.0" prefWidth="130.0" text="Payment Status" />
+                  <TableColumn fx:id="colReceipt" maxWidth="6000.0" prefWidth="130.0" text="Total Receipt" />
+                  <TableColumn fx:id="colInvoice" maxWidth="6000.0" prefWidth="130.0" text="Invoice" />
+                  <TableColumn fx:id="colRemaining" maxWidth="6000.0" prefWidth="130.0" text="Remaining" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />
               </columns>
                <VBox.margin>

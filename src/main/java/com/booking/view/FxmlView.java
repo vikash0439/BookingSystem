@@ -45,7 +45,7 @@ public enum FxmlView {
 
         @Override
 		public String getFxmlFile() {
-            return "/fxml/customer.fxml";
+            return "/fxml/Customer.fxml";
         }
     },
 	SERVICE {

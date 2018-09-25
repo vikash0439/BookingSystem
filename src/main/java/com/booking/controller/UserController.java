@@ -1,17 +1,15 @@
 package com.booking.controller;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -38,34 +36,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-
+import javafx.util.StringConverter;
 /**
  * @author Vikash Kumar
- * @since 04-09-2018
+ * @since 25-09-2018
  */
 
 @Controller
 public class UserController implements Initializable{
-	
-	private static final Logger LOG = getLogger(UserController.class);
-	
-	@FXML
-    private Button btnLogin;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private Label lblLogin;
 
 	@FXML
     private Button btnLogout;
@@ -97,6 +86,8 @@ public class UserController implements Initializable{
     @FXML
     private TextField email;
 
+    @FXML
+    private PasswordField password;
     
     @FXML
     private Button reset;
@@ -156,27 +147,56 @@ public class UserController implements Initializable{
     private void logout(ActionEvent event) throws IOException {
     	stageManager.switchScene(FxmlView.LOGIN);    	
     }
-    
     @FXML
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
+	}
+	@FXML
+    private void customer(ActionEvent event) throws IOException {
+    	stageManager.switchScene(FxmlView.CUSTOMER);    	
+    }	
+	@FXML
+	public void service(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SERVICE); 		
+	}	
+	@FXML
+	public void tax(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.TAX); 		
+	}	
+	@FXML
+	public void contract(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.CONTRACT);	
+	}	
+	@FXML
+	public void users(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.USER);		
+	}
+		
+	@FXML
+	public void reserve(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RESERVE);		
+	}
+	
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.RECEIPT);		
+	}
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.INVOICE);		
+	}
+	@FXML
+	public void slot(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.SLOT);		
+	}
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
     
     @FXML
     void reset(ActionEvent event) {
     	clearFields();
-    }
-    
-    @FXML
-    private void login(ActionEvent event) throws IOException{
-    	if(userService.authenticate(getEmail(), getPassword())){
-    		LOG.info("New Log in the system");    		
-    		stageManager.switchScene(FxmlView.DASHBOARD);
-    		
-    	}else{
-    		lblLogin.setText("Login Failed.");
-    		lblLogin.setStyle("-fx-text-fill: red");
-    	}
     }
     
     @FXML
@@ -200,7 +220,7 @@ public class UserController implements Initializable{
         			user.setEmail(getEmail());
         			user.setPassword(getPassword());
         			
-        			User newUser = userService.save(user);      			
+        			User newUser = userService.save(user);     			
         			saveAlert(newUser);
     			}
     			
@@ -303,14 +323,14 @@ public class UserController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-//		cbRole.setItems(roles);
-//		
-//		userTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		cbRole.setItems(roles);
 		
-//		setColumnProperties();
+		userTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		setColumnProperties();
 		
 		// Add all users into table
-//		loadUserDetails();
+		loadUserDetails();
 	}
 	
 	
@@ -319,8 +339,8 @@ public class UserController implements Initializable{
 	 *  Set All userTable column properties
 	 */
 	private void setColumnProperties(){
-		/* Override date format in table
-		 * colDOB.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+		/* Override date format in table*/
+		 colDOB.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
 			 String pattern = "dd/MM/yyyy";
 			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 		     @Override 
@@ -340,7 +360,7 @@ public class UserController implements Initializable{
 		             return null;
 		         }
 		     }
-		 }));*/
+		 }));
 		
 		colUserId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
