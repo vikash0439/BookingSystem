@@ -6,9 +6,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,14 +18,15 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Contract;
+import com.booking.bean.PaymentDetails;
 import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
+import com.booking.service.PaymentDetailsService;
 import com.booking.service.ReceiptService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -39,6 +38,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -48,11 +48,9 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -74,12 +72,36 @@ public class ReceiptController implements Initializable{
 	private DatePicker ReceiptDate;
 	@FXML
 	private TextField PaidAmount;
+	@FXML 
+	private Label BaseAmount;
 	@FXML
-	private TextField TaxAmount;
+	private Label TaxAmount;
 	@FXML
-	private TextField PaymentMode;
+	private ComboBox<String> PaymentMode;
 	@FXML
 	private TextField FinalPayment;	
+	@FXML
+	private ComboBox<String> MultiplecID;
+	@FXML
+	private Label labelContractid;
+	
+	/* Payment Table */
+	@FXML
+	private TextField TxnID;
+	@FXML
+	private DatePicker TxnDate;
+	@FXML
+	private TextField Bank;
+	@FXML
+	private TextField PaidBy;
+	@FXML
+	private TextField Credit;
+	@FXML
+	private CheckBox CreditYes;
+	@FXML
+	private CheckBox CreditNo;
+	
+	
 	@FXML
 	private TableView<Receipt> receipttable;
 	@FXML
@@ -107,9 +129,12 @@ public class ReceiptController implements Initializable{
 	private ReceiptService receiptService;
 	@Autowired 
 	private ContractService contractService;
+	@Autowired
+	private PaymentDetailsService paymentDetailsService;
 	
     private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
     private ObservableList cIDList = FXCollections.observableArrayList();
+    private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "DD", "Cheque", "NEFT");
 	
 	/* Tax Event methods */
 
@@ -175,6 +200,22 @@ public class ReceiptController implements Initializable{
 		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
 	
+	public void receiptDetail() {
+		PaidAmount.getText();
+		long pa = Long.parseLong(PaidAmount.getText());
+		double ta =  pa * 0.18;
+		double bp =  pa-ta;
+		BaseAmount.setText(String.valueOf(bp));
+		TaxAmount.setText(String.valueOf(ta));
+	}
+	
+	@FXML
+	public void setLabelText(){
+		MultiplecID.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> 
+		               labelContractid.setText(newValue)
+				);
+	}
+	
 	@FXML
 	private void saveTax(ActionEvent event) {
 		if (ReceiptID.getText() == null || ReceiptID.getText() == "") {
@@ -182,10 +223,22 @@ public class ReceiptController implements Initializable{
 			receipt.setReceiptdate((String)ReceiptDate.getEditor().getText());
 			receipt.setPaidamount(PaidAmount.getText());
 			receipt.setTaxamount(TaxAmount.getText());
-			receipt.setPaymentmode(PaymentMode.getText());
+			receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
 			receipt.setFinalpayment(FinalPayment.getText());
 			Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
 			receipt.setContract(contract);
+			
+			/* Payment table */
+			PaymentDetails payment = new PaymentDetails();
+			payment.setModeid(TxnID.getText());
+			payment.setModedate((String)TxnDate.getEditor().getText());
+			payment.setModebank(Bank.getText());
+			payment.setPaidby(PaidBy.getText());
+			payment.setCredit(CreditYes.isSelected() ? "Yes" : "No");
+			paymentDetailsService.save(payment);
+			
+			receipt.setPdetails(payment);
+			
 			receiptService.save(receipt);
 			
 			 try {
@@ -238,6 +291,10 @@ public class ReceiptController implements Initializable{
 		cIDList.clear();
 		cIDList.addAll(contractService.getContractID());
 		cID.setItems(cIDList);
+		MultiplecID.setItems(cIDList);
+		
+		PaymentMode.setItems(modeList);
+		
 		receipttable();
 		clearFields();
 		
@@ -316,7 +373,7 @@ public class ReceiptController implements Initializable{
 					((TextField)ReceiptDate.getEditor()).setText(receipt.getReceiptdate());
 					PaidAmount.setText(receipt.getPaidamount());
 					TaxAmount.setText(receipt.getTaxamount());
-					PaymentMode.setText(receipt.getPaidamount());
+					PaymentMode.getEditor().setText(receipt.getPaidamount());
 					FinalPayment.setText(receipt.getFinalpayment());
 					
 				}
@@ -369,8 +426,7 @@ public class ReceiptController implements Initializable{
 		ReceiptID.setText(null);
 		ReceiptDate.getEditor().clear();
 		PaidAmount.clear();
-		TaxAmount.clear();
-		PaymentMode.clear();
+		PaymentMode.getSelectionModel().clearSelection();
 		FinalPayment.clear();;
 	}
 }

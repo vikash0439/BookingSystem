@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -46,7 +47,7 @@ public class Contract {
 	/* Mapping */
 	
 	
-	@OneToOne(mappedBy = "contract")
+	@OneToOne(mappedBy = "contract", cascade = CascadeType.ALL)
 	private Invoice invoice;
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Booking> bookings;	
@@ -54,10 +55,10 @@ public class Contract {
 	private List<Performance> performances;	
 	@OneToMany(targetEntity = Allocation.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Allocation> allocation;
-	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.LAZY)
 	private List<Receipt> receipt;
-	@OneToOne
-	@JoinColumn
+	@ManyToOne
+	@JoinColumn(name ="customerid")
 	private Customer customer;
 	
 	

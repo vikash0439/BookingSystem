@@ -98,6 +98,11 @@
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
+            <TextField fx:id="SlotTiming" prefHeight="30.0" prefWidth="246.0" promptText="Slot Timing">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
                   <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
@@ -160,6 +165,7 @@
               <columns>
                 <TableColumn fx:id="colSlotID" maxWidth="700.0" prefWidth="20.0" text="ID" />
                   <TableColumn fx:id="colSlot" maxWidth="4000.0" prefWidth="75.0" text="Slot Detail" />
+                  <TableColumn fx:id="colSlotTiming" maxWidth="4000.0" prefWidth="75.0" text="Slot Timing" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>

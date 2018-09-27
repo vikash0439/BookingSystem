@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +35,20 @@ public class Receipt{
 	@JoinColumn(name ="contractid")
 	private Contract contract;
 	
+	@OneToOne
+	@JoinColumn
+	private PaymentDetails pdetails;
+	
+	public PaymentDetails getPdetails() {
+		return pdetails;
+	}
+
+
+	public void setPdetails(PaymentDetails pdetails) {
+		this.pdetails = pdetails;
+	}
+
+
 	/* Constructors */
 	public Receipt() {
 		super();

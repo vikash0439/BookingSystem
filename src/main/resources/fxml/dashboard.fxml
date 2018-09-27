@@ -78,12 +78,47 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" Contract ID - " textFill="#f8f7f7">
+                  <Label text="Contract ID - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="ContractID">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </HBox>
+             <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Booking Date - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ShowDate">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </HBox>
+            
+             <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Purpose - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Purpose">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -95,10 +130,13 @@
             </HBox>
            <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" Customer Name - " textFill="#f8f7f7">
+                  <Label text="Customer Name - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
                   </Label>
                   <Label fx:id="CustomerName">
                      <HBox.margin>
@@ -107,7 +145,7 @@
                   </Label>
                </children>
                <VBox.margin>
-                  <Insets left="25.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
@@ -146,7 +184,7 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label fx:id="RepMobile" text=" Rep Mobile - " textFill="#f8f7f7">
+                  <Label fx:id="RepMobile" text="Rep Mobile - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -164,44 +202,9 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            
-             <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label text=" Purpose - " textFill="#f8f7f7">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="Purpose">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="25.0" />
-               </VBox.margin>
-            </HBox>
-             <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label text=" Date - " textFill="#f8f7f7">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="ShowDate">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="25.0" />
-               </VBox.margin>
-            </HBox>
            <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" Show Name - " textFill="#f8f7f7">
+                  <Label text="Show Name - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -218,7 +221,7 @@
             </HBox>
              <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" Slot - " textFill="#f8f7f7">
+                  <Label text="Slot - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -235,7 +238,7 @@
             </HBox>
              <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" Services - " textFill="#f8f7f7">
+                  <Label text="Services - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -252,7 +255,7 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text=" Total Amount - " textFill="#f8f7f7">
+                  <Label text="Total Amount - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -347,7 +350,7 @@
                   <TableColumn fx:id="colShowDetail" prefWidth="75.0" text="Show Detail" />
                   <TableColumn fx:id="colTotal" maxWidth="6000.0" prefWidth="130.0" text="Total Amount" />
                   <TableColumn fx:id="colPaymentStatus" maxWidth="6000.0" prefWidth="130.0" text="Payment Status" />
-                  <TableColumn fx:id="colReceipt" maxWidth="6000.0" prefWidth="130.0" text="Total Receipt" />
+                  <TableColumn fx:id="colReceipt" maxWidth="6000.0" prefWidth="130.0" text="Receipt" />
                   <TableColumn fx:id="colInvoice" maxWidth="6000.0" prefWidth="130.0" text="Invoice" />
                   <TableColumn fx:id="colRemaining" maxWidth="6000.0" prefWidth="130.0" text="Remaining" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />
@@ -358,13 +361,7 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-               <contextMenu>
-                  <ContextMenu>
-                    <items>
-                      <MenuItem fx:id="deleteUsers" mnemonicParsing="false" text="Delete" />
-                    </items>
-                  </ContextMenu>
-               </contextMenu>
+               
             </TableView>
          </children>
          <BorderPane.margin>

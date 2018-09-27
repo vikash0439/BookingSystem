@@ -21,6 +21,7 @@ public class Slot {
 	@Column(name = "slotid", updatable = false, nullable = false)
 	private long slotid;
 	private String slot;
+	private String timings;
 	
 	
 	public long getSlotid() {
@@ -34,6 +35,12 @@ public class Slot {
 	}
 	public void setSlot(String slot) {
 		this.slot = slot;
+	}
+	public String getTimings() {
+		return timings;
+	}
+	public void setTimings(String timings) {
+		this.timings = timings;
 	}
 	
 	

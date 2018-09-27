@@ -1,5 +1,6 @@
 package com.booking.bean;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +23,13 @@ public class PaymentDetails {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "paymentdetailsid", updatable = false, nullable = false)
 	private long paymentdetailsid;	
+	private String modeid;
 	private String modedate;
 	private String modebank;
 	private String paidby;
 	private String credit;
 	
-	@OneToOne
-	@JoinColumn
+	@OneToOne(mappedBy = "pdetails", cascade = CascadeType.ALL)
 	private Receipt receipt;
 
 	public long getPaymentdetailsid() {
@@ -77,6 +78,14 @@ public class PaymentDetails {
 
 	public void setReceipt(Receipt receipt) {
 		this.receipt = receipt;
+	}
+
+	public String getModeid() {
+		return modeid;
+	}
+
+	public void setModeid(String modeid) {
+		this.modeid = modeid;
 	}
 
 	

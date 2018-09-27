@@ -50,5 +50,4 @@ public class CancelCriteria {
 		this.cancelcharges = cancelcharges;
 	}
 	
-
 }

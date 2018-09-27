@@ -26,7 +26,7 @@ public class Booking{
 	private String servicetime;
 	private String servicecost;
 	private String serviceused;
-	private String Slot;
+	private String slot;
 
 	
 	@ManyToOne
@@ -71,10 +71,10 @@ public class Booking{
 		this.serviceused = serviceused;
 	}
 	public String getSlot() {
-		return Slot;
+		return slot;
 	}
 	public void setSlot(String slot) {
-		Slot = slot;
+		slot = slot;
 	}
 	
 

@@ -39,6 +39,8 @@ public class SlotController implements Initializable{
 	private Label SlotID;
 	@FXML
 	private TextField Slot; 
+	@FXML
+	private TextField SlotTiming;
 	
 	@FXML
 	private TableView<com.booking.bean.Slot> slottable;
@@ -48,7 +50,8 @@ public class SlotController implements Initializable{
 	
 	@FXML
 	private TableColumn<com.booking.bean.Slot, String> colSlot;
-	
+	@FXML
+	private TableColumn<com.booking.bean.Slot, String> colSlotTiming;
 	@FXML
 	private TableColumn<com.booking.bean.Slot, Boolean> colEdit;
 
@@ -131,6 +134,7 @@ public class SlotController implements Initializable{
 		if (SlotID.getText() == null || SlotID.getText() == "") {
 			com.booking.bean.Slot slot = new com.booking.bean.Slot();
 			slot.setSlot(Slot.getText());
+			slot.setTimings(SlotTiming.getText());
 			
 			slotService.save(slot);
 
@@ -142,7 +146,7 @@ public class SlotController implements Initializable{
 		} else {
 			com.booking.bean.Slot slot = slotService.find(Long.parseLong(SlotID.getText()));
 			slot.setSlot(Slot.getText());
-			
+			slot.setTimings(SlotTiming.getText());
 			slotService.save(slot);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Slot added.");
@@ -171,6 +175,7 @@ public class SlotController implements Initializable{
 		 */
 		colSlotID.setCellValueFactory(new PropertyValueFactory<>("slotid"));
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colSlotTiming.setCellValueFactory(new PropertyValueFactory<>("timings"));
 		colEdit.setCellFactory(cellFactory);
 
 		slotList.clear();

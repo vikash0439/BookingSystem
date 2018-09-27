@@ -13,4 +13,12 @@ public interface SlotRepository extends JpaRepository<Slot, Integer>{
     
 	@Query(value = "select slot from slot;", nativeQuery = true)
 	public List<String> findSlot();
+ 
+	@Query(value = "SELECT u.timings FROM slot u WHERE u.slot = ?1 ", nativeQuery = true)
+	String findBySLot(String timing);
+
+
+
+
+	
 }

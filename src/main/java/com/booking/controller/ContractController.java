@@ -91,8 +91,6 @@ public class ContractController implements Initializable {
 	@FXML
 	private TextField ShowName;
 	@FXML
-	private DatePicker ShowDate;
-	@FXML
 	private TextField ShowTime;
 	@FXML
 	private TextField ShowDetails;
@@ -114,6 +112,7 @@ public class ContractController implements Initializable {
 	private BookingService bookingService;
 	@Autowired
 	private PerformanceService performanceService;
+	
 
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
@@ -181,6 +180,11 @@ public class ContractController implements Initializable {
 	
 	
 		
+	public void slotChange() {
+		Slot.getSelectionModel().getSelectedItem();
+		String time = slotService.slotTiming(Slot.getSelectionModel().getSelectedItem());
+		ServiceTime.setText(time);
+	}
 	
 	
 	public void addMore() {
@@ -282,7 +286,7 @@ public class ContractController implements Initializable {
 		b.setServicedate((String) ServiceDate.getEditor().getText());
 		b.setServicecost(baseprice.getText());
 		b.setServicetime(ServiceTime.getText());
-		b.setSlot(Slot.getEditor().getText());
+		b.setSlot(Slot.getSelectionModel().getSelectedItem());
 //		b.setServiceused(ServiceUsed.getText());
         b.setContract(contract);
 
@@ -321,8 +325,11 @@ public class ContractController implements Initializable {
 		ServiceCost.setText(service.getServicecharges());
 		baseprice.setText(service.getServicecharges());
 		baseprice.setText(service.getServicecharges());
-		taxamount.setText("18%");
-		pact.setText("total here");
+		Long bp = Long.parseLong(service.getServicecharges());
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
 	}
 
 	@Override

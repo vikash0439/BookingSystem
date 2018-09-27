@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
@@ -63,8 +64,7 @@ public class DashboardController implements Initializable{
 	@FXML
 	private Label Total;
 	@FXML
-	private TextField searchField;
-	
+	private TextField searchField;	
 	@FXML
 	private TableView<Contract> contracttable;
 	@FXML
@@ -74,11 +74,17 @@ public class DashboardController implements Initializable{
 	@FXML
 	private TableColumn<Contract, String> colPurpose;
 	@FXML
-	private TableColumn<Contract, String> colShowName;
+	private TableColumn<Contract, String> colServices;
+	@FXML
+	private TableColumn<Booking, String> colShowName;
 	@FXML
 	private TableColumn<Contract, String> colShowDetail;
 	@FXML
 	private TableColumn<Contract, String> colShowTime;
+	@FXML
+	private TableColumn<Contract, String> colShowDate;
+	@FXML
+	private TableColumn<Contract, String> colSlot;
 	@FXML
 	private TableColumn<Contract, String> colCustomerName;
 	@FXML
@@ -87,12 +93,6 @@ public class DashboardController implements Initializable{
 	private TableColumn<Contract, String> colRepEmail;
 	@FXML
 	private TableColumn<Contract, String> colRepMobile;
-	@FXML
-	private TableColumn<Contract, String> colShowDate;
-	@FXML
-	private TableColumn<Contract, String> colSlot;
-	@FXML
-	private TableColumn<Contract, String> colServices;
 	@FXML
 	private TableColumn<Contract, String> colCharges;
 	@FXML
@@ -199,22 +199,33 @@ public class DashboardController implements Initializable{
 		colBookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingdate"));
 		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
 		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
-		colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customername"));
-		colShowDate.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colCustomerName.setCellValueFactory(new Callback<CellDataFeatures<Contract,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Contract, String> param) {
+                return new SimpleStringProperty(param.getValue().getCustomer().getCustomername());
+            }
+          });		
+		colShowDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colTotal.setCellValueFactory(new PropertyValueFactory<>("pact"));
 		colPaymentStatus.setCellValueFactory(new PropertyValueFactory<>("paymentstatus"));
-		colReceipt.setCellValueFactory(new PropertyValueFactory<>("pact"));
-		colRemaining.setCellValueFactory(new PropertyValueFactory<>("pact"));
+		colReceipt.setCellValueFactory(new PropertyValueFactory<>(""));
+		colRemaining.setCellValueFactory(new PropertyValueFactory<>(""));
 		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Contract,String>,ObservableValue<String>>(){
 
             @Override
             public ObservableValue<String> call(CellDataFeatures<Contract, String> param) {
+            	try {
                 return new SimpleStringProperty(param.getValue().getInvoice().getInvoicedate());
+            }catch(Exception e) {
+            	System.out.println("No invoice created");
             }
+				return null;
+		   }
         });
 		colEdit.setCellFactory(cellFactory);
-
+		
 		contractList.clear();
 		contractList.addAll(contractService.getContract());
 		contracttable.setItems(contractList);

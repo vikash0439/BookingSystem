@@ -17,6 +17,7 @@ public class SlotService {
 		this.slotRepository = slotRepository;
 	}
 	
+	
 	public Slot save(Slot slot) {
 		return slotRepository.save(slot);
 		
@@ -37,6 +38,13 @@ public class SlotService {
 		List<String> sname = new ArrayList<String>();
 		slotRepository.findSlot().forEach(sname :: add);
 		return sname;
+	}
+	
+	public String slotTiming(String timing) {
+		System.out.println(timing);
+		System.out.println(slotRepository.findBySLot(timing));
+		return slotRepository.findBySLot(timing);
+		
 	}
 
 	

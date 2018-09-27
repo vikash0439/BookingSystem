@@ -214,16 +214,16 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </DatePicker>
+                        <ComboBox fx:id="Slot" onAction = "#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
                         <TextField fx:id="ServiceTime" promptText="Time">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin></TextField>
                         <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <ComboBox fx:id="Slot" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -255,7 +255,7 @@
                         <Insets left="25.0" right="25.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="cost" prefHeight="30.0" prefWidth="169.0">
+                  <Label prefHeight="30.0" prefWidth="169.0">
                      <HBox.margin>
                         <Insets top="8.0" />
                      </HBox.margin>
@@ -271,11 +271,6 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <DatePicker fx:id="ShowDate" promptText="Date">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </DatePicker>
                         <TextField fx:id="ShowTime" promptText="Time">
                            <HBox.margin>
                               <Insets right="5.0" />
