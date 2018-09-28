@@ -88,6 +88,4 @@ public class PaymentDetails {
 		this.modeid = modeid;
 	}
 
-	
-
 }

@@ -22,6 +22,7 @@ public class Booking{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "serviceid")
 	private long serviceid;
+	private String servicename;
 	private String servicedate;
 	private String servicetime;
 	private String servicecost;
@@ -74,9 +75,18 @@ public class Booking{
 		return slot;
 	}
 	public void setSlot(String slot) {
-		slot = slot;
+		this.slot = slot;
 	}
 	
-
-
+	
+	public String getServicename() {
+		return servicename;
+	}
+	public void setServicename(String servicename) {
+		this.servicename = servicename;
+	}
+	@Override
+	public String toString() {
+		return  slot ;
+	}
 }

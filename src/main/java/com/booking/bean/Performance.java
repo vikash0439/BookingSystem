@@ -68,6 +68,11 @@ public class Performance {
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Performance [performanceid=" + performanceid + ", showname=" + showname + ", showtime=" + showtime
+				+ ", showdetails=" + showdetails + ", contract=" + contract + "]";
+	}
+	
 }

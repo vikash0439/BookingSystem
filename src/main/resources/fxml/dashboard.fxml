@@ -324,7 +324,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="70.0" styleClass="background" text="Logout" textFill="#fff9f9" textOverrun="CLIP">
+                  <Button  mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="70.0" styleClass="background" text="Logout" textFill="#fff9f9" textOverrun="CLIP">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -337,31 +337,29 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="contracttable" prefHeight="707.0" prefWidth="1179.0" tableMenuButtonVisible="true">
+            <TableView fx:id="bookingtable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="50.0" text="Booking Date" />
-                <TableColumn fx:id="colContractID" maxWidth="4000.0" prefWidth="63.0" text="Contract ID" />
-                  <TableColumn fx:id="colPurpose" maxWidth="4000.0" prefWidth="75.0" text="Purpose" />
-                  <TableColumn fx:id="colCustomerName" maxWidth="4000.0" prefWidth="60.0" text="Client" />
-                  <TableColumn fx:id="colShowDate" maxWidth="4000.0" prefWidth="75.0" text="Show Date" />
-                  <TableColumn fx:id="colShowName" maxWidth="4000.0" prefWidth="75.0" text="Show Name" />
+                <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="colDay" maxWidth="4000.0" prefWidth="86.0" text="Day" />
                   <TableColumn fx:id="colSlot" maxWidth="4000.0" prefWidth="75.0" text="Slot" />
-                  <TableColumn fx:id="colServices" maxWidth="4000.0" prefWidth="75.0" text="Services" />
-                  <TableColumn fx:id="colShowDetail" prefWidth="75.0" text="Show Detail" />
-                  <TableColumn fx:id="colTotal" maxWidth="6000.0" prefWidth="130.0" text="Total Amount" />
-                  <TableColumn fx:id="colPaymentStatus" maxWidth="6000.0" prefWidth="130.0" text="Payment Status" />
-                  <TableColumn fx:id="colReceipt" maxWidth="6000.0" prefWidth="130.0" text="Receipt" />
-                  <TableColumn fx:id="colInvoice" maxWidth="6000.0" prefWidth="130.0" text="Invoice" />
-                  <TableColumn fx:id="colRemaining" maxWidth="6000.0" prefWidth="130.0" text="Remaining" />
+                  <TableColumn fx:id="colService" maxWidth="4000.0" prefWidth="75.0" text="Service" />
+                  <TableColumn fx:id="colClient" maxWidth="4000.0" prefWidth="75.0" text="Client" />
+                  <TableColumn fx:id="ColContractid" maxWidth="4000.0" prefWidth="75.0" text="ContractID" />
+                  <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="75.0" text="Booking Date" />
+                  <TableColumn fx:id="colPact" maxWidth="4000.0" prefWidth="75.0" text="Pact" />
+                  <TableColumn fx:id="colPaymentStatus" maxWidth="4000.0" prefWidth="75.0" text="Payment Status" />
+                  <TableColumn fx:id="colEstimatedCost" maxWidth="4000.0" prefWidth="75.0" text="Estimated Cost" />
+                  <TableColumn fx:id="colReceipt" maxWidth="4000.0" prefWidth="75.0" text="Receipts" />
+                  <TableColumn fx:id="colInvoice" maxWidth="4000.0" prefWidth="75.0" text="Invoice" />
+                  <TableColumn fx:id="colRemaining" maxWidth="4000.0" prefWidth="75.0" text="Remaining" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />
               </columns>
                <VBox.margin>
-                  <Insets left="10.0" right="5.0" />
+                  <Insets  left="10.0" right="5.0" />
                </VBox.margin>
-               <columnResizePolicy>
+                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-               
             </TableView>
          </children>
          <BorderPane.margin>

@@ -6,7 +6,6 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Contract;
 import com.booking.bean.Invoice;
-import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.InvoiceService;
@@ -37,21 +35,19 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -71,10 +67,15 @@ public class InvoiceController implements Initializable{
 	@FXML
 	private TextField cancelled;
 	@FXML
-	private ComboBox<String> contractid;
-	
+	private ComboBox<String> contractid;	
 	@FXML
-	private Label InvoiceAmount;
+	private Label InvoiceAmount;	
+	@FXML
+	private Label cgst;
+	@FXML
+	private Label sgst;
+	@FXML
+	private Label total;
 	
 	@FXML
 	private TableView<Invoice> invoicetable;
@@ -174,6 +175,14 @@ public class InvoiceController implements Initializable{
 	public void getContractDetail() {
 		Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem()));
 		InvoiceAmount.setText(contract.getBaseprice());
+		
+		Double ia = Double.parseDouble(contract.getBaseprice());
+		Double cg = ia/118*9;
+		Double sg = ia/118*9;
+		Double t = cg+sg+ia;
+		cgst.setText(String.valueOf(cg));
+		sgst.setText(String.valueOf(sg));
+		total.setText(String.valueOf(t));
 	}
 	
 	@FXML

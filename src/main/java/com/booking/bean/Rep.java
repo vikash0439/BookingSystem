@@ -72,5 +72,12 @@ public class Rep{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	@Override
+	public String toString() {
+		return "Rep [repid=" + repid + ", repname=" + repname + ", repmobile=" + repmobile + ", repemail=" + repemail
+				+ ", customer=" + customer + "]";
+	}
+	
 	
 }

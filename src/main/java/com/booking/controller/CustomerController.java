@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Customer;
 import com.booking.bean.Rep;
+import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
 import com.booking.service.RepService;
@@ -119,7 +120,7 @@ public class CustomerController implements Initializable {
 
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
 	private ObservableList<Rep> repList = FXCollections.observableArrayList();
-	
+
 	/* Event Methods */
 
 	@FXML
@@ -143,46 +144,53 @@ public class CustomerController implements Initializable {
 	}
 
 	@FXML
-    private void customer(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.CUSTOMER);    	
-    }	
-	@FXML
-	public void service(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SERVICE); 		
-	}	
-	@FXML
-	public void tax(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.TAX); 		
-	}	
-	@FXML
-	public void contract(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.CONTRACT);	
-	}	
-	@FXML
-	public void users(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.USER);		
+	private void customer(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CUSTOMER);
 	}
-		
+
 	@FXML
-	public void reserve(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RESERVE);		
+	public void service(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SERVICE);
 	}
-	
+
 	@FXML
-	public void receipt(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RECEIPT);		
+	public void tax(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.TAX);
 	}
+
 	@FXML
-	public void invoice(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.INVOICE);		
+	public void contract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CONTRACT);
 	}
+
 	@FXML
-	public void slot(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SLOT);		
+	public void users(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.USER);
 	}
+
 	@FXML
-	public void purpose(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.PURPOSE);		
+	public void reserve(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RESERVE);
+	}
+
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RECEIPT);
+	}
+
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.INVOICE);
+	}
+
+	@FXML
+	public void slot(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SLOT);
+	}
+
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.PURPOSE);
 	}
 
 	@FXML
@@ -197,20 +205,20 @@ public class CustomerController implements Initializable {
 			customer.setStatecode(statecode.getText());
 			customer.setCategory(category.getText());
 			customer.setGstno(gstno.getText());
-			customer.setRemark(remark.getText());	
-			
+			customer.setRemark(remark.getText());
+
 			Rep r = new Rep();
 			r.setRepname(repname.getText());
 			r.setRepmobile(repmobile.getText());
 			r.setRepemail(repemail.getText());
-			
+
 			List<Rep> rep = new ArrayList<Rep>();
 			rep.add(r);
-			
+
 			/* establishing link in onetomany and manytoone way */
-			r.setCustomer(customer);			
+			r.setCustomer(customer);
 			customer.setRep(rep);
-			
+
 			customerService.save(customer);
 			repService.save(r);
 
@@ -228,7 +236,7 @@ public class CustomerController implements Initializable {
 			customer.setCategory(category.getText());
 			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());
-        		
+
 			customerService.save(customer);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -271,12 +279,13 @@ public class CustomerController implements Initializable {
 		customerList.addAll(customerService.getCustomer());
 		customerTable.setItems(customerList);
 	}
+
 	public void reptable() {
 		colrepid.setCellValueFactory(new PropertyValueFactory<>("repid"));
 		colrepname.setCellValueFactory(new PropertyValueFactory<>("repname"));
 		colrepemail.setCellValueFactory(new PropertyValueFactory<>("repemail"));
 		colrepmobile.setCellValueFactory(new PropertyValueFactory<>("repmobile"));
-		
+
 		repList.clear();
 		repList.addAll(repService.getRep());
 		repTable.setItems(repList);
@@ -329,20 +338,24 @@ public class CustomerController implements Initializable {
 			return cell;
 		}
 	};
-	
-	 @FXML
-	    private void repClient(ActionEvent event){
-		 
-		 TablePosition<?, ?> pos = customerTable.getSelectionModel().getSelectedCells().get(0);
-		 long id = pos.getRow();
-		 System.out.println("From context menu table:" +id);
-		 repList.clear();
-			repList.addAll(repService.getByCustomerid(id));
-			repTable.setItems(repList);
-	    			
-	    	
-	    }
-	
+
+	@FXML
+	private void repClient(ActionEvent event) {
+		
+
+		TablePosition<?, ?> pos = customerTable.getSelectionModel().getSelectedCells().get(0);
+		long id = pos.getRow();
+		System.out.println("From context menu table:" + id);
+		repList.clear();
+		long id2 = 1;
+		
+		repList.addAll(repService.getByCustomerid(id2));
+		System.out.println("Hi from repclient: "+repService.getRep());
+		repTable.setItems(repList);
+		
+
+	}
+
 	private void clearFields() {
 		customerid.setText(null);
 		customername.clear();
@@ -350,7 +363,7 @@ public class CustomerController implements Initializable {
 		landline.clear();
 		address.clear();
 		category.clear();
-		gstno.clear();	
+		gstno.clear();
 		remark.clear();
 		repname.clear();
 		repemail.clear();

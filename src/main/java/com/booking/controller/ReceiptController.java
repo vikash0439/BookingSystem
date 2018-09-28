@@ -115,7 +115,9 @@ public class ReceiptController implements Initializable{
 	@FXML
 	private TableColumn<Receipt, String> colTaxAmount;	
 	@FXML
-	private TableColumn<Receipt, String> colPaymentMode;	
+	private TableColumn<Receipt, String> colPaymentMode;
+	@FXML
+	private TableColumn<Receipt, String> colTxnID;
 	@FXML
 	private TableColumn<Receipt, String> colFinalPayment;
 	@FXML
@@ -134,7 +136,7 @@ public class ReceiptController implements Initializable{
 	
     private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
     private ObservableList cIDList = FXCollections.observableArrayList();
-    private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "DD", "Cheque", "NEFT");
+    private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "DD", "Cheque", "NEFT", "Others");
 	
 	/* Tax Event methods */
 
@@ -202,9 +204,10 @@ public class ReceiptController implements Initializable{
 	
 	public void receiptDetail() {
 		PaidAmount.getText();
-		long pa = Long.parseLong(PaidAmount.getText());
-		double ta =  pa * 0.18;
-		double bp =  pa-ta;
+		double pa = Double.parseDouble(PaidAmount.getText());
+		double bp1 =  pa/118;
+		double bp =  bp1 * 100;
+		double ta =  pa-bp;
 		BaseAmount.setText(String.valueOf(bp));
 		TaxAmount.setText(String.valueOf(ta));
 	}
@@ -327,6 +330,13 @@ public class ReceiptController implements Initializable{
 		colPaidAmount.setCellValueFactory(new PropertyValueFactory<>("paidamount"));
 		colTaxAmount.setCellValueFactory(new PropertyValueFactory<>("taxamount"));
 		colPaymentMode.setCellValueFactory(new PropertyValueFactory<>("paymentmode"));
+		colTxnID.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
+                return new SimpleStringProperty(param.getValue().getPdetails().getModeid());
+            }
+          });		
 		colFinalPayment.setCellValueFactory(new PropertyValueFactory<>("finalpayment"));
 		colEdit.setCellFactory(cellFactory);
 

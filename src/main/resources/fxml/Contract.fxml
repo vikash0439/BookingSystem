@@ -214,7 +214,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </DatePicker>
-                        <ComboBox fx:id="Slot" onAction = "#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
+                        <ComboBox fx:id="Slot" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -222,7 +222,8 @@
                         <TextField fx:id="ServiceTime" promptText="Time">
                            <HBox.margin>
                               <Insets right="5.0" />
-                           </HBox.margin></TextField>
+                           </HBox.margin>
+                        </TextField>
                         <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
@@ -234,13 +235,76 @@
                            </HBox.margin>
                         </TextField>
                         <Button mnemonicParsing="false" onAction="#addMore" prefHeight="31.0" prefWidth="113.0" styleClass="btnGreen" text="Add More +" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
                         </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="serviceHBox2" prefHeight="52.0" prefWidth="694.0" visible="false">
+                     <children>
+                        <DatePicker fx:id="ServiceDate2" prefHeight="31.0" prefWidth="210.0" promptText="Show Date">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                        <ComboBox fx:id="Slot2" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="ServiceTime2" promptText="Time">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></TextField>
+                        <ComboBox fx:id="ServiceName2" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="ServiceCost2" promptText="Charges">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="serviceHBox3" prefHeight="52.0" prefWidth="694.0" visible="false">
+                     <children>
+                        <DatePicker fx:id="ServiceDate3" prefHeight="31.0" prefWidth="210.0" promptText="Show Date">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                        <ComboBox fx:id="Slot3" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="ServiceTime3" promptText="Time">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="ServiceName3" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="ServiceCost3" promptText="Charges">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -285,6 +349,50 @@
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="ShowHBox2" prefHeight="52.0" prefWidth="694.0" visible="false">
+                     <children>
+                        <TextField fx:id="ShowName2" promptText="Show name">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="ShowTime2" promptText="Time">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="ShowDetails2" promptText="Details">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="ShowHBox3" prefHeight="52.0" prefWidth="694.0" visible="false">
+                     <children>
+                        <TextField fx:id="ShowName3" promptText="Show name">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="ShowTime3" promptText="Time">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="ShowDetails3" promptText="Details">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

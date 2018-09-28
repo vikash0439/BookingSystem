@@ -10,9 +10,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
-import com.booking.bean.Contract;
 import com.booking.config.StageManager;
-import com.booking.service.ContractService;
+import com.booking.service.BookingService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -65,57 +64,31 @@ public class DashboardController implements Initializable{
 	private Label Total;
 	@FXML
 	private TextField searchField;	
-	@FXML
-	private TableView<Contract> contracttable;
-	@FXML
-	private TableColumn<Contract, String> colContractID;
-	@FXML
-	private TableColumn<Contract, String> colBookingDate;
-	@FXML
-	private TableColumn<Contract, String> colPurpose;
-	@FXML
-	private TableColumn<Contract, String> colServices;
-	@FXML
-	private TableColumn<Booking, String> colShowName;
-	@FXML
-	private TableColumn<Contract, String> colShowDetail;
-	@FXML
-	private TableColumn<Contract, String> colShowTime;
-	@FXML
-	private TableColumn<Contract, String> colShowDate;
-	@FXML
-	private TableColumn<Contract, String> colSlot;
-	@FXML
-	private TableColumn<Contract, String> colCustomerName;
-	@FXML
-	private TableColumn<Contract, String> colRepName;
-	@FXML
-	private TableColumn<Contract, String> colRepEmail;
-	@FXML
-	private TableColumn<Contract, String> colRepMobile;
-	@FXML
-	private TableColumn<Contract, String> colCharges;
-	@FXML
-	private TableColumn<Contract, String> colTaxAmount;
-	@FXML
-	private TableColumn<Contract, String> colTotal;
-	@FXML
-	private TableColumn<Contract, String> colPaymentStatus;
-	@FXML
-	private TableColumn<Contract, String> colReceipt;
-	@FXML
-	private TableColumn<Contract, String> colInvoice;
-	@FXML
-	private TableColumn<Contract, String> colRemaining;
-	@FXML
-	private TableColumn<Contract, Boolean> colEdit;
+	
+	@FXML TableView<Booking> bookingtable;
+	@FXML TableColumn<Booking, String> colServiceDate;
+	@FXML TableColumn<Booking, String> colDay;
+	@FXML TableColumn<Booking, String> colSlot;
+	@FXML TableColumn<Booking, String> colService;
+	@FXML TableColumn<Booking, String> colClient;
+	@FXML TableColumn<Booking, String> ColContractid;
+	@FXML TableColumn<Booking, String> colBookingDate;
+	@FXML TableColumn<Booking, String> colPact;
+	@FXML TableColumn<Booking, String> colPaymentStatus;
+	@FXML TableColumn<Booking, String> colEstimatedCost;
+	@FXML TableColumn<Booking, String> colReceipt;
+	@FXML TableColumn<Booking, String> colInvoice;
+	@FXML TableColumn<Booking, String> colRemaining;
+	@FXML TableColumn<Booking, Boolean> colEdit;
+	
+	
 	@Lazy
     @Autowired
     private StageManager stageManager;
 	@Autowired
-	private ContractService contractService;
+	private BookingService bookingService;
 	
-	private ObservableList<Contract> contractList = FXCollections.observableArrayList();
+	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
 
 	
 	@FXML
@@ -196,28 +169,65 @@ public class DashboardController implements Initializable{
 		 * Set All userTable column properties
 		 */	
 		
-		colBookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingdate"));
-		colContractID.setCellValueFactory(new PropertyValueFactory<>("contractid"));
-		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
-		colCustomerName.setCellValueFactory(new Callback<CellDataFeatures<Contract,String>,ObservableValue<String>>(){
-
+		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
+		colDay.setCellValueFactory(new PropertyValueFactory<>("contractid"));
+		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colService.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+		colClient.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
             @Override
-            public ObservableValue<String> call(CellDataFeatures<Contract, String> param) {
-                return new SimpleStringProperty(param.getValue().getCustomer().getCustomername());
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getCustomer().getCustomername());
             }
           });		
-		colShowDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
-		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
-		colTotal.setCellValueFactory(new PropertyValueFactory<>("pact"));
-		colPaymentStatus.setCellValueFactory(new PropertyValueFactory<>("paymentstatus"));
-		colReceipt.setCellValueFactory(new PropertyValueFactory<>(""));
-		colRemaining.setCellValueFactory(new PropertyValueFactory<>(""));
-		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Contract,String>,ObservableValue<String>>(){
+		ColContractid.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
 
             @Override
-            public ObservableValue<String> call(CellDataFeatures<Contract, String> param) {
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getOverride());
+            }
+          });
+		colBookingDate.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+            }
+          });
+		colPact.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getPact());
+            }
+          });	
+		colPaymentStatus.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getPaymentstatus());
+            }
+          });
+		colEstimatedCost.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getPact());
+            }
+          });
+		colReceipt.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+                return new SimpleStringProperty(param.getValue().getContract().getReceipt().getClass().toString());
+            }
+          });
+		colRemaining.setCellValueFactory(new PropertyValueFactory<>("abc"));
+		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
             	try {
-                return new SimpleStringProperty(param.getValue().getInvoice().getInvoicedate());
+                return new SimpleStringProperty(param.getValue().getContract().getInvoice().getInvoicedate());
             }catch(Exception e) {
             	System.out.println("No invoice created");
             }
@@ -226,35 +236,35 @@ public class DashboardController implements Initializable{
         });
 		colEdit.setCellFactory(cellFactory);
 		
-		contractList.clear();
-		contractList.addAll(contractService.getContract());
-		contracttable.setItems(contractList);
+		bookingList.clear();
+		bookingList.addAll(bookingService.getBooking());
+		bookingtable.setItems(bookingList);
 		
-		FilteredList<Contract> filteredData = new FilteredList<>(contractList, e -> true);
+		FilteredList<Booking> filteredData = new FilteredList<>(bookingList, e -> true);
 		searchField.setOnKeyPressed(e ->{
 			searchField.textProperty().addListener((obeservableValue, oldValue, newValue) ->{
-				filteredData.setPredicate((Predicate< ?  super Contract>) contract ->{
+				filteredData.setPredicate((Predicate< ?  super Booking>) booking ->{
 					if(newValue == null || newValue.isEmpty()) {
 					return true;
 				    }
-					if(Long.toString(contract.getContractid()).contains(newValue)) {
+					if(Long.toString(booking.getContract().getContractid()).contains(newValue)) {
 				    	return true;
-				    }else if(contract.getBookingdate().contains(newValue)){
+				    }else if(booking.getServicedate().contains(newValue)){
 				    	return true;
 				    }	
 					return false;
 				});
 			});
-			SortedList<Contract> sortedData = new SortedList<>(filteredData);
-			sortedData.comparatorProperty().bind(contracttable.comparatorProperty());
-			contracttable.setItems(sortedData);
+			SortedList<Booking> sortedData = new SortedList<>(filteredData);
+			sortedData.comparatorProperty().bind(bookingtable.comparatorProperty());
+			bookingtable.setItems(sortedData);
 		});
 	}
 
-	Callback<TableColumn<Contract, Boolean>, TableCell<Contract, Boolean>> cellFactory = new Callback<TableColumn<Contract, Boolean>, TableCell<Contract, Boolean>>() {
+	Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>> cellFactory = new Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>>() {
 		@Override
-		public TableCell<Contract, Boolean> call(final TableColumn<Contract, Boolean> param) {
-			final TableCell<Contract, Boolean> cell = new TableCell<Contract, Boolean>() {
+		public TableCell<Booking, Boolean> call(final TableColumn<Booking, Boolean> param) {
+			final TableCell<Booking, Boolean> cell = new TableCell<Booking, Boolean>() {
 				Image imgEdit = new Image(getClass().getResourceAsStream("/images/view.png"));
 				final Button btnEdit = new Button();
 
@@ -266,8 +276,8 @@ public class DashboardController implements Initializable{
 						setText(null);
 					} else {
 						btnEdit.setOnAction(e -> {
-							Contract contract = getTableView().getItems().get(getIndex());
-							updateContract(contract);
+							Booking booking = getTableView().getItems().get(getIndex());
+							updateBooking(booking);
 						});
 
 						btnEdit.setStyle("-fx-background-color: transparent;");
@@ -284,11 +294,10 @@ public class DashboardController implements Initializable{
 					}
 				}
 
-				private void updateContract(Contract contract) {
-					ContractID.setText(Long.toString(contract.getContractid()));
-				    Purpose.setText(contract.getPurpose());
-				    ShowDate.setText(contract.getBookingdate());				
-					Total.setText(contract.getPact());
+				private void updateBooking(Booking booking) {
+					ContractID.setText(Long.toString(booking.getContract().getContractid()));
+					Purpose.setText(booking.getContract().getPurpose());
+					Total.setText(booking.getContract().getPact());
 				}
 			};
 			return cell;

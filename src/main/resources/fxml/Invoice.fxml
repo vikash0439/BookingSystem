@@ -94,19 +94,70 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="contractid" editable="true" onAction="#getContractDetail" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
+            <ComboBox fx:id="contractid" editable="true" onAction="#getContractDetail" onKeyPressed="#getContractDetail" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text="Invoice Amount" textFill="#f8f7f7">
+                  <Label text="Amount : " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="InvoiceAmount">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="CGST : " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="cgst">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="SGST :" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="sgst">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Total :" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="total">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>

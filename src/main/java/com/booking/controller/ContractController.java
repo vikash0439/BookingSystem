@@ -48,6 +48,14 @@ public class ContractController implements Initializable {
 	@FXML
 	private HBox serviceHBox;
 	@FXML
+	private HBox serviceHBox2;
+	@FXML
+	private HBox serviceHBox3;
+	@FXML
+	private HBox ShowHBox2;
+	@FXML
+	private HBox ShowHBox3;
+	@FXML
 	private VBox serviceVBox;
 	@FXML
 	private VBox showVBox;
@@ -188,83 +196,14 @@ public class ContractController implements Initializable {
 	
 	
 	public void addMore() {
-		System.out.println("Add more button ");
-		HBox serviceHBox = new HBox();
-		serviceHBox.setSpacing(10);
-		serviceVBox.setSpacing(10);
-
-		TextField charges = new TextField();
-		charges.setPromptText("Chargers");
-		charges.setId("ServiceCost");
-		
-		ComboBox<String> slot = new ComboBox<String>();
-		slot.setPromptText("Slot");
-		slot.setId("Slot");
-		slot.setItems(slotList);
-		slot.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub	
-
-			}
-			
-		});
-
-		ComboBox<String> services = new ComboBox<String>();
-		services.setPromptText("Services");
-		services.setId("ServiceName");
-		services.setItems(serviceList);
-		services.setOnAction( new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				String ser = services.getValue();
-				Service service = serviceService.getDetail(ser);
-				charges.setText(service.getServicecharges());	
-				baseprice.setText(service.getServicecharges());
-			}
-			
-		});
-		
-		DatePicker date = new DatePicker();
-		date.setId("ServiceDate");
-		
-		TextField ServiceTime = new TextField();
-		ServiceTime.setPromptText("Time");
-		
-		serviceHBox.getChildren().add(date);
-		serviceHBox.getChildren().add(ServiceTime);
-		serviceHBox.getChildren().add(services);
-		serviceHBox.getChildren().add(slot);
-		serviceHBox.getChildren().add(charges);
-		serviceVBox.getChildren().add(serviceHBox);
-
-		baseprice.setText(charges.getText());
+		System.out.println("Add more button ");		
+		serviceHBox2.setVisible(true);
+		serviceHBox3.setVisible(true);
 	}
 	
 	public void addMoreShow() {
-		HBox showHBox = new HBox();
-		serviceVBox.setSpacing(10);
-		showHBox.setSpacing(10);
-		
-		TextField showName = new TextField();
-		showName.setPromptText("Show name");
-		
-		DatePicker ShowDate = new DatePicker();
-		ShowDate.setPromptText("Show Date");
-		
-		TextField ShowTime = new TextField();
-		ShowTime.setPromptText("Show Time");
-		
-		TextField ShowDetails = new TextField();
-		ShowDetails.setPromptText("Show Details");
-		
-		showHBox.getChildren().addAll(showName, ShowDate, ShowTime, ShowDetails);
-		
-		showVBox.getChildren().add(showHBox);
-	
+		ShowHBox2.setVisible(true);
+		ShowHBox3.setVisible(true);
 	}
 
 	@FXML
@@ -284,6 +223,7 @@ public class ContractController implements Initializable {
 		
 		Booking b = new Booking();
 		b.setServicedate((String) ServiceDate.getEditor().getText());
+		b.setServicename(ServiceName.getValue());
 		b.setServicecost(baseprice.getText());
 		b.setServicetime(ServiceTime.getText());
 		b.setSlot(Slot.getSelectionModel().getSelectedItem());
@@ -315,6 +255,8 @@ public class ContractController implements Initializable {
 		alert.setHeaderText(null);
 		alert.setContentText("Contract of   has been created of Amount: ");
 		alert.showAndWait();
+		
+		
 
 	}
 
