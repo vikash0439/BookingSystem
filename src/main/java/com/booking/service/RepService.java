@@ -31,6 +31,8 @@ public class RepService {
 	public Rep find(Long repid) {
 		return repRepository.findAllByRepid(repid);
 	}
+	
+	
 	public Rep getByCustomerid(Long repid){
 		Rep c = new Rep();
 		repRepository.findAllByRepid(repid);
@@ -38,7 +40,11 @@ public class RepService {
 	}
 
 	
-	
+	public List<String> getAllRepName() {
+		List<String> r = new ArrayList<String>();
+		repRepository.findRepname().forEach(r :: add);
+		return r;	
+	}
 
 
 }

@@ -45,8 +45,7 @@ public class Contract {
 	
 	
 	/* Mapping */
-	
-	
+
 	@OneToOne(mappedBy = "contract", cascade = CascadeType.ALL)
 	private Invoice invoice;
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)

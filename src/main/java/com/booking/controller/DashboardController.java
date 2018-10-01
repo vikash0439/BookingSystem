@@ -2,6 +2,9 @@ package com.booking.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -56,12 +59,6 @@ public class DashboardController implements Initializable{
 	private Label RepMobile;
 	@FXML
 	private Label ShowName;
-	@FXML
-	private Label Slot;
-	@FXML
-	private Label Services;
-	@FXML
-	private Label Total;
 	@FXML
 	private TextField searchField;	
 	
@@ -155,6 +152,10 @@ public class DashboardController implements Initializable{
 	public void purpose(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
+	@FXML
+	public void others(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.OTHERS);		
+	}
 	
 	
 	@Override
@@ -167,10 +168,15 @@ public class DashboardController implements Initializable{
 	public void contracttable() {
 		/*
 		 * Set All userTable column properties
-		 */	
+		 */
 		
 		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
-		colDay.setCellValueFactory(new PropertyValueFactory<>("contractid"));
+		colDay.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+	            @Override
+	            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+	                return new SimpleStringProperty(param.getValue().getServicedate());
+	            }
+	          });		
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colService.setCellValueFactory(new PropertyValueFactory<>("servicename"));
 		colClient.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
@@ -183,7 +189,7 @@ public class DashboardController implements Initializable{
 
             @Override
             public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getOverride());
+                return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
             }
           });
 		colBookingDate.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
@@ -251,6 +257,12 @@ public class DashboardController implements Initializable{
 				    	return true;
 				    }else if(booking.getServicedate().contains(newValue)){
 				    	return true;
+				    }else if(booking.getSlot().toLowerCase().contains(newValue)){
+				    	return true;
+				    }else if(booking.getServicename().toLowerCase().contains(newValue)){
+				    	return true;
+				    }else if(booking.getContract().getCustomer().getCustomername().toLowerCase().contains(newValue)){
+				    	return true;
 				    }	
 					return false;
 				});
@@ -297,12 +309,22 @@ public class DashboardController implements Initializable{
 				private void updateBooking(Booking booking) {
 					ContractID.setText(Long.toString(booking.getContract().getContractid()));
 					Purpose.setText(booking.getContract().getPurpose());
-					Total.setText(booking.getContract().getPact());
+					CustomerName.setText(booking.getContract().getCustomer().getCustomername());
+					RepName.setText(booking.getContract().getCustomer().getRep().toString());
 				}
 			};
 			return cell;
 		}
 	};
+	
+	public String dateday(String servicedate) throws ParseException {
+		
+		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
+		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
+        System.out.println("From Dashboard controller dateday method () "+simpleDateformat.format(date1));
+        
+		return simpleDateformat.format(date1);	
+	}
 	
 	private void clearFields() {
 		ContractID.setText(null);

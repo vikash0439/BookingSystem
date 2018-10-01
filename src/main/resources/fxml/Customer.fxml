@@ -254,4 +254,61 @@
          </children>
       </VBox>
    </center>
+   <right>
+      <VBox prefHeight="570.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Add New Representative" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox fx:id="clientList" prefHeight="31.0" prefWidth="253.0" promptText="-- Select Client --">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
+            <TextField fx:id="repname1" prefHeight="30.0" prefWidth="246.0" promptText="Rep Name">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="repmobile1" prefHeight="30.0" prefWidth="246.0" promptText="Rep Mobile">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="repemail1" prefHeight="30.0" prefWidth="246.0" promptText="Rep Email">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <Button fx:id="reset1" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
+                     </effect>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveRep" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
+                     </effect>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="110.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

@@ -177,8 +177,8 @@ public class InvoiceController implements Initializable{
 		InvoiceAmount.setText(contract.getBaseprice());
 		
 		Double ia = Double.parseDouble(contract.getBaseprice());
-		Double cg = ia/118*9;
-		Double sg = ia/118*9;
+		Double cg = ia*9/100;
+		Double sg = ia*9/100;
 		Double t = cg+sg+ia;
 		cgst.setText(String.valueOf(cg));
 		sgst.setText(String.valueOf(sg));
@@ -263,7 +263,7 @@ public class InvoiceController implements Initializable{
 
             @Override
             public ObservableValue<String> call(CellDataFeatures<Invoice, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+                return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
             }
         });
 		colInvoiceID.setCellValueFactory(new PropertyValueFactory<>("invoiceid"));
@@ -325,6 +325,10 @@ public class InvoiceController implements Initializable{
 		InvoiceID.setText(null);
 		InvoiceDate.getEditor().clear();
 		cancelled.clear();
+		InvoiceAmount.setText(null);
+		cgst.setText(null);
+		sgst.setText(null);
+		total.setText(null);
 		
 	}
 }

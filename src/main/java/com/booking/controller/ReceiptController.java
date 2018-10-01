@@ -322,7 +322,7 @@ public class ReceiptController implements Initializable{
 
             @Override
             public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+                return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
             }
         });
 		colReceiptID.setCellValueFactory(new PropertyValueFactory<>("receiptid"));
@@ -438,5 +438,13 @@ public class ReceiptController implements Initializable{
 		PaidAmount.clear();
 		PaymentMode.getSelectionModel().clearSelection();
 		FinalPayment.clear();;
+		BaseAmount.setText(null);
+		TaxAmount.setText(null);
+		TxnID.clear();
+	    TxnDate.getEditor().clear();
+		Bank.clear();
+		PaidBy.clear();
+		CreditYes.setSelected(true);
+		CreditNo.setSelected(false);
 	}
 }

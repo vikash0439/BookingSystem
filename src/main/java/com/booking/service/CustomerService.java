@@ -38,8 +38,7 @@ public class CustomerService {
 		return cname;
 	}
 
-	public Customer findCustomer(String customername) {
-		
+	public Customer findCustomer(String customername) {		
 		return customerRepository.findByCustomername(customername);
 	}
 	

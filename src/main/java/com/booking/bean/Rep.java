@@ -27,7 +27,7 @@ public class Rep{
 	private String repmobile;
 	private String repemail;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "customerid")
 	private Customer customer;
 

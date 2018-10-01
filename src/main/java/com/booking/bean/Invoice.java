@@ -28,6 +28,7 @@ public class Invoice{
 	private String cancelled;
 	
 	/* Mapping */
+	
 	@OneToOne
 	@JoinColumn
 	private Contract contract;

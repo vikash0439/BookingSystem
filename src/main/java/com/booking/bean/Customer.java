@@ -37,7 +37,7 @@ public class Customer {
 	@OneToMany(targetEntity = Contract.class, mappedBy = "customer", cascade=CascadeType.ALL)
 	private List<Contract> contract;
 	
-	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", fetch = FetchType.LAZY)
 	private List<Rep> rep;	
 
 	

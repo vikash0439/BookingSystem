@@ -14,6 +14,7 @@ import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.Customer;
 import com.booking.bean.Performance;
+import com.booking.bean.Rep;
 import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
@@ -21,6 +22,7 @@ import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
 import com.booking.service.PerformanceService;
 import com.booking.service.PurposeService;
+import com.booking.service.RepService;
 import com.booking.service.ServiceService;
 import com.booking.service.SlotService;
 import com.booking.view.FxmlView;
@@ -29,7 +31,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -80,6 +81,9 @@ public class ContractController implements Initializable {
 	private Label taxamount;
 	@FXML
 	private Label pact;
+	@FXML
+	private ComboBox<String> repName;
+	
 	
 	/* Booking table */
 	@FXML
@@ -94,6 +98,31 @@ public class ContractController implements Initializable {
 	private TextField ServiceUsed;
 	@FXML
 	private ComboBox<String> ServiceName;
+	@FXML
+	private DatePicker ServiceDate2;
+	@FXML
+	private TextField ServiceTime2;
+	@FXML
+	private ComboBox<String> Slot2;
+	@FXML
+	private TextField ServiceCost2;
+	@FXML
+	private TextField ServiceUsed2;
+	@FXML
+	private ComboBox<String> ServiceName2;
+	@FXML
+	private DatePicker ServiceDate3;
+	@FXML
+	private TextField ServiceTime3;
+	@FXML
+	private ComboBox<String> Slot3;
+	@FXML
+	private TextField ServiceCost3;
+	@FXML
+	private TextField ServiceUsed3;
+	@FXML
+	private ComboBox<String> ServiceName3;
+
 
 	/* Performance Table */
 	@FXML
@@ -120,12 +149,15 @@ public class ContractController implements Initializable {
 	private BookingService bookingService;
 	@Autowired
 	private PerformanceService performanceService;
+	@Autowired
+	private RepService repService;
 	
 
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
 	private ObservableList<String> slotList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceList = FXCollections.observableArrayList();
+	private ObservableList<String> repList = FXCollections.observableArrayList();
 	private ObservableList<String> paymentStatusList = FXCollections.observableArrayList("Advanced" , "Final Payment");
     
 
@@ -188,10 +220,33 @@ public class ContractController implements Initializable {
 	
 	
 		
+	public void getAllRep() {
+		String cname = CustomerName.getSelectionModel().getSelectedItem();
+		Customer customer = customerService.findCustomer(cname);
+		List<Rep> lrep = new ArrayList<>();
+		lrep = customer.getRep();
+		System.out.print("Get All Rep By customer Name: ");
+		for(Rep r : lrep){
+		System.out.println(r);
+		}
+		repList.clear();
+		repList.addAll(repService.getAllRepName());
+		repName.setItems(repList);
+		
+	}
+	
 	public void slotChange() {
 		Slot.getSelectionModel().getSelectedItem();
 		String time = slotService.slotTiming(Slot.getSelectionModel().getSelectedItem());
 		ServiceTime.setText(time);
+		
+		Slot2.getSelectionModel().getSelectedItem();
+		String time2 = slotService.slotTiming(Slot2.getSelectionModel().getSelectedItem());
+		ServiceTime2.setText(time2);
+		
+		Slot3.getSelectionModel().getSelectedItem();
+		String time3 = slotService.slotTiming(Slot3.getSelectionModel().getSelectedItem());
+		ServiceTime3.setText(time3);
 	}
 	
 	
@@ -224,14 +279,22 @@ public class ContractController implements Initializable {
 		Booking b = new Booking();
 		b.setServicedate((String) ServiceDate.getEditor().getText());
 		b.setServicename(ServiceName.getValue());
-		b.setServicecost(baseprice.getText());
 		b.setServicetime(ServiceTime.getText());
 		b.setSlot(Slot.getSelectionModel().getSelectedItem());
 //		b.setServiceused(ServiceUsed.getText());
         b.setContract(contract);
+        
+        Booking b2 = new Booking();
+		b2.setServicedate((String) ServiceDate2.getEditor().getText());
+		b2.setServicename(ServiceName2.getValue());
+		b2.setServicetime(ServiceTime2.getText());
+		b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
+//		b2.setServiceused(ServiceUsed.getText());
+        b2.setContract(contract);
 
 		List<Booking> booking = new ArrayList<Booking>();
 		booking.add(b);
+		booking.add(b2);
 		
 		Performance p = new Performance();
 		p.setShowname(ShowName.getText());
@@ -241,22 +304,18 @@ public class ContractController implements Initializable {
 
 		List<Performance> performance = new ArrayList<Performance>();
 		performance.add(p);
-		
-		
-		
-		
+	
 		contractService.save(contract);
 		bookingService.save(b);
+		bookingService.save(b2);
 		performanceService.save(p);
 		
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Contract");
 		alert.setHeaderText(null);
-		alert.setContentText("Contract of   has been created of Amount: ");
-		alert.showAndWait();
-		
-		
+		alert.setContentText("Contract of  "+CustomerName.getSelectionModel().getSelectedItem()+" has been created of Amount: " +pact.getText());
+		alert.showAndWait();		
 
 	}
 
@@ -265,9 +324,18 @@ public class ContractController implements Initializable {
 		String ser = ServiceName.getValue();
 		Service service = serviceService.getDetail(ser);
 		ServiceCost.setText(service.getServicecharges());
-		baseprice.setText(service.getServicecharges());
-		baseprice.setText(service.getServicecharges());
-		Long bp = Long.parseLong(service.getServicecharges());
+		
+		String ser2 = ServiceName2.getValue();
+		Service service2 = serviceService.getDetail(ser2);
+		ServiceCost2.setText(service2.getServicecharges());
+		
+		String ser3 = ServiceName3.getValue();
+		Service service3 = serviceService.getDetail(ser3);
+		ServiceCost3.setText(service3.getServicecharges());
+		
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText());
+		baseprice.setText(bp.toString());
+
 		Double ta = 0.18 * bp;
 		Double t = bp + ta;
 		taxamount.setText(String.valueOf(ta));
@@ -284,6 +352,8 @@ public class ContractController implements Initializable {
 		serviceList.clear();
 		serviceList.addAll(serviceService.findName());
 		ServiceName.setItems(serviceList);
+		ServiceName2.setItems(serviceList);
+		ServiceName3.setItems(serviceList);
 		
 		customerList.clear();
 		customerList.addAll(customerService.findName());
@@ -292,6 +362,8 @@ public class ContractController implements Initializable {
 		slotList.clear();
 		slotList.addAll(slotService.findSlot());
 		Slot.setItems(slotList);
+		Slot2.setItems(slotList);
+		Slot3.setItems(slotList);
 	
 		paymentstatus.setItems(paymentStatusList);
 	}

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Customer;
 import com.booking.bean.Rep;
-import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
 import com.booking.service.RepService;
@@ -28,6 +27,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -73,6 +73,16 @@ public class CustomerController implements Initializable {
 	@FXML
 	private TextField repemail;
 	@FXML
+	private TextField repname1;
+	@FXML
+	private TextField repmobile1;
+	@FXML
+	private TextField repemail1;
+	
+	@FXML
+	private ComboBox<String> clientList;
+	
+	@FXML
 	private TableView<Customer> customerTable;
 	@FXML
 	private TableView<Rep> repTable;
@@ -113,13 +123,13 @@ public class CustomerController implements Initializable {
 	private CustomerService customerService;
 	@Autowired
 	private RepService repService;
-
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
 
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
 	private ObservableList<Rep> repList = FXCollections.observableArrayList();
+	private ObservableList<String> customerNameList = FXCollections.observableArrayList();
 
 	/* Event Methods */
 
@@ -192,6 +202,26 @@ public class CustomerController implements Initializable {
 	public void purpose(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.PURPOSE);
 	}
+	
+	@FXML
+	private void saveRep(ActionEvent event) {
+		Rep r = new Rep();
+		r.setRepname(repname1.getText());
+		r.setRepmobile(repmobile1.getText());
+		r.setRepemail(repemail1.getText());
+		Customer customer = customerService.findCustomer(clientList.getSelectionModel().getSelectedItem());
+		r.setCustomer(customer);
+		
+	   repService.save(r);
+	   
+	   Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Representative Added successfully");
+		alert.setHeaderText(null);
+		alert.setContentText("Rep : " + repname1.getText() + " has been added for client : "+clientList.getSelectionModel().getSelectedItem());
+		alert.showAndWait();
+		
+		reset1();
+	}
 
 	@FXML
 	private void saveCustomer(ActionEvent event) {
@@ -257,6 +287,11 @@ public class CustomerController implements Initializable {
 		customertable();
 		reptable();
 		clearFields();
+		
+		customerNameList.clear();
+		customerNameList.addAll(customerService.findName());
+		System.out.println(customerNameList);
+		clientList.setItems(customerNameList);
 
 	}
 
@@ -343,16 +378,15 @@ public class CustomerController implements Initializable {
 	private void repClient(ActionEvent event) {
 		
 
-		TablePosition<?, ?> pos = customerTable.getSelectionModel().getSelectedCells().get(0);
-		long id = pos.getRow();
-		System.out.println("From context menu table:" + id);
+		Long pos = customerTable.getSelectionModel().getSelectedItem().getCustomerid();
+		
+		System.out.println("From context menu table:" + pos);
 		repList.clear();
-		long id2 = 1;
 		
-		repList.addAll(repService.getByCustomerid(id2));
-		System.out.println("Hi from repclient: "+repService.getRep());
+		repList.clear();
+		repList.addAll(repService.getRep());
 		repTable.setItems(repList);
-		
+		reptable();
 
 	}
 
@@ -368,6 +402,14 @@ public class CustomerController implements Initializable {
 		repname.clear();
 		repemail.clear();
 		repmobile.clear();
+	}
+	
+	private void reset1() {
+		
+		clientList.getSelectionModel().clearSelection();
+		repname1.clear();
+		repmobile1.clear();
+		repemail1.clear();
 	}
 
 }
