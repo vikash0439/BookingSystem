@@ -253,7 +253,7 @@
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin></TextField>
-                        <ComboBox fx:id="ServiceName2" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                        <ComboBox fx:id="ServiceName2" onAction="#serviceDetail2" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -285,7 +285,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <ComboBox fx:id="ServiceName3" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                        <ComboBox fx:id="ServiceName3" onAction="#serviceDetail3" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>

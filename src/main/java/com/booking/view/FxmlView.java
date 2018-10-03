@@ -146,6 +146,16 @@ public enum FxmlView {
   		public String getFxmlFile() {
               return "/fxml/Others.fxml";
           }
+      }, STATECODE{
+          @Override
+  		public String getTitle() {
+              return getStringFromResourceBundle("statecode.title");
+          }
+
+          @Override
+  		public String getFxmlFile() {
+              return "/fxml/StateCode.fxml";
+          }
       };
     
     public abstract String getTitle();

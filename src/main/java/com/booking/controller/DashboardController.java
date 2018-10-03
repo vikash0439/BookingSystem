@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -155,6 +156,10 @@ public class DashboardController implements Initializable{
 	@FXML
 	public void others(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.OTHERS);		
+	}
+	@FXML
+	public void statecode(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.STATECODE);		
 	}
 	
 	
@@ -291,6 +296,13 @@ public class DashboardController implements Initializable{
 							Booking booking = getTableView().getItems().get(getIndex());
 							updateBooking(booking);
 						});
+						TableRow<Booking> currentRow = getTableRow();
+						String slot = currentRow.getItem().getSlot();
+						if(slot.equalsIgnoreCase("morning")) {
+							currentRow.setStyle("-fx-background-color:lightcoral");
+						}else {
+							currentRow.setStyle("-fx-background-color:lightgreen");
+						}
 
 						btnEdit.setStyle("-fx-background-color: transparent;");
 						ImageView iv = new ImageView();

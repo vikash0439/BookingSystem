@@ -17,9 +17,9 @@ public class CustomerService {
 		this.customerRepository = customerRepository;
 	}
 	
+	
 	public Customer save(Customer customer) {
-		return customerRepository.save(customer);
-		
+		return customerRepository.save(customer);		
 	}
 	
 	public List<Customer> getCustomer(){

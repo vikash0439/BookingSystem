@@ -115,15 +115,18 @@
                         <Font size="15.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Label fx:id="BaseAmount">
                      <HBox.margin>
-                        <Insets left="25.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
@@ -132,41 +135,44 @@
                         <Font size="15.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Label fx:id="TaxAmount">
                      <HBox.margin>
-                        <Insets left="25.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
             </HBox>
             <TextField fx:id="FinalPayment" prefHeight="30.0" prefWidth="246.0" promptText="Final Payment">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <ComboBox fx:id="PaymentMode" prefHeight="31.0" prefWidth="246.0" promptText="-- Payment Mode --">
+            <ComboBox fx:id="PaymentMode" onAction="#FreezeField" prefHeight="31.0" prefWidth="246.0" promptText="-- Payment Mode --">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="TxnID" prefHeight="30.0" prefWidth="246.0" promptText="Transaction ID">
+            <TextField fx:id="TxnID" prefHeight="30.0" prefWidth="246.0" promptText="Transaction ID" visible="false">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker fx:id="TxnDate" prefHeight="31.0" prefWidth="250.0" promptText="Transaction Date">
+            <DatePicker fx:id="TxnDate" prefHeight="31.0" prefWidth="250.0" promptText="Transaction Date" visible="false">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </DatePicker>
-            <TextField fx:id="Bank" prefHeight="30.0" prefWidth="246.0" promptText="Bank">
+            <TextField fx:id="Bank" prefHeight="30.0" prefWidth="246.0" promptText="Bank" visible="false">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="PaidBy" prefHeight="30.0" prefWidth="246.0" promptText="Paid By">
+            <TextField fx:id="PaidBy" prefHeight="30.0" prefWidth="246.0" promptText="Paid By" visible="false">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -252,13 +258,14 @@
             </HBox>
             <TableView fx:id="receipttable" prefHeight="583.0" prefWidth="979.0" tableMenuButtonVisible="true">
               <columns>
-                  <TableColumn fx:id="colcontractid" prefWidth="116.0" text="Contract ID" />
-                <TableColumn fx:id="colReceiptID" maxWidth="3000.0" prefWidth="79.0" text="Receipt No" />
-                <TableColumn fx:id="colReceiptDate" maxWidth="4000.0" prefWidth="75.0" text="Receipt date" />
+                  <TableColumn fx:id="colcontractid" prefWidth="116.0" maxWidth="3000.0" text="Contract ID" />
+                  <TableColumn fx:id="colReceiptID" maxWidth="3000.0" prefWidth="79.0" text="Receipt No" />
+                  <TableColumn fx:id="colReceiptDate" maxWidth="4000.0" prefWidth="75.0" text="Receipt date" />
                   <TableColumn fx:id="colPaidAmount" maxWidth="4000.0" prefWidth="75.0" text="Paid Amount" />
                   <TableColumn fx:id="colTaxAmount" maxWidth="4000.0" prefWidth="75.0" text="Tax Amount" />
                   <TableColumn fx:id="colPaymentMode" maxWidth="4000.0" prefWidth="60.0" text="Payment Mode" />
                   <TableColumn fx:id="colTxnID" maxWidth="4000.0" prefWidth="60.0" text="Txn ID" />
+                  <TableColumn fx:id="colCredit" maxWidth="4000.0" prefWidth="60.0" text="Credit" />
                   <TableColumn fx:id="colFinalPayment" maxWidth="4000.0" prefWidth="60.0" text="Final Payment" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
@@ -273,7 +280,7 @@
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="571.0" prefWidth="306.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="571.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
             <Label text="Add Receipts (Multiple)" textFill="WHITE">
                <font>
@@ -302,15 +309,15 @@
             </HBox>
             <ComboBox fx:id="MultiplecID" editable="true" onAction="#setLabelText" prefHeight="31.0" prefWidth="247.0" promptText="Select all--ContractID--">
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" top="10.0" />
+                  <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
             <Label fx:id="labelContractid" prefHeight="95.0" prefWidth="251.0" style="-fx-background-color: white;">
                <VBox.margin>
-                  <Insets left="25.0" right="25.0" top="10.0" />
+                  <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="30.0" prefWidth="250.0">
+            <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
                   <Button fx:id="reset1" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
                      <effect>

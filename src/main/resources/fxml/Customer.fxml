@@ -231,12 +231,12 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Label alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="700.0" text="Rep Detail (Select Clients from above table )" textAlignment="CENTER" textFill="#4340e8">
+            <Label alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="700.0" text="Rep Detail (Select Clients from above table by Right Click)" textAlignment="CENTER" textFill="#3cbc53">
                <VBox.margin>
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <TableView fx:id="repTable" prefHeight="252.0" prefWidth="979.0">

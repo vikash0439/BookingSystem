@@ -21,6 +21,25 @@ public class StateCode {
 	private long statecodeid;
 	private String statename;
 	private String statecode;
-	private String statecodeno;
+	
+	
+	public long getStatecodeid() {
+		return statecodeid;
+	}
+	public void setStatecodeid(long statecodeid) {
+		this.statecodeid = statecodeid;
+	}
+	public String getStatename() {
+		return statename;
+	}
+	public void setStatename(String statename) {
+		this.statename = statename;
+	}
+	public String getStatecode() {
+		return statecode;
+	}
+	public void setStatecode(String statecode) {
+		this.statecode = statecode;
+	}
 
 }

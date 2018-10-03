@@ -121,6 +121,8 @@ public class ReceiptController implements Initializable{
 	@FXML
 	private TableColumn<Receipt, String> colFinalPayment;
 	@FXML
+	private TableColumn<Receipt, String> colCredit;
+	@FXML
 	private TableColumn<Receipt, Boolean> colEdit;
 	@FXML
 	private Button reset;
@@ -202,21 +204,42 @@ public class ReceiptController implements Initializable{
 		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
 	
+	public void FreezeField() {
+		
+		String var = PaymentMode.getSelectionModel().getSelectedItem();
+		
+		if(var == null || var == "Cash") {
+			TxnID.setVisible(false);
+			TxnDate.setVisible(false);
+			Bank.setVisible(false);
+			PaidBy.setVisible(false);
+		}else  {
+			TxnID.setVisible(true);
+			TxnDate.setVisible(true);
+			Bank.setVisible(true);
+			PaidBy.setVisible(true);
+		}	
+	}
+	Double bp, ta;
 	public void receiptDetail() {
 		PaidAmount.getText();
-		double pa = Double.parseDouble(PaidAmount.getText());
-		double bp1 =  pa/118;
-		double bp =  bp1 * 100;
-		double ta =  pa-bp;
-		BaseAmount.setText(String.valueOf(bp));
-		TaxAmount.setText(String.valueOf(ta));
+		Double pa = Double.parseDouble(PaidAmount.getText());
+		Double bp1 =  pa/118;
+	    bp =  bp1 * 100;
+		ta =  pa-bp;
+		BaseAmount.setText(String.valueOf(Math.round(bp)));
+		TaxAmount.setText(String.valueOf(Math.round(ta)));
 	}
 	
 	@FXML
 	public void setLabelText(){
-		MultiplecID.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> 
-		               labelContractid.setText(newValue)
-				);
+		
+		String a = String.valueOf(MultiplecID.getValue());
+		System.out.println("From setLabelText method: "+a);
+		List<String> lcid = new ArrayList<String>();
+		lcid.add(a);
+		labelContractid.setText(a);
+						
 	}
 	
 	@FXML
@@ -247,8 +270,28 @@ public class ReceiptController implements Initializable{
 			 try {
 				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
 				 Map<String, Object> parameters = new HashMap<String, Object>();
-				 List<Receipt> rec = new ArrayList<Receipt>();
-				 rec.add(receipt);
+				 
+				
+				
+				 HashMap<String, Object> p = new HashMap<String, Object>();
+				 p.put("contractid", receipt.getContract().getContractid());
+				 p.put("receiptid", receipt.getReceiptid());
+				 p.put("paidamount", receipt.getPaidamount());
+				 p.put("paymentmode", receipt.getPaymentmode());
+				 p.put("client", receipt.getContract().getCustomer().getCustomername());
+				 p.put("purpose", receipt.getContract().getPurpose());
+				 p.put("bookingdate", receipt.getContract().getBookingdate());
+				 p.put("address", receipt.getContract().getCustomer().getAddress());
+				 p.put("gst", receipt.getContract().getCustomer().getGstno());
+				 p.put("gross", (Math.round(bp)));
+				 p.put("cgst", (Math.round(ta)));
+				 p.put("sgst", (Math.round(ta)));
+				 p.put("total", PaidAmount.getText());
+				 
+				 
+				 List<HashMap<String, Object>> rec = new ArrayList<HashMap<String, Object>>();
+				 rec.add(p);
+				
 			     JRDataSource jRDataSource = new JRBeanCollectionDataSource(rec);
 			     parameters.put("jRDataSource", rec);
 			     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
@@ -307,17 +350,7 @@ public class ReceiptController implements Initializable{
 		/*
 		 * Set All userTable column properties
 		 */
-		/*
-		 * Set All userTable column properties
-		 */
-	
-//		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Contract,Long>,ObservableValue<Long>>(){
-//
-//            @Override
-//            public SimpleLongProperty call(CellDataFeatures<Contract, Long> param) {
-//                return new SimpleLongProperty(param.getValue().getContractid());
-//            }
-//        });
+		
 		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
 
             @Override
@@ -336,7 +369,14 @@ public class ReceiptController implements Initializable{
             public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
                 return new SimpleStringProperty(param.getValue().getPdetails().getModeid());
             }
-          });		
+          });
+		colCredit.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
+                return new SimpleStringProperty(param.getValue().getPdetails().getCredit());
+            }
+          });	
 		colFinalPayment.setCellValueFactory(new PropertyValueFactory<>("finalpayment"));
 		colEdit.setCellFactory(cellFactory);
 
@@ -382,7 +422,6 @@ public class ReceiptController implements Initializable{
 					ReceiptID.setText(Long.toString(receipt.getReceiptid()));
 					((TextField)ReceiptDate.getEditor()).setText(receipt.getReceiptdate());
 					PaidAmount.setText(receipt.getPaidamount());
-					TaxAmount.setText(receipt.getTaxamount());
 					PaymentMode.getEditor().setText(receipt.getPaidamount());
 					FinalPayment.setText(receipt.getFinalpayment());
 					
@@ -444,7 +483,7 @@ public class ReceiptController implements Initializable{
 	    TxnDate.getEditor().clear();
 		Bank.clear();
 		PaidBy.clear();
-		CreditYes.setSelected(true);
-		CreditNo.setSelected(false);
+		CreditYes.setSelected(false);
+		CreditNo.setSelected(true);
 	}
 }

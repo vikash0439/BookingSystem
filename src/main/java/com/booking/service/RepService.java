@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.booking.bean.Customer;
 import com.booking.bean.Rep;
 import com.booking.repository.RepRepository;
 
@@ -45,6 +46,19 @@ public class RepService {
 		repRepository.findRepname().forEach(r :: add);
 		return r;	
 	}
-
+	
+	public List<Rep> getRepbyCustomerid(Customer customerid){
+		List<Rep> c = new ArrayList<Rep>();
+		repRepository.findByCustomer(customerid).forEach(c :: add);
+		System.out.println("From getRepbycustomer in service lawyer: "+c);
+		return c;
+	}
+	
+	public List<String> getRepnamebyCustomerid(Customer customerid){
+		List<String> c = new ArrayList<String>();
+		repRepository.findRepnameByCustomer(customerid).forEach(c :: add);
+	
+		return c;
+	}
 
 }

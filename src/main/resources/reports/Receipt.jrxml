@@ -14,13 +14,23 @@
 	<field name="receiptid" class="java.lang.Long"/>
 	<field name="paymentmode" class="java.lang.String"/>
 	<field name="paidamount" class="java.lang.String"/>
+	<field name="client" class="java.lang.String"/>
+	<field name="purpose" class="java.lang.String"/>
+	<field name="contractid" class="java.lang.Long"/>
+	<field name="bookingdate" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="gst" class="java.lang.String"/>
+	<field name="gross" class="java.lang.Long"/>
+	<field name="cgst" class="java.lang.String"/>
+	<field name="sgst" class="java.lang.String"/>
+	<field name="total" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="99" splitType="Stretch">
+		<band height="107" splitType="Stretch">
 			<staticText>
-				<reportElement x="100" y="33" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
+				<reportElement x="97" y="33" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
 				<textElement textAlignment="Center">
 					<font size="16" isBold="true" isUnderline="true"/>
 				</textElement>
@@ -28,10 +38,6 @@
 
 ]]></text>
 			</staticText>
-			<image>
-				<reportElement x="20" y="20" width="50" height="50" uuid="a6f00938-ba41-4a35-a761-a1a39ae25665"/>
-				<imageExpression><![CDATA["E:/Software/ABS/V1/BookingSystem/src/main/resources/images/favicon.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="170" y="57" width="190" height="13" uuid="2320e7b4-a85e-4f4f-8422-772fcd9852b9"/>
 				<textElement textAlignment="Center">
@@ -44,13 +50,21 @@
 				<text><![CDATA[GST No. 07AAATI1040E1ZB]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="450" y="26" width="100" height="18" uuid="5a2dddba-b9be-482d-901b-46dbd04fa0ef"/>
+				<reportElement x="443" y="9" width="100" height="18" uuid="5a2dddba-b9be-482d-901b-46dbd04fa0ef"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField pattern="HH:mm">
-				<reportElement x="514" y="44" width="31" height="16" uuid="7e72bac4-64a5-4233-8138-64fe27e12ee1"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
+			<staticText>
+				<reportElement x="201" y="88" width="130" height="15" uuid="65266c76-934a-4f7c-896c-b116eafe01e4"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PAN : AAATI1040E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="9" width="40" height="18" uuid="27a270e8-f100-4945-b882-900646bc1f8a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -67,26 +81,32 @@ Telephone: 011-23714307
 	<columnHeader>
 		<band height="81" splitType="Stretch">
 			<staticText>
-				<reportElement x="180" y="15" width="200" height="30" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
+				<reportElement x="180" y="6" width="200" height="30" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Receipt Voucher]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="0" width="40" height="15" uuid="d4c5f807-aa81-4059-9ca3-ac2482dca504">
+				<reportElement x="424" y="19" width="40" height="15" uuid="d4c5f807-aa81-4059-9ca3-ac2482dca504">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2c90151-3456-4426-aebf-3196f844401f"/>
 				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Ref No.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="399" y="0" width="61" height="15" uuid="27878fc7-72dc-4216-b4d4-759a08906f23">
+				<reportElement x="9" y="20" width="61" height="15" uuid="27878fc7-72dc-4216-b4d4-759a08906f23">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87e12c9b-4b56-48da-b0a9-b9a010f75b72"/>
 				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Receipt No.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="460" y="1" width="90" height="13" uuid="1428b363-9491-4e04-bf49-1eb01867b0ac">
+				<reportElement x="70" y="21" width="90" height="13" uuid="1428b363-9491-4e04-bf49-1eb01867b0ac">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87e12c9b-4b56-48da-b0a9-b9a010f75b72"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{receiptid}]]></textFieldExpression>
@@ -109,88 +129,183 @@ Telephone: 011-23714307
 				</reportElement>
 				<text><![CDATA[]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="465" y="20" width="80" height="14" uuid="28cab92c-9e0b-47dd-9fb7-8a5398ea2865"/>
+				<textFieldExpression><![CDATA[$F{contractid}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="170" splitType="Stretch">
+		<band height="388" splitType="Stretch">
 			<staticText>
-				<reportElement x="60" y="60" width="185" height="17" uuid="a8d4db30-e4c4-4b8b-acc4-9c22f58111e3"/>
+				<reportElement x="60" y="44" width="185" height="17" uuid="a8d4db30-e4c4-4b8b-acc4-9c22f58111e3"/>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Received with thanks from]]></text>
+				<text><![CDATA[Received with thanks from :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="90" width="104" height="17" uuid="7789ee2d-c184-424b-bb69-331b967632f9"/>
+				<reportElement x="60" y="83" width="110" height="17" uuid="7789ee2d-c184-424b-bb69-331b967632f9"/>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[the sum of rupees]]></text>
+				<text><![CDATA[the sum of rupees :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="123" width="50" height="17" uuid="a5a02a7e-6a3f-4279-ab7e-a42b291bcbbe"/>
+				<reportElement x="60" y="102" width="200" height="17" uuid="a5a02a7e-6a3f-4279-ab7e-a42b291bcbbe"/>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[by]]></text>
+				<text><![CDATA[by Cash/Cheque/DD/NEFT/RTGS :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="150" width="301" height="17" uuid="77d68c3d-98f3-43a3-a88f-03d59caf03ef"/>
+				<reportElement x="60" y="120" width="490" height="23" uuid="77d68c3d-98f3-43a3-a88f-03d59caf03ef"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[on account of final payment for booking auditorium]]></text>
+				<text><![CDATA[On account of payment for booking  of auditorium for hiring (SAC code : 9972) on ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="114" y="123" width="100" height="17" uuid="ce1c9eff-8c6b-4507-aa3a-b683bd163b44">
+				<reportElement x="262" y="102" width="100" height="17" uuid="ce1c9eff-8c6b-4507-aa3a-b683bd163b44">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38f3e928-cd05-466e-9aa2-b4e88aa7527f"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{paymentmode}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="170" y="91" width="100" height="18" uuid="00e7770a-78f9-45c8-87e8-3afeb9e02030">
+				<reportElement x="174" y="84" width="100" height="18" uuid="00e7770a-78f9-45c8-87e8-3afeb9e02030">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3730a87-51f9-4899-a2e4-1d6808af38d7"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{paidamount}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="60" y="20" width="174" height="30" uuid="1938fee3-92d6-4b4a-a745-ce47eda26040"/>
+				<reportElement x="60" y="20" width="174" height="20" uuid="1938fee3-92d6-4b4a-a745-ce47eda26040"/>
 				<textElement>
-					<font size="12"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Place of Service: Delhi (07)]]></text>
+				<text><![CDATA[Place of Service: Delhi (07) ]]></text>
 			</staticText>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="240" y="42" width="100" height="19" uuid="aa1861ab-76ee-43b4-af99-4104d3cc0be1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="70c9bd1c-a3fa-4d40-a39b-859165301039"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{client}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="140" width="100" height="20" uuid="638f09a1-7814-42a5-aebb-1f200d668a1a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ead9903-550e-4672-ab5c-b174f0b88260"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{purpose}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="440" y="49" width="100" height="24" uuid="296c18d5-3d35-4855-9d09-c5a06c97d57a"/>
-				<text><![CDATA[(Authorized Signatory)]]></text>
+				<reportElement x="61" y="139" width="31" height="20" uuid="12239e3a-d115-4ede-af01-c2fdf2c1ded1"/>
+				<text><![CDATA[for]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="360" y="6" width="194" height="30" uuid="fcef6764-e632-4eb1-9447-8a74ddddc22c"/>
+				<reportElement x="360" y="315" width="194" height="30" uuid="fcef6764-e632-4eb1-9447-8a74ddddc22c"/>
 				<text><![CDATA[For INDIAN NATIONAL THEATRE TRUST]]></text>
 			</staticText>
-		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="37" width="570" height="16" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
-				<textElement textAlignment="Center">
+				<reportElement x="20" y="354" width="400" height="16" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
+				<textElement textAlignment="Left">
 					<font size="8" isBold="false" isItalic="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Cheques are subject to encashment]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="90" y="14" width="350" height="14" uuid="9b0d3364-fe78-4fc4-a1ca-7423e61ed1b5"/>
-				<textElement textAlignment="Center">
-					<font size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[shriramcentre@srcpa.in || www.srcpa.in]]></text>
+				<reportElement x="440" y="358" width="100" height="24" uuid="296c18d5-3d35-4855-9d09-c5a06c97d57a"/>
+				<text><![CDATA[(Authorized Signatory)]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="313" y="189" width="100" height="19" uuid="edff5c68-a51a-4d45-9199-00f9f0eb3717"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gross Amount : Rs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="209" width="100" height="19" uuid="9ce01cbc-c056-4a1f-81f3-de30122a1f35"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CGST @ 9% :   Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="229" width="100" height="19" uuid="80eaf887-1dd9-4b0f-aa4c-94d3ea406968"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SGST @ 9% :   Rs. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="250" width="100" height="19" uuid="99950970-cbc7-4a35-880e-c27bb8dc2840"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total :    Rs.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="500" y="123" width="51" height="16" uuid="57744ac0-9e7c-40d9-b292-3010956bd765">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="959f3e07-49ad-4ccc-8f64-2edeb36a5175"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{bookingdate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="41" width="100" height="21" uuid="b8d1ac9e-c551-4a6f-9d0c-8746a7146137">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00840e72-e42b-4847-90fa-adc8ac9ab6a3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="342" y="43" width="75" height="18" uuid="b2a1b936-5015-48a1-96dd-ea03ab16437e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="63" width="50" height="18" uuid="f0f55c76-50c2-4033-95c3-f36c093a60c8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GSTIN :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="63" width="100" height="17" uuid="0b3b6035-b16c-4b31-a5e6-51072651d7ad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="995b900d-b2c5-4af3-9bbf-fb17ea4d063a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{gst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="189" width="100" height="16" uuid="46aef9fd-bab5-480e-989d-5521aad8516a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7e72bcd-09f2-40a8-9ee1-c80aabdcda2a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{gross}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="209" width="97" height="19" uuid="23f2e383-8d47-43d4-b0eb-80cbb20dd932">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d74c5131-fa50-4219-9ef7-6c12c16357c3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cgst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="228" width="100" height="20" uuid="ec80463d-d9f4-43c9-b661-6f96fd3e276a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02978428-aed6-4e85-919b-c8888e998350"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{sgst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="250" width="97" height="19" uuid="8d5413d2-02e4-4647-ab42-3e53275d5bcc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5badafb6-d545-48d5-8405-5d8ac7d73663"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
 		</band>
+	</detail>
+	<columnFooter>
+		<band height="75" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="43" splitType="Stretch"/>

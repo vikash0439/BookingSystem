@@ -31,7 +31,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -236,7 +235,7 @@ public class CustomerController implements Initializable {
 			customer.setCategory(category.getText());
 			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());
-
+ 
 			Rep r = new Rep();
 			r.setRepname(repname.getText());
 			r.setRepmobile(repmobile.getText());
@@ -325,6 +324,8 @@ public class CustomerController implements Initializable {
 		repList.addAll(repService.getRep());
 		repTable.setItems(repList);
 	}
+	
+	
 
 	Callback<TableColumn<Customer, Boolean>, TableCell<Customer, Boolean>> cellFactory = new Callback<TableColumn<Customer, Boolean>, TableCell<Customer, Boolean>>() {
 		@Override
@@ -379,14 +380,18 @@ public class CustomerController implements Initializable {
 		
 
 		Long pos = customerTable.getSelectionModel().getSelectedItem().getCustomerid();
-		
-		System.out.println("From context menu table:" + pos);
+		Customer c = customerService.find(pos);
+		System.out.println("From context menu table Customer ID :" + pos);
+
 		repList.clear();
-		
+		colrepid.setCellValueFactory(new PropertyValueFactory<>("repid"));
+		colrepname.setCellValueFactory(new PropertyValueFactory<>("repname"));
+		colrepemail.setCellValueFactory(new PropertyValueFactory<>("repemail"));
+		colrepmobile.setCellValueFactory(new PropertyValueFactory<>("repmobile"));
+
 		repList.clear();
-		repList.addAll(repService.getRep());
+		repList.addAll(repService.getRepbyCustomerid(c));
 		repTable.setItems(repList);
-		reptable();
 
 	}
 
