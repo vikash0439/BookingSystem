@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import com.booking.bean.Contract;
 import com.booking.bean.PaymentDetails;
 import com.booking.bean.Receipt;
+import com.booking.bean.User;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.PaymentDetailsService;
@@ -79,8 +80,6 @@ public class ReceiptController implements Initializable{
 	@FXML
 	private ComboBox<String> PaymentMode;
 	@FXML
-	private TextField FinalPayment;	
-	@FXML
 	private ComboBox<String> MultiplecID;
 	@FXML
 	private Label labelContractid;
@@ -118,8 +117,6 @@ public class ReceiptController implements Initializable{
 	private TableColumn<Receipt, String> colPaymentMode;
 	@FXML
 	private TableColumn<Receipt, String> colTxnID;
-	@FXML
-	private TableColumn<Receipt, String> colFinalPayment;
 	@FXML
 	private TableColumn<Receipt, String> colCredit;
 	@FXML
@@ -220,13 +217,14 @@ public class ReceiptController implements Initializable{
 			PaidBy.setVisible(true);
 		}	
 	}
-	Double bp, ta;
+	Double bp, ta, cgst;
 	public void receiptDetail() {
 		PaidAmount.getText();
 		Double pa = Double.parseDouble(PaidAmount.getText());
 		Double bp1 =  pa/118;
 	    bp =  bp1 * 100;
 		ta =  pa-bp;
+		cgst = ta /2 ;
 		BaseAmount.setText(String.valueOf(Math.round(bp)));
 		TaxAmount.setText(String.valueOf(Math.round(ta)));
 	}
@@ -250,7 +248,6 @@ public class ReceiptController implements Initializable{
 			receipt.setPaidamount(PaidAmount.getText());
 			receipt.setTaxamount(TaxAmount.getText());
 			receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
-			receipt.setFinalpayment(FinalPayment.getText());
 			Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
 			receipt.setContract(contract);
 			
@@ -284,8 +281,8 @@ public class ReceiptController implements Initializable{
 				 p.put("address", receipt.getContract().getCustomer().getAddress());
 				 p.put("gst", receipt.getContract().getCustomer().getGstno());
 				 p.put("gross", (Math.round(bp)));
-				 p.put("cgst", (Math.round(ta)));
-				 p.put("sgst", (Math.round(ta)));
+				 p.put("cgst", (Math.round(cgst)));
+				 p.put("sgst", (Math.round(cgst)));
 				 p.put("total", PaidAmount.getText());
 				 
 				 
@@ -319,13 +316,34 @@ public class ReceiptController implements Initializable{
 			
 
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Tax updated successfully.");
+			alert.setTitle("Receipt.");
 			alert.setHeaderText(null);
 			alert.setContentText("Amount:  " + PaidAmount.getText() + "  receipt created.");
 			alert.showAndWait();
 		} else {
-			System.out.println("Nothing to update");
-		}
+			
+				Receipt receipt = receiptService.find(Long.parseLong(ReceiptID.getText()));;
+				receipt.setReceiptdate((String)ReceiptDate.getEditor().getText());
+				receipt.setPaidamount(PaidAmount.getText());
+				receipt.setTaxamount(TaxAmount.getText());
+				receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
+				
+				Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
+				receipt.setContract(contract);
+				
+				/* Payment table */
+				PaymentDetails payment = new PaymentDetails();
+				payment.setModeid(TxnID.getText());
+				payment.setModedate((String)TxnDate.getEditor().getText());
+				payment.setModebank(Bank.getText());
+				payment.setPaidby(PaidBy.getText());
+				payment.setCredit(CreditYes.isSelected() ? "Yes" : "No");
+				paymentDetailsService.save(payment);
+				
+				receipt.setPdetails(payment);
+				
+				receiptService.save(receipt);	
+		   }	
 		receipttable();
 		clearFields();
 	}
@@ -377,7 +395,6 @@ public class ReceiptController implements Initializable{
                 return new SimpleStringProperty(param.getValue().getPdetails().getCredit());
             }
           });	
-		colFinalPayment.setCellValueFactory(new PropertyValueFactory<>("finalpayment"));
 		colEdit.setCellFactory(cellFactory);
 
 		receiptList.clear();
@@ -423,7 +440,19 @@ public class ReceiptController implements Initializable{
 					((TextField)ReceiptDate.getEditor()).setText(receipt.getReceiptdate());
 					PaidAmount.setText(receipt.getPaidamount());
 					PaymentMode.getEditor().setText(receipt.getPaidamount());
-					FinalPayment.setText(receipt.getFinalpayment());
+					
+					
+					cID.getEditor().setText(String.valueOf(receipt.getContract().getContractid()));
+					PaidAmount.setText(receipt.getPaidamount());;
+					
+					BaseAmount.setText(null);
+					TaxAmount.setText(receipt.getTaxamount());
+					TxnID.setText(receipt.getPdetails().getModeid());;
+				    TxnDate.getEditor().setText(receipt.getPdetails().getModedate());
+					Bank.setText(receipt.getPdetails().getModebank());
+					PaidBy.setText(receipt.getPdetails().getPaidby());
+					if(receipt.getPdetails().getCredit().equals("Yes")) CreditYes.setSelected(true);
+					else CreditNo.setSelected(true);
 					
 				}
 			};
@@ -476,7 +505,6 @@ public class ReceiptController implements Initializable{
 		ReceiptDate.getEditor().clear();
 		PaidAmount.clear();
 		PaymentMode.getSelectionModel().clearSelection();
-		FinalPayment.clear();;
 		BaseAmount.setText(null);
 		TaxAmount.setText(null);
 		TxnID.clear();
@@ -484,6 +512,6 @@ public class ReceiptController implements Initializable{
 		Bank.clear();
 		PaidBy.clear();
 		CreditYes.setSelected(false);
-		CreditNo.setSelected(true);
+		CreditNo.setSelected(false);
 	}
 }

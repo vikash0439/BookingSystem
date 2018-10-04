@@ -252,7 +252,7 @@
                   </TextField>
                   <Label text="All Bookings">
                      <HBox.margin>
-                        <Insets right="200.0" top="10.0" />
+                        <Insets bottom="10.0" right="200.0" top="10.0" />
                      </HBox.margin>
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -271,7 +271,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="bookingtable" editable="true" prefHeight="686.0" prefWidth="985.0" tableMenuButtonVisible="true">
+            <TableView fx:id="bookingtable" editable="true" prefHeight="644.0" prefWidth="959.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Date" />
                 <TableColumn fx:id="colDay" maxWidth="4000.0" prefWidth="86.0" text="Day" />
@@ -295,6 +295,50 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0" spacing="5.0">
+               <children>
+                  <HBox prefHeight="53.0" prefWidth="290.0" style="-fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ff6666;">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label text="No Invoice Created">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="10.0" top="13.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="53.0" prefWidth="290.0" style="-fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffffb3;">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label text="SRCPA Reserved">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="10.0" top="13.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets left="25.0" />

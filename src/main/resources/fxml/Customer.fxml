@@ -111,6 +111,11 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
+            <ComboBox fx:id="State" onAction="#getStateCode" prefHeight="31.0" prefWidth="245.0" promptText="--Select State --">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
             <TextField fx:id="statecode" prefHeight="30.0" prefWidth="246.0" promptText="State Code">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

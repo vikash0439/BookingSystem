@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -272,26 +273,30 @@ public class ServiceController implements Initializable{
 	
 	public void print(ActionEvent event) throws JRException {
 		
-		 // First, compile jrxml file.
-        JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/services.jrxml");
-       
-        // Parameters for report .
-        Map<String, Object> parameters = new HashMap<String, Object>();
+		
+        JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/services.jrxml");   // First, compile jrxml file.       
+        Map<String, Object> parameters = new HashMap<String, Object>();   // Parameters for report .
         
-        List<Service> list = serviceService.getService();
+        List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
+        
+        for(Service s : serviceService.getService()) {
+        	Map<String, Object> m =new HashMap<String , Object>();
+        	m.put("serviceid", s.getServiceid());
+        	m.put("servicename", s.getServicename());
+        	m.put("serviceinuse", s.getServiceinuse());
+        	m.put("servicecharges", s.getServicecharges());
+        	m.put("cancelcharges", s.getCancelcharges());
+        	list.add(m);
+        }
+        
         JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
         parameters.put("jRDataSource", list);
-        
-        // DataSource
-        // This is simple example, no database.
-        // then using empty datasource.
-//        JRDataSource dataSource = new JREmptyDataSource();
   
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
   
      
-        // Make sure the output directory exists.
-        File outDir = new File("D:/Reports");
+        
+        File outDir = new File("D:/Reports");   // Make sure the output directory exists.
         outDir.mkdirs();
       
         DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");

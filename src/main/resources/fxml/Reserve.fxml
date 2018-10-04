@@ -113,7 +113,7 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="ReserveTitle" prefHeight="30.0" prefWidth="246.0" promptText="Reserve Title">
+            <TextField fx:id="ReserveTitle" prefHeight="30.0" prefWidth="246.0" promptText="Event Name">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -123,11 +123,6 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker fx:id="BookingDate" prefHeight="31.0" prefWidth="251.0" promptText="Booking Date">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </DatePicker>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
                   <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
@@ -188,15 +183,13 @@
             </HBox>
             <TableView fx:id="reservetable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colReserveID" maxWidth="700.0" prefWidth="20.0" text="ID" />
+                <TableColumn fx:id="colReserveID" maxWidth="700.0" prefWidth="20.0" text="Sr ." />
                 <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Service Date" />
                   <TableColumn fx:id="colServiceTime" maxWidth="4000.0" prefWidth="75.0" text="Service Time" />
-                  <TableColumn fx:id="colServiceID" maxWidth="4000.0" prefWidth="60.0" text="Service ID" />
-                  <TableColumn fx:id="colCustomerID" maxWidth="4000.0" prefWidth="75.0" text="Customer ID" />
-                  <TableColumn fx:id="colReserveTitle" maxWidth="4000.0" prefWidth="60.0" text="Reserve Title" />
+                  <TableColumn fx:id="colServiceID" maxWidth="4000.0" prefWidth="60.0" text="Service" />
+                  <TableColumn fx:id="colCustomerID" maxWidth="4000.0" prefWidth="75.0" text="Customer" />
+                  <TableColumn fx:id="colReserveTitle" maxWidth="4000.0" prefWidth="60.0" text="Event Name" />
                   <TableColumn fx:id="colInternalUsage" maxWidth="4000.0" prefWidth="60.0" text="Internal Usage" />
-                  <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="60.0" text="Booking Date" />
-                  <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>
                   <Insets left="10.0" right="5.0" />

@@ -54,7 +54,7 @@ public class Contract {
 	private List<Performance> performances;	
 	@OneToMany(targetEntity = Allocation.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Allocation> allocation;
-	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<Receipt> receipt;
 	@ManyToOne
 	@JoinColumn(name ="customerid")

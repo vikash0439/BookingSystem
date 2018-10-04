@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -13,8 +15,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
+import com.booking.bean.Invoice;
+import com.booking.bean.Reserve;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
+import com.booking.service.ReserveService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -37,9 +42,11 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 @Controller
 public class DashboardController implements Initializable{
@@ -79,15 +86,15 @@ public class DashboardController implements Initializable{
 	@FXML TableColumn<Booking, String> colRemaining;
 	@FXML TableColumn<Booking, Boolean> colEdit;
 	
-	
+
 	@Lazy
     @Autowired
     private StageManager stageManager;
 	@Autowired
 	private BookingService bookingService;
 	
+	
 	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
-
 	
 	@FXML
     private void logout(ActionEvent event) throws IOException {
@@ -229,7 +236,7 @@ public class DashboardController implements Initializable{
 
             @Override
             public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getReceipt().getClass().toString());
+                return new SimpleStringProperty(param.getValue().getContract().getReceipt().toString());
             }
           });
 		colRemaining.setCellValueFactory(new PropertyValueFactory<>("abc"));
@@ -297,13 +304,15 @@ public class DashboardController implements Initializable{
 							updateBooking(booking);
 						});
 						TableRow<Booking> currentRow = getTableRow();
-						String slot = currentRow.getItem().getSlot();
-						if(slot.equalsIgnoreCase("morning")) {
-							currentRow.setStyle("-fx-background-color:lightcoral");
-						}else {
-							currentRow.setStyle("-fx-background-color:lightgreen");
+						Invoice i = currentRow.getItem().getContract().getInvoice();
+						
+						if(i == null) {
+							currentRow.setStyle("-fx-background-color:#ff6666");
 						}
-
+						String client = currentRow.getItem().getContract().getCustomer().getCustomername();
+						if(client.equalsIgnoreCase("SRCPA")) {
+							currentRow.setStyle("-fx-background-color:#ffffb3");
+						}
 						btnEdit.setStyle("-fx-background-color: transparent;");
 						ImageView iv = new ImageView();
 						iv.setImage(imgEdit);
@@ -333,10 +342,11 @@ public class DashboardController implements Initializable{
 		
 		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
 		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
-        System.out.println("From Dashboard controller dateday method () "+simpleDateformat.format(date1));
-        
+        System.out.println("From Dashboard controller dateday method () "+simpleDateformat.format(date1));     
 		return simpleDateformat.format(date1);	
 	}
+	
+	
 	
 	private void clearFields() {
 		ContractID.setText(null);

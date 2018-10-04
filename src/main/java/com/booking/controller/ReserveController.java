@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Reserve;
+import com.booking.bean.Booking;
 import com.booking.config.StageManager;
+import com.booking.service.BookingService;
 import com.booking.service.CustomerService;
 import com.booking.service.ReserveService;
 import com.booking.service.ServiceService;
@@ -54,8 +56,6 @@ public class ReserveController implements Initializable{
 	@FXML
 	private TextField InternalUsage;
 	@FXML
-	private DatePicker BookingDate;	
-	@FXML
 	private TableView<Reserve> reservetable;
 	@FXML
 	private TableColumn<Reserve, Long> colReserveID;	
@@ -74,12 +74,6 @@ public class ReserveController implements Initializable{
 	
 	@FXML
 	private TableColumn<Reserve, String> colInternalUsage;
-	
-	@FXML
-	private TableColumn<Reserve, LocalDate> colBookingDate;
-	
-	@FXML
-	private TableColumn<Reserve, Boolean> colEdit;
 
 	@FXML
 	private Button reset;
@@ -96,6 +90,8 @@ public class ReserveController implements Initializable{
 	private CustomerService customerService;
 	@Autowired
 	private ServiceService serviceService;
+	@Autowired
+	private BookingService bookingservice;
 	
 	private ObservableList<Reserve> reserveList = FXCollections.observableArrayList();
 	private ObservableList<String> customerNameList = FXCollections.observableArrayList();
@@ -176,10 +172,16 @@ public class ReserveController implements Initializable{
 			reserve.setCustomerid(CustomerID.getSelectionModel().getSelectedItem());
 			reserve.setReservetitle(ReserveTitle.getText());
 			reserve.setInternalusage(InternalUsage.getText());
-			reserve.setBookingdate(BookingDate.getValue());
 			reserve.setServiceid(ServiceID.getSelectionModel().getSelectedItem());
 
 			reserveService.save(reserve);
+//			
+//			Booking booking = new Booking();
+//			booking.setServicedate((String)ServiceDate.getEditor().getText());
+//			booking.setServicetime(ServiceTime.getText());
+//			
+//			bookingservice.save(booking);
+			
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Reserved");
@@ -234,27 +236,7 @@ public class ReserveController implements Initializable{
 		         }
 		     }
 		 }));
-		colBookingDate.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-			 String pattern = "dd-MM-yyyy";
-			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-		     @Override 
-		     public String toString(LocalDate date) {
-		         if (date != null) {
-		             return dateFormatter.format(date);
-		         } else {
-		             return "";
-		         }
-		     }
-
-		     @Override 
-		     public LocalDate fromString(String string) {
-		         if (string != null && !string.isEmpty()) {
-		             return LocalDate.parse(string, dateFormatter);
-		         } else {
-		             return null;
-		         }
-		     }
-		 }));
+		
 		
 		colReserveID.setCellValueFactory(new PropertyValueFactory<>("reserveid"));
 		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
@@ -262,7 +244,6 @@ public class ReserveController implements Initializable{
 		colCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerid"));
 		colReserveTitle.setCellValueFactory(new PropertyValueFactory<>("reservetitle"));
 		colInternalUsage.setCellValueFactory(new PropertyValueFactory<>("internalusage"));
-		colBookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingdate"));
 		colServiceTime.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
 //		colEdit.setCellFactory(cellFactory);
 
@@ -325,7 +306,6 @@ public class ReserveController implements Initializable{
 		CustomerID.getSelectionModel().clearSelection();
 		ReserveTitle.clear();
 		InternalUsage.clear();
-		BookingDate.getEditor().clear();
 	}
 
 }

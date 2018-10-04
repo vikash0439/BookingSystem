@@ -34,8 +34,17 @@ public class StateCodeService {
 	}
 
 	public StateCode find(long statecodeid) {
-		return stateCodeRepository.findByStatecodeid(statecodeid);
+		return stateCodeRepository.findByStatecodeid(statecodeid);		
+	}
+	
+	public String find(String statename) {
+		return stateCodeRepository.findByStatename(statename);
 		
+	}
+
+	public List<String> StateName() {
+		// TODO Auto-generated method stub
+		return stateCodeRepository.findState();
 	}
 
 

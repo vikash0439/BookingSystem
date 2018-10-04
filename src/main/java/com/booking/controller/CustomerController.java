@@ -15,6 +15,7 @@ import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
 import com.booking.service.RepService;
+import com.booking.service.StateCodeService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -41,6 +42,8 @@ import javafx.util.Callback;
 @Controller
 public class CustomerController implements Initializable {
 
+	@FXML
+	private ComboBox<String> State;
 	@FXML
 	private Label customerid;
 
@@ -122,6 +125,8 @@ public class CustomerController implements Initializable {
 	private CustomerService customerService;
 	@Autowired
 	private RepService repService;
+	@Autowired
+	private StateCodeService stateCodeService;
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
@@ -129,6 +134,7 @@ public class CustomerController implements Initializable {
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
 	private ObservableList<Rep> repList = FXCollections.observableArrayList();
 	private ObservableList<String> customerNameList = FXCollections.observableArrayList();
+	private ObservableList<String> stateCodeList = FXCollections.observableArrayList();
 
 	/* Event Methods */
 
@@ -202,6 +208,12 @@ public class CustomerController implements Initializable {
 		stageManager.switchScene(FxmlView.PURPOSE);
 	}
 	
+	public void getStateCode() {
+		String state = State.getSelectionModel().getSelectedItem();
+		
+		statecode.setText(stateCodeService.find(state));
+		
+	}
 	@FXML
 	private void saveRep(ActionEvent event) {
 		Rep r = new Rep();
@@ -291,6 +303,10 @@ public class CustomerController implements Initializable {
 		customerNameList.addAll(customerService.findName());
 		System.out.println(customerNameList);
 		clientList.setItems(customerNameList);
+		
+		stateCodeList.clear();
+		stateCodeList.addAll(stateCodeService.StateName());
+		State.setItems(stateCodeList);
 
 	}
 

@@ -100,22 +100,12 @@ Telephone: 011-23714307
 	<columnHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="210" y="15" width="100" height="30" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
+				<reportElement x="210" y="10" width="100" height="11" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Services]]></text>
 			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="325" splitType="Stretch">
-			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="10" y="90" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{serviceid}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="20" y="-1" width="100" height="30" uuid="21a70481-64a1-4bcb-b31e-36810251f6a5">
+				<reportElement x="30" y="21" width="100" height="30" uuid="21a70481-64a1-4bcb-b31e-36810251f6a5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
 				</reportElement>
 				<textElement>
@@ -123,14 +113,8 @@ Telephone: 011-23714307
 				</textElement>
 				<text><![CDATA[Service ID]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="112" y="90" width="100" height="30" uuid="936ab62f-861d-4185-be65-e2674f0fd2f1">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="120" y="-1" width="100" height="30" uuid="c9c6be79-f7e2-43cf-b6a4-7a26367b2719">
+				<reportElement x="130" y="21" width="100" height="30" uuid="c9c6be79-f7e2-43cf-b6a4-7a26367b2719">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
 				</reportElement>
 				<textElement>
@@ -138,14 +122,8 @@ Telephone: 011-23714307
 				</textElement>
 				<text><![CDATA[Service Name]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="210" y="90" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{serviceinuse}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="220" y="0" width="100" height="30" uuid="245ea026-f6fc-409a-8a85-f957e1200ba2">
+				<reportElement x="230" y="23" width="100" height="14" uuid="245ea026-f6fc-409a-8a85-f957e1200ba2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
 				</reportElement>
 				<textElement>
@@ -153,14 +131,8 @@ Telephone: 011-23714307
 				</textElement>
 				<text><![CDATA[In Use]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="312" y="91" width="100" height="30" uuid="e8ad9664-38e4-4279-b42e-80d7b0ca0b4a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{servicecharges}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="320" y="-1" width="100" height="30" uuid="990f09cb-c17b-44a7-b579-7185fc41f8e0">
+				<reportElement x="340" y="11" width="100" height="30" uuid="990f09cb-c17b-44a7-b579-7185fc41f8e0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
 				</reportElement>
 				<textElement>
@@ -168,14 +140,8 @@ Telephone: 011-23714307
 				</textElement>
 				<text><![CDATA[Service Charges]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="414" y="91" width="100" height="30" uuid="85b97ebd-068e-45d9-91aa-a2beaa10d5e9">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{cancelcharges}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="422" y="-1" width="100" height="30" uuid="c65fd1c3-d3f9-4901-a29a-3861a2ba88f6">
+				<reportElement x="450" y="15" width="100" height="30" uuid="c65fd1c3-d3f9-4901-a29a-3861a2ba88f6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
 				</reportElement>
 				<textElement>
@@ -183,6 +149,40 @@ Telephone: 011-23714307
 				</textElement>
 				<text><![CDATA[Cancel Charges]]></text>
 			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="325" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="20" y="10" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{serviceid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="10" width="100" height="30" uuid="936ab62f-861d-4185-be65-e2674f0fd2f1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="10" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{serviceinuse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="10" width="100" height="30" uuid="e8ad9664-38e4-4279-b42e-80d7b0ca0b4a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{servicecharges}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="10" width="100" height="30" uuid="85b97ebd-068e-45d9-91aa-a2beaa10d5e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cancelcharges}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

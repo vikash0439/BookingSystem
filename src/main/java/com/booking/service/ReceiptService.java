@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.booking.bean.Receipt;
-import com.booking.bean.Reserve;
 import com.booking.repository.ReceiptRepository;
 
 @Service
@@ -28,7 +27,7 @@ private final ReceiptRepository receiptRepository;
 		return c;
 	}
 
-	public Reserve find(Long receiptid) {
+	public Receipt find(Long receiptid) {
 		return receiptRepository.findAllByReceiptid(receiptid);
 	}
 

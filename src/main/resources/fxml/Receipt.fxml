@@ -148,10 +148,6 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="FinalPayment" prefHeight="30.0" prefWidth="246.0" promptText="Final Payment">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin></TextField>
             <ComboBox fx:id="PaymentMode" onAction="#FreezeField" prefHeight="31.0" prefWidth="246.0" promptText="-- Payment Mode --">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
@@ -258,7 +254,7 @@
             </HBox>
             <TableView fx:id="receipttable" prefHeight="583.0" prefWidth="979.0" tableMenuButtonVisible="true">
               <columns>
-                  <TableColumn fx:id="colcontractid" prefWidth="116.0" maxWidth="3000.0" text="Contract ID" />
+                  <TableColumn fx:id="colcontractid" maxWidth="3000.0" prefWidth="116.0" text="Contract ID" />
                   <TableColumn fx:id="colReceiptID" maxWidth="3000.0" prefWidth="79.0" text="Receipt No" />
                   <TableColumn fx:id="colReceiptDate" maxWidth="4000.0" prefWidth="75.0" text="Receipt date" />
                   <TableColumn fx:id="colPaidAmount" maxWidth="4000.0" prefWidth="75.0" text="Paid Amount" />
@@ -266,7 +262,6 @@
                   <TableColumn fx:id="colPaymentMode" maxWidth="4000.0" prefWidth="60.0" text="Payment Mode" />
                   <TableColumn fx:id="colTxnID" maxWidth="4000.0" prefWidth="60.0" text="Txn ID" />
                   <TableColumn fx:id="colCredit" maxWidth="4000.0" prefWidth="60.0" text="Credit" />
-                  <TableColumn fx:id="colFinalPayment" maxWidth="4000.0" prefWidth="60.0" text="Final Payment" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>

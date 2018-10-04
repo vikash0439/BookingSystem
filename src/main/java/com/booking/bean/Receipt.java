@@ -97,6 +97,14 @@ public class Receipt{
 	}
 	public void setFinalpayment(String finalpayment) {
 		this.finalpayment = finalpayment;
+	}
+
+
+	@Override
+	public String toString() {
+		return  paidamount;
 	}	
+	
+	
 
 }

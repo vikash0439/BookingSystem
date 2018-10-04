@@ -28,7 +28,6 @@ public class Reserve {
 	private String Customerid;
 	private String Reservetitle;
 	private String Internalusage;
-	private LocalDate Bookingdate;
 	
 	public Reserve() {
 		
@@ -81,14 +80,6 @@ public class Reserve {
 	public void setInternalusage(String internalusage) {
 		Internalusage = internalusage;
 	}
-	public LocalDate getBookingdate() {
-		return Bookingdate;
-	}
-	public void setBookingdate(LocalDate bookingdate) {
-		Bookingdate = bookingdate;
-	}
-	
-	
 	
 	
 }
