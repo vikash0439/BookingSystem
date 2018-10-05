@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * @author Vikash Kumar
  * @since 11-09-2018
@@ -48,6 +51,7 @@ public class Contract {
 
 	@OneToOne(mappedBy = "contract", cascade = CascadeType.ALL)
 	private Invoice invoice;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Booking> bookings;	
 	@OneToMany(targetEntity = Performance.class, mappedBy = "contract", cascade=CascadeType.ALL)

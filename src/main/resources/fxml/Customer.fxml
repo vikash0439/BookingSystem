@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.CustomerController">
+<BorderPane prefHeight="980.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.CustomerController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
          <menus>
@@ -209,7 +209,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="customerTable" prefHeight="432.0" prefWidth="979.0" tableMenuButtonVisible="true">
+            <TableView fx:id="customerTable" prefHeight="498.0" prefWidth="673.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="colcustomerid" maxWidth="700.0" prefWidth="20.0" text="ID" />
                 <TableColumn fx:id="colcustomername" maxWidth="4000.0" prefWidth="75.0" text="Name" />
@@ -244,7 +244,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="repTable" prefHeight="252.0" prefWidth="979.0">
+            <TableView fx:id="repTable" prefHeight="308.0" prefWidth="673.0">
               <columns>
                 <TableColumn fx:id="colrepid" prefWidth="75.0" text="Rep ID" />
                 <TableColumn fx:id="colrepname" prefWidth="212.0" text="Rep Name" />

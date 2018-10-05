@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,14 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Reserve;
 import com.booking.bean.Booking;
+import com.booking.bean.Contract;
+import com.booking.bean.Customer;
+import com.booking.bean.Performance;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
+import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
+import com.booking.service.PerformanceService;
 import com.booking.service.ReserveService;
 import com.booking.service.ServiceService;
 import com.booking.view.FxmlView;
@@ -91,7 +98,11 @@ public class ReserveController implements Initializable{
 	@Autowired
 	private ServiceService serviceService;
 	@Autowired
-	private BookingService bookingservice;
+	private BookingService bookingService;
+	@Autowired
+	private ContractService contractService;
+	@Autowired
+	private PerformanceService performanceService;
 	
 	private ObservableList<Reserve> reserveList = FXCollections.observableArrayList();
 	private ObservableList<String> customerNameList = FXCollections.observableArrayList();
@@ -181,6 +192,44 @@ public class ReserveController implements Initializable{
 //			booking.setServicetime(ServiceTime.getText());
 //			
 //			bookingservice.save(booking);
+			
+			Contract contract = new Contract();
+			contract.setBookingdate(null);
+			contract.setPurpose(ReserveTitle.getText());
+			contract.setBaseprice(null);
+			contract.setTaxamount(null);
+			contract.setPact(null);
+			contract.setPaymentstatus(null);
+
+			Customer customer = customerService.findCustomer("SRCPA");
+			contract.setCustomer(customer);
+
+			Booking b = new Booking();
+			b.setServicedate((String)ServiceDate.getEditor().getText());
+			b.setServicename(ReserveTitle.getText());
+			b.setServicetime(ServiceTime.getText());
+			b.setSlot(null);
+			// b.setServiceused(ServiceUsed.getText());
+			b.setContract(contract);
+
+			
+
+			List<Booking> booking = new ArrayList<Booking>();
+			booking.add(b);
+			
+
+			Performance p = new Performance();
+			p.setShowname(null);
+			p.setShowtime(null);
+			p.setShowdetails(null);
+			p.setContract(contract);
+
+			List<Performance> performance = new ArrayList<Performance>();
+			performance.add(p);
+
+			contractService.save(contract);
+			bookingService.save(b);
+			performanceService.save(p);
 			
 
 			Alert alert = new Alert(AlertType.INFORMATION);

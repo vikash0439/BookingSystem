@@ -289,6 +289,7 @@ public class ContractController implements Initializable {
 		b.setServicename(ServiceName.getValue());
 		b.setServicetime(ServiceTime.getText());
 		b.setSlot(Slot.getSelectionModel().getSelectedItem());
+		b.setServicecost(ServiceCost.getText());
 		// b.setServiceused(ServiceUsed.getText());
 		b.setContract(contract);
 

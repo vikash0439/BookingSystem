@@ -94,7 +94,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="contractid" editable="true" onAction="#getContractDetail" onKeyPressed="#getContractDetail" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
+            <ComboBox fx:id="contractid" editable="true" onAction="#getContractDetail" prefHeight="31.0" prefWidth="244.0" promptText="SELECT --Contract--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>

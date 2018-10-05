@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.Invoice;
 import com.booking.config.StageManager;
@@ -173,7 +174,7 @@ public class InvoiceController implements Initializable{
 	}
 	
 	public void getContractDetail() {
-		Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem()));
+		Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem().toString()));
 		InvoiceAmount.setText(contract.getBaseprice());
 		
 		Double ia = Double.parseDouble(contract.getBaseprice());
@@ -202,13 +203,41 @@ public class InvoiceController implements Initializable{
 			alert.setHeaderText(null);
 			alert.setContentText("Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
 			alert.showAndWait();
+			
 			try {
+				
+				System.out.println("From Invoice Controller report try block");
 				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/Invoice.jrxml");
+				
 				 Map<String, Object> parameters = new HashMap<String, Object>();
-				 List<Invoice> inv = new ArrayList<Invoice>();
-				 inv.add(invoice);
+				 
+				 HashMap<String, Object> p = new HashMap<String, Object>();
+				 p.put("contractid", invoice.getContract().getContractid());
+				 p.put("invoiceid", invoice.getInvoiceid());
+				 p.put("customername", invoice.getContract().getCustomer().getCustomername());
+				 p.put("address", invoice.getContract().getCustomer().getAddress());
+				 p.put("statecode", invoice.getContract().getCustomer().getStatecode());
+				 p.put("gstno", invoice.getContract().getCustomer().getGstno());
+				 List <Booking> book = invoice.getContract().getBookings();
+				 
+				 List<String> c = new ArrayList<String>();
+				 List<String> d = new ArrayList<String>();
+				 for (Booking b : book) {	 
+				   c.add(b.getServicename());	
+				   d.add(b.getServicecost());
+				   p.put("servicecost", d);
+				 }
+				 System.out.println("All serviec name: " +c);
+				 p.put("services", c);
+				 
+				
+				 
+				 List<HashMap<String, Object>> inv = new ArrayList<HashMap<String, Object>>();
+				 inv.add(p);
+				 
 			     JRDataSource jRDataSource = new JRBeanCollectionDataSource(inv);
 			     parameters.put("jRDataSource", inv);
+			     
 			     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
 			     File outDir = new File("D:/Reports/Invoice");
 			       outDir.mkdirs();
@@ -239,10 +268,6 @@ public class InvoiceController implements Initializable{
 		clearFields();
 	}
 	
-	
-
-	
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

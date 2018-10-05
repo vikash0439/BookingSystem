@@ -85,6 +85,8 @@ public class Booking{
 	public void setServicename(String servicename) {
 		this.servicename = servicename;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return  slot ;

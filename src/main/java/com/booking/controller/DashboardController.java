@@ -49,8 +49,8 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 @Controller
-public class DashboardController implements Initializable{
-	
+public class DashboardController implements Initializable {
+
 	@FXML
 	private Label ContractID;
 	@FXML
@@ -68,214 +68,235 @@ public class DashboardController implements Initializable{
 	@FXML
 	private Label ShowName;
 	@FXML
-	private TextField searchField;	
-	
-	@FXML TableView<Booking> bookingtable;
-	@FXML TableColumn<Booking, String> colServiceDate;
-	@FXML TableColumn<Booking, String> colDay;
-	@FXML TableColumn<Booking, String> colSlot;
-	@FXML TableColumn<Booking, String> colService;
-	@FXML TableColumn<Booking, String> colClient;
-	@FXML TableColumn<Booking, String> ColContractid;
-	@FXML TableColumn<Booking, String> colBookingDate;
-	@FXML TableColumn<Booking, String> colPact;
-	@FXML TableColumn<Booking, String> colPaymentStatus;
-	@FXML TableColumn<Booking, String> colEstimatedCost;
-	@FXML TableColumn<Booking, String> colReceipt;
-	@FXML TableColumn<Booking, String> colInvoice;
-	@FXML TableColumn<Booking, String> colRemaining;
-	@FXML TableColumn<Booking, Boolean> colEdit;
-	
+	private TextField searchField;
+
+	@FXML
+	TableView<Booking> bookingtable;
+	@FXML
+	TableColumn<Booking, String> colServiceDate;
+	@FXML
+	TableColumn<String, Boolean> colDay;
+	@FXML
+	TableColumn<Booking, String> colSlot;
+	@FXML
+	TableColumn<Booking, String> colService;
+	@FXML
+	TableColumn<Booking, String> colClient;
+	@FXML
+	TableColumn<Booking, String> ColContractid;
+	@FXML
+	TableColumn<Booking, String> colBookingDate;
+	@FXML
+	TableColumn<Booking, String> colPact;
+	@FXML
+	TableColumn<Booking, String> colPaymentStatus;
+	@FXML
+	TableColumn<Booking, String> colEstimatedCost;
+	@FXML
+	TableColumn<Booking, String> colReceipt;
+	@FXML
+	TableColumn<Booking, String> colInvoice;
+	@FXML
+	TableColumn<Booking, String> colRemaining;
+	@FXML
+	TableColumn<Booking, Boolean> colEdit;
 
 	@Lazy
-    @Autowired
-    private StageManager stageManager;
+	@Autowired
+	private StageManager stageManager;
 	@Autowired
 	private BookingService bookingService;
-	
-	
+
 	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
-	
+
 	@FXML
-    private void logout(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.LOGIN);    	
-    }
-	
+	private void logout(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.LOGIN);
+	}
+
 	@FXML
 	private void exit(ActionEvent event) {
 		Platform.exit();
-    }
-	
+	}
+
 	@FXML
-    private void report(ActionEvent event) throws IOException {
-    	   	
-    }
+	private void report(ActionEvent event) throws IOException {
+
+	}
+
 	@FXML
-    private void cancel(ActionEvent event) throws IOException {
-      	
-    }
+	private void cancel(ActionEvent event) throws IOException {
+
+	}
+
 	@FXML
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
 	}
+
 	@FXML
-    private void customer(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.CUSTOMER);    	
-    }	
-	@FXML
-	public void service(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SERVICE); 		
-	}	
-	@FXML
-	public void tax(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.TAX); 		
-	}	
-	@FXML
-	public void contract(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.CONTRACT);	
-	}	
-	@FXML
-	public void users(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.USER);		
+	private void customer(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CUSTOMER);
 	}
-		
+
 	@FXML
-	public void reserve(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RESERVE);		
+	public void service(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SERVICE);
 	}
-	
+
 	@FXML
-	public void receipt(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RECEIPT);		
+	public void tax(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.TAX);
 	}
+
 	@FXML
-	public void invoice(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.INVOICE);		
+	public void contract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CONTRACT);
 	}
+
 	@FXML
-	public void slot(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SLOT);		
+	public void users(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.USER);
 	}
+
 	@FXML
-	public void purpose(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.PURPOSE);		
+	public void reserve(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RESERVE);
 	}
+
 	@FXML
-	public void others(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.OTHERS);		
+	public void receipt(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RECEIPT);
 	}
+
 	@FXML
-	public void statecode(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.STATECODE);		
+	public void invoice(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.INVOICE);
 	}
-	
-	
+
+	@FXML
+	public void slot(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SLOT);
+	}
+
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.PURPOSE);
+	}
+
+	@FXML
+	public void others(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.OTHERS);
+	}
+
+	@FXML
+	public void statecode(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.STATECODE);
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		contracttable();
 		clearFields();
 	}
-	
+
 	public void contracttable() {
 		/*
 		 * Set All userTable column properties
 		 */
-		
+
 		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
-		colDay.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
-	            @Override
-	            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-	                return new SimpleStringProperty(param.getValue().getServicedate());
-	            }
-	          });		
+		colDay.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colService.setCellValueFactory(new PropertyValueFactory<>("servicename"));
-		colClient.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getCustomer().getCustomername());
-            }
-          });		
-		ColContractid.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+		colClient.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+				return new SimpleStringProperty(param.getValue().getContract().getCustomer().getCustomername());
+			}
+		});
+		ColContractid.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
-            }
-          });
-		colBookingDate.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+				return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
+			}
+		});
+		colBookingDate.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
-            }
-          });
-		colPact.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+				return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+			}
+		});
+		colPact.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getPact());
-            }
-          });	
-		colPaymentStatus.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+				return new SimpleStringProperty(param.getValue().getContract().getPact());
+			}
+		});
+		colPaymentStatus
+				.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getPaymentstatus());
-            }
-          });
-		colEstimatedCost.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+						return new SimpleStringProperty(param.getValue().getContract().getPaymentstatus());
+					}
+				});
+		colEstimatedCost
+				.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getPact());
-            }
-          });
-		colReceipt.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+						return new SimpleStringProperty(param.getValue().getContract().getPact());
+					}
+				});
+		colReceipt.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-                return new SimpleStringProperty(param.getValue().getContract().getReceipt().toString());
-            }
-          });
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+				return new SimpleStringProperty(param.getValue().getContract().getReceipt().toString());
+			}
+		});
 		colRemaining.setCellValueFactory(new PropertyValueFactory<>("abc"));
-		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Booking,String>,ObservableValue<String>>(){
+		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-            	try {
-                return new SimpleStringProperty(param.getValue().getContract().getInvoice().getInvoicedate());
-            }catch(Exception e) {
-            	System.out.println("No invoice created");
-            }
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
+				try {
+					return new SimpleStringProperty(param.getValue().getContract().getInvoice().getInvoicedate());
+				} catch (Exception e) {
+					System.out.println("No invoice created");
+				}
 				return null;
-		   }
-        });
+			}
+		});
 		colEdit.setCellFactory(cellFactory);
-		
+
 		bookingList.clear();
 		bookingList.addAll(bookingService.getBooking());
 		bookingtable.setItems(bookingList);
-		
+
 		FilteredList<Booking> filteredData = new FilteredList<>(bookingList, e -> true);
-		searchField.setOnKeyPressed(e ->{
-			searchField.textProperty().addListener((obeservableValue, oldValue, newValue) ->{
-				filteredData.setPredicate((Predicate< ?  super Booking>) booking ->{
-					if(newValue == null || newValue.isEmpty()) {
-					return true;
-				    }
-					if(Long.toString(booking.getContract().getContractid()).contains(newValue)) {
-				    	return true;
-				    }else if(booking.getServicedate().contains(newValue)){
-				    	return true;
-				    }else if(booking.getSlot().toLowerCase().contains(newValue)){
-				    	return true;
-				    }else if(booking.getServicename().toLowerCase().contains(newValue)){
-				    	return true;
-				    }else if(booking.getContract().getCustomer().getCustomername().toLowerCase().contains(newValue)){
-				    	return true;
-				    }	
+		searchField.setOnKeyPressed(e -> {
+			searchField.textProperty().addListener((obeservableValue, oldValue, newValue) -> {
+				filteredData.setPredicate((Predicate<? super Booking>) booking -> {
+					if (newValue == null || newValue.isEmpty()) {
+						return true;
+					}
+					if (Long.toString(booking.getContract().getContractid()).contains(newValue)) {
+						return true;
+					} else if (booking.getServicedate().contains(newValue)) {
+						return true;
+					} else if (booking.getSlot().toLowerCase().contains(newValue)) {
+						return true;
+					} else if (booking.getServicename().toLowerCase().contains(newValue)) {
+						return true;
+					} else if (booking.getContract().getCustomer().getCustomername().toLowerCase().contains(newValue)) {
+						return true;
+					}
 					return false;
 				});
 			});
@@ -283,6 +304,16 @@ public class DashboardController implements Initializable{
 			sortedData.comparatorProperty().bind(bookingtable.comparatorProperty());
 			bookingtable.setItems(sortedData);
 		});
+	}
+
+	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> dateday() throws ParseException {
+		
+		String servicedate = "05/10/2018"; 
+		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
+		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
+		System.out.println("From Dashboard controller dateday method () " + simpleDateformat.format(date1));
+		return null;
+		
 	}
 
 	Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>> cellFactory = new Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>>() {
@@ -305,12 +336,13 @@ public class DashboardController implements Initializable{
 						});
 						TableRow<Booking> currentRow = getTableRow();
 						Invoice i = currentRow.getItem().getContract().getInvoice();
-						
-						if(i == null) {
+
+						if (i == null) {
 							currentRow.setStyle("-fx-background-color:#ff6666");
+							
 						}
 						String client = currentRow.getItem().getContract().getCustomer().getCustomername();
-						if(client.equalsIgnoreCase("SRCPA")) {
+						if (client.equalsIgnoreCase("SRCPA")) {
 							currentRow.setStyle("-fx-background-color:#ffffb3");
 						}
 						btnEdit.setStyle("-fx-background-color: transparent;");
@@ -337,20 +369,10 @@ public class DashboardController implements Initializable{
 			return cell;
 		}
 	};
-	
-	public String dateday(String servicedate) throws ParseException {
-		
-		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
-		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
-        System.out.println("From Dashboard controller dateday method () "+simpleDateformat.format(date1));     
-		return simpleDateformat.format(date1);	
-	}
-	
-	
-	
+
 	private void clearFields() {
 		ContractID.setText(null);
-		
+
 	}
 
 }
