@@ -31,4 +31,9 @@ private final ReceiptRepository receiptRepository;
 		return receiptRepository.findAllByReceiptid(receiptid);
 	}
 
+	public String PaidAmount(long receiptid) {
+		// TODO Auto-generated method stub
+		return receiptRepository.findAmount(receiptid);
+	}
+
 }

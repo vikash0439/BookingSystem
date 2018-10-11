@@ -1,5 +1,7 @@
 package com.booking.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="booking" , schema = "srcpa")
-public class Booking{
+public class Booking implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -85,10 +92,9 @@ public class Booking{
 	public void setServicename(String servicename) {
 		this.servicename = servicename;
 	}
-	
-	
+		
 	@Override
 	public String toString() {
-		return  slot ;
+		return  servicedate +" from " +servicetime ;
 	}
 }

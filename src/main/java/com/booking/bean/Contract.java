@@ -1,5 +1,6 @@
 package com.booking.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,8 +26,15 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="contract" , schema = "srcpa")
-public class Contract {
+public class Contract implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -35,7 +43,7 @@ public class Contract {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "contractid", updatable = false, nullable = false)
+	@Column(name = "contractid")
 	private long contractid;
 	private String bookingdate;
 	private String purpose;

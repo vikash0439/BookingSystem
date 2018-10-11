@@ -175,17 +175,21 @@
             </TextField>
             <HBox prefHeight="40.0" prefWidth="296.0">
                <children>
-                  <Label text="Credit">
+                  <Label text="Credit : ">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox fx:id="CreditYes" mnemonicParsing="false" text="Yes">
+                  <RadioButton fx:id="CreditYes" mnemonicParsing="false" selected="true" text="Yes">
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets left="5.0" />
                      </HBox.margin>
-                  </CheckBox>
-                  <CheckBox fx:id="CreditNo" mnemonicParsing="false" text="No" />
+                  </RadioButton>
+                  <RadioButton fx:id="CreditNo" mnemonicParsing="false" text="No" toggleGroup="$credit">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
                </children>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.Invoice;
+import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.InvoiceService;
@@ -59,25 +60,25 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
-public class InvoiceController implements Initializable{
-	
-	@FXML 
+public class InvoiceController implements Initializable {
+
+	@FXML
 	private Label InvoiceID;
 	@FXML
 	private DatePicker InvoiceDate;
 	@FXML
 	private TextField cancelled;
 	@FXML
-	private ComboBox<String> contractid;	
+	private ComboBox<String> contractid;
 	@FXML
-	private Label InvoiceAmount;	
+	private Label InvoiceAmount;
 	@FXML
 	private Label cgst;
 	@FXML
 	private Label sgst;
 	@FXML
 	private Label total;
-	
+
 	@FXML
 	private TableView<Invoice> invoicetable;
 	@FXML
@@ -85,7 +86,7 @@ public class InvoiceController implements Initializable{
 	@FXML
 	private TableColumn<Invoice, String> colcontractid;
 	@FXML
-	private TableColumn<Invoice, LocalDate> colInvoiceDate;	
+	private TableColumn<Invoice, LocalDate> colInvoiceDate;
 	@FXML
 	private TableColumn<Invoice, String> colCancelled;
 	@FXML
@@ -96,15 +97,14 @@ public class InvoiceController implements Initializable{
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
-	@Autowired 
+	@Autowired
 	private InvoiceService invoiceService;
-	@Autowired 
+	@Autowired
 	private ContractService contractService;
-	
-    private ObservableList<Invoice> invoiceList = FXCollections.observableArrayList();
-    private ObservableList contractList = FXCollections.observableArrayList();
-	
- 
+
+	private ObservableList<Invoice> invoiceList = FXCollections.observableArrayList();
+	private ObservableList contractList = FXCollections.observableArrayList();
+
 	/* Tax Event methods */
 
 	@FXML
@@ -126,171 +126,229 @@ public class InvoiceController implements Initializable{
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
 	}
+
 	@FXML
-    private void customer(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.CUSTOMER);    	
-    }	
-	@FXML
-	public void service(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SERVICE); 		
-	}	
-	@FXML
-	public void tax(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.TAX); 		
-	}	
-	@FXML
-	public void contract(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.CONTRACT);	
-	}	
-	@FXML
-	public void users(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.USER);		
+	private void customer(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CUSTOMER);
 	}
-		
+
 	@FXML
-	public void reserve(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RESERVE);		
+	public void service(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SERVICE);
 	}
-	
+
 	@FXML
-	public void receipt(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RECEIPT);		
+	public void tax(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.TAX);
 	}
+
 	@FXML
-	public void invoice(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.INVOICE);		
+	public void contract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CONTRACT);
 	}
+
 	@FXML
-	public void slot(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SLOT);		
+	public void users(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.USER);
 	}
+
 	@FXML
-	public void purpose(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.PURPOSE);		
+	public void reserve(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RESERVE);
 	}
-	
+
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RECEIPT);
+	}
+
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.INVOICE);
+	}
+
+	@FXML
+	public void slot(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SLOT);
+	}
+
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.PURPOSE);
+	}
+
 	public void getContract() {
-		
+
 	}
-	
+
 	public void getContractDetail() {
-		Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem().toString()));
+		Contract contract = contractService
+				.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem().toString()));
 		InvoiceAmount.setText(contract.getBaseprice());
-		
+
 		Double ia = Double.parseDouble(contract.getBaseprice());
-		Double cg = ia*9/100;
-		Double sg = ia*9/100;
-		Double t = cg+sg+ia;
+		Double cg = ia * 9 / 100;
+		Double sg = ia * 9 / 100;
+		Double t = cg + sg + ia;
+
 		cgst.setText(String.valueOf(cg));
 		sgst.setText(String.valueOf(sg));
 		total.setText(String.valueOf(t));
 	}
-	
+
 	@FXML
 	private void saveInvoice(ActionEvent event) {
 		if (InvoiceID.getText() == null || InvoiceID.getText() == "") {
 			Invoice invoice = new Invoice();
-			invoice.setInvoicedate((String)InvoiceDate.getEditor().getText());
+			invoice.setInvoicedate((String) InvoiceDate.getEditor().getText());
 			invoice.setCancelled(cancelled.getText());
- 
+
 			Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem()));
-	        invoice.setContract(contract);
-			
+			invoice.setContract(contract);
+
 			invoiceService.save(invoice);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Invoice created.");
 			alert.setHeaderText(null);
-			alert.setContentText("Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
+			alert.setContentText(
+					"Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
 			alert.showAndWait();
-			
-			try {
-				
-				System.out.println("From Invoice Controller report try block");
-				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/Invoice.jrxml");
-				
-				 Map<String, Object> parameters = new HashMap<String, Object>();
-				 
-				 HashMap<String, Object> p = new HashMap<String, Object>();
-				 p.put("contractid", invoice.getContract().getContractid());
-				 p.put("invoiceid", invoice.getInvoiceid());
-				 p.put("customername", invoice.getContract().getCustomer().getCustomername());
-				 p.put("address", invoice.getContract().getCustomer().getAddress());
-				 p.put("statecode", invoice.getContract().getCustomer().getStatecode());
-				 p.put("gstno", invoice.getContract().getCustomer().getGstno());
-				 List <Booking> book = invoice.getContract().getBookings();
-				 
-				 List<String> c = new ArrayList<String>();
-				 List<String> d = new ArrayList<String>();
-				 for (Booking b : book) {	 
-				   c.add(b.getServicename());	
-				   d.add(b.getServicecost());
-				   p.put("servicecost", d);
-				 }
-				 System.out.println("All serviec name: " +c);
-				 p.put("services", c);
-				 
-				
-				 
-				 List<HashMap<String, Object>> inv = new ArrayList<HashMap<String, Object>>();
-				 inv.add(p);
-				 
-			     JRDataSource jRDataSource = new JRBeanCollectionDataSource(inv);
-			     parameters.put("jRDataSource", inv);
-			     
-			     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
-			     File outDir = new File("D:/Reports/Invoice");
-			       outDir.mkdirs();
-			     
-			       DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-			       Date date=new java.util.Date();
-			       System.out.println(date);
-			       String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
 
-			       JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-			       
-			       Alert a = new Alert(AlertType.INFORMATION);
-					a.setTitle("Report");
-					a.setHeaderText(null);
-					a.setContentText("Report downloaded successfully.");
-					a.showAndWait();
+			try {
+
+				System.out.println("From Invoice Controller report try block");
+				JasperReport jasperReport = JasperCompileManager
+						.compileReport("src/main/resources/reports/Invoice.jrxml");
+
+				Map<String, Object> parameters = new HashMap<String, Object>();
 				
+				List<HashMap<String, Object>> inv = new ArrayList<HashMap<String, Object>>();
+				
+				int i = 1;
+				long qty;
+				String unit = "Days";
+				Long amount;
+				
+				List<Booking> allbookings = invoice.getContract().getBookings();
+                StringBuffer buffername = new StringBuffer();
+                String stringname = null;
+                StringBuffer bufferdate = new StringBuffer();
+                String stringdate = null;
+                StringBuffer buffercost = new StringBuffer();
+                String stringcost = null;
+                
+				for(i = 0; i < allbookings.size(); i++ ) {
+					
+					String name = allbookings.get(i).getServicename();
+					buffername = buffername.append(" ").append(name);
+					stringname = buffername.toString();
+					
+					String date = allbookings.get(i).getServicedate();
+					bufferdate = bufferdate.append(" ").append(date);
+					stringdate = bufferdate.toString();
+					
+					String cost = allbookings.get(i).getServicecost();
+					buffercost = buffercost.append(" ").append(cost);
+					stringcost = buffercost.toString();
+				}
+				qty = i;
+				
+
+				HashMap<String, Object> p = new HashMap<String, Object>();
+				p.put("contractid", invoice.getContract().getContractid());
+				p.put("invoiceid", invoice.getInvoiceid());
+				p.put("customername", invoice.getContract().getCustomer().getCustomername());
+				p.put("address", invoice.getContract().getCustomer().getAddress());
+				p.put("statecode", invoice.getContract().getCustomer().getStatecode());
+				p.put("gstno", invoice.getContract().getCustomer().getGstno());
+				p.put("baseprice", invoice.getContract().getBaseprice());
+				p.put("servicename", stringname);
+				p.put("servicedate", stringdate);
+				p.put("servicecost", stringcost);
+				p.put("qty",  qty);
+				p.put("unit",  unit);
+				p.put("amount",  stringcost);
+
+				Double ia = Double.parseDouble(invoice.getContract().getBaseprice());
+				Double cg = ia * 9 / 100;
+				Double sg = ia * 9 / 100;
+				Double t = cg + sg + ia;
+
+				p.put("cg", cg);
+				p.put("sg", sg);
+				p.put("t", t);
+				p.put("NumInWords",  convert((int) Math.round(t))+" Only");
+				
+				
+//				for(Booking s : invoice.getContract().getBookings()) {
+//		        	HashMap<String, Object> m =new HashMap<String , Object>();
+//		        	m.put("servicename", s.getServicename());
+//		        	m.put("servicedate", s.getServicedate());
+//		        	m.put("servicecost", s.getServicecost());
+//		        	
+//		        	inv.add(m);
+//				}
+				
+				inv.add(p);
+	
+
+				JRDataSource jRDataSource = new JRBeanCollectionDataSource(inv);
+				parameters.put("jRDataSource", inv);
+
+				JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+				File outDir = new File("D:/Reports/Invoice");
+				outDir.mkdirs();
+
+				DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+				Date date = new java.util.Date();
+				System.out.println(date);
+				String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+				JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+				Alert a = new Alert(AlertType.INFORMATION);
+				a.setTitle("Report");
+				a.setHeaderText(null);
+				a.setContentText("Report downloaded successfully.");
+				a.showAndWait();
+
 			} catch (JRException e) {
 				// TODO Auto-generated catch block
 				System.out.println("JR Exception");
 				e.printStackTrace();
 			}
-			
+
 		} else {
 			System.out.println("Nothing to update");
 		}
 		invoicetable();
 		clearFields();
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		contractList.clear();
 		contractList.addAll(contractService.getContractID());
 		contractid.setItems(contractList);
-		
+
 		invoicetable();
 		clearFields();
-		
+
 	}
-	
+
 	public void invoicetable() {
 		/*
 		 * Set All userTable column properties
 		 */
-		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Invoice,String>,ObservableValue<String>>(){
+		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Invoice, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Invoice, String> param) {
-                return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
-            }
-        });
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Invoice, String> param) {
+				return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
+			}
+		});
 		colInvoiceID.setCellValueFactory(new PropertyValueFactory<>("invoiceid"));
 		colInvoiceDate.setCellValueFactory(new PropertyValueFactory<>("invoicedate"));
 		colCancelled.setCellValueFactory(new PropertyValueFactory<>("cancelled"));
@@ -337,14 +395,61 @@ public class InvoiceController implements Initializable{
 				private void updateInvoice(Invoice invoice) {
 					InvoiceID.setText(Long.toString(invoice.getInvoiceid()));
 					InvoiceDate.getEditor().setText(invoice.getInvoicedate());
-//					cancelled.setText(invoice);
-					
+					// cancelled.setText(invoice);
+
 				}
 			};
 			return cell;
 		}
 	};
 	
+	/* convert number to words */
+	public static final String[] units = { "", "One", "Two", "Three", "Four",
+			"Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+			"Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+			"Eighteen", "Nineteen" };
+	
+	public static final String[] tens = { 
+			"", 		// 0
+			"",		    // 1
+			"Twenty", 	// 2
+			"Thirty", 	// 3
+			"Forty", 	// 4
+			"Fifty", 	// 5
+			"Sixty", 	// 6
+			"Seventy",	// 7
+			"Eighty", 	// 8
+			"Ninety" 	// 9
+	};
+
+	public static String convert(final int n) {
+		if (n < 0) {
+			return "Minus " + convert(-n);
+		}
+
+		if (n < 20) {
+			return units[n];
+		}
+
+		if (n < 100) {
+			return tens[n / 10] + ((n % 10 != 0) ? " " : "") + units[n % 10];
+		}
+
+		if (n < 1000) {
+			return units[n / 100] + " Hundred" + ((n % 100 != 0) ? " " : "") + convert(n % 100);
+		}
+
+		if (n < 100000) {
+			return convert(n / 1000) + " Thousand" + ((n % 10000 != 0) ? " " : "") + convert(n % 1000);
+		}
+
+		if (n < 10000000) {
+			return convert(n / 100000) + " Lakh" + ((n % 100000 != 0) ? " " : "") + convert(n % 100000);
+		}
+
+		return convert(n / 10000000) + " Crore" + ((n % 10000000 != 0) ? " " : "") + convert(n % 10000000);
+	}
+
 	private void clearFields() {
 		contractid.getSelectionModel().clearSelection();
 		InvoiceID.setText(null);
@@ -354,6 +459,5 @@ public class InvoiceController implements Initializable{
 		cgst.setText(null);
 		sgst.setText(null);
 		total.setText(null);
-		
 	}
 }

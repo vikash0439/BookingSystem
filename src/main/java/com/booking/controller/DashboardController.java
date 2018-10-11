@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -16,10 +15,10 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
 import com.booking.bean.Invoice;
-import com.booking.bean.Reserve;
+import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
-import com.booking.service.ReserveService;
+import com.booking.service.ReceiptService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -42,11 +41,9 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 
 @Controller
 public class DashboardController implements Initializable {
@@ -91,13 +88,11 @@ public class DashboardController implements Initializable {
 	@FXML
 	TableColumn<Booking, String> colPaymentStatus;
 	@FXML
-	TableColumn<Booking, String> colEstimatedCost;
-	@FXML
 	TableColumn<Booking, String> colReceipt;
 	@FXML
 	TableColumn<Booking, String> colInvoice;
 	@FXML
-	TableColumn<Booking, String> colRemaining;
+	TableColumn<String, Boolean> colRemaining;
 	@FXML
 	TableColumn<Booking, Boolean> colEdit;
 
@@ -106,6 +101,8 @@ public class DashboardController implements Initializable {
 	private StageManager stageManager;
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private ReceiptService receiptService;
 
 	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
 
@@ -207,7 +204,7 @@ public class DashboardController implements Initializable {
 		 */
 
 		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
-		colDay.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
+		colDay.setCellFactory(dateday);
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colService.setCellValueFactory(new PropertyValueFactory<>("servicename"));
 		colClient.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
@@ -245,14 +242,7 @@ public class DashboardController implements Initializable {
 						return new SimpleStringProperty(param.getValue().getContract().getPaymentstatus());
 					}
 				});
-		colEstimatedCost
-				.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
-
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-						return new SimpleStringProperty(param.getValue().getContract().getPact());
-					}
-				});
+		
 		colReceipt.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
 			@Override
@@ -260,7 +250,7 @@ public class DashboardController implements Initializable {
 				return new SimpleStringProperty(param.getValue().getContract().getReceipt().toString());
 			}
 		});
-		colRemaining.setCellValueFactory(new PropertyValueFactory<>("abc"));
+		colRemaining.setCellFactory(remainingAmount);
 		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
 			@Override
@@ -306,15 +296,85 @@ public class DashboardController implements Initializable {
 		});
 	}
 
-	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> dateday() throws ParseException {
-		
-		String servicedate = "05/10/2018"; 
-		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
-		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
-		System.out.println("From Dashboard controller dateday method () " + simpleDateformat.format(date1));
-		return null;
-		
-	}
+	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> remainingAmount = new Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>>() {
+
+		@Override
+		public TableCell<String, Boolean> call(final TableColumn<String, Boolean> param) {
+			final TableCell<String, Boolean> cell = new TableCell<String, Boolean>() {
+
+				@Override
+				public void updateItem(Boolean check, boolean empty) {
+					super.updateItem(check, empty);
+					if (empty) {
+						setGraphic(null);
+						setText(null);
+					} else {
+
+						TableRow<Booking> currentRow = getTableRow();
+						String pact = currentRow.getItem().getContract().getPact();
+						String receipt = currentRow.getItem().getContract().getReceipt().toString();
+						
+						List<Receipt> receiptlist = currentRow.getItem().getContract().getReceipt();
+						double totalamount = 0;						
+						for(int i = 0; i < receiptlist.size(); i++ ) {
+							System.out.println(receiptlist.get(i).getReceiptid());
+							double receiptamount = Double.parseDouble(receiptService.PaidAmount(receiptlist.get(i).getReceiptid()));
+						    System.out.println("Paid Amount : "+receiptamount); 
+						    totalamount  = receiptamount + totalamount;
+						}
+						
+						
+                        double remaining = Double.parseDouble(pact) -totalamount;
+                        
+						colDay.setStyle("-fx-background-color: transparent;");
+						setAlignment(Pos.CENTER);
+						setText(String.valueOf(remaining));
+
+					}
+				}
+
+			};
+			return cell;
+		}
+
+	};
+
+	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> dateday = new Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>>() {
+
+		@Override
+		public TableCell<String, Boolean> call(final TableColumn<String, Boolean> param) {
+			final TableCell<String, Boolean> cell = new TableCell<String, Boolean>() {
+
+				@Override
+				public void updateItem(Boolean check, boolean empty) {
+					super.updateItem(check, empty);
+					if (empty) {
+						setGraphic(null);
+						setText(null);
+					} else {
+
+						TableRow<Booking> currentRow = getTableRow();
+						String servicedate = currentRow.getItem().getServicedate();
+						Date date1;
+						try {
+							date1 = new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
+							SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
+							colDay.setStyle("-fx-background-color: transparent;");
+							setAlignment(Pos.CENTER);
+							setText(simpleDateformat.format(date1));
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+				}
+
+			};
+			return cell;
+		}
+
+	};
 
 	Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>> cellFactory = new Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>>() {
 		@Override
@@ -339,7 +399,7 @@ public class DashboardController implements Initializable {
 
 						if (i == null) {
 							currentRow.setStyle("-fx-background-color:#ff6666");
-							
+
 						}
 						String client = currentRow.getItem().getContract().getCustomer().getCustomername();
 						if (client.equalsIgnoreCase("SRCPA")) {

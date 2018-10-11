@@ -2,8 +2,6 @@ package com.booking.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +66,7 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private TextField remark;
-	@FXML
-	private TextField repname;
-	@FXML
-	private TextField repmobile;
-	@FXML
-	private TextField repemail;
+	
 	@FXML
 	private TextField repname1;
 	@FXML
@@ -248,7 +241,7 @@ public class CustomerController implements Initializable {
 			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());
  
-			Rep r = new Rep();
+/*			Rep r = new Rep();
 			r.setRepname(repname.getText());
 			r.setRepmobile(repmobile.getText());
 			r.setRepemail(repemail.getText());
@@ -256,12 +249,12 @@ public class CustomerController implements Initializable {
 			List<Rep> rep = new ArrayList<Rep>();
 			rep.add(r);
 
-			/* establishing link in onetomany and manytoone way */
+			/* establishing link in onetomany and manytoone way 
 			r.setCustomer(customer);
-			customer.setRep(rep);
+			customer.setRep(rep);  */
 
 			customerService.save(customer);
-			repService.save(r);
+	/*		repService.save(r); */
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
@@ -420,9 +413,7 @@ public class CustomerController implements Initializable {
 		category.clear();
 		gstno.clear();
 		remark.clear();
-		repname.clear();
-		repemail.clear();
-		repmobile.clear();
+		
 	}
 	
 	private void reset1() {

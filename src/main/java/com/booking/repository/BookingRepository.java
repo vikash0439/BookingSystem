@@ -17,5 +17,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer>{
 	
 	@Query(value = "select serviceid from booking;", nativeQuery = true)
 	public List<Long> findServiceID();
+	
+	@Query(value = "select servicedate from booking;", nativeQuery = true)
+	public List<String> findServiceDate();
      
 }

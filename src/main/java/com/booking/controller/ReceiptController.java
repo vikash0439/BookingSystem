@@ -7,8 +7,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.PaymentDetails;
 import com.booking.bean.Receipt;
@@ -43,11 +46,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -83,6 +88,8 @@ public class ReceiptController implements Initializable{
 	private ComboBox<String> MultiplecID;
 	@FXML
 	private Label labelContractid;
+	@FXML
+	private ToggleGroup credit;
 	
 	/* Payment Table */
 	@FXML
@@ -96,9 +103,9 @@ public class ReceiptController implements Initializable{
 	@FXML
 	private TextField Credit;
 	@FXML
-	private CheckBox CreditYes;
+	private RadioButton CreditYes;
 	@FXML
-	private CheckBox CreditNo;
+	private RadioButton CreditNo;
 	
 	
 	@FXML
@@ -268,16 +275,30 @@ public class ReceiptController implements Initializable{
 				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
 				 Map<String, Object> parameters = new HashMap<String, Object>();
 				 
-				
+				 List<Booking> bookinglist = receipt.getContract().getBookings();
+				 StringBuffer detailsbooking = new StringBuffer(); 
+				 String detail = null;
+				 for(int i = 0; i < bookinglist.size(); i++ ) {
+						
+						String showdate = bookinglist.get(i).getServicedate();
+					    String slot = bookinglist.get(i).getServicetime();
+					    
+					    detail = showdate.concat(" from ").concat(slot);
+					    
+					  
+					    StringBuffer details = new StringBuffer(detail);
+					    detailsbooking = detailsbooking.append(details);
+					}
+				 
+				 String detailsbooking2 = detailsbooking.toString();
 				
 				 HashMap<String, Object> p = new HashMap<String, Object>();
 				 p.put("contractid", receipt.getContract().getContractid());
 				 p.put("receiptid", receipt.getReceiptid());
-				 p.put("paidamount", receipt.getPaidamount());
+				 p.put("paidamount", convert(Integer.parseInt(receipt.getPaidamount()))+" Only");
 				 p.put("paymentmode", receipt.getPaymentmode());
-				 p.put("client", receipt.getContract().getCustomer().getCustomername());
-				 p.put("purpose", receipt.getContract().getPurpose());
-				 p.put("bookingdate", receipt.getContract().getBookingdate());
+				 p.put("client", receipt.getContract().getCustomer().getCustomername());		 
+				 p.put("details", detail);
 				 p.put("address", receipt.getContract().getCustomer().getAddress());
 				 p.put("gst", receipt.getContract().getCustomer().getGstno());
 				 p.put("gross", (Math.round(bp)));
@@ -358,6 +379,8 @@ public class ReceiptController implements Initializable{
 		MultiplecID.setItems(cIDList);
 		
 		PaymentMode.setItems(modeList);
+		
+		ReceiptDate.setValue(LocalDate.now());
 		
 		receipttable();
 		clearFields();
@@ -499,6 +522,54 @@ public class ReceiptController implements Initializable{
 		alert.showAndWait();
 	}
 	
+	/* convert number to words */
+	public static final String[] units = { "", "One", "Two", "Three", "Four",
+			"Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+			"Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+			"Eighteen", "Nineteen" };
+	
+	public static final String[] tens = { 
+			"", 		// 0
+			"",		    // 1
+			"Twenty", 	// 2
+			"Thirty", 	// 3
+			"Forty", 	// 4
+			"Fifty", 	// 5
+			"Sixty", 	// 6
+			"Seventy",	// 7
+			"Eighty", 	// 8
+			"Ninety" 	// 9
+	};
+
+	public static String convert(final int n) {
+		if (n < 0) {
+			return "Minus " + convert(-n);
+		}
+
+		if (n < 20) {
+			return units[n];
+		}
+
+		if (n < 100) {
+			return tens[n / 10] + ((n % 10 != 0) ? " " : "") + units[n % 10];
+		}
+
+		if (n < 1000) {
+			return units[n / 100] + " Hundred" + ((n % 100 != 0) ? " " : "") + convert(n % 100);
+		}
+
+		if (n < 100000) {
+			return convert(n / 1000) + " Thousand" + ((n % 10000 != 0) ? " " : "") + convert(n % 1000);
+		}
+
+		if (n < 10000000) {
+			return convert(n / 100000) + " Lakh" + ((n % 100000 != 0) ? " " : "") + convert(n % 100000);
+		}
+
+		return convert(n / 10000000) + " Crore" + ((n % 10000000 != 0) ? " " : "") + convert(n % 10000000);
+	}
+
+	
 	private void clearFields() {
 		cID.getSelectionModel().clearSelection();
 		ReceiptID.setText(null);
@@ -512,6 +583,6 @@ public class ReceiptController implements Initializable{
 		Bank.clear();
 		PaidBy.clear();
 		CreditYes.setSelected(false);
-		CreditNo.setSelected(false);
-	}
+		CreditNo.setSelected(true);
+	}	
 }

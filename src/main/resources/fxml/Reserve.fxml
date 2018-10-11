@@ -108,11 +108,6 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="CustomerID" prefHeight="31.0" prefWidth="244.0" promptText="Customer Name">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </ComboBox>
             <TextField fx:id="ReserveTitle" prefHeight="30.0" prefWidth="246.0" promptText="Event Name">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
@@ -187,7 +182,6 @@
                 <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Service Date" />
                   <TableColumn fx:id="colServiceTime" maxWidth="4000.0" prefWidth="75.0" text="Service Time" />
                   <TableColumn fx:id="colServiceID" maxWidth="4000.0" prefWidth="60.0" text="Service" />
-                  <TableColumn fx:id="colCustomerID" maxWidth="4000.0" prefWidth="75.0" text="Customer" />
                   <TableColumn fx:id="colReserveTitle" maxWidth="4000.0" prefWidth="60.0" text="Event Name" />
                   <TableColumn fx:id="colInternalUsage" maxWidth="4000.0" prefWidth="60.0" text="Internal Usage" />
               </columns>

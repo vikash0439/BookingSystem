@@ -81,13 +81,13 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement x="514" y="44" width="31" height="16" uuid="7e72bac4-64a5-4233-8138-64fe27e12ee1"/>
+				<reportElement x="505" y="44" width="31" height="16" uuid="7e72bac4-64a5-4233-8138-64fe27e12ee1"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="44" splitType="Stretch">
+		<band height="73" splitType="Stretch">
 			<staticText>
 				<reportElement x="80" y="7" width="360" height="30" uuid="2e165705-b4ba-4b28-9431-ff25857ff596"/>
 				<textElement textAlignment="Center"/>
@@ -95,10 +95,17 @@
 Telephone: 011-23714307
 ]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="151" y="43" width="203" height="30" uuid="5efdcdd5-2039-4432-ae37-5af26e0e27cd"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Services]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="58" splitType="Stretch">
 			<staticText>
 				<reportElement x="210" y="10" width="100" height="11" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
 				<textElement textAlignment="Center"/>
@@ -149,45 +156,45 @@ Telephone: 011-23714307
 				</textElement>
 				<text><![CDATA[Cancel Charges]]></text>
 			</staticText>
+			<rectangle>
+				<reportElement mode="Transparent" x="10" y="8" width="541" height="41" uuid="ad628318-fe0b-4322-a761-d740fb0602e3"/>
+			</rectangle>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="325" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="20" y="10" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
+				<reportElement positionType="FixRelativeToBottom" x="30" y="0" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{serviceid}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="120" y="10" width="100" height="30" uuid="936ab62f-861d-4185-be65-e2674f0fd2f1">
+				<reportElement x="140" y="0" width="100" height="30" uuid="936ab62f-861d-4185-be65-e2674f0fd2f1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="220" y="10" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
+				<reportElement x="240" y="0" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{serviceinuse}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="10" width="100" height="30" uuid="e8ad9664-38e4-4279-b42e-80d7b0ca0b4a">
+				<reportElement x="350" y="0" width="100" height="30" uuid="e8ad9664-38e4-4279-b42e-80d7b0ca0b4a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{servicecharges}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="430" y="10" width="100" height="30" uuid="85b97ebd-068e-45d9-91aa-a2beaa10d5e9">
+				<reportElement x="450" y="0" width="86" height="31" uuid="85b97ebd-068e-45d9-91aa-a2beaa10d5e9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{cancelcharges}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="54" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="77" splitType="Stretch">
 			<staticText>

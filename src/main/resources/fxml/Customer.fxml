@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="980.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.CustomerController">
+<BorderPane prefHeight="900.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.CustomerController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
          <menus>
@@ -132,21 +132,6 @@
                </VBox.margin>
             </TextField>
             <TextField fx:id="remark" prefHeight="30.0" prefWidth="246.0" promptText="Remark">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="repname" prefHeight="30.0" prefWidth="246.0" promptText="Rep Name">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="repmobile" prefHeight="30.0" prefWidth="246.0" promptText="Rep Mobile">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="repemail" prefHeight="30.0" prefWidth="246.0" promptText="Rep Email">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>

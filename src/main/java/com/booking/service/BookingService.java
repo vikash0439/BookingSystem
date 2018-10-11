@@ -36,5 +36,9 @@ private final BookingRepository bookingRepository;
 	public List<Long> getBookingID() {
 		return bookingRepository.findServiceID();
 	}
+	
+	public List<String> getServiceDate() {
+		return bookingRepository.findServiceDate();
+	}
 
 }

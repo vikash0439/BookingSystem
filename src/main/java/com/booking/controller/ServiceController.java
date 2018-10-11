@@ -296,7 +296,7 @@ public class ServiceController implements Initializable{
   
      
         
-        File outDir = new File("D:/Reports");   // Make sure the output directory exists.
+        File outDir = new File("D:/Reports/Service");   // Make sure the output directory exists.
         outDir.mkdirs();
       
         DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");

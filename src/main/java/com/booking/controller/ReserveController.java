@@ -56,8 +56,7 @@ public class ReserveController implements Initializable{
 	private TextField ServiceTime;	
 	@FXML
 	private ComboBox<String> ServiceID;	
-	@FXML
-	private ComboBox<String> CustomerID;
+	
 	@FXML
 	private TextField ReserveTitle;
 	@FXML
@@ -74,8 +73,6 @@ public class ReserveController implements Initializable{
 	@FXML
 	private TableColumn<Reserve, String> colServiceID;
 	
-	@FXML
-	private TableColumn<Reserve, String> colCustomerID;
 	@FXML
 	private TableColumn<Reserve, String> colReserveTitle;
 	
@@ -105,7 +102,6 @@ public class ReserveController implements Initializable{
 	private PerformanceService performanceService;
 	
 	private ObservableList<Reserve> reserveList = FXCollections.observableArrayList();
-	private ObservableList<String> customerNameList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceNameList = FXCollections.observableArrayList();
 	
 	
@@ -180,7 +176,7 @@ public class ReserveController implements Initializable{
 			Reserve reserve = new Reserve();
 			reserve.setServicedate(ServiceDate.getValue());
 			reserve.setServicetime(ServiceTime.getText());
-			reserve.setCustomerid(CustomerID.getSelectionModel().getSelectedItem());
+
 			reserve.setReservetitle(ReserveTitle.getText());
 			reserve.setInternalusage(InternalUsage.getText());
 			reserve.setServiceid(ServiceID.getSelectionModel().getSelectedItem());
@@ -192,13 +188,13 @@ public class ReserveController implements Initializable{
 //			booking.setServicetime(ServiceTime.getText());
 //			
 //			bookingservice.save(booking);
-			
+			String a = "0";
 			Contract contract = new Contract();
 			contract.setBookingdate(null);
 			contract.setPurpose(ReserveTitle.getText());
 			contract.setBaseprice(null);
 			contract.setTaxamount(null);
-			contract.setPact(null);
+			contract.setPact(a);
 			contract.setPaymentstatus(null);
 
 			Customer customer = customerService.findCustomer("SRCPA");
@@ -208,7 +204,7 @@ public class ReserveController implements Initializable{
 			b.setServicedate((String)ServiceDate.getEditor().getText());
 			b.setServicename(ReserveTitle.getText());
 			b.setServicetime(ServiceTime.getText());
-			b.setSlot(null);
+			b.setSlot(ServiceTime.getText());
 			// b.setServiceused(ServiceUsed.getText());
 			b.setContract(contract);
 
@@ -235,7 +231,7 @@ public class ReserveController implements Initializable{
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Reserved");
 			alert.setHeaderText(null);
-			alert.setContentText("Reserved:  " + ServiceDate.getValue() + "  has been reserved by: ."+ CustomerID.getSelectionModel().getSelectedItem());
+			alert.setContentText("Reserved:  " + ServiceDate.getValue() + "  has been reserved by: SRCPA.");
 			alert.showAndWait();
 		} else {
 			System.out.println("No update code available");
@@ -252,8 +248,9 @@ public class ReserveController implements Initializable{
 		serviceNameList.clear();
 		serviceNameList.addAll(serviceService.findName());
 		ServiceID.setItems(serviceNameList);
-		customerNameList.addAll(customerService.findName());
-		CustomerID.setItems(customerNameList);
+		
+		
+
 
 		reservetable();
 		clearFields();
@@ -290,7 +287,7 @@ public class ReserveController implements Initializable{
 		colReserveID.setCellValueFactory(new PropertyValueFactory<>("reserveid"));
 		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
 		colServiceID.setCellValueFactory(new PropertyValueFactory<>("serviceid"));
-		colCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerid"));
+
 		colReserveTitle.setCellValueFactory(new PropertyValueFactory<>("reservetitle"));
 		colInternalUsage.setCellValueFactory(new PropertyValueFactory<>("internalusage"));
 		colServiceTime.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
@@ -352,7 +349,7 @@ public class ReserveController implements Initializable{
 		ServiceDate.getEditor().clear();
 		ServiceTime.clear();
 		ServiceID.getSelectionModel().clearSelection();
-		CustomerID.getSelectionModel().clearSelection();
+
 		ReserveTitle.clear();
 		InternalUsage.clear();
 	}

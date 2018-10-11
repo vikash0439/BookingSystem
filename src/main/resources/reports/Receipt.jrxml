@@ -24,11 +24,14 @@
 	<field name="cgst" class="java.lang.Long"/>
 	<field name="sgst" class="java.lang.Long"/>
 	<field name="total" class="java.lang.String"/>
+	<field name="slot" class="java.lang.String"/>
+	<field name="showdate" class="java.lang.String"/>
+	<field name="details" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="105" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<staticText>
 				<reportElement x="97" y="33" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
 				<textElement textAlignment="Center">
@@ -39,48 +42,37 @@
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="170" y="57" width="190" height="13" uuid="2320e7b4-a85e-4f4f-8422-772fcd9852b9"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="170" y="54" width="190" height="13" uuid="2320e7b4-a85e-4f4f-8422-772fcd9852b9"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[(Shri Ram Centre – Auditorium)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="73" width="156" height="15" uuid="68dd9906-c2e0-4373-80e3-5e7e3a591911"/>
+				<reportElement x="159" y="9" width="184" height="21" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[RECEIPT VOUCHER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="72" width="156" height="15" uuid="68dd9906-c2e0-4373-80e3-5e7e3a591911"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[GST No. 07AAATI1040E1ZB]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="201" y="88" width="130" height="15" uuid="65266c76-934a-4f7c-896c-b116eafe01e4"/>
-				<textElement textAlignment="Center">
+				<reportElement x="197" y="85" width="130" height="15" uuid="65266c76-934a-4f7c-896c-b116eafe01e4"/>
+				<textElement textAlignment="Center" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[PAN : AAATI1040E]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="159" y="9" width="200" height="24" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
-				<textElement textAlignment="Center">
-					<font size="10" isBold="true" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[RECEIPT VOUCHER]]></text>
-			</staticText>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="30" splitType="Stretch">
-			<staticText>
-				<reportElement x="79" y="-2" width="360" height="30" uuid="2e165705-b4ba-4b28-9431-ff25857ff596"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[4, Safdar Hashmi Marg, New Delhi-110001
-Telephone: 011-23714307
-]]></text>
-			</staticText>
-		</band>
-	</pageHeader>
 	<columnHeader>
-		<band height="49" splitType="Stretch">
+		<band height="51" splitType="Stretch">
 			<staticText>
 				<reportElement x="9" y="18" width="40" height="15" uuid="d4c5f807-aa81-4059-9ca3-ac2482dca504">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2c90151-3456-4426-aebf-3196f844401f"/>
@@ -105,12 +97,6 @@ Telephone: 011-23714307
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{receiptid}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="182" y="0" width="100" height="30" uuid="f4212d89-a875-42f0-b917-5aa1b1a3d564">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdcb555b-a3a8-484f-a684-a48dc667a35d"/>
-				</reportElement>
-				<text><![CDATA[]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="121" y="0" width="100" height="30" uuid="8e3c2ffa-c0db-48df-82b3-a5e05afe6f2a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38f3e928-cd05-466e-9aa2-b4e88aa7527f"/>
@@ -144,7 +130,7 @@ Telephone: 011-23714307
 	<detail>
 		<band height="299" splitType="Stretch">
 			<staticText>
-				<reportElement x="60" y="19" width="161" height="17" uuid="a8d4db30-e4c4-4b8b-acc4-9c22f58111e3"/>
+				<reportElement x="60" y="5" width="161" height="17" uuid="a8d4db30-e4c4-4b8b-acc4-9c22f58111e3"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -178,30 +164,17 @@ Telephone: 011-23714307
 				<textFieldExpression><![CDATA[$F{paymentmode}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="53" width="100" height="18" uuid="00e7770a-78f9-45c8-87e8-3afeb9e02030">
+				<reportElement x="177" y="53" width="343" height="18" uuid="00e7770a-78f9-45c8-87e8-3afeb9e02030">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3730a87-51f9-4899-a2e4-1d6808af38d7"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{paidamount}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="223" y="20" width="50" height="17" uuid="aa1861ab-76ee-43b4-af99-4104d3cc0be1">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="223" y="6" width="285" height="17" uuid="aa1861ab-76ee-43b4-af99-4104d3cc0be1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="70c9bd1c-a3fa-4d40-a39b-859165301039"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{client}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="112" y="109" width="72" height="15" uuid="638f09a1-7814-42a5-aebb-1f200d668a1a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ead9903-550e-4672-ab5c-b174f0b88260"/>
-				</reportElement>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{purpose}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="98" y="109" width="13" height="16" uuid="12239e3a-d115-4ede-af01-c2fdf2c1ded1"/>
-				<text><![CDATA[for]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="360" y="216" width="194" height="30" uuid="fcef6764-e632-4eb1-9447-8a74ddddc22c"/>
 				<text><![CDATA[For INDIAN NATIONAL THEATRE TRUST]]></text>
@@ -246,24 +219,15 @@ Telephone: 011-23714307
 				<text><![CDATA[Total :                 Rs.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="61" y="109" width="36" height="16" uuid="57744ac0-9e7c-40d9-b292-3010956bd765">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="959f3e07-49ad-4ccc-8f64-2edeb36a5175"/>
-				</reportElement>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bookingdate}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="320" y="20" width="100" height="18" uuid="b8d1ac9e-c551-4a6f-9d0c-8746a7146137">
+				<reportElement x="121" y="22" width="387" height="18" uuid="b8d1ac9e-c551-4a6f-9d0c-8746a7146137">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00840e72-e42b-4847-90fa-adc8ac9ab6a3"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="270" y="19" width="48" height="18" uuid="b2a1b936-5015-48a1-96dd-ea03ab16437e"/>
+				<reportElement x="60" y="21" width="70" height="18" uuid="b2a1b936-5015-48a1-96dd-ea03ab16437e"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Address :]]></text>
 			</staticText>
@@ -313,6 +277,15 @@ Telephone: 011-23714307
 			<line>
 				<reportElement x="270" y="195" width="261" height="1" uuid="35eb98b3-7bce-481b-bda1-ff5fc8f512fc"/>
 			</line>
+			<textField>
+				<reportElement x="60" y="108" width="448" height="22" uuid="513945a2-ac16-4ff2-b40e-4593c8f3f107">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fb47a5c1-1f3e-4f23-867f-39308b0c6842"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{details}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

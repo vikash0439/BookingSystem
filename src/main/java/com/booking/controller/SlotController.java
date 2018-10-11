@@ -219,6 +219,7 @@ public class SlotController implements Initializable{
 				private void updateSlot(com.booking.bean.Slot slot) {
 					SlotID.setText(Long.toString(slot.getSlotid()));
 					Slot.setText(slot.getSlot());
+					SlotTiming.setText(slot.getTimings());
 				
 				}
 			};
@@ -229,7 +230,7 @@ public class SlotController implements Initializable{
 	private void clearFields() {
 		SlotID.setText(null);
 		Slot.clear();
-		
+		SlotTiming.clear();
 
 	}
 

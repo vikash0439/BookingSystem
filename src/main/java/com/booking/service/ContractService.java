@@ -18,7 +18,6 @@ private final ContractRepository contractRepository;
 	}
 	
 	
-	
 	public Contract save(Contract invoice) {
 		return contractRepository.save(invoice);		
 	}
