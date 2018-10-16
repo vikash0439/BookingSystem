@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.AllContractController">
+   <top>
+      <MenuBar BorderPane.alignment="TOP_LEFT">
+        <menus>
+            <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Accounting">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
+                  <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
+                  <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Customer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Service">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Miscellanous">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                  <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+                  <MenuItem mnemonicParsing="false" onAction="#statecode" text="State Code" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox prefHeight="571.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Contract" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Booking Date" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="bookingdate">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="ContractID - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="contractid">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="2.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Purpose" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="purpose">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="2.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Base Price - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="baseprice">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="2.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Tax Amount - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="taxamount">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Pact  - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="pact">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Client -" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="client">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Rep Name -" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="repname">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Rep Email -" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="repemail">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Rep Mobile -" textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" top="2.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="repmobile">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="TOP_RIGHT" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="88.0" styleClass="background" text="Logout" textFill="#fff9f9" textOverrun="CLIP">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#00000091" />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="48.0" prefWidth="994.0">
+               <children>
+                  <Label text="Service Details (Bookings)">
+                     <HBox.margin>
+                        <Insets left="100.0" right="25.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="ContractID" editable="true" onAction="#getContractID" prefHeight="31.0" prefWidth="231.0" promptText="--Select ContractID -- ">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+            </HBox>
+            <VBox prefHeight="407.0" prefWidth="692.0" style="-fx-background-color: #f2f2f2;">
+               <children>
+                  <Label fx:id="booking" text="Booking">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Label>
+                  <TableView fx:id="bookingtable">
+                    <columns>
+                        <TableColumn fx:id="serviceid" prefWidth="98.0" text="ServiceID" />
+                      <TableColumn fx:id="servicedate" prefWidth="77.0" text="Date" />
+                      <TableColumn fx:id="slot" prefWidth="96.0" text="Slot" />
+                        <TableColumn fx:id="time" prefWidth="110.0" text="Time" />
+                        <TableColumn fx:id="servicename" prefWidth="90.0" text="Service" />
+                        <TableColumn fx:id="cost" prefWidth="126.0" text="Cost" />
+                        <TableColumn fx:id="colDelete" prefWidth="159.0" text="Delete" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0" visible="false">
+                     <children>
+                        <DatePicker fx:id="ServiceDate" prefHeight="31.0" prefWidth="210.0" promptText="Date">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                        <ComboBox fx:id="Slot" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="ServiceTime" promptText="Time">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <TextField fx:id="ServiceCost" promptText="Charges">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="Service" mnemonicParsing="false" onAction="#addMore" prefHeight="31.0" prefWidth="113.0" styleClass="btnGreen" text="Add+" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <Label fx:id="performance" text="Performance">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="receipt" text="Receipt">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="customer" text="Customer">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="invoice" text="Invoice">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="545.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="btnGreen" text="Button" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="15.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" styleClass="btnGreen" text="Button" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="15.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="100.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

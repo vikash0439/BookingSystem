@@ -40,5 +40,9 @@ private final BookingRepository bookingRepository;
 	public List<String> getServiceDate() {
 		return bookingRepository.findServiceDate();
 	}
+	
+	public void delete(Booking booking) {
+		bookingRepository.delete(booking);		
+	}
 
 }

@@ -60,5 +60,9 @@ public class RepService {
 	
 		return c;
 	}
+	
+	public Rep findbyName(String name) {
+		return repRepository.findByRepname(name);
+	}
 
 }

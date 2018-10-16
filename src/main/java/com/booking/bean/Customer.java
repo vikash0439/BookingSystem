@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * @author Vikash Kumar
  * @since 05-09-2018
@@ -34,9 +37,10 @@ public class Customer {
 	private String gstno;
 	private String remark;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Contract.class, mappedBy = "customer", cascade=CascadeType.ALL)
 	private List<Contract> contract;
-	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Rep.class, mappedBy = "customer", fetch = FetchType.LAZY)
 	private List<Rep> rep;	
 
@@ -108,5 +112,14 @@ public class Customer {
 	public void setRep(List<Rep> rep) {
 		this.rep = rep;
 	}
+	
+	@Override
+	public String toString() {
+		return "Customer [customerid=" + customerid + ", customername=" + customername + ", landline=" + landline
+				+ ", website=" + website + ", address=" + address + ", statecode=" + statecode + ", category="
+				+ category + ", gstno=" + gstno + ", remark=" + remark + ", contract=" + contract + "]";
+	}
+	
+	
 
 }

@@ -203,8 +203,8 @@ public class CustomerController implements Initializable {
 	
 	public void getStateCode() {
 		String state = State.getSelectionModel().getSelectedItem();
-		
-		statecode.setText(stateCodeService.find(state));
+		String sc = state.concat(" (").concat(stateCodeService.find(state)).concat(")");
+		statecode.setText(sc);
 		
 	}
 	@FXML
@@ -261,6 +261,7 @@ public class CustomerController implements Initializable {
 			alert.setHeaderText(null);
 			alert.setContentText("The customer " + customername.getText() + "  has been saved.");
 			alert.showAndWait();
+			
 		} else {
 			Customer customer = customerService.find(Long.parseLong(customerid.getText()));
 			customer.setCustomername(customername.getText());

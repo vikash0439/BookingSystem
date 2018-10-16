@@ -74,6 +74,7 @@ public class ContractController implements Initializable {
 	private VBox showVBox;
 	@FXML
 	private TextField charges;
+	
 
 	/* Contract Table */
 	@FXML
@@ -94,6 +95,7 @@ public class ContractController implements Initializable {
 	private Label pact;
 	@FXML
 	private ComboBox<String> repName;
+	
 
 	/* Booking table */
 	@FXML
@@ -275,6 +277,10 @@ public class ContractController implements Initializable {
 	public void purpose(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.PURPOSE);
 	}
+	@FXML
+	public void statecode(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.STATECODE);
+	}
 
 	@FXML
 	private void exit(ActionEvent event) {
@@ -354,7 +360,7 @@ public class ContractController implements Initializable {
 
 		Slot5.getSelectionModel().getSelectedItem();
 		String time5 = slotService.slotTiming(Slot5.getSelectionModel().getSelectedItem());
-		ServiceTime3.setText(time5);
+		ServiceTime5.setText(time5);
 
 		Slot6.getSelectionModel().getSelectedItem();
 		String time6 = slotService.slotTiming(Slot6.getSelectionModel().getSelectedItem());
@@ -386,6 +392,7 @@ public class ContractController implements Initializable {
 		contract.setTaxamount(taxamount.getText());
 		contract.setPact(pact.getText());
 		contract.setPaymentstatus(paymentstatus.getSelectionModel().getSelectedItem());
+		contract.setRepname(repName.getSelectionModel().getSelectedItem());
 
 		Customer customer = customerService.findCustomer(CustomerName.getSelectionModel().getSelectedItem());
 		contract.setCustomer(customer);
@@ -460,7 +467,7 @@ public class ContractController implements Initializable {
 		// booking.add(b2);
 
 		Performance p = new Performance();
-		if (ShowName.getText() != null && ShowName.getText() != "") {
+		if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
 			p.setShowname(ShowName.getText());
 			p.setShowtime(ShowTime.getText());
 			p.setShowdetails(ShowDetails.getText());
@@ -468,7 +475,7 @@ public class ContractController implements Initializable {
 		}
 
 		Performance p2 = new Performance();
-		if (ShowName2.getText() != null && ShowName2.getText() != "") {
+		if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
 			p2.setShowname(ShowName2.getText());
 			p2.setShowtime(ShowTime2.getText());
 			p2.setShowdetails(ShowDetails2.getText());
@@ -476,15 +483,15 @@ public class ContractController implements Initializable {
 		}
 
 		Performance p3 = new Performance();
-		if (ShowName3.getText() != null && ShowName3.getText() != "") {
+		if (ShowName3.getText() != null && !ShowName2.getText().trim().isEmpty()) {
 			p3.setShowname(ShowName3.getText());
 			p3.setShowtime(ShowTime3.getText());
 			p3.setShowdetails(ShowDetails3.getText());
 			p3.setContract(contract);
 		}
 
-		List<Performance> performance = new ArrayList<Performance>();
-		performance.add(p);
+//		List<Performance> performance = new ArrayList<Performance>();
+//		performance.add(p);
 
 		contractService.save(contract);
 		bookingService.save(b);
@@ -504,13 +511,14 @@ public class ContractController implements Initializable {
 		if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 			bookingService.save(b6);
 		}
-		if (ShowName.getText() != null && ShowName.getText() != "") {
+		
+		if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
 			performanceService.save(p);
 		}
-		if (ShowName2.getText() != null && ShowName2.getText() != "") {
+		if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
 			performanceService.save(p2);
 		}
-		if (ShowName3.getText() != null && ShowName3.getText() != "") {
+		if (ShowName3.getText() != null && !ShowName3.getText().trim().isEmpty()) {
 			performanceService.save(p3);
 		}
 		
@@ -566,6 +574,52 @@ public class ContractController implements Initializable {
 		pact.setText(String.valueOf(t));
 	}
 
+	public void serviceDetail4() {
+
+		String ser4 = ServiceName4.getValue();
+		Service service4 = serviceService.getDetail(ser4);
+		ServiceCost4.setText(service4.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText());
+		
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+	
+	public void serviceDetail5() {
+
+		String ser5 = ServiceName5.getValue();
+		Service service5 = serviceService.getDetail(ser5);
+		ServiceCost5.setText(service5.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText())+ Long.parseLong(ServiceCost4.getText())+ Long.parseLong(ServiceCost5.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+	
+	public void serviceDetail6() {
+
+		String ser6 = ServiceName6.getValue();
+		Service service6 = serviceService.getDetail(ser6);
+		ServiceCost6.setText(service6.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())+ Long.parseLong(ServiceCost5.getText())+ Long.parseLong(ServiceCost6.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+	
 	public void serviceDetail3() {
 
 		String ser3 = ServiceName3.getValue();
@@ -594,6 +648,9 @@ public class ContractController implements Initializable {
 		ServiceName.setItems(serviceList);
 		ServiceName2.setItems(serviceList);
 		ServiceName3.setItems(serviceList);
+		ServiceName4.setItems(serviceList);
+		ServiceName5.setItems(serviceList);
+		ServiceName6.setItems(serviceList);
 
 		customerList.clear();
 		customerList.addAll(customerService.findName());
@@ -604,6 +661,9 @@ public class ContractController implements Initializable {
 		Slot.setItems(slotList);
 		Slot2.setItems(slotList);
 		Slot3.setItems(slotList);
+		Slot4.setItems(slotList);
+		Slot5.setItems(slotList);
+		Slot6.setItems(slotList);
 
 		BookingDate.setValue(LocalDate.now());
 

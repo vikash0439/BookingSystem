@@ -23,7 +23,7 @@ public enum FxmlView {
 
         @Override
 		public String getFxmlFile() {
-            return "/fxml/Login.fxml";
+            return "/fxml/Welcome.fxml";
         }
     },
     DASHBOARD {
@@ -136,15 +136,15 @@ public enum FxmlView {
               return "/fxml/Purpose.fxml";
           }
       },
-	OTHERS {
+	ALLCONTRACT {
           @Override
   		public String getTitle() {
-              return getStringFromResourceBundle("others.title");
+              return getStringFromResourceBundle("allcontract.title");
           }
 
           @Override
   		public String getFxmlFile() {
-              return "/fxml/Others.fxml";
+              return "/fxml/AllContract.fxml";
           }
       }, STATECODE{
           @Override

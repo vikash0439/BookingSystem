@@ -53,21 +53,29 @@ public class Contract implements Serializable{
 	private String paymentstatus;
 	private String override;
 	private String slabno;
+	private String repname;
 	
 	
 	/* Mapping */
 
 	@OneToOne(mappedBy = "contract", cascade = CascadeType.ALL)
 	private Invoice invoice;
+	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Booking> bookings;	
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Performance.class, mappedBy = "contract", cascade=CascadeType.ALL)
-	private List<Performance> performances;	
+	private List<Performance> performances;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Allocation.class, mappedBy = "contract", cascade=CascadeType.ALL)
 	private List<Allocation> allocation;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Receipt.class, mappedBy = "contract", cascade=CascadeType.ALL , fetch = FetchType.EAGER)
 	private List<Receipt> receipt;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToOne
 	@JoinColumn(name ="customerid")
 	private Customer customer;
@@ -133,6 +141,13 @@ public class Contract implements Serializable{
 	}
 	public void setSlabno(String slabno) {
 		this.slabno = slabno;
+	}
+	
+	public String getRepname() {
+		return repname;
+	}
+	public void setRepname(String repname) {
+		this.repname = repname;
 	}
 	public List<Booking> getBookings() {
 		return bookings;

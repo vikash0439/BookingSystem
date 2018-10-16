@@ -11,3 +11,10 @@
 .table-row-cell {
   
 }
+.background-image {
+	-fx-background-color: DODGERBLUE;
+      -fx-background-image: url("/images/source.jpg");
+      -fx-background-position: center;
+      -fx-background-repeat: stretch;
+
+}

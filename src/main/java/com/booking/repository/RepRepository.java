@@ -22,4 +22,6 @@ public interface RepRepository extends JpaRepository<Rep, Integer>{
     @Query(value = "select repname from rep where customerid = ?1", nativeQuery = true)
 	List<String> findRepnameByCustomer(Customer customerid);
 
+	Rep findByRepname(String name);
+
 }

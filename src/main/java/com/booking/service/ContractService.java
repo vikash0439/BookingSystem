@@ -36,4 +36,14 @@ private final ContractRepository contractRepository;
 		return contractRepository.findContractID();
 	}
 
+
+	public void updateStatus(long contractid) {
+		
+		Contract contract = contractRepository.findAllByContractid(contractid);
+		contract.setOverride("cancelled");
+		
+		contractRepository.save(contract);
+		
+	}
+
 }

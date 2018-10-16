@@ -41,9 +41,10 @@ public class StageManager {
         primaryStage.getIcons().add(applicationIcon);
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
-        primaryStage.sizeToScene();
-        primaryStage.centerOnScreen();
+//        primaryStage.sizeToScene();
+//        primaryStage.centerOnScreen();
 //        primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
         
         try {
             primaryStage.show();

@@ -85,16 +85,18 @@ public class Booking implements Serializable{
 		this.slot = slot;
 	}
 	
-	
 	public String getServicename() {
 		return servicename;
 	}
 	public void setServicename(String servicename) {
 		this.servicename = servicename;
 	}
-		
+	
 	@Override
 	public String toString() {
-		return  servicedate +" from " +servicetime ;
-	}
+		return "Booking [serviceid=" + serviceid + ", servicename=" + servicename + ", servicedate=" + servicedate
+				+ ", servicetime=" + servicetime + ", servicecost=" + servicecost + ", serviceused=" + serviceused
+				+ ", slot=" + slot + ", contract=" + contract + "]";
+	}		
+	
 }

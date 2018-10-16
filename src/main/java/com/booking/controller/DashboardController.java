@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -18,6 +19,7 @@ import com.booking.bean.Invoice;
 import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
+import com.booking.service.ContractService;
 import com.booking.service.ReceiptService;
 import com.booking.view.FxmlView;
 
@@ -32,7 +34,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -103,6 +107,8 @@ public class DashboardController implements Initializable {
 	private BookingService bookingService;
 	@Autowired
 	private ReceiptService receiptService;
+	@Autowired 
+	private ContractService contractService;
 
 	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
 
@@ -118,11 +124,36 @@ public class DashboardController implements Initializable {
 
 	@FXML
 	private void report(ActionEvent event) throws IOException {
+		
+		Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+		alert.setTitle("Report");
+		alert.setHeaderText("Contract");
+		alert.setContentText("Contract report downloaded successfully");
+		alert.showAndWait();
 
 	}
 
 	@FXML
 	private void cancel(ActionEvent event) throws IOException {
+		System.out.println("Cancel");
+		
+		Alert alert = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation!");
+		alert.setHeaderText("All booking in this contract will be cancelled.");
+		alert.setContentText("Are you sure you want to cancel the contract?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			
+			 String cid = ContractID.getText();
+			 
+			 contractService.updateStatus(Long.parseLong((String)cid));
+			 
+		    
+		} else {
+		    // ... user chose CANCEL or closed the dialog
+		}
+		dashboard(event);
 
 	}
 
@@ -182,8 +213,8 @@ public class DashboardController implements Initializable {
 	}
 
 	@FXML
-	public void others(ActionEvent event) throws IOException {
-		stageManager.switchScene(FxmlView.OTHERS);
+	public void allcontract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.ALLCONTRACT);
 	}
 
 	@FXML
@@ -195,7 +226,6 @@ public class DashboardController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		contracttable();
-		clearFields();
 	}
 
 	public void contracttable() {
@@ -312,7 +342,6 @@ public class DashboardController implements Initializable {
 
 						TableRow<Booking> currentRow = getTableRow();
 						String pact = currentRow.getItem().getContract().getPact();
-						String receipt = currentRow.getItem().getContract().getReceipt().toString();
 						
 						List<Receipt> receiptlist = currentRow.getItem().getContract().getReceipt();
 						double totalamount = 0;						
@@ -329,10 +358,8 @@ public class DashboardController implements Initializable {
 						colDay.setStyle("-fx-background-color: transparent;");
 						setAlignment(Pos.CENTER);
 						setText(String.valueOf(remaining));
-
 					}
 				}
-
 			};
 			return cell;
 		}
@@ -396,15 +423,18 @@ public class DashboardController implements Initializable {
 						});
 						TableRow<Booking> currentRow = getTableRow();
 						Invoice i = currentRow.getItem().getContract().getInvoice();
+						if (currentRow.getItem().getContract().getCustomer().getCustomername().equalsIgnoreCase("SRCPA")) {  //indicates srcpa
+							currentRow.setStyle("-fx-background-color:#ffffcc");
+						}else			
+						if (currentRow.getItem().getContract().getInvoice() != null) {  //indicates invoice created
+							currentRow.setStyle("-fx-background-color:#b3c6ff");
 
-						if (i == null) {
-							currentRow.setStyle("-fx-background-color:#ff6666");
-
+						}else if(currentRow.getItem().getContract().getOverride() != null){   //indicates cancelled
+							currentRow.setStyle("-fx-background-color: #ff9999");
+						}else {
+							
 						}
-						String client = currentRow.getItem().getContract().getCustomer().getCustomername();
-						if (client.equalsIgnoreCase("SRCPA")) {
-							currentRow.setStyle("-fx-background-color:#ffffb3");
-						}
+						
 						btnEdit.setStyle("-fx-background-color: transparent;");
 						ImageView iv = new ImageView();
 						iv.setImage(imgEdit);
@@ -423,16 +453,13 @@ public class DashboardController implements Initializable {
 					ContractID.setText(Long.toString(booking.getContract().getContractid()));
 					Purpose.setText(booking.getContract().getPurpose());
 					CustomerName.setText(booking.getContract().getCustomer().getCustomername());
-					RepName.setText(booking.getContract().getCustomer().getRep().toString());
+
 				}
 			};
 			return cell;
 		}
 	};
 
-	private void clearFields() {
-		ContractID.setText(null);
-
-	}
+	
 
 }

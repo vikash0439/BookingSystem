@@ -20,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.Invoice;
-import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.InvoiceService;
@@ -210,9 +209,8 @@ public class InvoiceController implements Initializable {
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Invoice created.");
-			alert.setHeaderText(null);
-			alert.setContentText(
-					"Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
+			alert.setHeaderText("Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
+			alert.setContentText("Generating report..");
 			alert.showAndWait();
 
 			try {
@@ -228,7 +226,7 @@ public class InvoiceController implements Initializable {
 				int i = 1;
 				long qty;
 				String unit = "Days";
-				Long amount;
+				Long amount = null;
 				
 				List<Booking> allbookings = invoice.getContract().getBookings();
                 StringBuffer buffername = new StringBuffer();
@@ -269,6 +267,7 @@ public class InvoiceController implements Initializable {
 				p.put("qty",  qty);
 				p.put("unit",  unit);
 				p.put("amount",  stringcost);
+				
 
 				Double ia = Double.parseDouble(invoice.getContract().getBaseprice());
 				Double cg = ia * 9 / 100;
@@ -309,7 +308,7 @@ public class InvoiceController implements Initializable {
 
 				Alert a = new Alert(AlertType.INFORMATION);
 				a.setTitle("Report");
-				a.setHeaderText(null);
+				a.setHeaderText("Report generated.");
 				a.setContentText("Report downloaded successfully.");
 				a.showAndWait();
 

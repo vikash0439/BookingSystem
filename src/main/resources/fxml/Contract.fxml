@@ -28,7 +28,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ContractController">
+<BorderPane stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ContractController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
         <menus>
@@ -62,6 +62,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
                   <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
                   <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+                  <MenuItem mnemonicParsing="false" onAction="#statecode" text="State Code" />
                </items>
             </Menu>
         </menus>
@@ -317,7 +318,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <ComboBox fx:id="ServiceName4" onAction="#serviceDetail3" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                        <ComboBox fx:id="ServiceName4" onAction="#serviceDetail4" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -349,7 +350,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <ComboBox fx:id="ServiceName5" onAction="#serviceDetail3" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                        <ComboBox fx:id="ServiceName5" onAction="#serviceDetail5" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -381,7 +382,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <ComboBox fx:id="ServiceName6" onAction="#serviceDetail3" prefHeight="31.0" prefWidth="157.0" promptText="Services">
+                        <ComboBox fx:id="ServiceName6" onAction="#serviceDetail6" prefHeight="31.0" prefWidth="157.0" promptText="Services">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -459,7 +460,7 @@
                         </TextField>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" />
                      </padding>
                   </HBox>
                   <HBox fx:id="ShowHBox3" prefHeight="52.0" prefWidth="694.0" visible="false">
@@ -481,7 +482,29 @@
                         </TextField>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="ShowHBox31" layoutX="10.0" layoutY="114.0" prefHeight="52.0" prefWidth="694.0" visible="false">
+                     <children>
+                        <TextField fx:id="ShowName31" promptText="Show name">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="ShowTime31" promptText="Time">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="ShowDetails31" promptText="Details">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
                      </padding>
                   </HBox>
                </children>
@@ -570,6 +593,9 @@
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
       </HBox>
    </bottom>
 </BorderPane>

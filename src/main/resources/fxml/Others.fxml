@@ -27,10 +27,89 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.004333694474539545" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.OthersController">
    <items>
       <VBox prefHeight="798.0" prefWidth="616.0" styleClass="background" stylesheets="@../styles/Styles.css" />
-      <VBox prefHeight="798.0" prefWidth="407.0" />
+      <VBox prefHeight="798.0" prefWidth="407.0">
+         <children>
+            <HBox prefHeight="33.0" prefWidth="1222.0">
+               <children>
+                  <MenuBar>
+                     <menus>
+                        <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Dashboard" />
+                              <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                              <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
+                              <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Accounting">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#receipt" text="Receipt" />
+                              <MenuItem mnemonicParsing="false" onAction="#invoice" text="Invoice" />
+                              <MenuItem mnemonicParsing="false" onAction="#tax" text="Tax" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Customer">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Service">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Miscellanous">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
+                              <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
+                              <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+               </children>
+            </HBox>
+            <HBox prefHeight="45.0" prefWidth="1222.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contract" textAlignment="CENTER" wrappingWidth="1211.50634765625">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="34.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="52.0" prefWidth="1212.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <children>
+                  <ComboBox fx:id="ContractID" editable="true" onAction="#getContractID" prefHeight="31.0" prefWidth="346.0" promptText="--Select Contract -- " />
+               </children>
+            </HBox>
+            <VBox prefHeight="378.0" prefWidth="1222.0">
+               <children>
+                  <Label fx:id="booking" prefHeight="157.0" prefWidth="1222.0" text="Booking" />
+                  <Label fx:id="performance" prefHeight="153.0" prefWidth="1222.0" text="Performance" />
+                  <Label fx:id="receipt" prefHeight="162.0" prefWidth="1222.0" text="Receipt" />
+                  <Label fx:id="customer" prefHeight="162.0" prefWidth="1222.0" text="Customer" />
+                  <Label fx:id="invoice" prefHeight="162.0" prefWidth="1222.0" text="Invoice" />
+               </children>
+            </VBox>
+            <TextArea fx:id="receipt1" prefHeight="200.0" prefWidth="200.0" promptText="Receipt" />
+            <Button mnemonicParsing="false" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="Add Services" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
    </items>
 </SplitPane>

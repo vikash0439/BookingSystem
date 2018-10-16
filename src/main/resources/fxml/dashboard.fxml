@@ -27,13 +27,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.DashboardController">
+<BorderPane stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.DashboardController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
         <menus>
           <Menu mnemonicParsing="false" onAction="#dashboard" text="Booking">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
+                  <MenuItem mnemonicParsing="false" onAction="#allcontract" text="Contracts" />
                   <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
                   <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
               <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
@@ -62,7 +63,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
                   <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
                   <MenuItem mnemonicParsing="false" onAction="#statecode" text="State Code" />
-                  <MenuItem mnemonicParsing="false" onAction="#others" text="Others" />
                </items></Menu>
         </menus>
       </MenuBar>
@@ -131,51 +131,6 @@
                </children>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label fx:id="RepName">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label fx:id="RepEmail">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="25.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label fx:id="RepMobile">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-           <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label fx:id="ShowName">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="25.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
@@ -277,14 +232,14 @@
    <bottom>
       <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="1300.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="38.0" prefWidth="290.0" style="-fx-border-color: black; -fx-background-color: white;">
+            <HBox prefHeight="53.0" prefWidth="194.0" style="-fx-border-color: black; -fx-background-color: white;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ff6666;">
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ff9999;">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label text="No Invoice Created">
+                  <Label text="Cancelled">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -294,7 +249,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="53.0" prefWidth="290.0" style="-fx-border-color: black; -fx-background-color: white;">
+            <HBox prefHeight="53.0" prefWidth="216.0" style="-fx-border-color: black; -fx-background-color: white;">
                <children>
                   <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffffb3;">
                      <HBox.margin>
@@ -311,10 +266,30 @@
                   </Label>
                </children>
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </HBox>
+            <HBox prefHeight="53.0" prefWidth="227.0" style="-fx-border-color: black; -fx-background-color: white;">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #b3c6ff;">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label text="Invoice Created">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="13.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
       </HBox>
    </bottom>
 </BorderPane>

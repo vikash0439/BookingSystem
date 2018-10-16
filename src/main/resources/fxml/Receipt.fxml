@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ReceiptController">
+<BorderPane prefHeight="575.0" prefWidth="1304.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.ReceiptController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
          <menus>
@@ -180,12 +180,15 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <RadioButton fx:id="CreditYes" mnemonicParsing="false" selected="true" text="Yes">
+                  <RadioButton fx:id="CreditYes" mnemonicParsing="false" selected="true" text="Yes" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
+                      <toggleGroup>
+                        <ToggleGroup fx:id="credit" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="CreditNo" mnemonicParsing="false" text="No" toggleGroup="$credit">
+                  <RadioButton fx:id="CreditNo" mnemonicParsing="false" text="No" toggleGroup="$credit" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -256,7 +259,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="receipttable" prefHeight="583.0" prefWidth="979.0" tableMenuButtonVisible="true">
+            <TableView fx:id="receipttable" prefHeight="598.0" prefWidth="677.0" tableMenuButtonVisible="true">
               <columns>
                   <TableColumn fx:id="colcontractid" maxWidth="3000.0" prefWidth="116.0" text="Contract ID" />
                   <TableColumn fx:id="colReceiptID" maxWidth="3000.0" prefWidth="79.0" text="Receipt No" />

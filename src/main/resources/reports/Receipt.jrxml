@@ -114,7 +114,7 @@
 				</textElement>
 				<text><![CDATA[Date :]]></text>
 			</staticText>
-			<textField pattern="MMMMM dd, yyyy">
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="460" y="18" width="100" height="18" uuid="5a2dddba-b9be-482d-901b-46dbd04fa0ef"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -132,28 +132,28 @@
 			<staticText>
 				<reportElement x="60" y="5" width="161" height="17" uuid="a8d4db30-e4c4-4b8b-acc4-9c22f58111e3"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Received with thanks from :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="60" y="52" width="122" height="17" uuid="7789ee2d-c184-424b-bb69-331b967632f9"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[The sum of rupees :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="60" y="71" width="200" height="17" uuid="a5a02a7e-6a3f-4279-ab7e-a42b291bcbbe"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[By Cash/Cheque/DD/NEFT/RTGS :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="60" y="89" width="450" height="19" uuid="77d68c3d-98f3-43a3-a88f-03d59caf03ef"/>
 				<textElement>
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[On account of payment for booking  of auditorium for hiring (SAC code : 9972) on ]]></text>
 			</staticText>
@@ -170,7 +170,7 @@
 				<textFieldExpression><![CDATA[$F{paidamount}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="223" y="6" width="285" height="17" uuid="aa1861ab-76ee-43b4-af99-4104d3cc0be1">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="198" y="6" width="285" height="17" uuid="aa1861ab-76ee-43b4-af99-4104d3cc0be1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="70c9bd1c-a3fa-4d40-a39b-859165301039"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{client}]]></textFieldExpression>
@@ -182,7 +182,7 @@
 			<staticText>
 				<reportElement x="20" y="234" width="400" height="16" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
 				<textElement textAlignment="Left">
-					<font size="12" isBold="false" isItalic="true" isUnderline="false"/>
+					<font size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Cheques are subject to encashment]]></text>
 			</staticText>
@@ -227,7 +227,7 @@
 			<staticText>
 				<reportElement x="60" y="21" width="70" height="18" uuid="b2a1b936-5015-48a1-96dd-ea03ab16437e"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Address :]]></text>
 			</staticText>

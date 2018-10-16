@@ -65,6 +65,12 @@ public class Invoice{
 		this.contract = contract;
 	}
 
+	@Override
+	public String toString() {
+		return "Invoice [invoiceid=" + invoiceid + ", invoicedate=" + invoicedate + ", cancelled=" + cancelled
+				+ ", contract=" + contract + "]";
+	}
+
 	
 	
 	

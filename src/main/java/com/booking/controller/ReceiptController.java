@@ -88,8 +88,7 @@ public class ReceiptController implements Initializable{
 	private ComboBox<String> MultiplecID;
 	@FXML
 	private Label labelContractid;
-	@FXML
-	private ToggleGroup credit;
+	
 	
 	/* Payment Table */
 	@FXML
@@ -102,6 +101,8 @@ public class ReceiptController implements Initializable{
 	private TextField PaidBy;
 	@FXML
 	private TextField Credit;
+	@FXML
+	private ToggleGroup credit;
 	@FXML
 	private RadioButton CreditYes;
 	@FXML
@@ -270,6 +271,11 @@ public class ReceiptController implements Initializable{
 			receipt.setPdetails(payment);
 			
 			receiptService.save(receipt);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Receipt.");
+			alert.setHeaderText("Amount:  " + PaidAmount.getText() + "  receipt created.");
+			alert.setContentText("Generating receipt....");
+			alert.showAndWait();
 			
 			 try {
 				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
@@ -282,10 +288,9 @@ public class ReceiptController implements Initializable{
 						
 						String showdate = bookinglist.get(i).getServicedate();
 					    String slot = bookinglist.get(i).getServicetime();
-					    
-					    detail = showdate.concat(" from ").concat(slot);
-					    
-					  
+//					    if(showdate == null)
+					    detail = showdate.concat(" from ").concat(slot).concat(", ");
+				  
 					    StringBuffer details = new StringBuffer(detail);
 					    detailsbooking = detailsbooking.append(details);
 					}
@@ -298,7 +303,7 @@ public class ReceiptController implements Initializable{
 				 p.put("paidamount", convert(Integer.parseInt(receipt.getPaidamount()))+" Only");
 				 p.put("paymentmode", receipt.getPaymentmode());
 				 p.put("client", receipt.getContract().getCustomer().getCustomername());		 
-				 p.put("details", detail);
+				 p.put("details", detailsbooking2);
 				 p.put("address", receipt.getContract().getCustomer().getAddress());
 				 p.put("gst", receipt.getContract().getCustomer().getGstno());
 				 p.put("gross", (Math.round(bp)));
@@ -323,11 +328,11 @@ public class ReceiptController implements Initializable{
 
 			       JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 			       
-			       Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Report");
-					alert.setHeaderText(null);
-					alert.setContentText("Report downloaded successfully.");
-					alert.showAndWait();
+			       Alert alert2 = new Alert(AlertType.INFORMATION);
+					alert2.setTitle("Receipt");
+					alert2.setHeaderText("Receipt generated successfully");
+					alert2.setContentText("Thank you");
+					alert2.showAndWait();
 				
 			} catch (JRException e) {
 				// TODO Auto-generated catch block
@@ -336,11 +341,7 @@ public class ReceiptController implements Initializable{
 			}
 			
 
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Receipt.");
-			alert.setHeaderText(null);
-			alert.setContentText("Amount:  " + PaidAmount.getText() + "  receipt created.");
-			alert.showAndWait();
+			
 		} else {
 			
 				Receipt receipt = receiptService.find(Long.parseLong(ReceiptID.getText()));;
@@ -364,6 +365,12 @@ public class ReceiptController implements Initializable{
 				receipt.setPdetails(payment);
 				
 				receiptService.save(receipt);	
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Receipt.");
+				alert.setHeaderText(null);
+				alert.setContentText("Amount:  " + PaidAmount.getText() + "  receipt updated.");
+				alert.showAndWait();
 		   }	
 		receipttable();
 		clearFields();
@@ -468,7 +475,7 @@ public class ReceiptController implements Initializable{
 					cID.getEditor().setText(String.valueOf(receipt.getContract().getContractid()));
 					PaidAmount.setText(receipt.getPaidamount());;
 					
-					BaseAmount.setText(null);
+					BaseAmount.setText(String.valueOf(Long.valueOf(receipt.getPaidamount()) - Long.valueOf(receipt.getTaxamount())));
 					TaxAmount.setText(receipt.getTaxamount());
 					TxnID.setText(receipt.getPdetails().getModeid());;
 				    TxnDate.getEditor().setText(receipt.getPdetails().getModedate());
@@ -485,15 +492,12 @@ public class ReceiptController implements Initializable{
 	
 	public void report(ActionEvent event) throws JRException {
 		
-		 // First, compile jrxml file.
+	   // First, compile jrxml file.
        JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
       
        // Parameters for report .
        Map<String, Object> parameters = new HashMap<String, Object>();
        
-//       List<Receipt> list = new ArrayList<Receipt>();
-//       JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
-//       parameters.put("jRDataSource", list);
        
        // DataSource
        // This is simple example, no database.
@@ -584,5 +588,9 @@ public class ReceiptController implements Initializable{
 		PaidBy.clear();
 		CreditYes.setSelected(false);
 		CreditNo.setSelected(true);
+	}
+
+	public ToggleGroup getCredit() {
+		return credit;
 	}	
 }
