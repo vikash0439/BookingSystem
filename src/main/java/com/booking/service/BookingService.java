@@ -42,7 +42,8 @@ private final BookingRepository bookingRepository;
 	}
 	
 	public void delete(Booking booking) {
-		bookingRepository.delete(booking);		
+		bookingRepository.delete(booking);				
+		System.out.println("Booking deleted from contract");
 	}
 
 }

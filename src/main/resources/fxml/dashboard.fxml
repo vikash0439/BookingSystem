@@ -35,7 +35,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
                   <MenuItem mnemonicParsing="false" onAction="#allcontract" text="Contracts" />
-                  <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
+                  <MenuItem mnemonicParsing="false" onAction="#contract" text="Add Contract" />
                   <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
               <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
             </items>
@@ -124,6 +124,66 @@
                      </HBox.margin>
                   </Label>
                   <Label fx:id="CustomerName">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Rep Name - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="repname">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Rep Email - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="repemail">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Rep Mobile - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="repmobile">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>

@@ -17,10 +17,12 @@ import org.springframework.stereotype.Controller;
 import com.booking.bean.Booking;
 import com.booking.bean.Invoice;
 import com.booking.bean.Receipt;
+import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
 import com.booking.service.ContractService;
 import com.booking.service.ReceiptService;
+import com.booking.service.RepService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -70,6 +72,12 @@ public class DashboardController implements Initializable {
 	private Label ShowName;
 	@FXML
 	private TextField searchField;
+	@FXML
+	private Label repname;
+	@FXML
+	private Label repemail;
+	@FXML
+	private Label repmobile;
 
 	@FXML
 	TableView<Booking> bookingtable;
@@ -103,6 +111,8 @@ public class DashboardController implements Initializable {
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
+	@Autowired
+	private RepService repService;
 	@Autowired
 	private BookingService bookingService;
 	@Autowired
@@ -453,6 +463,13 @@ public class DashboardController implements Initializable {
 					ContractID.setText(Long.toString(booking.getContract().getContractid()));
 					Purpose.setText(booking.getContract().getPurpose());
 					CustomerName.setText(booking.getContract().getCustomer().getCustomername());
+					
+					repname.setText(booking.getContract().getRepname());
+					
+					Rep r = repService.findbyName(booking.getContract().getRepname());
+					
+					repemail.setText(r.getRepemail());
+					repmobile.setText(r.getRepmobile());
 
 				}
 			};

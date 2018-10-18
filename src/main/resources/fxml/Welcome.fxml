@@ -20,7 +20,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background-image" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.LoginController">
    <center>
-      <VBox alignment="CENTER" prefHeight="332.0" prefWidth="502.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="230.0" prefWidth="379.0" style="-fx-background-color: #ffffff; -fx-background-image: url(&quot;/images/srcpa.jpg&quot;); -fx-background-repeat: stretch;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="178.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -57,13 +57,16 @@
                </VBox.margin>
             </Button>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </VBox>
    </center>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="452.0" prefWidth="290.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="452.0" prefWidth="271.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />

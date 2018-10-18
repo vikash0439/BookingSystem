@@ -281,6 +281,10 @@ public class ContractController implements Initializable {
 	public void statecode(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.STATECODE);
 	}
+	@FXML
+	public void allcontract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.ALLCONTRACT);
+	}
 
 	@FXML
 	private void exit(ActionEvent event) {

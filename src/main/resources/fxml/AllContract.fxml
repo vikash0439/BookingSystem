@@ -292,13 +292,9 @@
                      </HBox.margin></ComboBox>
                </children>
             </HBox>
-            <VBox prefHeight="407.0" prefWidth="692.0" style="-fx-background-color: #f2f2f2;">
+            <VBox prefHeight="439.0" prefWidth="692.0" style="-fx-background-color: #f2f2f2;">
                <children>
-                  <Label fx:id="booking" text="Booking">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin></Label>
-                  <TableView fx:id="bookingtable">
+                  <TableView fx:id="bookingtable" prefHeight="235.0" prefWidth="682.0">
                     <columns>
                         <TableColumn fx:id="serviceid" prefWidth="98.0" text="ServiceID" />
                       <TableColumn fx:id="servicedate" prefWidth="77.0" text="Date" />
@@ -312,7 +308,7 @@
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </VBox.margin>
                   </TableView>
-                  <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0" visible="false">
+                  <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0">
                      <children>
                         <DatePicker fx:id="ServiceDate" prefHeight="31.0" prefWidth="210.0" promptText="Date">
                            <HBox.margin>
@@ -352,15 +348,15 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
-                  <Label fx:id="performance" text="Performance">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin></Label>
+                  <TableView fx:id="showtable" prefHeight="113.0" prefWidth="692.0">
+                    <columns>
+                        <TableColumn fx:id="performanceid" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="showname" prefWidth="215.0" text="Show name" />
+                      <TableColumn fx:id="showtime" prefWidth="122.0" text="Show Time" />
+                        <TableColumn fx:id="showdetails" prefWidth="249.0" text="Details" />
+                    </columns>
+                  </TableView>
                   <Label fx:id="receipt" text="Receipt">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin></Label>
-                  <Label fx:id="customer" text="Customer">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin></Label>

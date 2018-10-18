@@ -62,11 +62,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.controlsfx</groupId>
-			<artifactId>controlsfx</artifactId>
-			<version>9.0.0</version>
-		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -77,6 +73,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

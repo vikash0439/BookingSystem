@@ -10,40 +10,49 @@ import com.booking.repository.ContractRepository;
 
 @Service
 public class ContractService {
-	
-private final ContractRepository contractRepository;
-	
-	public ContractService(ContractRepository contractRepository) {   // constructor injection with IOC
+
+	private final ContractRepository contractRepository;
+
+	public ContractService(ContractRepository contractRepository) { // constructor injection with IOC
 		this.contractRepository = contractRepository;
 	}
-	
-	
+
 	public Contract save(Contract invoice) {
-		return contractRepository.save(invoice);		
+		return contractRepository.save(invoice);
 	}
-	
-	public List<Contract> getContract(){
+
+	public List<Contract> getContract() {
 		List<Contract> c = new ArrayList<Contract>();
-		contractRepository.findAll().forEach(c :: add);
+		contractRepository.findAll().forEach(c::add);
 		return c;
 	}
 
 	public Contract find(Long contractid) {
 		return contractRepository.findAllByContractid(contractid);
 	}
-	
+
 	public List<Long> getContractID() {
 		return contractRepository.findContractID();
 	}
 
-
 	public void updateStatus(long contractid) {
-		
+
 		Contract contract = contractRepository.findAllByContractid(contractid);
 		contract.setOverride("cancelled");
-		
 		contractRepository.save(contract);
 		
+		System.out.println("Contract status updated");
+
+	}
+
+	public void updateCost(long contractid, String baseprice, String taxamount, String pact) {
+
+		Contract contract = contractRepository.findAllByContractid(contractid);
+		contract.setTaxamount(taxamount);
+		contract.setBaseprice(baseprice);
+		contract.setPact(pact);
+		contractRepository.save(contract);      
+		System.out.println("Contract cost updated");
 	}
 
 }

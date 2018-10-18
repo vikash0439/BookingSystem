@@ -12,6 +12,7 @@ import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.Rep;
 import com.booking.bean.Service;
+import com.booking.bean.*;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
 import com.booking.service.ContractService;
@@ -27,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -35,6 +37,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,13 +53,7 @@ public class AllContractController implements Initializable {
 	@FXML
 	private ComboBox<?> ContractID;
 	@FXML
-	private Label booking;
-	@FXML
-	private Label performance;
-	@FXML
 	private Label receipt;
-	@FXML
-	private Label customer;
 	@FXML
 	private Label invoice;
 
@@ -80,6 +77,17 @@ public class AllContractController implements Initializable {
 	private Label repemail;
 	@FXML
 	private Label repmobile;
+	
+    @FXML
+    private TableView<Performance> showtable;
+    @FXML
+	private TableColumn<Performance, String> showname;
+    @FXML
+	private TableColumn<Performance, String> showtime;
+    @FXML
+	private TableColumn<Performance, String> showdetails;
+	@FXML
+	private TableColumn<Performance, String> performanceid;
 
 	@FXML
 	private TableView<Booking> bookingtable;
@@ -128,6 +136,7 @@ public class AllContractController implements Initializable {
 
 	private ObservableList cIDList = FXCollections.observableArrayList();
 	private ObservableList contractbookingList = FXCollections.observableArrayList();
+	private ObservableList contractshowList = FXCollections.observableArrayList();
 	private ObservableList<String> slotList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceList = FXCollections.observableArrayList();
 
@@ -226,6 +235,10 @@ public class AllContractController implements Initializable {
 		Double t = bp + ta;
 		taxamount.setText(String.valueOf(ta));
 		pact.setText(String.valueOf(t));
+		
+		
+		contractService.updateCost(Long.parseLong((String) ContractID.getEditor().getText()), bp.toString(), String.valueOf(ta), String.valueOf(t));
+		
 	}
 	
 	public void addMore() {
@@ -242,6 +255,11 @@ public class AllContractController implements Initializable {
 		b.setContract(contract);
 		
 		bookingService.save(b);
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Contract");
+		alert.setHeaderText("Booking updated");
+		alert.setContentText("New booking added in the contract Id : " +ContractID.getEditor().getText());
 		
 		ServiceDate.getEditor().clear();
 		ServiceName.getSelectionModel().clearSelection();
@@ -273,9 +291,19 @@ public class AllContractController implements Initializable {
 		time.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
 		colDelete.setCellFactory(delete);
 		
+		
 		contractbookingList.clear();
 		contractbookingList.addAll(contract.getBookings());
 		bookingtable.setItems(contractbookingList);
+		
+		performanceid.setCellValueFactory(new PropertyValueFactory<>("performanceid"));
+		showname.setCellValueFactory(new PropertyValueFactory<>("showname"));
+		showtime.setCellValueFactory(new PropertyValueFactory<>("showtime"));
+		showdetails.setCellValueFactory(new PropertyValueFactory<>("showdetails"));
+		
+		contractshowList.clear();
+		contractshowList.addAll(contract.getPerformances());
+		showtable.setItems(contractshowList);
 
 		bookingdate.setText(contract.getBookingdate());
 		contractid.setText(String.valueOf((contract.getContractid())));
@@ -291,10 +319,7 @@ public class AllContractController implements Initializable {
 		repemail.setText(r.getRepemail());
 		repmobile.setText(r.getRepmobile());
 
-		booking.setText(contract.getBookings().toString());
-		performance.setText(contract.getPerformances().toString());
-		receipt.setText(contract.getReceipt().toString());
-		customer.setText(contract.getCustomer().toString());
+		receipt.setText(contract.getReceipt().toString());	
 		invoice.setText(contract.getInvoice().toString());
 	
 	}
@@ -317,9 +342,7 @@ public class AllContractController implements Initializable {
 							Booking booking = getTableView().getItems().get(getIndex());
 //							updateBooking(booking);
 							System.out.println(booking);
-							deletebooking(booking);
-							
-						
+							deletebooking(booking);					
 						});
 						
 						btnEdit.setStyle("-fx-background-color: transparent;");

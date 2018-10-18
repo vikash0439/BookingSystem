@@ -216,8 +216,7 @@ public class InvoiceController implements Initializable {
 			try {
 
 				System.out.println("From Invoice Controller report try block");
-				JasperReport jasperReport = JasperCompileManager
-						.compileReport("src/main/resources/reports/Invoice.jrxml");
+				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/Invoice.jrxml");
 
 				Map<String, Object> parameters = new HashMap<String, Object>();
 				
