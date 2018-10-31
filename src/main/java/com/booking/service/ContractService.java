@@ -51,7 +51,8 @@ public class ContractService {
 		contract.setTaxamount(taxamount);
 		contract.setBaseprice(baseprice);
 		contract.setPact(pact);
-		contractRepository.save(contract);      
+		contractRepository.save(contract);   
+		
 		System.out.println("Contract cost updated");
 	}
 

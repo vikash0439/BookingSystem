@@ -7,7 +7,7 @@
 	<groupId>com.booking</groupId>
 	<artifactId>BookingSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>BookingSystem</name>
 	<description>Auditorium Booking System</description>
@@ -26,6 +26,7 @@
 	</properties>
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -53,10 +54,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.4.0</version>
+			<version>6.7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

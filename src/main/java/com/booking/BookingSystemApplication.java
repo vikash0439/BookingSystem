@@ -47,6 +47,7 @@ public class BookingSystemApplication extends Application{
      * Scene to be displayed on startup. Example: Functional tests on main
      * window.
      */
+    
     protected void displayInitialScene() {
         stageManager.switchScene(FxmlView.LOGIN);
     }

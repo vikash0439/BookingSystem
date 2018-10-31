@@ -424,7 +424,7 @@
 				<textFieldExpression><![CDATA[$F{cg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="316" y="241" width="67" height="21" uuid="8c3d9bda-bf74-4a56-b19a-6a87300aa779">
+				<reportElement x="324" y="241" width="67" height="21" uuid="8c3d9bda-bf74-4a56-b19a-6a87300aa779">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f76423fb-cfd7-40a4-ba9d-11b2c77b885a"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{baseprice}]]></textFieldExpression>
