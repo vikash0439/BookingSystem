@@ -332,6 +332,7 @@ public class DashboardController implements Initializable {
 			});
 			SortedList<Booking> sortedData = new SortedList<>(filteredData);
 			sortedData.comparatorProperty().bind(bookingtable.comparatorProperty());
+			bookingtable.refresh();
 			bookingtable.setItems(sortedData);
 		});
 	}
@@ -435,8 +436,7 @@ public class DashboardController implements Initializable {
 						Invoice i = currentRow.getItem().getContract().getInvoice();
 						if (currentRow.getItem().getContract().getCustomer().getCustomername().equalsIgnoreCase("SRCPA")) {  //indicates srcpa
 							currentRow.setStyle("-fx-background-color:#ffffcc");
-						}else			
-						if (currentRow.getItem().getContract().getInvoice() != null) {  //indicates invoice created
+						}else if (currentRow.getItem().getContract().getInvoice() != null) {  //indicates invoice created
 							currentRow.setStyle("-fx-background-color:#b3c6ff");
 
 						}else if(currentRow.getItem().getContract().getOverride() != null){   //indicates cancelled

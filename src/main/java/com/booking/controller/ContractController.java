@@ -74,7 +74,6 @@ public class ContractController implements Initializable {
 	private VBox showVBox;
 	@FXML
 	private TextField charges;
-	
 
 	/* Contract Table */
 	@FXML
@@ -95,7 +94,6 @@ public class ContractController implements Initializable {
 	private Label pact;
 	@FXML
 	private ComboBox<String> repName;
-	
 
 	/* Booking table */
 	@FXML
@@ -277,10 +275,12 @@ public class ContractController implements Initializable {
 	public void purpose(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.PURPOSE);
 	}
+
 	@FXML
 	public void statecode(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.STATECODE);
 	}
+
 	@FXML
 	public void allcontract(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.ALLCONTRACT);
@@ -297,6 +297,7 @@ public class ContractController implements Initializable {
 				@Override
 				public void updateItem(LocalDate item, boolean empty) {
 					super.updateItem(item, empty);
+					
 					List<String> datefromBooking = bookingService.getServiceDate();
 					List<Date> dateList = new ArrayList<Date>();
 					List<String> FinaldateList = new ArrayList<String>();
@@ -315,11 +316,11 @@ public class ContractController implements Initializable {
 					for (Date date : dateList) {
 						FinaldateList.add(simpleDateFormat2.format(date));
 					}
-					if (!empty) {
-						if (FinaldateList.contains(item)) {
-							setStyle("-fx-background-color: #99e699;");
-						}
+                    System.out.println("Date Picker final service datte" + FinaldateList);
+					if (FinaldateList.contains(item)) {
+						setStyle("-fx-background-color: #99e699;");
 					}
+					
 				}
 			};
 		}
@@ -494,8 +495,8 @@ public class ContractController implements Initializable {
 			p3.setContract(contract);
 		}
 
-//		List<Performance> performance = new ArrayList<Performance>();
-//		performance.add(p);
+		// List<Performance> performance = new ArrayList<Performance>();
+		// performance.add(p);
 
 		contractService.save(contract);
 		bookingService.save(b);
@@ -515,7 +516,7 @@ public class ContractController implements Initializable {
 		if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 			bookingService.save(b6);
 		}
-		
+
 		if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
 			performanceService.save(p);
 		}
@@ -525,8 +526,6 @@ public class ContractController implements Initializable {
 		if (ShowName3.getText() != null && !ShowName3.getText().trim().isEmpty()) {
 			performanceService.save(p3);
 		}
-		
-		
 
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Contract");
@@ -584,8 +583,9 @@ public class ContractController implements Initializable {
 		Service service4 = serviceService.getDetail(ser4);
 		ServiceCost4.setText(service4.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText());
-		
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText());
+
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -593,14 +593,16 @@ public class ContractController implements Initializable {
 		taxamount.setText(String.valueOf(ta));
 		pact.setText(String.valueOf(t));
 	}
-	
+
 	public void serviceDetail5() {
 
 		String ser5 = ServiceName5.getValue();
 		Service service5 = serviceService.getDetail(ser5);
 		ServiceCost5.setText(service5.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText())+ Long.parseLong(ServiceCost4.getText())+ Long.parseLong(ServiceCost5.getText());
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
+				+ Long.parseLong(ServiceCost5.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -608,14 +610,16 @@ public class ContractController implements Initializable {
 		taxamount.setText(String.valueOf(ta));
 		pact.setText(String.valueOf(t));
 	}
-	
+
 	public void serviceDetail6() {
 
 		String ser6 = ServiceName6.getValue();
 		Service service6 = serviceService.getDetail(ser6);
 		ServiceCost6.setText(service6.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText()) + Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())+ Long.parseLong(ServiceCost5.getText())+ Long.parseLong(ServiceCost6.getText());
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
+				+ Long.parseLong(ServiceCost5.getText()) + Long.parseLong(ServiceCost6.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -623,7 +627,7 @@ public class ContractController implements Initializable {
 		taxamount.setText(String.valueOf(ta));
 		pact.setText(String.valueOf(t));
 	}
-	
+
 	public void serviceDetail3() {
 
 		String ser3 = ServiceName3.getValue();

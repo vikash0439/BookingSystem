@@ -92,17 +92,11 @@
 				<text><![CDATA[Receipt No.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="4" width="90" height="13" uuid="1428b363-9491-4e04-bf49-1eb01867b0ac">
+				<reportElement x="98" y="4" width="90" height="13" uuid="1428b363-9491-4e04-bf49-1eb01867b0ac">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87e12c9b-4b56-48da-b0a9-b9a010f75b72"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{receiptid}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="121" y="0" width="100" height="30" uuid="8e3c2ffa-c0db-48df-82b3-a5e05afe6f2a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38f3e928-cd05-466e-9aa2-b4e88aa7527f"/>
-				</reportElement>
-				<text><![CDATA[]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="50" y="17" width="80" height="14" uuid="28cab92c-9e0b-47dd-9fb7-8a5398ea2865"/>
 				<textFieldExpression><![CDATA[$F{contractid}]]></textFieldExpression>
@@ -124,6 +118,13 @@
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Place of Service: Delhi (07) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="4" width="29" height="16" uuid="d3c58a19-22c0-427d-8d6d-6264a7eb78db"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[R/AH/]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

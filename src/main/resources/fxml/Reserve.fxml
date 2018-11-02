@@ -176,10 +176,10 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="reservetable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="reservetable" prefHeight="810.0" prefWidth="959.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colReserveID" maxWidth="700.0" prefWidth="20.0" text="Sr ." />
-                <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Service Date" />
+                 <TableColumn fx:id="colReserveID" maxWidth="700.0" prefWidth="20.0" text="Sr ." />
+                 <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Service Date" />
                   <TableColumn fx:id="colServiceTime" maxWidth="4000.0" prefWidth="75.0" text="Service Time" />
                   <TableColumn fx:id="colServiceID" maxWidth="4000.0" prefWidth="60.0" text="Service" />
                   <TableColumn fx:id="colReserveTitle" maxWidth="4000.0" prefWidth="60.0" text="Event Name" />

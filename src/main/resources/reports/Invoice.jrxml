@@ -125,7 +125,7 @@
 				<text><![CDATA[GSTIN/UniqueID]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="102" y="22" width="100" height="16" uuid="68745869-bcfd-41eb-ba6e-b5cf618fe2ac"/>
+				<reportElement x="125" y="22" width="100" height="16" uuid="68745869-bcfd-41eb-ba6e-b5cf618fe2ac"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -177,6 +177,13 @@
 			<staticText>
 				<reportElement x="336" y="74" width="214" height="18" uuid="653626d6-21a8-4ea7-b30d-4451de17d92b"/>
 				<text><![CDATA[Tax Payable on Reverse Charge Basis :  No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="22" width="23" height="16" uuid="718df6ab-110f-4f64-a94d-fe3f6349b311"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[I/AH/]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
