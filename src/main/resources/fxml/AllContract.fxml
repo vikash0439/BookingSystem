@@ -259,7 +259,7 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="TOP_RIGHT" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0">
                <children>
@@ -278,7 +278,7 @@
             </HBox>
             <HBox prefHeight="48.0" prefWidth="994.0">
                <children>
-                  <Label text="Service Details (Bookings)">
+                  <Label text="Contract ID :">
                      <HBox.margin>
                         <Insets left="100.0" right="25.0" top="5.0" />
                      </HBox.margin>
@@ -292,9 +292,14 @@
                      </HBox.margin></ComboBox>
                </children>
             </HBox>
-            <VBox prefHeight="439.0" prefWidth="692.0" style="-fx-background-color: #f2f2f2;">
+            <VBox style="-fx-background-color: #f2f2f2;">
                <children>
-                  <TableView fx:id="bookingtable" prefHeight="410.0" prefWidth="682.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Booking Details:- :-">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TableView fx:id="bookingtable" prefHeight="200.0">
                     <columns>
                         <TableColumn fx:id="serviceid" maxWidth="4000.0" prefWidth="75.0" text="ServiceID" />
                         <TableColumn fx:id="servicedate" maxWidth="4000.0" prefWidth="75.0" text="Date" />
@@ -308,6 +313,11 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TableView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add More Booking :-">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
                   <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0">
                      <children>
                         <DatePicker fx:id="ServiceDate" prefHeight="31.0" prefWidth="210.0" promptText="Date">
@@ -345,10 +355,15 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <TableView fx:id="showtable"  prefHeight="410.0" prefWidth="682.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Performance Details :-">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TableView fx:id="showtable" prefHeight="120.0">
                     <columns>
                         <TableColumn fx:id="performanceid" prefWidth="75.0" text="Performance ID" />
                       <TableColumn fx:id="showname" prefWidth="215.0" text="Show name" />
@@ -356,46 +371,36 @@
                         <TableColumn fx:id="showdetails" prefWidth="249.0" text="Details" />
                     </columns>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </TableView>
-                  <Label fx:id="receipt" text="Receipt">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Receipt Amounts:- " />
+                        <Label fx:id="receipt" text="Receipt" />
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin></Label>
-                  <Label fx:id="invoice" text="Invoice">
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice Details :- " />
+                        <Label fx:id="invoice" text="Invoice" />
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin></Label>
+                        <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="545.0">
-               <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: gray;" styleClass="btnGreen" text="Button" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="15.0" right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" styleClass="btnGreen" text="Button" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="15.0" right="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="100.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets left="25.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
+   <bottom>
+      <HBox prefHeight="60.0" prefWidth="1300.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

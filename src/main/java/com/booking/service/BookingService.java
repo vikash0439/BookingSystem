@@ -25,7 +25,7 @@ private final BookingRepository bookingRepository;
 	
 	public List<Booking> getBooking(){
 		List<Booking> c = new ArrayList<Booking>();
-		bookingRepository.findAll().forEach(c :: add);
+		bookingRepository.findAllByOrder().forEach(c :: add);
 		return c;
 	}
 

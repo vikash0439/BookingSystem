@@ -6,8 +6,8 @@
 
 	<groupId>com.booking</groupId>
 	<artifactId>BookingSystem</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>1.0.1</version>
+	<packaging>jar</packaging>
 
 	<name>BookingSystem</name>
 	<description>Auditorium Booking System</description>

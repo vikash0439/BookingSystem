@@ -209,48 +209,49 @@ public class InvoiceController implements Initializable {
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Invoice created.");
-			alert.setHeaderText("Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
+			alert.setHeaderText(
+					"Contract No :  " + contractid.getSelectionModel().getSelectedItem() + "  invoice created.");
 			alert.setContentText("Generating report..");
 			alert.showAndWait();
 
 			try {
 
 				System.out.println("From Invoice Controller report try block");
-				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/Invoice.jrxml");
+				JasperReport jasperReport = JasperCompileManager
+						.compileReport(getClass().getResourceAsStream("/reports/Invoice.jrxml"));
 
 				Map<String, Object> parameters = new HashMap<String, Object>();
-				
+
 				List<HashMap<String, Object>> inv = new ArrayList<HashMap<String, Object>>();
-				
+
 				int i = 1;
 				long qty;
 				String unit = "Days";
 				Long amount = null;
-				
+
 				List<Booking> allbookings = invoice.getContract().getBookings();
-                StringBuffer buffername = new StringBuffer();
-                String stringname = null;
-                StringBuffer bufferdate = new StringBuffer();
-                String stringdate = null;
-                StringBuffer buffercost = new StringBuffer();
-                String stringcost = null;
-                
-				for(i = 0; i < allbookings.size(); i++ ) {
-					
+				StringBuffer buffername = new StringBuffer();
+				String stringname = null;
+				StringBuffer bufferdate = new StringBuffer();
+				String stringdate = null;
+				StringBuffer buffercost = new StringBuffer();
+				String stringcost = null;
+
+				for (i = 0; i < allbookings.size(); i++) {
+
 					String name = allbookings.get(i).getServicename();
 					buffername = buffername.append(" ").append(name);
 					stringname = buffername.toString();
-					
+
 					String date = allbookings.get(i).getServicedate();
 					bufferdate = bufferdate.append(" ").append(date);
 					stringdate = bufferdate.toString();
-					
+
 					String cost = allbookings.get(i).getServicecost();
 					buffercost = buffercost.append(" ").append(cost);
 					stringcost = buffercost.toString();
 				}
 				qty = i;
-				
 
 				HashMap<String, Object> p = new HashMap<String, Object>();
 				p.put("contractid", invoice.getContract().getContractid());
@@ -260,13 +261,13 @@ public class InvoiceController implements Initializable {
 				p.put("statecode", invoice.getContract().getCustomer().getStatecode());
 				p.put("gstno", invoice.getContract().getCustomer().getGstno());
 				p.put("baseprice", invoice.getContract().getBaseprice());
+
 				p.put("servicename", stringname);
 				p.put("servicedate", stringdate);
 				p.put("servicecost", stringcost);
-				p.put("qty",  qty);
-				p.put("unit",  unit);
-				p.put("amount",  stringcost);
-				
+				p.put("qty", qty);
+				p.put("unit", unit);
+				p.put("amount", stringcost);
 
 				Double ia = Double.parseDouble(invoice.getContract().getBaseprice());
 				Double cg = ia * 9 / 100;
@@ -276,26 +277,15 @@ public class InvoiceController implements Initializable {
 				p.put("cg", cg);
 				p.put("sg", sg);
 				p.put("t", t);
-				p.put("NumInWords",  convert((int) Math.round(t))+" Only");
-				
-				
-//				for(Booking s : invoice.getContract().getBookings()) {
-//		        	HashMap<String, Object> m =new HashMap<String , Object>();
-//		        	m.put("servicename", s.getServicename());
-//		        	m.put("servicedate", s.getServicedate());
-//		        	m.put("servicecost", s.getServicecost());
-//		        	
-//		        	inv.add(m);
-//				}
-				
+				p.put("NumInWords", convert((int) Math.round(t)) + " Only");
+
 				inv.add(p);
-	
 
 				JRDataSource jRDataSource = new JRBeanCollectionDataSource(inv);
 				parameters.put("jRDataSource", inv);
 
 				JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
-				File outDir = new File("D:/Reports/Invoice");
+				File outDir = new File("Reports/Invoice");
 				outDir.mkdirs();
 
 				DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
@@ -400,24 +390,22 @@ public class InvoiceController implements Initializable {
 			return cell;
 		}
 	};
-	
+
 	/* convert number to words */
-	public static final String[] units = { "", "One", "Two", "Three", "Four",
-			"Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
-			"Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-			"Eighteen", "Nineteen" };
-	
-	public static final String[] tens = { 
-			"", 		// 0
-			"",		    // 1
-			"Twenty", 	// 2
-			"Thirty", 	// 3
-			"Forty", 	// 4
-			"Fifty", 	// 5
-			"Sixty", 	// 6
-			"Seventy",	// 7
-			"Eighty", 	// 8
-			"Ninety" 	// 9
+	public static final String[] units = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+			"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
+			"Nineteen" };
+
+	public static final String[] tens = { "", // 0
+			"", // 1
+			"Twenty", // 2
+			"Thirty", // 3
+			"Forty", // 4
+			"Fifty", // 5
+			"Sixty", // 6
+			"Seventy", // 7
+			"Eighty", // 8
+			"Ninety" // 9
 	};
 
 	public static String convert(final int n) {

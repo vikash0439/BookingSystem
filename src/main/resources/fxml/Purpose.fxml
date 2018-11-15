@@ -170,6 +170,12 @@
                </columnResizePolicy>             
             </TableView>
          </children>
+         <BorderPane.margin>
+            <Insets left="25.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
+   <bottom>
+      <HBox prefHeight="60.0" prefWidth="1300.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

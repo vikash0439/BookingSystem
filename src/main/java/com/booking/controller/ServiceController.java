@@ -1,5 +1,7 @@
 package com.booking.controller;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -50,58 +53,60 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
-public class ServiceController implements Initializable{
-	
+public class ServiceController implements Initializable {
+
+	private static final Logger LOG = getLogger(ServiceController.class);
+
 	@FXML
 	private Label ServiceID;
 
 	@FXML
 	private TextField ServiceName;
-	
+
 	@FXML
 	private TextField ServiceInUse;
-	
+
 	@FXML
 	private TextField ServiceCharges;
-	
+
 	@FXML
 	private TextField CancelCharges;
-	
+
 	@FXML
 	private TableView<Service> servicetable;
 
 	@FXML
 	private TableColumn<Service, Long> colServiceID;
-	
+
 	@FXML
 	private TableColumn<Service, String> colServiceName;
-	
+
 	@FXML
 	private TableColumn<Service, String> colServiceInUse;
-	
+
 	@FXML
 	private TableColumn<Service, String> colServiceCharges;
-	
+
 	@FXML
 	private TableColumn<Service, String> colCancelCharges;
-	
+
 	@FXML
 	private TableColumn<Service, Boolean> colEdit;
 
 	@FXML
 	private Button reset;
-	
+
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
-	
+
 	@Autowired
 	private ServiceService serviceService;
-	
+
 	private ObservableList<Service> serviceList = FXCollections.observableArrayList();
-	
+
 	/* Event methods */
-	
+
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.LOGIN);
@@ -121,49 +126,57 @@ public class ServiceController implements Initializable{
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
 	}
+
 	@FXML
-    private void customer(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.CUSTOMER);    	
-    }	
-	@FXML
-	public void service(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SERVICE); 		
-	}	
-	@FXML
-	public void tax(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.TAX); 		
-	}	
-	@FXML
-	public void contract(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.CONTRACT);	
-	}	
-	@FXML
-	public void users(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.USER);		
+	private void customer(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CUSTOMER);
 	}
-		
+
 	@FXML
-	public void reserve(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RESERVE);		
+	public void service(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SERVICE);
 	}
-	
+
 	@FXML
-	public void receipt(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RECEIPT);		
+	public void tax(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.TAX);
 	}
+
 	@FXML
-	public void invoice(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.INVOICE);		
+	public void contract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CONTRACT);
 	}
+
 	@FXML
-	public void slot(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SLOT);		
+	public void users(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.USER);
 	}
+
 	@FXML
-	public void purpose(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.PURPOSE);		
+	public void reserve(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RESERVE);
 	}
-	
+
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RECEIPT);
+	}
+
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.INVOICE);
+	}
+
+	@FXML
+	public void slot(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SLOT);
+	}
+
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.PURPOSE);
+	}
+
 	@FXML
 	private void saveService(ActionEvent event) {
 		if (ServiceID.getText() == null || ServiceID.getText() == "") {
@@ -180,8 +193,9 @@ public class ServiceController implements Initializable{
 			alert.setHeaderText(null);
 			alert.setContentText("Service:  " + ServiceName.getText() + "  has been created.");
 			alert.showAndWait();
+
 		} else {
-			
+
 			Service service = serviceService.find(Long.parseLong(ServiceID.getText()));
 			service.setServicename(ServiceName.getText());
 			service.setServiceinuse(ServiceInUse.getText());
@@ -200,15 +214,13 @@ public class ServiceController implements Initializable{
 		clearFields();
 	}
 
-	
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		servicetable();
-		clearFields();		
+		clearFields();
 	}
-	
+
 	public void servicetable() {
 		/*
 		 * Set All userTable column properties
@@ -264,56 +276,82 @@ public class ServiceController implements Initializable{
 					ServiceInUse.setText(service.getServiceinuse());
 					ServiceCharges.setText(service.getServicecharges());
 					CancelCharges.setText(service.getCancelcharges());
-					
+
 				}
 			};
 			return cell;
 		}
 	};
-	
+
 	public void print(ActionEvent event) throws JRException {
-		
-		
-        JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/services.jrxml");   // First, compile jrxml file.       
-        Map<String, Object> parameters = new HashMap<String, Object>();   // Parameters for report .
-        
-        List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
-        
-        for(Service s : serviceService.getService()) {
-        	Map<String, Object> m =new HashMap<String , Object>();
-        	m.put("serviceid", s.getServiceid());
-        	m.put("servicename", s.getServicename());
-        	m.put("serviceinuse", s.getServiceinuse());
-        	m.put("servicecharges", s.getServicecharges());
-        	m.put("cancelcharges", s.getCancelcharges());
-        	list.add(m);
-        }
-        
-        JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
-        parameters.put("jRDataSource", list);
-  
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
-  
-     
-        
-        File outDir = new File("D:/Reports/Service");   // Make sure the output directory exists.
-        outDir.mkdirs();
-      
-        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-        Date date=new java.util.Date();
-        System.out.println(date);
-        String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
-        
-        // Export to PDF.
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-        
-        Alert alert = new Alert(AlertType.INFORMATION);
+		JasperReport jasperReport = null;
+		LOG.info("Service controller class  print method ");
+		try {
+
+			LOG.info("Service Report Compiling ");
+			jasperReport = JasperCompileManager
+					.compileReport(getClass().getResourceAsStream("/reports/services.jrxml")); // First jrxml compile,
+																								// file.
+		} catch (Exception e) {
+			LOG.error("Unable to parse data ", e);
+		}
+		LOG.info("Service Report Compiled ");
+
+		Map<String, Object> parameters = new HashMap<String, Object>(); // Parameters for report .
+
+		List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
+
+		for (Service s : serviceService.getService()) {
+
+			LOG.info("In Map Loop ");
+
+			Map<String, Object> m = new HashMap<String, Object>();
+			m.put("serviceid", s.getServiceid());
+			m.put("servicename", s.getServicename());
+			m.put("serviceinuse", s.getServiceinuse());
+			m.put("servicecharges", s.getServicecharges());
+			m.put("cancelcharges", s.getCancelcharges());
+			list.add(m);
+
+			LOG.info("After Map Loop ");
+		}
+
+		JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
+		parameters.put("jRDataSource", list);
+
+		LOG.info("Before Jasper Print ");
+		JasperPrint jasperPrint = null;
+		try {
+
+			jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+
+		} catch (Exception e) {
+			LOG.error("Uanble to print jasper ", e);
+		}
+		LOG.info("Before Folder created ");
+
+		File outDir = new File("Reports/Service"); // Make sure the output directory exists.
+		outDir.mkdirs();
+
+		LOG.info("Folder created ");
+
+		DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+		Date date = new java.util.Date();
+		System.out.println(date);
+		String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+		LOG.info("Before export ");
+		// Export to PDF.
+		JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+		LOG.info("After export ");
+
+		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Report");
 		alert.setHeaderText(null);
 		alert.setContentText("Report downloaded successfully.");
 		alert.showAndWait();
 	}
-	
+
 	private void clearFields() {
 		ServiceID.setText(null);
 		ServiceName.clear();

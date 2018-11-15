@@ -1,5 +1,7 @@
 package com.booking.controller;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -7,14 +9,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
@@ -23,7 +26,6 @@ import com.booking.bean.Booking;
 import com.booking.bean.Contract;
 import com.booking.bean.PaymentDetails;
 import com.booking.bean.Receipt;
-import com.booking.bean.User;
 import com.booking.config.StageManager;
 import com.booking.service.ContractService;
 import com.booking.service.PaymentDetailsService;
@@ -42,7 +44,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -68,9 +69,11 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
-public class ReceiptController implements Initializable{
-	
-	@FXML 
+public class ReceiptController implements Initializable {
+
+	private static final Logger LOG = getLogger(ReceiptController.class);
+
+	@FXML
 	private Label ReceiptID;
 	@FXML
 	private ComboBox<String> cID;
@@ -78,7 +81,7 @@ public class ReceiptController implements Initializable{
 	private DatePicker ReceiptDate;
 	@FXML
 	private TextField PaidAmount;
-	@FXML 
+	@FXML
 	private Label BaseAmount;
 	@FXML
 	private Label TaxAmount;
@@ -88,8 +91,7 @@ public class ReceiptController implements Initializable{
 	private ComboBox<String> MultiplecID;
 	@FXML
 	private Label labelContractid;
-	
-	
+
 	/* Payment Table */
 	@FXML
 	private TextField TxnID;
@@ -107,20 +109,19 @@ public class ReceiptController implements Initializable{
 	private RadioButton CreditYes;
 	@FXML
 	private RadioButton CreditNo;
-	
-	
+
 	@FXML
 	private TableView<Receipt> receipttable;
 	@FXML
 	private TableColumn<Receipt, String> colcontractid;
 	@FXML
-	private TableColumn<Receipt, Long> colReceiptID;	
+	private TableColumn<Receipt, Long> colReceiptID;
 	@FXML
-	private TableColumn<Receipt, LocalDate> colReceiptDate;	
+	private TableColumn<Receipt, LocalDate> colReceiptDate;
 	@FXML
 	private TableColumn<Receipt, String> colPaidAmount;
 	@FXML
-	private TableColumn<Receipt, String> colTaxAmount;	
+	private TableColumn<Receipt, String> colTaxAmount;
 	@FXML
 	private TableColumn<Receipt, String> colPaymentMode;
 	@FXML
@@ -134,17 +135,18 @@ public class ReceiptController implements Initializable{
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
-	@Autowired 
+	@Autowired
 	private ReceiptService receiptService;
-	@Autowired 
+	@Autowired
 	private ContractService contractService;
 	@Autowired
 	private PaymentDetailsService paymentDetailsService;
-	
-    private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
-    private ObservableList cIDList = FXCollections.observableArrayList();
-    private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "DD", "Cheque", "NEFT", "Others");
-	
+
+	private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
+	private ObservableList cIDList = FXCollections.observableArrayList();
+	private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "DD", "Cheque", "NEFT",
+			"Others");
+
 	/* Tax Event methods */
 
 	@FXML
@@ -166,217 +168,243 @@ public class ReceiptController implements Initializable{
 	private void dashboard(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.DASHBOARD);
 	}
+
 	@FXML
-    private void customer(ActionEvent event) throws IOException {
-    	stageManager.switchScene(FxmlView.CUSTOMER);    	
-    }	
-	@FXML
-	public void service(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SERVICE); 		
-	}	
-	@FXML
-	public void tax(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.TAX); 		
-	}	
-	@FXML
-	public void contract(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.CONTRACT);	
-	}	
-	@FXML
-	public void users(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.USER);		
+	private void customer(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CUSTOMER);
 	}
-		
+
 	@FXML
-	public void reserve(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RESERVE);		
+	public void service(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SERVICE);
 	}
-	
+
 	@FXML
-	public void receipt(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.RECEIPT);		
+	public void tax(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.TAX);
 	}
+
 	@FXML
-	public void invoice(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.INVOICE);		
+	public void contract(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.CONTRACT);
 	}
+
 	@FXML
-	public void slot(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.SLOT);		
+	public void users(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.USER);
 	}
+
 	@FXML
-	public void purpose(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.PURPOSE);		
+	public void reserve(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RESERVE);
 	}
-	
+
+	@FXML
+	public void receipt(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.RECEIPT);
+	}
+
+	@FXML
+	public void invoice(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.INVOICE);
+	}
+
+	@FXML
+	public void slot(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.SLOT);
+	}
+
+	@FXML
+	public void purpose(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.PURPOSE);
+	}
+
 	public void FreezeField() {
-		
+
 		String var = PaymentMode.getSelectionModel().getSelectedItem();
-		
-		if(var == null || var == "Cash") {
+
+		if (var == null || var == "Cash") {
 			TxnID.setVisible(false);
 			TxnDate.setVisible(false);
 			Bank.setVisible(false);
 			PaidBy.setVisible(false);
-		}else  {
+		} else {
 			TxnID.setVisible(true);
 			TxnDate.setVisible(true);
 			Bank.setVisible(true);
 			PaidBy.setVisible(true);
-		}	
+		}
 	}
+
 	Double bp, ta, cgst;
+
 	public void receiptDetail() {
 		PaidAmount.getText();
 		Double pa = Double.parseDouble(PaidAmount.getText());
-		Double bp1 =  pa/118;
-	    bp =  bp1 * 100;
-		ta =  pa-bp;
-		cgst = ta /2 ;
+		Double bp1 = pa / 118;
+		bp = bp1 * 100;
+		ta = pa - bp;
+		cgst = ta / 2;
 		BaseAmount.setText(String.valueOf(Math.round(bp)));
 		TaxAmount.setText(String.valueOf(Math.round(ta)));
 	}
-	
+
 	@FXML
-	public void setLabelText(){
-		
+	public void setLabelText() {
+
 		String a = String.valueOf(MultiplecID.getValue());
-		System.out.println("From setLabelText method: "+a);
+		System.out.println("From setLabelText method: " + a);
 		List<String> lcid = new ArrayList<String>();
 		lcid.add(a);
 		labelContractid.setText(a);
-						
+
 	}
-	
+
 	@FXML
 	private void saveTax(ActionEvent event) {
 		if (ReceiptID.getText() == null || ReceiptID.getText() == "") {
 			Receipt receipt = new Receipt();
-			receipt.setReceiptdate((String)ReceiptDate.getEditor().getText());
+			receipt.setReceiptdate((String) ReceiptDate.getEditor().getText());
 			receipt.setPaidamount(PaidAmount.getText());
 			receipt.setTaxamount(TaxAmount.getText());
 			receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
 			Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
 			receipt.setContract(contract);
-			
+
 			/* Payment table */
 			PaymentDetails payment = new PaymentDetails();
 			payment.setModeid(TxnID.getText());
-			payment.setModedate((String)TxnDate.getEditor().getText());
+			payment.setModedate((String) TxnDate.getEditor().getText());
 			payment.setModebank(Bank.getText());
 			payment.setPaidby(PaidBy.getText());
 			payment.setCredit(CreditYes.isSelected() ? "Yes" : "No");
 			paymentDetailsService.save(payment);
-			
+
 			receipt.setPdetails(payment);
-			
+
 			receiptService.save(receipt);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Receipt.");
 			alert.setHeaderText("Amount:  " + PaidAmount.getText() + "  receipt created.");
 			alert.setContentText("Generating receipt....");
 			alert.showAndWait();
-			
-			 try {
-				JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
-				 Map<String, Object> parameters = new HashMap<String, Object>();
-				 
-				 List<Booking> bookinglist = receipt.getContract().getBookings();
-				 StringBuffer detailsbooking = new StringBuffer(); 
-				 String detail = null;
-				 for(int i = 0; i < bookinglist.size(); i++ ) {
-						
-						String showdate = bookinglist.get(i).getServicedate();
-					    String slot = bookinglist.get(i).getServicetime();
-//					    if(showdate == null)
-					    detail = showdate.concat(" from ").concat(slot).concat(", ");
-				  
-					    StringBuffer details = new StringBuffer(detail);
-					    detailsbooking = detailsbooking.append(details);
-					}
-				 
-				 String detailsbooking2 = detailsbooking.toString();
-				
-				 HashMap<String, Object> p = new HashMap<String, Object>();
-				 p.put("contractid", receipt.getContract().getContractid());
-				 p.put("receiptid", receipt.getReceiptid());
-				 p.put("paidamount", convert(Integer.parseInt(receipt.getPaidamount()))+" Only");
-				 p.put("paymentmode", receipt.getPaymentmode());
-				 p.put("client", receipt.getContract().getCustomer().getCustomername());		 
-				 p.put("details", detailsbooking2);
-				 p.put("address", receipt.getContract().getCustomer().getAddress());
-				 p.put("gst", receipt.getContract().getCustomer().getGstno());
-				 p.put("gross", (Math.round(bp)));
-				 p.put("cgst", (Math.round(cgst)));
-				 p.put("sgst", (Math.round(cgst)));
-				 p.put("total", PaidAmount.getText());
-				 
-				 
-				 List<HashMap<String, Object>> rec = new ArrayList<HashMap<String, Object>>();
-				 rec.add(p);
-				
-			     JRDataSource jRDataSource = new JRBeanCollectionDataSource(rec);
-			     parameters.put("jRDataSource", rec);
-			     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
-			     File outDir = new File("D:/Reports/Receipt");
-			       outDir.mkdirs();
-			     
-			       DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-			       Date date=new java.util.Date();
-			       System.out.println(date);
-			       String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
 
-			       JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-			       
-			       Alert alert2 = new Alert(AlertType.INFORMATION);
-					alert2.setTitle("Receipt");
-					alert2.setHeaderText("Receipt generated successfully");
-					alert2.setContentText("Thank you");
-					alert2.showAndWait();
-				
+			try {
+				JasperReport jasperReport = null;
+				try {
+					LOG.info("Receipt before Compiling ");
+					jasperReport = JasperCompileManager
+							.compileReport(getClass().getResourceAsStream("/reports/Receipt.jrxml"));
+				} catch (Exception e) {
+					LOG.error("Unable to compile receipt ", e);
+				}
+				Map<String, Object> parameters = new HashMap<String, Object>();
+
+				List<Booking> bookinglist = receipt.getContract().getBookings();
+				StringBuffer detailsbooking = new StringBuffer();
+				String detail = null;
+				Set<String> d = new HashSet<String>();
+
+				for (int i = 0; i < bookinglist.size(); i++) {
+
+					String showdate = bookinglist.get(i).getServicedate();
+					String slot = bookinglist.get(i).getServicetime();
+
+					detail = showdate.concat(" from ").concat(slot).concat(" ");
+
+					d.add(detail);
+
+				}
+				System.out.println("Dates d : " + d);
+
+				for (String i : d) {
+					detailsbooking = detailsbooking.append(i);
+				}
+				String detailsbooking2 = detailsbooking.toString().concat(".");
+
+				HashMap<String, Object> p = new HashMap<String, Object>();
+				p.put("contractid", receipt.getContract().getContractid());
+				p.put("receiptid", receipt.getReceiptid());
+				p.put("paidamount", convert(Integer.parseInt(receipt.getPaidamount())) + " Only");
+				p.put("paymentmode", receipt.getPaymentmode());
+				p.put("client", receipt.getContract().getCustomer().getCustomername());
+				p.put("details", detailsbooking2);
+				p.put("address", receipt.getContract().getCustomer().getAddress());
+				p.put("gst", receipt.getContract().getCustomer().getGstno());
+				p.put("gross", (Math.round(bp)));
+				p.put("cgst", (Math.round(cgst)));
+				p.put("sgst", (Math.round(cgst)));
+				p.put("total", PaidAmount.getText());
+
+				List<HashMap<String, Object>> rec = new ArrayList<HashMap<String, Object>>();
+				rec.add(p);
+
+				JRDataSource jRDataSource = new JRBeanCollectionDataSource(rec);
+				parameters.put("jRDataSource", rec);
+				JasperPrint jasperPrint = null;
+				try {
+					LOG.info("In Jasperprint try method");
+					jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+				} catch (Exception e) {
+					LOG.error("Unable to print receipt ", e);
+				}
+				File outDir = new File("Reports/Receipt");
+				outDir.mkdirs();
+
+				DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+				Date date = new java.util.Date();
+				System.out.println(date);
+				String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+				JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert2.setTitle("Receipt");
+				alert2.setHeaderText("Receipt generated successfully");
+				alert2.setContentText("Thank you");
+				alert2.showAndWait();
+
 			} catch (JRException e) {
 				// TODO Auto-generated catch block
 				System.out.println("JR Exception");
 				e.printStackTrace();
 			}
-			
 
-			
 		} else {
-			
-				Receipt receipt = receiptService.find(Long.parseLong(ReceiptID.getText()));;
-				receipt.setReceiptdate((String)ReceiptDate.getEditor().getText());
-				receipt.setPaidamount(PaidAmount.getText());
-				receipt.setTaxamount(TaxAmount.getText());
-				receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
-				
-				Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
-				receipt.setContract(contract);
-				
-				/* Payment table */
-				PaymentDetails payment = new PaymentDetails();
-				payment.setModeid(TxnID.getText());
-				payment.setModedate((String)TxnDate.getEditor().getText());
-				payment.setModebank(Bank.getText());
-				payment.setPaidby(PaidBy.getText());
-				payment.setCredit(CreditYes.isSelected() ? "Yes" : "No");
-				paymentDetailsService.save(payment);
-				
-				receipt.setPdetails(payment);
-				
-				receiptService.save(receipt);	
-				
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Receipt.");
-				alert.setHeaderText(null);
-				alert.setContentText("Amount:  " + PaidAmount.getText() + "  receipt updated.");
-				alert.showAndWait();
-		   }	
+
+			Receipt receipt = receiptService.find(Long.parseLong(ReceiptID.getText()));
+			;
+			receipt.setReceiptdate((String) ReceiptDate.getEditor().getText());
+			receipt.setPaidamount(PaidAmount.getText());
+			receipt.setTaxamount(TaxAmount.getText());
+			receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
+
+			Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem()));
+			receipt.setContract(contract);
+
+			/* Payment table */
+			PaymentDetails payment = new PaymentDetails();
+			payment.setModeid(TxnID.getText());
+			payment.setModedate((String) TxnDate.getEditor().getText());
+			payment.setModebank(Bank.getText());
+			payment.setPaidby(PaidBy.getText());
+			payment.setCredit(CreditYes.isSelected() ? "Yes" : "No");
+			paymentDetailsService.save(payment);
+
+			receipt.setPdetails(payment);
+
+			receiptService.save(receipt);
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Receipt.");
+			alert.setHeaderText(null);
+			alert.setContentText("Amount:  " + PaidAmount.getText() + "  receipt updated.");
+			alert.showAndWait();
+		}
 		receipttable();
 		clearFields();
 	}
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -384,47 +412,47 @@ public class ReceiptController implements Initializable{
 		cIDList.addAll(contractService.getContractID());
 		cID.setItems(cIDList);
 		MultiplecID.setItems(cIDList);
-		
+
 		PaymentMode.setItems(modeList);
-		
+
 		ReceiptDate.setValue(LocalDate.now());
-		
+
 		receipttable();
 		clearFields();
-		
+
 	}
-	
+
 	public void receipttable() {
 		/*
 		 * Set All userTable column properties
 		 */
-		
-		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
-                return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
-            }
-        });
+		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Receipt, String>, ObservableValue<String>>() {
+
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
+				return new SimpleStringProperty(Long.toString(param.getValue().getContract().getContractid()));
+			}
+		});
 		colReceiptID.setCellValueFactory(new PropertyValueFactory<>("receiptid"));
 		colReceiptDate.setCellValueFactory(new PropertyValueFactory<>("receiptdate"));
 		colPaidAmount.setCellValueFactory(new PropertyValueFactory<>("paidamount"));
 		colTaxAmount.setCellValueFactory(new PropertyValueFactory<>("taxamount"));
 		colPaymentMode.setCellValueFactory(new PropertyValueFactory<>("paymentmode"));
-		colTxnID.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
+		colTxnID.setCellValueFactory(new Callback<CellDataFeatures<Receipt, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
-                return new SimpleStringProperty(param.getValue().getPdetails().getModeid());
-            }
-          });
-		colCredit.setCellValueFactory(new Callback<CellDataFeatures<Receipt,String>,ObservableValue<String>>(){
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
+				return new SimpleStringProperty(param.getValue().getPdetails().getModeid());
+			}
+		});
+		colCredit.setCellValueFactory(new Callback<CellDataFeatures<Receipt, String>, ObservableValue<String>>() {
 
-            @Override
-            public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
-                return new SimpleStringProperty(param.getValue().getPdetails().getCredit());
-            }
-          });	
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
+				return new SimpleStringProperty(param.getValue().getPdetails().getCredit());
+			}
+		});
 		colEdit.setCellFactory(cellFactory);
 
 		receiptList.clear();
@@ -467,82 +495,82 @@ public class ReceiptController implements Initializable{
 
 				private void updateTax(Receipt receipt) {
 					ReceiptID.setText(Long.toString(receipt.getReceiptid()));
-					((TextField)ReceiptDate.getEditor()).setText(receipt.getReceiptdate());
+					((TextField) ReceiptDate.getEditor()).setText(receipt.getReceiptdate());
 					PaidAmount.setText(receipt.getPaidamount());
 					PaymentMode.getEditor().setText(receipt.getPaidamount());
-					
-					
+
 					cID.getEditor().setText(String.valueOf(receipt.getContract().getContractid()));
-					PaidAmount.setText(receipt.getPaidamount());;
-					
-					BaseAmount.setText(String.valueOf(Long.valueOf(receipt.getPaidamount()) - Long.valueOf(receipt.getTaxamount())));
+					PaidAmount.setText(receipt.getPaidamount());
+					;
+
+					BaseAmount.setText(String
+							.valueOf(Long.valueOf(receipt.getPaidamount()) - Long.valueOf(receipt.getTaxamount())));
 					TaxAmount.setText(receipt.getTaxamount());
-					TxnID.setText(receipt.getPdetails().getModeid());;
-				    TxnDate.getEditor().setText(receipt.getPdetails().getModedate());
+					TxnID.setText(receipt.getPdetails().getModeid());
+					;
+					TxnDate.getEditor().setText(receipt.getPdetails().getModedate());
 					Bank.setText(receipt.getPdetails().getModebank());
 					PaidBy.setText(receipt.getPdetails().getPaidby());
-					if(receipt.getPdetails().getCredit().equals("Yes")) CreditYes.setSelected(true);
-					else CreditNo.setSelected(true);
-					
+					if (receipt.getPdetails().getCredit().equals("Yes"))
+						CreditYes.setSelected(true);
+					else
+						CreditNo.setSelected(true);
+
 				}
 			};
 			return cell;
 		}
 	};
-	
+
 	public void report(ActionEvent event) throws JRException {
-		
-	   // First, compile jrxml file.
-       JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
-      
-       // Parameters for report .
-       Map<String, Object> parameters = new HashMap<String, Object>();
-       
-       
-       // DataSource
-       // This is simple example, no database.
-       // then using empty datasource.
-       JRDataSource dataSource = new JREmptyDataSource();
- 
-       JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
- 
-    
-       // Make sure the output directory exists.
-       File outDir = new File("D:/Reports/Receipt");
-       outDir.mkdirs();
-     
-       DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-       Date date=new java.util.Date();
-       System.out.println(date);
-       String path =outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
-       
-       // Export to PDF.
-       JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-       
-       Alert alert = new Alert(AlertType.INFORMATION);
+
+		// First, compile jrxml file.
+		JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
+
+		// Parameters for report .
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		// DataSource
+		// This is simple example, no database.
+		// then using empty datasource.
+		JRDataSource dataSource = new JREmptyDataSource();
+
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+		// Make sure the output directory exists.
+		File outDir = new File("D:/Reports/Receipt");
+		outDir.mkdirs();
+
+		DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+		Date date = new java.util.Date();
+		System.out.println(date);
+		String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+		// Export to PDF.
+		JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Report");
 		alert.setHeaderText(null);
 		alert.setContentText("Report downloaded successfully.");
 		alert.showAndWait();
 	}
-	
+
 	/* convert number to words */
-	public static final String[] units = { "", "One", "Two", "Three", "Four",
-			"Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
-			"Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-			"Eighteen", "Nineteen" };
-	
-	public static final String[] tens = { 
-			"", 		// 0
-			"",		    // 1
-			"Twenty", 	// 2
-			"Thirty", 	// 3
-			"Forty", 	// 4
-			"Fifty", 	// 5
-			"Sixty", 	// 6
-			"Seventy",	// 7
-			"Eighty", 	// 8
-			"Ninety" 	// 9
+	public static final String[] units = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+			"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
+			"Nineteen" };
+
+	public static final String[] tens = { "", // 0
+			"", // 1
+			"Twenty", // 2
+			"Thirty", // 3
+			"Forty", // 4
+			"Fifty", // 5
+			"Sixty", // 6
+			"Seventy", // 7
+			"Eighty", // 8
+			"Ninety" // 9
 	};
 
 	public static String convert(final int n) {
@@ -573,7 +601,6 @@ public class ReceiptController implements Initializable{
 		return convert(n / 10000000) + " Crore" + ((n % 10000000 != 0) ? " " : "") + convert(n % 10000000);
 	}
 
-	
 	private void clearFields() {
 		cID.getSelectionModel().clearSelection();
 		ReceiptID.setText(null);
@@ -583,7 +610,7 @@ public class ReceiptController implements Initializable{
 		BaseAmount.setText(null);
 		TaxAmount.setText(null);
 		TxnID.clear();
-	    TxnDate.getEditor().clear();
+		TxnDate.getEditor().clear();
 		Bank.clear();
 		PaidBy.clear();
 		CreditYes.setSelected(false);
@@ -592,5 +619,5 @@ public class ReceiptController implements Initializable{
 
 	public ToggleGroup getCredit() {
 		return credit;
-	}	
+	}
 }
