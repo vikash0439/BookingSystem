@@ -44,7 +44,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -94,6 +96,12 @@ public class ContractController implements Initializable {
 	private Label pact;
 	@FXML
 	private ComboBox<String> repName;
+	@FXML
+	private ToggleGroup noc;
+	@FXML
+	private RadioButton NocYes;
+	@FXML
+	private RadioButton NocNo;
 
 	/* Booking table */
 	@FXML
@@ -396,6 +404,7 @@ public class ContractController implements Initializable {
 		contract.setBaseprice(baseprice.getText());
 		contract.setTaxamount(taxamount.getText());
 		contract.setPact(pact.getText());
+		contract.setNoc(NocYes.isSelected() ? "Yes" : "No");
 		contract.setPaymentstatus(paymentstatus.getSelectionModel().getSelectedItem());
 		contract.setRepname(repName.getSelectionModel().getSelectedItem());
 

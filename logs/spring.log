@@ -1,0 +1,1355 @@
+2018-11-20 09:50:40.035  INFO 6464 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 6464 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 09:50:40.044  INFO 6464 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 09:50:40.267  INFO 6464 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@79777b98: startup date [Tue Nov 20 09:50:40 IST 2018]; root of context hierarchy
+2018-11-20 09:50:41.958  INFO 6464 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 09:50:42.517  INFO 6464 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 09:50:43.004  INFO 6464 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 09:50:43.146  INFO 6464 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 09:50:43.188  INFO 6464 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 09:50:43.353  INFO 6464 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 09:50:43.356  INFO 6464 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 09:50:43.451  INFO 6464 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 09:50:43.756  INFO 6464 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 09:50:47.497  INFO 6464 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 09:50:49.231  INFO 6464 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 09:50:49.233  INFO 6464 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 09:50:49.239  INFO 6464 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 09:50:49.270  INFO 6464 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 10.448 seconds (JVM running for 12.858)
+2018-11-20 09:50:57.711  INFO 6464 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 09:50:58.313  INFO 6464 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 09:52:58.225  INFO 6464 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 09:52:59.001  INFO 6464 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 09:52:59.437  INFO 6464 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 09:52:59.525  INFO 6464 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 09:52:59.550  INFO 6464 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 09:52:59.577  INFO 6464 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 09:52:59.619  WARN 6464 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 09:53:00.789  INFO 6464 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 09:53:02.046  INFO 6464 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 09:53:02.171  INFO 6464 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 10:12:35.325  INFO 6464 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@79777b98: startup date [Tue Nov 20 09:50:40 IST 2018]; root of context hierarchy
+2018-11-20 10:12:35.327  INFO 6464 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 10:12:35.328  INFO 6464 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 10:12:35.331  INFO 6464 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:12:35.333  INFO 6464 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 10:12:35.366  INFO 6464 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 10:19:16.727  INFO 22900 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 22900 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 10:19:16.730  INFO 22900 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 10:19:16.767  INFO 22900 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@43431b6f: startup date [Tue Nov 20 10:19:16 IST 2018]; root of context hierarchy
+2018-11-20 10:19:17.663  INFO 22900 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 10:19:18.173  INFO 22900 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 10:19:18.591  INFO 22900 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 10:19:18.685  INFO 22900 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:19:18.712  INFO 22900 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 10:19:18.839  INFO 22900 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 10:19:18.842  INFO 22900 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 10:19:18.914  INFO 22900 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 10:19:19.192  INFO 22900 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 10:19:21.747  INFO 22900 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:19:22.362  INFO 22900 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 10:19:22.363  INFO 22900 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 10:19:22.367  INFO 22900 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 10:19:22.376  INFO 22900 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.168 seconds (JVM running for 6.976)
+2018-11-20 10:19:31.098  INFO 22900 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 10:19:31.219  INFO 22900 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 10:19:51.596 ERROR 22900 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/Reserve.fxml
+
+java.lang.NullPointerException: null
+	at com.booking.controller.ReserveController.initialize(ReserveController.java:257) ~[classes/:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409) ~[jfxrt.jar:na]
+	at com.booking.config.SpringFXMLLoader.load(SpringFXMLLoader.java:33) ~[classes/:na]
+	at com.booking.config.StageManager.loadViewNodeHierarchy(StageManager.java:76) [classes/:na]
+	at com.booking.config.StageManager.switchScene(StageManager.java:31) [classes/:na]
+	at com.booking.config.StageManager$$FastClassBySpringCGLIB$$30356219.invoke(<generated>) [classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) [spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684) [spring-aop-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at com.booking.config.StageManager$$EnhancerBySpringCGLIB$$52ad739c.switchScene(<generated>) [classes/:na]
+	at com.booking.controller.ContractController.reserve(ContractController.java:264) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71) [na:1.8.0_161]
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275) [na:1.8.0_161]
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769) [jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_161]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_161]
+
+2018-11-20 10:19:51.602  INFO 22900 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@43431b6f: startup date [Tue Nov 20 10:19:16 IST 2018]; root of context hierarchy
+2018-11-20 10:19:51.606  INFO 22900 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 10:19:51.607  INFO 22900 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 10:19:51.610  INFO 22900 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:19:51.611  INFO 22900 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 10:19:51.617  INFO 22900 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 10:28:01.452  INFO 22544 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 22544 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 10:28:01.455  INFO 22544 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 10:28:01.502  INFO 22544 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@37a62c06: startup date [Tue Nov 20 10:28:01 IST 2018]; root of context hierarchy
+2018-11-20 10:28:02.109  INFO 22544 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 10:28:02.367  INFO 22544 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 10:28:02.561  INFO 22544 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 10:28:02.600  INFO 22544 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:28:02.611  INFO 22544 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 10:28:02.711  INFO 22544 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 10:28:02.714  INFO 22544 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 10:28:02.762  INFO 22544 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 10:28:02.994  INFO 22544 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 10:28:05.326  INFO 22544 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:28:06.142  INFO 22544 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 10:28:06.144  INFO 22544 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 10:28:06.151  INFO 22544 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 10:28:06.168  INFO 22544 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.412 seconds (JVM running for 7.377)
+2018-11-20 10:28:11.944  INFO 22544 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 10:28:12.035  INFO 22544 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 10:29:36.295  INFO 22544 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@37a62c06: startup date [Tue Nov 20 10:28:01 IST 2018]; root of context hierarchy
+2018-11-20 10:29:36.297  INFO 22544 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 10:29:36.298  INFO 22544 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 10:29:36.301  INFO 22544 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:29:36.302  INFO 22544 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 10:29:36.307  INFO 22544 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 10:41:24.205  INFO 19036 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 19036 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 10:41:24.207  INFO 19036 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 10:41:24.243  INFO 19036 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4bc53cdf: startup date [Tue Nov 20 10:41:24 IST 2018]; root of context hierarchy
+2018-11-20 10:41:24.884  INFO 19036 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 10:41:25.074  INFO 19036 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 10:41:25.210  INFO 19036 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 10:41:25.243  INFO 19036 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:41:25.253  INFO 19036 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 10:41:25.300  INFO 19036 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 10:41:25.301  INFO 19036 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 10:41:25.368  INFO 19036 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 10:41:25.585  INFO 19036 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 10:41:27.388  INFO 19036 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:41:28.977  INFO 19036 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 10:41:28.979  INFO 19036 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 10:41:28.991  INFO 19036 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 10:41:29.017  INFO 19036 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.703 seconds (JVM running for 7.533)
+2018-11-20 10:41:37.871  INFO 19036 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 10:41:37.959  INFO 19036 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 10:41:51.917  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 10:41:51.972  INFO 19036 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 10:41:52.232  INFO 19036 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 10:41:52.267  INFO 19036 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 10:41:52.276  INFO 19036 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 10:41:52.286  INFO 19036 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 10:41:52.303  WARN 19036 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 10:41:52.537 ERROR 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Unable to compile receipt 
+
+net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : statecode
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:280) ~[jasperreports-6.6.0.jar:6.6.0]
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:152) ~[jasperreports-6.6.0.jar:6.6.0]
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357) ~[jasperreports-6.6.0.jar:6.6.0]
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:343) ~[jasperreports-6.6.0.jar:6.6.0]
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:608) ~[jasperreports-6.6.0.jar:6.6.0]
+	at com.booking.controller.ReceiptController.saveTax(ReceiptController.java:298) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71) [na:1.8.0_161]
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275) [na:1.8.0_161]
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769) [jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Node.fireEvent(Node.java:8413) [jfxrt.jar:na]
+	at javafx.scene.control.Button.fire(Button.java:185) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) [jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) [jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) [jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394) [jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) [jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) [na:1.8.0_161]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432) [jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431) [jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_161]
+
+2018-11-20 10:41:52.543  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 10:41:52.842  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 10:44:03.720  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 10:44:03.808  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 10:44:03.839  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 10:44:03.915  INFO 19036 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 10:59:39.336  INFO 19036 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@4bc53cdf: startup date [Tue Nov 20 10:41:24 IST 2018]; root of context hierarchy
+2018-11-20 10:59:39.341  INFO 19036 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 10:59:39.342  INFO 19036 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 10:59:39.344  INFO 19036 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 10:59:39.344  INFO 19036 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 10:59:39.348  INFO 19036 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:00:33.264  INFO 6776 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 6776 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:00:33.268  INFO 6776 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:00:33.375  INFO 6776 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@46b17aa4: startup date [Tue Nov 20 11:00:33 IST 2018]; root of context hierarchy
+2018-11-20 11:00:34.816  INFO 6776 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:00:35.513  INFO 6776 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:00:35.855  INFO 6776 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:00:35.941  INFO 6776 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:00:35.966  INFO 6776 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:00:36.102  INFO 6776 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:00:36.104  INFO 6776 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:00:36.208  INFO 6776 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:00:36.672  INFO 6776 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:00:38.451  INFO 6776 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:00:39.133  INFO 6776 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:00:39.134  INFO 6776 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:00:39.138  INFO 6776 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:00:39.147  INFO 6776 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.746 seconds (JVM running for 8.285)
+2018-11-20 11:00:45.873  INFO 6776 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:00:45.969  INFO 6776 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:02:21.055 ERROR 6776 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/Reserve.fxml
+
+java.lang.NullPointerException: null
+	at com.booking.controller.ReserveController.initialize(ReserveController.java:257) ~[classes/:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409) ~[jfxrt.jar:na]
+	at com.booking.config.SpringFXMLLoader.load(SpringFXMLLoader.java:33) ~[classes/:na]
+	at com.booking.config.StageManager.loadViewNodeHierarchy(StageManager.java:76) [classes/:na]
+	at com.booking.config.StageManager.switchScene(StageManager.java:31) [classes/:na]
+	at com.booking.config.StageManager$$FastClassBySpringCGLIB$$30356219.invoke(<generated>) [classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) [spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684) [spring-aop-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at com.booking.config.StageManager$$EnhancerBySpringCGLIB$$52ad739c.switchScene(<generated>) [classes/:na]
+	at com.booking.controller.DashboardController.reserve(DashboardController.java:255) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71) [na:1.8.0_161]
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275) [na:1.8.0_161]
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769) [jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_161]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_161]
+
+2018-11-20 11:02:21.059  INFO 6776 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@46b17aa4: startup date [Tue Nov 20 11:00:33 IST 2018]; root of context hierarchy
+2018-11-20 11:02:21.061  INFO 6776 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:02:21.061  INFO 6776 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:02:21.063  INFO 6776 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:02:21.063  INFO 6776 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:02:21.067  INFO 6776 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:05:59.607  INFO 9220 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 9220 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:05:59.608  INFO 9220 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:05:59.635  INFO 9220 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7f7e9fe: startup date [Tue Nov 20 11:05:59 IST 2018]; root of context hierarchy
+2018-11-20 11:06:00.229  INFO 9220 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:06:00.424  INFO 9220 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:06:00.563  INFO 9220 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:06:00.596  INFO 9220 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:06:00.606  INFO 9220 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:06:00.652  INFO 9220 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:06:00.654  INFO 9220 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:06:00.684  INFO 9220 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:06:00.790  INFO 9220 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:06:01.949  INFO 9220 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:06:02.608  INFO 9220 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:06:02.608  INFO 9220 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:06:02.612  INFO 9220 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:06:02.621  INFO 9220 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 3.311 seconds (JVM running for 4.06)
+2018-11-20 11:06:04.682  INFO 9220 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:06:10.363  INFO 9220 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:06:46.597 ERROR 9220 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/Reserve.fxml
+
+java.lang.NullPointerException: null
+	at com.booking.controller.ReserveController.initialize(ReserveController.java:257) ~[classes/:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409) ~[jfxrt.jar:na]
+	at com.booking.config.SpringFXMLLoader.load(SpringFXMLLoader.java:33) ~[classes/:na]
+	at com.booking.config.StageManager.loadViewNodeHierarchy(StageManager.java:76) [classes/:na]
+	at com.booking.config.StageManager.switchScene(StageManager.java:31) [classes/:na]
+	at com.booking.config.StageManager$$FastClassBySpringCGLIB$$30356219.invoke(<generated>) [classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) [spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684) [spring-aop-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at com.booking.config.StageManager$$EnhancerBySpringCGLIB$$52ad739c.switchScene(<generated>) [classes/:na]
+	at com.booking.controller.SlotController.reserve(SlotController.java:112) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71) [na:1.8.0_161]
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275) [na:1.8.0_161]
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769) [jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_161]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_161]
+
+2018-11-20 11:06:46.601  INFO 9220 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7f7e9fe: startup date [Tue Nov 20 11:05:59 IST 2018]; root of context hierarchy
+2018-11-20 11:06:46.603  INFO 9220 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:06:46.603  INFO 9220 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:06:46.606  INFO 9220 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:06:46.607  INFO 9220 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:06:46.609  INFO 9220 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:09:01.032  INFO 920 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 920 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:09:01.036  INFO 920 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:09:01.098  INFO 920 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@48ce7cad: startup date [Tue Nov 20 11:09:01 IST 2018]; root of context hierarchy
+2018-11-20 11:09:02.400  INFO 920 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:09:03.022  INFO 920 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:09:03.417  INFO 920 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:09:03.489  INFO 920 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:09:03.509  INFO 920 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:09:03.619  INFO 920 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:09:03.621  INFO 920 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:09:03.665  INFO 920 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:09:03.768  INFO 920 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:09:05.164  INFO 920 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:09:05.883  INFO 920 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:09:05.884  INFO 920 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:09:05.891  INFO 920 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:09:05.905  INFO 920 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.671 seconds (JVM running for 6.893)
+2018-11-20 11:09:12.860  INFO 920 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:09:12.981  INFO 920 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:10:55.226  INFO 920 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@48ce7cad: startup date [Tue Nov 20 11:09:01 IST 2018]; root of context hierarchy
+2018-11-20 11:10:55.229  INFO 920 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:10:55.229  INFO 920 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:10:55.232  INFO 920 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:10:55.235  INFO 920 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:10:55.238  INFO 920 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:11:59.716  INFO 2228 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 2228 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:11:59.721  INFO 2228 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:11:59.824  INFO 2228 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@713356ae: startup date [Tue Nov 20 11:11:59 IST 2018]; root of context hierarchy
+2018-11-20 11:12:01.481  INFO 2228 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:12:02.157  INFO 2228 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:12:02.520  INFO 2228 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:12:02.601  INFO 2228 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:12:02.625  INFO 2228 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:12:02.755  INFO 2228 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:12:02.758  INFO 2228 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:12:02.828  INFO 2228 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:12:02.975  INFO 2228 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:12:04.797  INFO 2228 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:12:05.878  INFO 2228 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:12:05.880  INFO 2228 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:12:05.887  INFO 2228 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:12:05.903  INFO 2228 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.84 seconds (JVM running for 8.082)
+2018-11-20 11:12:12.827  INFO 2228 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:12:12.916  INFO 2228 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:29:40.017  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-11-20 11:29:40.017  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@713356ae: startup date [Tue Nov 20 11:11:59 IST 2018]; root of context hierarchy
+2018-11-20 11:29:40.020  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:29:40.020  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:29:40.024  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:29:40.025  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:29:40.030  INFO 2228 --- [RMI TCP Connection(26)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:34:53.334  INFO 4976 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 4976 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:34:53.337  INFO 4976 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:34:53.377  INFO 4976 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7c6388db: startup date [Tue Nov 20 11:34:53 IST 2018]; root of context hierarchy
+2018-11-20 11:34:54.175  INFO 4976 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:34:54.428  INFO 4976 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:34:54.594  INFO 4976 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:34:54.670  INFO 4976 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:34:54.687  INFO 4976 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:34:54.875  INFO 4976 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:34:54.877  INFO 4976 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:34:54.934  INFO 4976 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:34:55.156  INFO 4976 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:34:57.172  INFO 4976 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:34:57.853  INFO 4976 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:34:57.854  INFO 4976 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:34:57.858  INFO 4976 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:34:57.867  INFO 4976 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.135 seconds (JVM running for 5.919)
+2018-11-20 11:35:04.396  INFO 4976 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:35:04.506  INFO 4976 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:35:08.275 ERROR 4976 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 11:35:08.278  INFO 4976 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7c6388db: startup date [Tue Nov 20 11:34:53 IST 2018]; root of context hierarchy
+2018-11-20 11:35:08.280  INFO 4976 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:35:08.281  INFO 4976 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:35:08.283  INFO 4976 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:35:08.283  INFO 4976 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:35:08.286  INFO 4976 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:42:35.368  INFO 23016 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 23016 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:42:35.372  INFO 23016 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:42:35.440  INFO 23016 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7a6c418d: startup date [Tue Nov 20 11:42:35 IST 2018]; root of context hierarchy
+2018-11-20 11:42:36.309  INFO 23016 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:42:36.788  INFO 23016 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:42:37.152  INFO 23016 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:42:37.263  INFO 23016 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:42:37.298  INFO 23016 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:42:37.471  INFO 23016 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:42:37.473  INFO 23016 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:42:37.532  INFO 23016 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:42:37.748  INFO 23016 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:42:39.464  INFO 23016 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:42:40.182  INFO 23016 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:42:40.183  INFO 23016 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:42:40.187  INFO 23016 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:42:40.197  INFO 23016 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.325 seconds (JVM running for 6.227)
+2018-11-20 11:42:47.270  INFO 23016 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:42:47.360  INFO 23016 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:43:04.205 ERROR 23016 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/Reserve.fxml
+
+java.lang.NullPointerException: null
+	at com.booking.controller.ReserveController.initialize(ReserveController.java:257) ~[classes/:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409) ~[jfxrt.jar:na]
+	at com.booking.config.SpringFXMLLoader.load(SpringFXMLLoader.java:33) ~[classes/:na]
+	at com.booking.config.StageManager.loadViewNodeHierarchy(StageManager.java:76) [classes/:na]
+	at com.booking.config.StageManager.switchScene(StageManager.java:31) [classes/:na]
+	at com.booking.config.StageManager$$FastClassBySpringCGLIB$$30356219.invoke(<generated>) [classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) [spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684) [spring-aop-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at com.booking.config.StageManager$$EnhancerBySpringCGLIB$$52ad739c.switchScene(<generated>) [classes/:na]
+	at com.booking.controller.DashboardController.reserve(DashboardController.java:255) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71) [na:1.8.0_161]
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275) [na:1.8.0_161]
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769) [jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_161]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_161]
+
+2018-11-20 11:43:04.208  INFO 23016 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7a6c418d: startup date [Tue Nov 20 11:42:35 IST 2018]; root of context hierarchy
+2018-11-20 11:43:04.209  INFO 23016 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:43:04.210  INFO 23016 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:43:04.211  INFO 23016 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:43:04.212  INFO 23016 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:43:04.214  INFO 23016 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:48:16.955  INFO 18360 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 18360 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:48:16.957  INFO 18360 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:48:16.984  INFO 18360 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7726a033: startup date [Tue Nov 20 11:48:16 IST 2018]; root of context hierarchy
+2018-11-20 11:48:17.586  INFO 18360 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:48:17.782  INFO 18360 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:48:17.929  INFO 18360 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:48:17.964  INFO 18360 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:48:17.974  INFO 18360 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:48:18.022  INFO 18360 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:48:18.023  INFO 18360 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:48:18.054  INFO 18360 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:48:18.159  INFO 18360 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:48:19.378  INFO 18360 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:48:20.050  INFO 18360 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:48:20.051  INFO 18360 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:48:20.054  INFO 18360 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:48:20.062  INFO 18360 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 3.447 seconds (JVM running for 4.239)
+2018-11-20 11:48:29.347  INFO 18360 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:48:29.436  INFO 18360 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:48:35.539 ERROR 18360 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/Reserve.fxml
+
+java.lang.NullPointerException: null
+	at com.booking.controller.ReserveController.initialize(ReserveController.java:263) ~[classes/:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2548) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2441) ~[jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader.load(FXMLLoader.java:2409) ~[jfxrt.jar:na]
+	at com.booking.config.SpringFXMLLoader.load(SpringFXMLLoader.java:33) ~[classes/:na]
+	at com.booking.config.StageManager.loadViewNodeHierarchy(StageManager.java:76) [classes/:na]
+	at com.booking.config.StageManager.switchScene(StageManager.java:31) [classes/:na]
+	at com.booking.config.StageManager$$FastClassBySpringCGLIB$$30356219.invoke(<generated>) [classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) [spring-core-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:684) [spring-aop-5.0.8.RELEASE.jar:5.0.8.RELEASE]
+	at com.booking.config.StageManager$$EnhancerBySpringCGLIB$$52ad739c.switchScene(<generated>) [classes/:na]
+	at com.booking.controller.ContractController.reserve(ContractController.java:264) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71) [na:1.8.0_161]
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275) [na:1.8.0_161]
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769) [jfxrt.jar:na]
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.control.MenuItem.fire(MenuItem.java:462) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.doSelect(ContextMenuContent.java:1405) [jfxrt.jar:na]
+	at com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer.lambda$createChildren$343(ContextMenuContent.java:1358) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191) [jfxrt.jar:na]
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) [jfxrt.jar:na]
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) [jfxrt.jar:na]
+	at javafx.event.Event.fireEvent(Event.java:198) [jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485) ~[jfxrt.jar:na]
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762) ~[jfxrt.jar:na]
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295) ~[jfxrt.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_161]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389) ~[jfxrt.jar:na]
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.View.notifyMouse(View.java:937) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[jfxrt.jar:na]
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177) ~[jfxrt.jar:na]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_161]
+
+2018-11-20 11:48:35.546  INFO 18360 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7726a033: startup date [Tue Nov 20 11:48:16 IST 2018]; root of context hierarchy
+2018-11-20 11:48:35.548  INFO 18360 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:48:35.548  INFO 18360 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:48:35.550  INFO 18360 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:48:35.550  INFO 18360 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:48:35.553  INFO 18360 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:51:09.772  INFO 18284 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 18284 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:51:09.774  INFO 18284 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:51:09.802  INFO 18284 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@46b17aa4: startup date [Tue Nov 20 11:51:09 IST 2018]; root of context hierarchy
+2018-11-20 11:51:10.342  INFO 18284 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:51:10.534  INFO 18284 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:51:10.672  INFO 18284 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:51:10.707  INFO 18284 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:51:10.718  INFO 18284 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:51:10.765  INFO 18284 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:51:10.766  INFO 18284 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:51:10.797  INFO 18284 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:51:10.920  INFO 18284 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:51:12.595  INFO 18284 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:51:13.862  INFO 18284 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:51:13.864  INFO 18284 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:51:13.872  INFO 18284 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:51:13.889  INFO 18284 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 4.481 seconds (JVM running for 5.323)
+2018-11-20 11:51:21.772  INFO 18284 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:51:21.883  INFO 18284 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:51:25.610 ERROR 18284 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 11:51:25.614  INFO 18284 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@46b17aa4: startup date [Tue Nov 20 11:51:09 IST 2018]; root of context hierarchy
+2018-11-20 11:51:25.616  INFO 18284 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:51:25.616  INFO 18284 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:51:25.618  INFO 18284 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:51:25.619  INFO 18284 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:51:25.622  INFO 18284 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 11:54:22.093  INFO 7804 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 7804 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 11:54:22.097  INFO 7804 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 11:54:22.151  INFO 7804 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@76b1a3e2: startup date [Tue Nov 20 11:54:22 IST 2018]; root of context hierarchy
+2018-11-20 11:54:22.901  INFO 7804 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 11:54:23.175  INFO 7804 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 11:54:23.416  INFO 7804 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 11:54:23.485  INFO 7804 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:54:23.499  INFO 7804 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 11:54:23.616  INFO 7804 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 11:54:23.617  INFO 7804 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 11:54:23.681  INFO 7804 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 11:54:23.830  INFO 7804 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 11:54:26.496  INFO 7804 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:54:27.623  INFO 7804 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 11:54:27.624  INFO 7804 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 11:54:27.627  INFO 7804 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 11:54:27.635  INFO 7804 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.597 seconds (JVM running for 8.573)
+2018-11-20 11:54:37.376  INFO 7804 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 11:54:37.472  INFO 7804 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 11:54:54.261 ERROR 7804 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 11:54:54.263  INFO 7804 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@76b1a3e2: startup date [Tue Nov 20 11:54:22 IST 2018]; root of context hierarchy
+2018-11-20 11:54:54.265  INFO 7804 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 11:54:54.266  INFO 7804 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 11:54:54.267  INFO 7804 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 11:54:54.268  INFO 7804 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 11:54:54.270  INFO 7804 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:02:49.169  INFO 23472 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 23472 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:02:49.171  INFO 23472 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:02:49.225  INFO 23472 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@161a9cc4: startup date [Tue Nov 20 12:02:49 IST 2018]; root of context hierarchy
+2018-11-20 12:02:49.938  INFO 23472 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:02:50.145  INFO 23472 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:02:50.404  INFO 23472 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:02:50.557  INFO 23472 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:02:50.605  INFO 23472 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:02:50.790  INFO 23472 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:02:50.794  INFO 23472 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:02:50.888  INFO 23472 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:02:51.224  INFO 23472 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:02:53.534  INFO 23472 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:02:54.394  INFO 23472 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:02:54.396  INFO 23472 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:02:54.399  INFO 23472 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:02:54.408  INFO 23472 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.935 seconds (JVM running for 7.663)
+2018-11-20 12:02:56.686  INFO 23472 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:03:01.759  INFO 23472 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:13:49.449  INFO 23472 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@161a9cc4: startup date [Tue Nov 20 12:02:49 IST 2018]; root of context hierarchy
+2018-11-20 12:13:49.451  INFO 23472 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:13:49.452  INFO 23472 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:13:49.454  INFO 23472 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:13:49.457  INFO 23472 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:13:49.468  INFO 23472 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:15:01.001  INFO 16856 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 16856 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:15:01.005  INFO 16856 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:15:01.094  INFO 16856 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4f100362: startup date [Tue Nov 20 12:15:01 IST 2018]; root of context hierarchy
+2018-11-20 12:15:02.134  INFO 16856 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:15:02.750  INFO 16856 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:15:03.107  INFO 16856 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:15:03.178  INFO 16856 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:15:03.198  INFO 16856 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:15:03.312  INFO 16856 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:15:03.314  INFO 16856 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:15:03.373  INFO 16856 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:15:03.624  INFO 16856 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:15:05.718  INFO 16856 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:15:06.384  INFO 16856 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:15:06.385  INFO 16856 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:15:06.389  INFO 16856 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:15:06.397  INFO 16856 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.885 seconds (JVM running for 6.831)
+2018-11-20 12:15:18.371  INFO 16856 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:15:18.460  INFO 16856 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:21:49.528  INFO 16856 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@4f100362: startup date [Tue Nov 20 12:15:01 IST 2018]; root of context hierarchy
+2018-11-20 12:21:49.534  INFO 16856 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:21:49.535  INFO 16856 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:21:49.538  INFO 16856 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:21:49.539  INFO 16856 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:21:49.547  INFO 16856 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:26:05.996  INFO 20056 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 20056 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:26:06.000  INFO 20056 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:26:06.055  INFO 20056 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4f100362: startup date [Tue Nov 20 12:26:06 IST 2018]; root of context hierarchy
+2018-11-20 12:26:06.895  INFO 20056 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:26:07.232  INFO 20056 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:26:07.439  INFO 20056 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:26:07.502  INFO 20056 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:26:07.521  INFO 20056 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:26:07.671  INFO 20056 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:26:07.674  INFO 20056 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:26:07.735  INFO 20056 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:26:08.022  INFO 20056 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:26:10.280  INFO 20056 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:26:11.150  INFO 20056 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:26:11.151  INFO 20056 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:26:11.155  INFO 20056 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:26:11.164  INFO 20056 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.873 seconds (JVM running for 6.838)
+2018-11-20 12:26:18.430  INFO 20056 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:26:18.523  INFO 20056 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:27:08.847 ERROR 20056 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 12:27:08.851  INFO 20056 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@4f100362: startup date [Tue Nov 20 12:26:06 IST 2018]; root of context hierarchy
+2018-11-20 12:27:08.852  INFO 20056 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:27:08.853  INFO 20056 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:27:08.855  INFO 20056 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:27:08.855  INFO 20056 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:27:08.857  INFO 20056 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:28:10.907  INFO 6484 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 6484 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:28:10.908  INFO 6484 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:28:10.934  INFO 6484 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@61d2ee3d: startup date [Tue Nov 20 12:28:10 IST 2018]; root of context hierarchy
+2018-11-20 12:28:11.457  INFO 6484 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:28:11.650  INFO 6484 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:28:11.791  INFO 6484 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:28:11.827  INFO 6484 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:28:11.837  INFO 6484 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:28:11.887  INFO 6484 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:28:11.888  INFO 6484 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:28:11.922  INFO 6484 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:28:12.025  INFO 6484 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:28:13.555  INFO 6484 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:28:14.212  INFO 6484 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:28:14.213  INFO 6484 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:28:14.219  INFO 6484 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:28:14.229  INFO 6484 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 3.64 seconds (JVM running for 4.413)
+2018-11-20 12:28:22.815  INFO 6484 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:28:22.903  INFO 6484 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:29:39.001 ERROR 6484 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 12:29:39.005  INFO 6484 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@61d2ee3d: startup date [Tue Nov 20 12:28:10 IST 2018]; root of context hierarchy
+2018-11-20 12:29:39.006  INFO 6484 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:29:39.007  INFO 6484 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:29:39.008  INFO 6484 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:29:39.009  INFO 6484 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:29:39.011  INFO 6484 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:34:37.904  INFO 19944 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 19944 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:34:37.908  INFO 19944 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:34:37.947  INFO 19944 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@20cea926: startup date [Tue Nov 20 12:34:37 IST 2018]; root of context hierarchy
+2018-11-20 12:34:38.550  INFO 19944 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:34:38.812  INFO 19944 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:34:39.050  INFO 19944 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:34:39.112  INFO 19944 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:34:39.131  INFO 19944 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:34:39.246  INFO 19944 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:34:39.249  INFO 19944 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:34:39.291  INFO 19944 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:34:39.415  INFO 19944 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:34:42.130  INFO 19944 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:34:42.884  INFO 19944 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:34:42.886  INFO 19944 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:34:42.889  INFO 19944 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:34:42.897  INFO 19944 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.783 seconds (JVM running for 7.902)
+2018-11-20 12:34:49.277  INFO 19944 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:34:49.365  INFO 19944 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:34:57.212 ERROR 19944 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 12:34:57.232  INFO 19944 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@20cea926: startup date [Tue Nov 20 12:34:37 IST 2018]; root of context hierarchy
+2018-11-20 12:34:57.236  INFO 19944 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:34:57.237  INFO 19944 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:34:57.240  INFO 19944 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:34:57.241  INFO 19944 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:34:57.247  INFO 19944 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:40:23.448  INFO 22180 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 22180 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:40:23.453  INFO 22180 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:40:23.540  INFO 22180 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@26064e17: startup date [Tue Nov 20 12:40:23 IST 2018]; root of context hierarchy
+2018-11-20 12:40:25.015  INFO 22180 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:40:25.744  INFO 22180 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:40:26.107  INFO 22180 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:40:26.183  INFO 22180 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:40:26.204  INFO 22180 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:40:26.317  INFO 22180 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:40:26.318  INFO 22180 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:40:26.347  INFO 22180 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:40:26.451  INFO 22180 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:40:28.906  INFO 22180 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:40:30.456  INFO 22180 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:40:30.458  INFO 22180 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:40:30.471  INFO 22180 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:40:30.498  INFO 22180 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 8.039 seconds (JVM running for 9.262)
+2018-11-20 12:40:36.381  INFO 22180 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:40:36.478  INFO 22180 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:40:39.122 ERROR 22180 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 12:40:39.126  INFO 22180 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@26064e17: startup date [Tue Nov 20 12:40:23 IST 2018]; root of context hierarchy
+2018-11-20 12:40:39.128  INFO 22180 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:40:39.129  INFO 22180 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:40:39.130  INFO 22180 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:40:39.131  INFO 22180 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:40:39.136  INFO 22180 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:41:51.141  INFO 3944 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 3944 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:41:51.143  INFO 3944 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:41:51.168  INFO 3944 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@26c8e914: startup date [Tue Nov 20 12:41:51 IST 2018]; root of context hierarchy
+2018-11-20 12:41:51.803  INFO 3944 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:41:51.999  INFO 3944 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:41:52.136  INFO 3944 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:41:52.171  INFO 3944 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:41:52.181  INFO 3944 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:41:52.229  INFO 3944 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:41:52.230  INFO 3944 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:41:52.261  INFO 3944 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:41:52.368  INFO 3944 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:41:53.656  INFO 3944 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:41:54.348  INFO 3944 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:41:54.349  INFO 3944 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:41:54.352  INFO 3944 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:41:54.360  INFO 3944 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 3.536 seconds (JVM running for 4.313)
+2018-11-20 12:42:02.514  INFO 3944 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:42:02.602  INFO 3944 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:42:05.708 ERROR 3944 --- [JavaFX Application Thread] com.booking.config.StageManager          : Unable to load FXML view/fxml/AllContract.fxml
+2018-11-20 12:42:05.712  INFO 3944 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@26c8e914: startup date [Tue Nov 20 12:41:51 IST 2018]; root of context hierarchy
+2018-11-20 12:42:05.713  INFO 3944 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:42:05.714  INFO 3944 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:42:05.716  INFO 3944 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:42:05.716  INFO 3944 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:42:05.719  INFO 3944 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:43:12.711  INFO 19912 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 19912 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:43:12.713  INFO 19912 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:43:12.738  INFO 19912 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5467c827: startup date [Tue Nov 20 12:43:12 IST 2018]; root of context hierarchy
+2018-11-20 12:43:13.363  INFO 19912 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:43:13.556  INFO 19912 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:43:13.695  INFO 19912 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:43:13.730  INFO 19912 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:43:13.739  INFO 19912 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:43:13.787  INFO 19912 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:43:13.788  INFO 19912 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:43:13.823  INFO 19912 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:43:13.926  INFO 19912 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:43:15.211  INFO 19912 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:43:15.938  INFO 19912 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:43:15.939  INFO 19912 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:43:15.942  INFO 19912 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:43:15.951  INFO 19912 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 3.542 seconds (JVM running for 4.298)
+2018-11-20 12:43:21.941  INFO 19912 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:43:22.029  INFO 19912 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 12:52:09.697  INFO 19912 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5467c827: startup date [Tue Nov 20 12:43:12 IST 2018]; root of context hierarchy
+2018-11-20 12:52:09.699  INFO 19912 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 12:52:09.700  INFO 19912 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 12:52:09.703  INFO 19912 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:52:09.704  INFO 19912 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 12:52:09.709  INFO 19912 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 12:52:32.390  INFO 13540 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 13540 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 12:52:32.392  INFO 13540 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 12:52:32.420  INFO 13540 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7a4b9b20: startup date [Tue Nov 20 12:52:32 IST 2018]; root of context hierarchy
+2018-11-20 12:52:32.984  INFO 13540 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 12:52:33.177  INFO 13540 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 12:52:33.315  INFO 13540 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 12:52:33.350  INFO 13540 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:52:33.361  INFO 13540 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 12:52:33.411  INFO 13540 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 12:52:33.412  INFO 13540 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 12:52:33.451  INFO 13540 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 12:52:33.561  INFO 13540 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 12:52:35.020  INFO 13540 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 12:52:35.711  INFO 13540 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 12:52:35.712  INFO 13540 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 12:52:35.715  INFO 13540 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 12:52:35.725  INFO 13540 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 3.643 seconds (JVM running for 4.401)
+2018-11-20 12:52:37.714  INFO 13540 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 12:52:42.484  INFO 13540 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 13:00:12.918  INFO 13540 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7a4b9b20: startup date [Tue Nov 20 12:52:32 IST 2018]; root of context hierarchy
+2018-11-20 13:00:12.922  INFO 13540 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 13:00:12.923  INFO 13540 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 13:00:12.927  INFO 13540 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:00:12.928  INFO 13540 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 13:00:12.930  INFO 13540 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 13:00:45.835  INFO 22984 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 22984 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 13:00:45.836  INFO 22984 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 13:00:45.861  INFO 22984 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3994c2ab: startup date [Tue Nov 20 13:00:45 IST 2018]; root of context hierarchy
+2018-11-20 13:00:46.679  INFO 22984 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 13:00:47.043  INFO 22984 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 13:00:47.464  INFO 22984 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 13:00:47.559  INFO 22984 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:00:47.587  INFO 22984 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 13:00:47.715  INFO 22984 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 13:00:47.717  INFO 22984 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 13:00:47.789  INFO 22984 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 13:00:48.067  INFO 22984 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 13:00:50.240  INFO 22984 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:00:50.929  INFO 22984 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 13:00:50.930  INFO 22984 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 13:00:50.933  INFO 22984 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 13:00:50.941  INFO 22984 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.425 seconds (JVM running for 6.189)
+2018-11-20 13:00:57.188  INFO 22984 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 13:00:57.302  INFO 22984 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 13:09:39.479  INFO 22984 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3994c2ab: startup date [Tue Nov 20 13:00:45 IST 2018]; root of context hierarchy
+2018-11-20 13:09:39.482  INFO 22984 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 13:09:39.483  INFO 22984 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 13:09:39.485  INFO 22984 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:09:39.486  INFO 22984 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 13:09:39.491  INFO 22984 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 13:09:55.269  INFO 3840 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 3840 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 13:09:55.276  INFO 3840 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 13:09:55.494  INFO 3840 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@89c54fa: startup date [Tue Nov 20 13:09:55 IST 2018]; root of context hierarchy
+2018-11-20 13:09:57.166  INFO 3840 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 13:09:57.381  INFO 3840 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 13:09:57.521  INFO 3840 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 13:09:57.559  INFO 3840 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:09:57.569  INFO 3840 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 13:09:57.628  INFO 3840 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 13:09:57.630  INFO 3840 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 13:09:57.661  INFO 3840 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 13:09:57.762  INFO 3840 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 13:09:59.099  INFO 3840 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:10:00.481  INFO 3840 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 13:10:00.484  INFO 3840 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 13:10:00.493  INFO 3840 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 13:10:00.517  INFO 3840 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.843 seconds (JVM running for 6.606)
+2018-11-20 13:10:08.089  INFO 3840 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 13:10:08.208  INFO 3840 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 13:56:38.695  WARN 3840 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m10s235ms280µs297ns).
+2018-11-20 13:56:42.443  INFO 3840 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@89c54fa: startup date [Tue Nov 20 13:09:55 IST 2018]; root of context hierarchy
+2018-11-20 13:56:42.448  INFO 3840 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 13:56:42.449  INFO 3840 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 13:56:42.453  INFO 3840 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 13:56:42.455  INFO 3840 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 13:56:42.476  INFO 3840 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 14:03:44.290  INFO 20184 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 20184 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 14:03:44.294  INFO 20184 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 14:03:44.367  INFO 20184 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@754ba18c: startup date [Tue Nov 20 14:03:44 IST 2018]; root of context hierarchy
+2018-11-20 14:03:45.787  INFO 20184 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 14:03:46.487  INFO 20184 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 14:03:46.840  INFO 20184 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 14:03:46.916  INFO 20184 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:03:46.936  INFO 20184 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 14:03:47.067  INFO 20184 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 14:03:47.069  INFO 20184 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 14:03:47.128  INFO 20184 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 14:03:47.375  INFO 20184 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 14:03:49.296  INFO 20184 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:03:50.028  INFO 20184 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 14:03:50.029  INFO 20184 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 14:03:50.033  INFO 20184 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 14:03:50.042  INFO 20184 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.54 seconds (JVM running for 7.671)
+2018-11-20 14:03:58.142  INFO 20184 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 14:03:58.236  INFO 20184 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 14:04:55.991  INFO 20184 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@754ba18c: startup date [Tue Nov 20 14:03:44 IST 2018]; root of context hierarchy
+2018-11-20 14:04:55.993  INFO 20184 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 14:04:55.994  INFO 20184 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 14:04:55.996  INFO 20184 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:04:55.996  INFO 20184 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 14:04:56.002  INFO 20184 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 14:07:06.077  INFO 23196 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 23196 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 14:07:06.080  INFO 23196 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 14:07:06.132  INFO 23196 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@723f3812: startup date [Tue Nov 20 14:07:06 IST 2018]; root of context hierarchy
+2018-11-20 14:07:06.803  INFO 23196 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 14:07:07.049  INFO 23196 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 14:07:07.272  INFO 23196 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 14:07:07.322  INFO 23196 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:07:07.334  INFO 23196 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 14:07:07.433  INFO 23196 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 14:07:07.434  INFO 23196 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 14:07:07.491  INFO 23196 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 14:07:07.704  INFO 23196 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 14:07:09.824  INFO 23196 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:07:10.806  INFO 23196 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 14:07:10.807  INFO 23196 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 14:07:10.813  INFO 23196 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 14:07:10.823  INFO 23196 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.509 seconds (JVM running for 6.409)
+2018-11-20 14:07:21.922  INFO 23196 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 14:07:22.039  INFO 23196 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 14:08:24.714  INFO 23196 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 14:08:24.983  INFO 23196 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 14:08:25.053  INFO 23196 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 14:08:25.086  INFO 23196 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 14:08:25.095  INFO 23196 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 14:08:25.105  INFO 23196 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 14:08:25.121  WARN 23196 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 14:08:25.553  INFO 23196 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 14:08:26.008  INFO 23196 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-11-20 14:08:26.071  INFO 23196 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-11-20 14:30:29.129  INFO 23196 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@723f3812: startup date [Tue Nov 20 14:07:06 IST 2018]; root of context hierarchy
+2018-11-20 14:30:29.131  INFO 23196 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 14:30:29.131  INFO 23196 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 14:30:29.133  INFO 23196 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:30:29.134  INFO 23196 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 14:30:29.138  INFO 23196 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 14:40:38.189  INFO 15088 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 15088 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 14:40:38.193  INFO 15088 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 14:40:38.270  INFO 15088 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@72678bba: startup date [Tue Nov 20 14:40:38 IST 2018]; root of context hierarchy
+2018-11-20 14:40:39.615  INFO 15088 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 14:40:40.180  INFO 15088 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 14:40:40.618  INFO 15088 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 14:40:40.726  INFO 15088 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:40:40.757  INFO 15088 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 14:40:40.894  INFO 15088 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 14:40:40.897  INFO 15088 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 14:40:40.960  INFO 15088 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 14:40:41.189  INFO 15088 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 14:40:42.598  INFO 15088 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:40:43.463  INFO 15088 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 14:40:43.464  INFO 15088 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 14:40:43.480  INFO 15088 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 14:40:43.493  INFO 15088 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 5.769 seconds (JVM running for 6.758)
+2018-11-20 14:40:54.389  INFO 15088 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 14:40:54.478  INFO 15088 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 14:41:18.742  INFO 15088 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 14:41:18.991  INFO 15088 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 14:41:19.023  INFO 15088 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 14:41:19.032  INFO 15088 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 14:41:19.041  INFO 15088 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 14:41:19.058  WARN 15088 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 14:41:20.347  WARN 15088 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 14:45:44.169  WARN 15088 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 14:48:55.739  INFO 15088 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@72678bba: startup date [Tue Nov 20 14:40:38 IST 2018]; root of context hierarchy
+2018-11-20 14:48:55.742  INFO 15088 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 14:48:55.744  INFO 15088 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 14:48:55.746  INFO 15088 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:48:55.749  INFO 15088 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 14:48:55.752  INFO 15088 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 14:49:49.964  INFO 8984 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 8984 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 14:49:49.968  INFO 8984 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 14:49:50.035  INFO 8984 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@681005e7: startup date [Tue Nov 20 14:49:50 IST 2018]; root of context hierarchy
+2018-11-20 14:49:51.544  INFO 8984 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 14:49:52.215  INFO 8984 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 14:49:52.520  INFO 8984 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 14:49:52.596  INFO 8984 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:49:52.618  INFO 8984 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 14:49:52.739  INFO 8984 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 14:49:52.741  INFO 8984 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 14:49:52.799  INFO 8984 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 14:49:53.100  INFO 8984 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 14:49:54.774  INFO 8984 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:49:55.658  INFO 8984 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 14:49:55.659  INFO 8984 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 14:49:55.663  INFO 8984 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 14:49:55.672  INFO 8984 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.441 seconds (JVM running for 7.442)
+2018-11-20 14:50:03.270  INFO 8984 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 14:50:03.365  INFO 8984 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 14:50:12.361  INFO 8984 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 14:50:12.581  INFO 8984 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 14:50:12.616  INFO 8984 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 14:50:12.625  INFO 8984 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 14:50:12.635  INFO 8984 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 14:50:12.653  WARN 8984 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 14:50:13.881  WARN 8984 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 14:52:58.414  INFO 8984 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@681005e7: startup date [Tue Nov 20 14:49:50 IST 2018]; root of context hierarchy
+2018-11-20 14:52:58.418  INFO 8984 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 14:52:58.419  INFO 8984 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 14:52:58.424  INFO 8984 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:52:58.426  INFO 8984 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 14:52:58.429  INFO 8984 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 14:54:28.368  INFO 4100 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 4100 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 14:54:28.371  INFO 4100 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 14:54:28.420  INFO 4100 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@2627049b: startup date [Tue Nov 20 14:54:28 IST 2018]; root of context hierarchy
+2018-11-20 14:54:29.133  INFO 4100 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 14:54:29.523  INFO 4100 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 14:54:29.914  INFO 4100 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 14:54:30.051  INFO 4100 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:54:30.109  INFO 4100 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 14:54:30.262  INFO 4100 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 14:54:30.266  INFO 4100 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 14:54:30.355  INFO 4100 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 14:54:30.603  INFO 4100 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 14:54:33.077  INFO 4100 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:54:33.941  INFO 4100 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 14:54:33.942  INFO 4100 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 14:54:33.945  INFO 4100 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 14:54:33.954  INFO 4100 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.42 seconds (JVM running for 8.076)
+2018-11-20 14:54:43.527  INFO 4100 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 14:54:43.618  INFO 4100 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 14:54:54.963  INFO 4100 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 14:54:55.180  INFO 4100 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 14:54:55.215  INFO 4100 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 14:54:55.224  INFO 4100 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 14:54:55.233  INFO 4100 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 14:54:55.250  WARN 4100 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 14:54:56.438  WARN 4100 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 14:55:27.126  INFO 4100 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@2627049b: startup date [Tue Nov 20 14:54:28 IST 2018]; root of context hierarchy
+2018-11-20 14:55:27.129  INFO 4100 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 14:55:27.130  INFO 4100 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 14:55:27.132  INFO 4100 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 14:55:27.133  INFO 4100 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 14:55:27.138  INFO 4100 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 15:11:01.622  INFO 19536 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 19536 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 15:11:01.625  INFO 19536 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 15:11:01.682  INFO 19536 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@72678bba: startup date [Tue Nov 20 15:11:01 IST 2018]; root of context hierarchy
+2018-11-20 15:11:02.442  INFO 19536 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 15:11:02.999  INFO 19536 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 15:11:03.425  INFO 19536 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 15:11:03.558  INFO 19536 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:11:03.599  INFO 19536 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 15:11:03.730  INFO 19536 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 15:11:03.733  INFO 19536 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 15:11:03.798  INFO 19536 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 15:11:04.058  INFO 19536 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 15:11:06.006  INFO 19536 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:11:06.858  INFO 19536 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 15:11:06.859  INFO 19536 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 15:11:06.863  INFO 19536 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 15:11:06.873  INFO 19536 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.024 seconds (JVM running for 7.59)
+2018-11-20 15:11:08.957  INFO 19536 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 15:11:15.205  INFO 19536 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@72678bba: startup date [Tue Nov 20 15:11:01 IST 2018]; root of context hierarchy
+2018-11-20 15:11:15.210  INFO 19536 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 15:11:15.212  INFO 19536 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 15:11:15.221  INFO 19536 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:11:15.223  INFO 19536 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 15:11:15.237  INFO 19536 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 15:16:19.198  INFO 20468 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 20468 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 15:16:19.201  INFO 20468 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 15:16:19.243  INFO 20468 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@784485d9: startup date [Tue Nov 20 15:16:19 IST 2018]; root of context hierarchy
+2018-11-20 15:16:19.914  INFO 20468 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 15:16:20.123  INFO 20468 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 15:16:20.264  INFO 20468 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 15:16:20.301  INFO 20468 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:16:20.311  INFO 20468 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 15:16:20.411  INFO 20468 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 15:16:20.412  INFO 20468 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 15:16:20.489  INFO 20468 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 15:16:20.705  INFO 20468 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 15:16:24.734  INFO 20468 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:16:25.400  INFO 20468 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 15:16:25.401  INFO 20468 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 15:16:25.406  INFO 20468 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 15:16:25.420  INFO 20468 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.917 seconds (JVM running for 8.47)
+2018-11-20 15:16:35.297  INFO 20468 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 15:16:35.390  INFO 20468 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 15:17:09.924  INFO 20468 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 15:17:10.145  INFO 20468 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 15:17:10.180  INFO 20468 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 15:17:10.189  INFO 20468 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 15:17:10.200  INFO 20468 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 15:17:10.219  WARN 20468 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 15:17:11.416  WARN 20468 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 15:18:04.103  WARN 20468 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 15:19:10.575  WARN 20468 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 15:25:43.778  INFO 20468 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@784485d9: startup date [Tue Nov 20 15:16:19 IST 2018]; root of context hierarchy
+2018-11-20 15:25:43.781  INFO 20468 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-20 15:25:43.784  INFO 20468 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-20 15:25:43.787  INFO 20468 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:25:43.787  INFO 20468 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-11-20 15:25:43.790  INFO 20468 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-11-20 15:26:43.983  INFO 10524 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 10524 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-11-20 15:26:43.988  INFO 10524 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-11-20 15:26:44.087  INFO 10524 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@703313e4: startup date [Tue Nov 20 15:26:44 IST 2018]; root of context hierarchy
+2018-11-20 15:26:45.628  INFO 10524 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-11-20 15:26:46.214  INFO 10524 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-11-20 15:26:46.709  INFO 10524 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-11-20 15:26:46.856  INFO 10524 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:26:46.878  INFO 10524 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-11-20 15:26:46.982  INFO 10524 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-11-20 15:26:46.984  INFO 10524 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-11-20 15:26:47.042  INFO 10524 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-11-20 15:26:47.304  INFO 10524 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-11-20 15:26:49.353  INFO 10524 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-11-20 15:26:50.157  INFO 10524 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-20 15:26:50.158  INFO 10524 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-11-20 15:26:50.161  INFO 10524 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-11-20 15:26:50.170  INFO 10524 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.726 seconds (JVM running for 7.976)
+2018-11-20 15:27:00.030  INFO 10524 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-11-20 15:27:00.133  INFO 10524 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-11-20 15:27:08.889  INFO 10524 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartThemesBeans.xml]
+2018-11-20 15:27:09.163  INFO 10524 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/chartConstantsBean.xml]
+2018-11-20 15:27:09.221  INFO 10524 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/defaultChartPropertiesBean.xml]
+2018-11-20 15:27:09.236  INFO 10524 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/eyeCandySixtiesChartPropertiesBean.xml]
+2018-11-20 15:27:09.251  INFO 10524 --- [JavaFX Application Thread] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from URL [jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-chart-themes-6.6.0.jar!/net/sf/jasperreports/chartthemes/spring/beans/aegeanChartPropertiesBean.xml]
+2018-11-20 15:27:09.279  WARN 10524 --- [JavaFX Application Thread] n.s.j.e.DefaultExtensionsRegistry        : Extension resource jar:file:/C:/Users/DCM/.m2/repository/net/sf/jasperreports/jasperreports/6.7.0/jasperreports-6.7.0.jar!/jasperreports_extension.properties was found to be a duplicate of jar:file:/D:/sts-bundle/sts-3.9.4.RELEASE/configuration/org.eclipse.osgi/1123/0/.cp/lib/jasperreports-6.6.0.jar!/jasperreports_extension.properties in classloader sun.misc.Launcher$AppClassLoader@764c12b6
+2018-11-20 15:27:10.596  WARN 10524 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 15:27:10.603  WARN 10524 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 15:27:10.611  WARN 10524 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.
+2018-11-20 15:27:10.615  WARN 10524 --- [services subreports #1] n.s.j.engine.query.JRJdbcQueryExecuter   : The supplied java.sql.Connection object is null.

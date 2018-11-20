@@ -291,12 +291,15 @@ public class ReceiptController implements Initializable {
 
 			try {
 				JasperReport jasperReport = null;
+				
 				try {
 					LOG.info("Receipt before Compiling ");
 					jasperReport = JasperCompileManager
 							.compileReport(getClass().getResourceAsStream("/reports/Receipt.jrxml"));
 				} catch (Exception e) {
 					LOG.error("Unable to compile receipt ", e);
+					jasperReport = JasperCompileManager
+							.compileReport(getClass().getResourceAsStream("/reports/Receipt.jasper"));
 				}
 				Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -309,18 +312,24 @@ public class ReceiptController implements Initializable {
 
 					String showdate = bookinglist.get(i).getServicedate();
 					String slot = bookinglist.get(i).getServicetime();
-
-					detail = showdate.concat(" from ").concat(slot).concat(" ");
+					detail = showdate.concat(" from ").concat(slot);
 
 					d.add(detail);
-
 				}
 				System.out.println("Dates d : " + d);
 
+				int x = 1;
+
 				for (String i : d) {
 					detailsbooking = detailsbooking.append(i);
+					if (x < d.size()) {
+						detailsbooking.append(", ");
+					} else {
+						detailsbooking.append(".");
+					}
+					x++;
 				}
-				String detailsbooking2 = detailsbooking.toString().concat(".");
+				String detailsbooking2 = detailsbooking.toString();
 
 				HashMap<String, Object> p = new HashMap<String, Object>();
 				p.put("contractid", receipt.getContract().getContractid());
@@ -330,6 +339,7 @@ public class ReceiptController implements Initializable {
 				p.put("client", receipt.getContract().getCustomer().getCustomername());
 				p.put("details", detailsbooking2);
 				p.put("address", receipt.getContract().getCustomer().getAddress());
+				p.put("statecode", receipt.getContract().getCustomer().getStatecode());
 				p.put("gst", receipt.getContract().getCustomer().getGstno());
 				p.put("gross", (Math.round(bp)));
 				p.put("cgst", (Math.round(cgst)));
@@ -358,9 +368,97 @@ public class ReceiptController implements Initializable {
 
 				JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
+				
+
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				System.out.println("JR Exception");
+				e.printStackTrace();
+			}
+			
+			/* report for duplicate */
+			
+			try {
+				
+				JasperReport jasperReport2 = null;
+				try {
+					LOG.info("Receipt before Compiling ");
+					
+					jasperReport2 = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Receipt2.jrxml"));
+				} catch (Exception e) {
+					LOG.error("Unable to compile receipt ", e);
+					jasperReport2 = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Receipt2.jasper"));
+				}
+				Map<String, Object> parameters = new HashMap<String, Object>();
+
+				List<Booking> bookinglist = receipt.getContract().getBookings();
+				StringBuffer detailsbooking = new StringBuffer();
+				String detail = null;
+				Set<String> d = new HashSet<String>();
+
+				for (int i = 0; i < bookinglist.size(); i++) {
+
+					String showdate = bookinglist.get(i).getServicedate();
+					String slot = bookinglist.get(i).getServicetime();
+					detail = showdate.concat(" from ").concat(slot);
+
+					d.add(detail);
+				}
+				System.out.println("Dates d : " + d);
+
+				int x = 1;
+
+				for (String i : d) {
+					detailsbooking = detailsbooking.append(i);
+					if (x < d.size()) {
+						detailsbooking.append(", ");
+					} else {
+						detailsbooking.append(".");
+					}
+					x++;
+				}
+				String detailsbooking2 = detailsbooking.toString();
+
+				HashMap<String, Object> p = new HashMap<String, Object>();
+				p.put("contractid", receipt.getContract().getContractid());
+				p.put("receiptid", receipt.getReceiptid());
+				p.put("paidamount", convert(Integer.parseInt(receipt.getPaidamount())) + " Only");
+				p.put("paymentmode", receipt.getPaymentmode());
+				p.put("client", receipt.getContract().getCustomer().getCustomername());
+				p.put("details", detailsbooking2);
+				p.put("address", receipt.getContract().getCustomer().getAddress());
+				p.put("statecode", receipt.getContract().getCustomer().getStatecode());
+				p.put("gst", receipt.getContract().getCustomer().getGstno());
+				p.put("gross", (Math.round(bp)));
+				p.put("cgst", (Math.round(cgst)));
+				p.put("sgst", (Math.round(cgst)));
+				p.put("total", PaidAmount.getText());
+
+				List<HashMap<String, Object>> rec = new ArrayList<HashMap<String, Object>>();
+				rec.add(p);
+
+				JRDataSource jRDataSource = new JRBeanCollectionDataSource(rec);
+				parameters.put("jRDataSource", rec);
+				JasperPrint jasperPrint2 = null;
+				try {
+					LOG.info("In Jasperprint try method");
+					jasperPrint2 = JasperFillManager.fillReport(jasperReport2, parameters, jRDataSource);
+				} catch (Exception e) {
+					LOG.error("Unable to print receipt ", e);
+				}
+				File outDir = new File("Reports/Receipt");
+				outDir.mkdirs();
+
+				DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss+");
+				Date date = new java.util.Date();
+				System.out.println(date);
+				String path2 = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+				
+				JasperExportManager.exportReportToPdfFile(jasperPrint2, path2);
+
 				Alert alert2 = new Alert(AlertType.INFORMATION);
 				alert2.setTitle("Receipt");
-				alert2.setHeaderText("Receipt generated successfully");
+				alert2.setHeaderText("Original & Duplicate receipt generated successfully");
 				alert2.setContentText("Thank you");
 				alert2.showAndWait();
 
@@ -369,6 +467,8 @@ public class ReceiptController implements Initializable {
 				System.out.println("JR Exception");
 				e.printStackTrace();
 			}
+			
+			/* End receipt duplicate code */
 
 		} else {
 
@@ -526,6 +626,7 @@ public class ReceiptController implements Initializable {
 
 		// First, compile jrxml file.
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
+		
 
 		// Parameters for report .
 		Map<String, Object> parameters = new HashMap<String, Object>();

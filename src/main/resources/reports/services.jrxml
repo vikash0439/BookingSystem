@@ -159,31 +159,31 @@ Telephone: 011-23714307
 	</columnHeader>
 	<detail>
 		<band height="41" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement positionType="FixRelativeToBottom" x="30" y="0" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{serviceid}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="140" y="0" width="100" height="30" uuid="936ab62f-861d-4185-be65-e2674f0fd2f1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7d993ec-94ab-4eca-9fc2-418d46d01ac0"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="240" y="0" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{serviceinuse}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="350" y="0" width="100" height="30" uuid="e8ad9664-38e4-4279-b42e-80d7b0ca0b4a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{servicecharges}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="450" y="0" width="86" height="31" uuid="85b97ebd-068e-45d9-91aa-a2beaa10d5e9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
 				</reportElement>

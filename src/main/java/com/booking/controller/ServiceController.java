@@ -294,6 +294,8 @@ public class ServiceController implements Initializable {
 																								// file.
 		} catch (Exception e) {
 			LOG.error("Unable to parse data ", e);
+			jasperReport = JasperCompileManager
+					.compileReport(getClass().getResourceAsStream("/reports/services.jasper"));
 		}
 		LOG.info("Service Report Compiled ");
 

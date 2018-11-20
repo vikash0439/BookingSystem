@@ -1,11 +1,16 @@
 package com.booking.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -15,7 +20,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
-import com.booking.bean.Invoice;
 import com.booking.bean.Receipt;
 import com.booking.bean.Rep;
 import com.booking.config.StageManager;
@@ -50,6 +54,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class DashboardController implements Initializable {
@@ -78,6 +90,8 @@ public class DashboardController implements Initializable {
 	private Label repemail;
 	@FXML
 	private Label repmobile;
+	@FXML
+	private Label noc;
 
 	@FXML
 	TableView<Booking> bookingtable;
@@ -117,7 +131,7 @@ public class DashboardController implements Initializable {
 	private BookingService bookingService;
 	@Autowired
 	private ReceiptService receiptService;
-	@Autowired 
+	@Autowired
 	private ContractService contractService;
 
 	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
@@ -134,34 +148,73 @@ public class DashboardController implements Initializable {
 
 	@FXML
 	private void report(ActionEvent event) throws IOException {
-		
-		Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-		alert.setTitle("Report");
-		alert.setHeaderText("Contract");
-		alert.setContentText("Contract report downloaded successfully");
-		alert.showAndWait();
+
+		try {
+
+			System.out.println("From Contract report try block");
+			JasperReport jasperReport;
+			try {
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jrxml"));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jasper"));
+			}
+
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			HashMap<String, Object> cont = new HashMap<String, Object>();
+			cont.put("contractid", Long.valueOf(ContractID.getText()));
+
+			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
+			list.add(cont);
+
+			JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
+			parameters.put("jRDataSource", list);
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+			File outDir = new File("Reports/Contract");
+			outDir.mkdirs();
+
+			DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+			Date date = new java.util.Date();
+			System.out.println(date);
+			String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+			JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+			Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+			alert.setTitle("Report");
+			alert.setHeaderText("Contract");
+			alert.setContentText("Contract report downloaded successfully");
+			alert.showAndWait();
+			
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			System.out.println("JR Exception");
+			e.printStackTrace();
+		}
 
 	}
 
 	@FXML
 	private void cancel(ActionEvent event) throws IOException {
 		System.out.println("Cancel");
-		
+
 		Alert alert = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation!");
 		alert.setHeaderText("All booking in this contract will be cancelled.");
 		alert.setContentText("Are you sure you want to cancel the contract?");
 
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
-			
-			 String cid = ContractID.getText();
-			 
-			 contractService.updateStatus(Long.parseLong((String)cid));
-			 
-		    
+		if (result.get() == ButtonType.OK) {
+
+			String cid = ContractID.getText();
+
+			contractService.updateStatus(Long.parseLong((String) cid));
+
 		} else {
-		    // ... user chose CANCEL or closed the dialog
+			// ... user chose CANCEL or closed the dialog
 		}
 		dashboard(event);
 
@@ -282,7 +335,7 @@ public class DashboardController implements Initializable {
 						return new SimpleStringProperty(param.getValue().getContract().getPaymentstatus());
 					}
 				});
-		
+
 		colReceipt.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 
 			@Override
@@ -353,19 +406,19 @@ public class DashboardController implements Initializable {
 
 						TableRow<Booking> currentRow = getTableRow();
 						String pact = currentRow.getItem().getContract().getPact();
-						
+
 						List<Receipt> receiptlist = currentRow.getItem().getContract().getReceipt();
-						double totalamount = 0;						
-						for(int i = 0; i < receiptlist.size(); i++ ) {
+						double totalamount = 0;
+						for (int i = 0; i < receiptlist.size(); i++) {
 							System.out.println(receiptlist.get(i).getReceiptid());
-							double receiptamount = Double.parseDouble(receiptService.PaidAmount(receiptlist.get(i).getReceiptid()));
-						    System.out.println("Paid Amount : "+receiptamount); 
-						    totalamount  = receiptamount + totalamount;
+							double receiptamount = Double
+									.parseDouble(receiptService.PaidAmount(receiptlist.get(i).getReceiptid()));
+							System.out.println("Paid Amount : " + receiptamount);
+							totalamount = receiptamount + totalamount;
 						}
-						
-						
-                        double remaining = Double.parseDouble(pact) -totalamount;
-                        
+
+						double remaining = Double.parseDouble(pact) - totalamount;
+
 						colDay.setStyle("-fx-background-color: transparent;");
 						setAlignment(Pos.CENTER);
 						setText(String.valueOf(remaining));
@@ -374,7 +427,6 @@ public class DashboardController implements Initializable {
 			};
 			return cell;
 		}
-
 	};
 
 	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> dateday = new Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>>() {
@@ -433,18 +485,21 @@ public class DashboardController implements Initializable {
 							updateBooking(booking);
 						});
 						TableRow<Booking> currentRow = getTableRow();
-						Invoice i = currentRow.getItem().getContract().getInvoice();
-						if (currentRow.getItem().getContract().getCustomer().getCustomername().equalsIgnoreCase("SRCPA")) {  //indicates srcpa
-							currentRow.setStyle("-fx-background-color:#ffffcc");
-						}else if (currentRow.getItem().getContract().getInvoice() != null) {  //indicates invoice created
-							currentRow.setStyle("-fx-background-color:#b3c6ff");
 
-						}else if(currentRow.getItem().getContract().getOverride() != null){   //indicates cancelled
+						if (currentRow.getItem().getContract().getCustomer().getCustomername()
+								.equalsIgnoreCase("SRCPA")) { // indicates srcpa
+							currentRow.setStyle("-fx-background-color:#ffffcc");
+						} else if (currentRow.getItem().getContract().getInvoice() != null && currentRow.getItem().getContract().getOverride() == null) { // indicates invoice																								// created
+							currentRow.setStyle("-fx-background-color:#b3c6ff");
+						} else if (currentRow.getItem().getContract().getOverride() != null && currentRow.getItem().getContract().getInvoice() != null) { // indicates cancelled
+							currentRow.setStyle("-fx-background-color: #ff9999");
+						}
+						else if (currentRow.getItem().getContract().getOverride() != null) { // indicates cancelled
 							currentRow.setStyle("-fx-background-color: #ff9999");
 						}else {
-							
+
 						}
-						
+
 						btnEdit.setStyle("-fx-background-color: transparent;");
 						ImageView iv = new ImageView();
 						iv.setImage(imgEdit);
@@ -463,11 +518,11 @@ public class DashboardController implements Initializable {
 					ContractID.setText(Long.toString(booking.getContract().getContractid()));
 					Purpose.setText(booking.getContract().getPurpose());
 					CustomerName.setText(booking.getContract().getCustomer().getCustomername());
-					
+                    noc.setText(booking.getContract().getNoc());
 					repname.setText(booking.getContract().getRepname());
-					
+
 					Rep r = repService.findbyName(booking.getContract().getRepname());
-					
+
 					repemail.setText(r.getRepemail());
 					repmobile.setText(r.getRepmobile());
 
@@ -476,7 +531,5 @@ public class DashboardController implements Initializable {
 			return cell;
 		}
 	};
-
-	
 
 }

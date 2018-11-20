@@ -217,12 +217,24 @@ public class InvoiceController implements Initializable {
 			try {
 
 				System.out.println("From Invoice Controller report try block");
-				JasperReport jasperReport = JasperCompileManager
-						.compileReport(getClass().getResourceAsStream("/reports/Invoice.jrxml"));
+				
+				JasperReport jasperReport;
+				try {
+					jasperReport = JasperCompileManager
+							.compileReport(getClass().getResourceAsStream("/reports/Invoice.jrxml"));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+					jasperReport = JasperCompileManager
+							.compileReport(getClass().getResourceAsStream("/reports/Invoice.jasper"));
+				}
 
 				Map<String, Object> parameters = new HashMap<String, Object>();
 
 				List<HashMap<String, Object>> inv = new ArrayList<HashMap<String, Object>>();
+				
+				HashMap<String, Object> p = new HashMap<String, Object>();
 
 				int i = 1;
 				long qty;
@@ -251,9 +263,11 @@ public class InvoiceController implements Initializable {
 					buffercost = buffercost.append(" ").append(cost);
 					stringcost = buffercost.toString();
 				}
+				
+				
 				qty = i;
 
-				HashMap<String, Object> p = new HashMap<String, Object>();
+				
 				p.put("contractid", invoice.getContract().getContractid());
 				p.put("invoiceid", invoice.getInvoiceid());
 				p.put("customername", invoice.getContract().getCustomer().getCustomername());
@@ -268,15 +282,18 @@ public class InvoiceController implements Initializable {
 				p.put("qty", qty);
 				p.put("unit", unit);
 				p.put("amount", stringcost);
+				
+			
+			
 
 				Double ia = Double.parseDouble(invoice.getContract().getBaseprice());
 				Double cg = ia * 9 / 100;
 				Double sg = ia * 9 / 100;
 				Double t = cg + sg + ia;
 
-				p.put("cg", cg);
-				p.put("sg", sg);
-				p.put("t", t);
+				p.put("cg", Math.round(cg));
+				p.put("sg", Math.round(sg));
+				p.put("t", Math.round(t));
 				p.put("NumInWords", convert((int) Math.round(t)) + " Only");
 
 				inv.add(p);
@@ -295,9 +312,103 @@ public class InvoiceController implements Initializable {
 
 				JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				System.out.println("JR Exception");
+				e.printStackTrace();
+			}
+			
+			
+			/* Duplicate receipt invoice code */
+			try {
+
+				System.out.println("From Invoice Controller report try block");
+				
+				JasperReport jasperReport2;
+				try {
+					jasperReport2 = JasperCompileManager
+							.compileReport(getClass().getResourceAsStream("/reports/Invoice2.jrxml"));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+					jasperReport2 = JasperCompileManager
+							.compileReport(getClass().getResourceAsStream("/reports/Invoice2.jasper"));
+				}
+
+				Map<String, Object> parameters = new HashMap<String, Object>();
+
+				List<HashMap<String, Object>> inv = new ArrayList<HashMap<String, Object>>();
+				
+				HashMap<String, Object> p = new HashMap<String, Object>();
+
+				
+				
+				Long amount = null;
+
+				List<Booking> allbookings = invoice.getContract().getBookings();
+				StringBuffer buffername = new StringBuffer();
+				String stringname = null;
+				StringBuffer bufferdate = new StringBuffer();
+				String stringdate = null;
+				StringBuffer buffercost = new StringBuffer();
+				String stringcost = null;
+
+				
+				
+				
+				for (int i = 0; i < allbookings.size(); i++) {
+					
+					HashMap<String, Object> m = new HashMap<String, Object>();
+                    System.out.println(allbookings.get(i).getServicename());
+                    
+                    m.put("servicename", allbookings.get(i).getServicename());
+        			m.put("servicedate", allbookings.get(i).getServicedate());
+        			m.put("serviceicost", allbookings.get(i).getServicecost());
+                   
+				   inv.add(m);
+				}
+				   
+
+				
+				p.put("contractid", invoice.getContract().getContractid());
+				p.put("invoiceid", invoice.getInvoiceid());
+				p.put("customername", invoice.getContract().getCustomer().getCustomername());
+				p.put("address", invoice.getContract().getCustomer().getAddress());
+				p.put("statecode", invoice.getContract().getCustomer().getStatecode());
+				p.put("gstno", invoice.getContract().getCustomer().getGstno());
+				p.put("baseprice", invoice.getContract().getBaseprice());
+			
+
+				Double ia = Double.parseDouble(invoice.getContract().getBaseprice());
+				Double cg = ia * 9 / 100;
+				Double sg = ia * 9 / 100;
+				Double t = cg + sg + ia;
+
+				p.put("cg", Math.round(cg));
+				p.put("sg", Math.round(sg));
+				p.put("t", Math.round(t));
+				p.put("NumInWords", convert((int) Math.round(t)) + " Only");
+
+				inv.add(p);
+
+				JRDataSource jRDataSource = new JRBeanCollectionDataSource(inv);
+				parameters.put("jRDataSource", inv);
+
+				JasperPrint jasperPrint2 = JasperFillManager.fillReport(jasperReport2, parameters, jRDataSource);
+				File outDir = new File("Reports/Invoice");
+				outDir.mkdirs();
+
+				DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss+");
+				Date date = new java.util.Date();
+				System.out.println(date);
+				String path2 = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+				JasperExportManager.exportReportToPdfFile(jasperPrint2, path2);
+
 				Alert a = new Alert(AlertType.INFORMATION);
 				a.setTitle("Report");
-				a.setHeaderText("Report generated.");
+				a.setHeaderText("Original & Duplicate invoice generated.");
 				a.setContentText("Report downloaded successfully.");
 				a.showAndWait();
 
@@ -306,6 +417,8 @@ public class InvoiceController implements Initializable {
 				System.out.println("JR Exception");
 				e.printStackTrace();
 			}
+			
+			/* End duplicate receipt invoice code */
 
 		} else {
 			System.out.println("Nothing to update");

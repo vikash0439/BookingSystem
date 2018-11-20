@@ -99,6 +99,11 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </DatePicker>
+            <ComboBox fx:id="Slot" prefHeight="31.0" prefWidth="247.0" promptText="Slot">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
             <TextField fx:id="ServiceTime" prefHeight="30.0" prefWidth="246.0" promptText="Service Time">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

@@ -40,7 +40,7 @@ public class ContractService {
 		Contract contract = contractRepository.findAllByContractid(contractid);
 		contract.setOverride("cancelled");
 		contractRepository.save(contract);
-		
+
 		System.out.println("Contract status updated");
 
 	}
@@ -51,9 +51,19 @@ public class ContractService {
 		contract.setTaxamount(taxamount);
 		contract.setBaseprice(baseprice);
 		contract.setPact(pact);
-		contractRepository.save(contract);   
-		
+		contractRepository.save(contract);
+
 		System.out.println("Contract cost updated");
+	}
+
+	public void updateNoc(long contractid, String noc) {
+		System.out.println(noc + " " + contractid);
+		Contract contract = contractRepository.findAllByContractid(contractid);
+		contract.setNoc(noc);
+		contractRepository.save(contract);
+
+		System.out.println("Contract Noc updated");
+
 	}
 
 }

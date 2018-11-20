@@ -33,10 +33,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -77,6 +79,12 @@ public class AllContractController implements Initializable {
 	private Label repemail;
 	@FXML
 	private Label repmobile;
+	@FXML
+	private ToggleGroup noc;
+	@FXML
+	private RadioButton NocYes;
+	@FXML
+	private RadioButton NocNo;
 	
     @FXML
     private TableView<Performance> showtable;
@@ -214,6 +222,19 @@ public class AllContractController implements Initializable {
 	public void statecode(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.STATECODE);
 	}
+	
+	public void update() {
+		String noc = NocYes.isSelected() ? "Yes" : "No";
+		System.out.println(noc +" "+Long.parseLong((String) ContractID.getEditor().getText()));
+		contractService.updateNoc(Long.parseLong((String) ContractID.getEditor().getText()), noc);
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Contract");
+		
+		alert.setContentText("Noc updated!");
+		alert.show();
+		
+	}
 
 	public void slotChange() {
 		Slot.getSelectionModel().getSelectedItem();
@@ -311,6 +332,9 @@ public class AllContractController implements Initializable {
 		baseprice.setText(contract.getBaseprice());
 		taxamount.setText(contract.getTaxamount());
 		pact.setText(contract.getPact());
+		if(contract.getNoc().equals("Yes")) NocYes.setSelected(true);
+		else NocNo.setSelected(true);
+		
 		client.setText(contract.getCustomer().getCustomername());
 		repname.setText(contract.getRepname());
 		
@@ -321,6 +345,8 @@ public class AllContractController implements Initializable {
 
 		receipt.setText(contract.getReceipt().toString());	
 		invoice.setText(contract.getInvoice().toString());
+		
+		
 	
 	}
 	

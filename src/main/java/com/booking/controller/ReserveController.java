@@ -24,6 +24,7 @@ import com.booking.service.CustomerService;
 import com.booking.service.PerformanceService;
 import com.booking.service.ReserveService;
 import com.booking.service.ServiceService;
+import com.booking.service.SlotService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -56,6 +57,8 @@ public class ReserveController implements Initializable{
 	private TextField ServiceTime;	
 	@FXML
 	private ComboBox<String> ServiceID;	
+	@FXML
+	private ComboBox<String> Slot;	
 	
 	@FXML
 	private TextField ReserveTitle;
@@ -100,12 +103,13 @@ public class ReserveController implements Initializable{
 	private ContractService contractService;
 	@Autowired
 	private PerformanceService performanceService;
+	@Autowired
+	private SlotService slotService;
 	
 	private ObservableList<Reserve> reserveList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceNameList = FXCollections.observableArrayList();
-	
-	
-	
+	private ObservableList<String> slotList = FXCollections.observableArrayList();
+		
 	/* Event methods */
 	
 	@FXML
@@ -175,8 +179,8 @@ public class ReserveController implements Initializable{
 		if (ReserveID.getText() == null || ReserveID.getText() == "") {
 			Reserve reserve = new Reserve();
 			reserve.setServicedate(ServiceDate.getValue());
+			reserve.setSlot(Slot.getSelectionModel().getSelectedItem());
 			reserve.setServicetime(ServiceTime.getText());
-
 			reserve.setReservetitle(ReserveTitle.getText());
 			reserve.setInternalusage(InternalUsage.getText());
 			reserve.setServiceid(ServiceID.getSelectionModel().getSelectedItem());
@@ -191,7 +195,7 @@ public class ReserveController implements Initializable{
 			String a = "0";
 			Contract contract = new Contract();
 			contract.setBookingdate(null);
-			contract.setPurpose(ReserveTitle.getText());
+			contract.setPurpose(ServiceID.getSelectionModel().getSelectedItem());
 			contract.setBaseprice(null);
 			contract.setTaxamount(null);
 			contract.setPact(a);
@@ -202,7 +206,7 @@ public class ReserveController implements Initializable{
 
 			Booking b = new Booking();
 			b.setServicedate((String)ServiceDate.getEditor().getText());
-			b.setServicename(ReserveTitle.getText());
+			b.setServicename(ServiceID.getSelectionModel().getSelectedItem());
 			b.setServicetime(ServiceTime.getText());
 			b.setSlot(ServiceTime.getText());
 			// b.setServiceused(ServiceUsed.getText());
@@ -215,7 +219,7 @@ public class ReserveController implements Initializable{
 			
 
 			Performance p = new Performance();
-			p.setShowname(null);
+			p.setShowname(ReserveTitle.getText());
 			p.setShowtime(null);
 			p.setShowdetails(null);
 			p.setContract(contract);
@@ -245,12 +249,16 @@ public class ReserveController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		
+		
+		
 		serviceNameList.clear();
 		serviceNameList.addAll(serviceService.findName());
 		ServiceID.setItems(serviceNameList);
 		
-		
-
+		slotList.clear();
+		slotList.addAll(slotService.findSlot());
+		Slot.setItems(slotList);
 
 		reservetable();
 		clearFields();

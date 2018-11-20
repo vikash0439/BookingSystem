@@ -53,6 +53,7 @@ public class Contract implements Serializable{
 	private String paymentstatus;
 	private String override;
 	private String slabno;
+	private String noc;
 	private String repname;
 	
 	
@@ -141,6 +142,12 @@ public class Contract implements Serializable{
 	}
 	public void setSlabno(String slabno) {
 		this.slabno = slabno;
+	}
+	public String getNoc() {
+		return noc;
+	}
+	public void setNoc(String noc) {
+		this.noc = noc;
 	}
 	
 	public String getRepname() {

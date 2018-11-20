@@ -24,6 +24,7 @@ public class Reserve {
 	private long reserveid;
 	private LocalDate Servicedate;
 	private String Servicetime;
+	private String slot;
 	private String Serviceid;
 	private String Customerid;
 	private String Reservetitle;
@@ -41,6 +42,16 @@ public class Reserve {
 
 	public void setReserveid(long reserveid) {
 		this.reserveid = reserveid;
+	}
+
+
+	public String getSlot() {
+		return slot;
+	}
+
+
+	public void setSlot(String slot) {
+		this.slot = slot;
 	}
 
 

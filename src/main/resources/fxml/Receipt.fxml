@@ -175,7 +175,7 @@
             </TextField>
             <HBox prefHeight="40.0" prefWidth="296.0">
                <children>
-                  <Label text="Credit : ">
+                  <Label text="Credit : " textFill="WHITE">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
