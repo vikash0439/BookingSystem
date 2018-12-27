@@ -1,0 +1,41 @@
+2018-12-27 09:56:02.073  INFO 13296 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LAPTOP-B4A9F2KG with PID 13296 (started by DCM in E:\Software\BookingApp\V1\BookingSystem)
+2018-12-27 09:56:02.077  INFO 13296 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2018-12-27 09:56:02.105  INFO 13296 --- [JavaFX-Launcher] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7c1ea301: startup date [Thu Dec 27 09:56:02 IST 2018]; root of context hierarchy
+2018-12-27 09:56:02.677  INFO 13296 --- [JavaFX-Launcher] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-12-27 09:56:02.897  INFO 13296 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-12-27 09:56:03.047  INFO 13296 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-12-27 09:56:03.106  INFO 13296 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-12-27 09:56:03.123  INFO 13296 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-12-27 09:56:03.234  INFO 13296 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.17.Final}
+2018-12-27 09:56:03.236  INFO 13296 --- [JavaFX-Launcher] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-12-27 09:56:03.277  INFO 13296 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-12-27 09:56:03.423  INFO 13296 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-12-27 09:56:05.253  INFO 13296 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-12-27 09:56:06.157  INFO 13296 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-12-27 09:56:06.159  INFO 13296 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-12-27 09:56:06.162  INFO 13296 --- [JavaFX-Launcher] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-12-27 09:56:06.183  INFO 13296 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 4.544 seconds (JVM running for 5.229)
+2018-12-27 09:56:15.986  INFO 13296 --- [JavaFX Application Thread] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-12-27 09:56:16.071  INFO 13296 --- [JavaFX Application Thread] com.booking.controller.LoginController   : New Log in the system
+2018-12-27 09:59:30.260  WARN 13296 --- [JavaFX Application Thread] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2018-12-27 09:59:30.261 ERROR 13296 --- [JavaFX Application Thread] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'customerid' not found.
+2018-12-27 10:17:12.049  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-12-27 10:17:13.733  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-12-27 10:17:18.694  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-12-27 10:17:18.755  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-12-27 10:19:38.799  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-12-27 10:19:39.062  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-12-27 10:19:39.080  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-12-27 10:19:39.125  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-12-27 10:21:35.093  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-12-27 10:21:35.144  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-12-27 10:21:35.160  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : Receipt before Compiling 
+2018-12-27 10:21:35.201  INFO 13296 --- [JavaFX Application Thread] c.booking.controller.ReceiptController   : In Jasperprint try method
+2018-12-27 11:09:56.396  INFO 13296 --- [JavaFX Application Thread] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7c1ea301: startup date [Thu Dec 27 09:56:02 IST 2018]; root of context hierarchy
+2018-12-27 11:09:56.399  INFO 13296 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-12-27 11:09:56.400  INFO 13296 --- [JavaFX Application Thread] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-12-27 11:09:56.403  INFO 13296 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-12-27 11:09:56.405  INFO 13296 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-12-27 11:09:56.411  INFO 13296 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -1,0 +1,20 @@
+/* CSS for app */
+
+.btnGreen{
+	-fx-background-color:  #3cbc53;
+}
+
+.background{
+	-fx-background-color: DODGERBLUE;
+}
+
+.table-row-cell {
+  
+}
+.background-image {
+	-fx-background-color: DODGERBLUE;
+      -fx-background-image: url("/images/source.jpg");
+      -fx-background-position: center;
+      -fx-background-repeat: stretch;
+
+}

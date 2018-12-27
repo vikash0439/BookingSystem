@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="services" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9760220a-8bd4-4043-a503-d977fd86f81f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="Dataset1" uuid="a4ba13f9-1a10-4ce3-b620-f55cdd30bc30">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="contractid" class="java.lang.Long"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="receiptid" class="java.lang.Long"/>
+	<field name="paymentmode" class="java.lang.String"/>
+	<field name="paidamount" class="java.lang.String"/>
+	<field name="client" class="java.lang.String"/>
+	<field name="purpose" class="java.lang.String"/>
+	<field name="contractid" class="java.lang.Long"/>
+	<field name="bookingdate" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="gst" class="java.lang.String"/>
+	<field name="gross" class="java.lang.Long"/>
+	<field name="cgst" class="java.lang.Long"/>
+	<field name="sgst" class="java.lang.Long"/>
+	<field name="total" class="java.lang.String"/>
+	<field name="slot" class="java.lang.String"/>
+	<field name="showdate" class="java.lang.String"/>
+	<field name="details" class="java.lang.String"/>
+	<field name="statecode" class="java.lang.String"/>
+	<field name="receiptdate" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="97" y="23" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Indian National Theatre Trust
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="170" y="44" width="190" height="13" uuid="2320e7b4-a85e-4f4f-8422-772fcd9852b9"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Shri Ram Centre  Auditorium)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="159" y="2" width="184" height="21" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[RECEIPT VOUCHER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="62" width="156" height="15" uuid="68dd9906-c2e0-4373-80e3-5e7e3a591911"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GST No. 07AAATI1040E1ZB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="75" width="130" height="15" uuid="65266c76-934a-4f7c-896c-b116eafe01e4"/>
+				<textElement textAlignment="Center" markup="styled">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAN : AAATI1040E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="6" width="130" height="13" uuid="5b98417f-6e05-4785-88d9-e99277181ab6"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Duplicate for Supplier]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="9" y="8" width="61" height="15" uuid="d4c5f807-aa81-4059-9ca3-ac2482dca504">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2c90151-3456-4426-aebf-3196f844401f"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="-6" width="61" height="15" uuid="27878fc7-72dc-4216-b4d4-759a08906f23">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87e12c9b-4b56-48da-b0a9-b9a010f75b72"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Receipt No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="-6" width="90" height="13" uuid="1428b363-9491-4e04-bf49-1eb01867b0ac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87e12c9b-4b56-48da-b0a9-b9a010f75b72"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{receiptid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="7" width="80" height="14" uuid="28cab92c-9e0b-47dd-9fb7-8a5398ea2865"/>
+				<textFieldExpression><![CDATA[$F{contractid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="427" y="8" width="40" height="18" uuid="27a270e8-f100-4945-b882-900646bc1f8a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="21" width="174" height="14" uuid="1938fee3-92d6-4b4a-a745-ce47eda26040"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Place of Service: Delhi (07) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="-6" width="29" height="16" uuid="d3c58a19-22c0-427d-8d6d-6264a7eb78db"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[R/AH/]]></text>
+			</staticText>
+			<textField pattern="YYYY">
+				<reportElement x="97" y="-6" width="23" height="17" uuid="381abb50-0328-4315-9767-d73bed2cdd6a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="8" width="100" height="18" uuid="e272a40d-92e2-44b2-ba90-6208343a70f3"/>
+				<textFieldExpression><![CDATA[$F{receiptdate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="299" splitType="Stretch">
+			<staticText>
+				<reportElement x="101" y="-1" width="164" height="17" uuid="a8d4db30-e4c4-4b8b-acc4-9c22f58111e3"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Received with thanks from :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="40" width="125" height="17" uuid="7789ee2d-c184-424b-bb69-331b967632f9"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[The sum of rupees :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="54" width="19" height="17" uuid="a5a02a7e-6a3f-4279-ab7e-a42b291bcbbe"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[By :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="68" width="366" height="19" uuid="77d68c3d-98f3-43a3-a88f-03d59caf03ef"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[On account of payment for booking  of auditorium for hiring (SAC code : 9972) on ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="54" width="103" height="17" uuid="ce1c9eff-8c6b-4507-aa3a-b683bd163b44">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38f3e928-cd05-466e-9aa2-b4e88aa7527f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{paymentmode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="41" width="264" height="18" uuid="00e7770a-78f9-45c8-87e8-3afeb9e02030">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3730a87-51f9-4899-a2e4-1d6808af38d7"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{paidamount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="239" y="0" width="225" height="17" uuid="aa1861ab-76ee-43b4-af99-4104d3cc0be1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="70c9bd1c-a3fa-4d40-a39b-859165301039"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{client}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="197" width="194" height="30" uuid="fcef6764-e632-4eb1-9447-8a74ddddc22c"/>
+				<text><![CDATA[For INDIAN NATIONAL THEATRE TRUST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="205" width="400" height="16" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
+				<textElement textAlignment="Left">
+					<font size="10" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cheques are subject to encashment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="238" width="100" height="24" uuid="296c18d5-3d35-4855-9d09-c5a06c97d57a"/>
+				<text><![CDATA[(Authorized Signatory)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="124" width="108" height="16" uuid="edff5c68-a51a-4d45-9199-00f9f0eb3717"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gross Amount :     Rs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="140" width="100" height="14" uuid="9ce01cbc-c056-4a1f-81f3-de30122a1f35"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CGST @ 9% :     Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="157" width="100" height="15" uuid="80eaf887-1dd9-4b0f-aa4c-94d3ea406968"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SGST @ 9% :     Rs. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="173" width="63" height="13" uuid="99950970-cbc7-4a35-880e-c27bb8dc2840"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total :     Rs.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="152" y="14" width="312" height="18" uuid="b8d1ac9e-c551-4a6f-9d0c-8746a7146137">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00840e72-e42b-4847-90fa-adc8ac9ab6a3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="101" y="13" width="73" height="18" uuid="b2a1b936-5015-48a1-96dd-ea03ab16437e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Address :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="27" width="41" height="18" uuid="f0f55c76-50c2-4033-95c3-f36c093a60c8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GSTIN :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="27" width="103" height="17" uuid="0b3b6035-b16c-4b31-a5e6-51072651d7ad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="995b900d-b2c5-4af3-9bbf-fb17ea4d063a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{gst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="124" width="56" height="16" uuid="46aef9fd-bab5-480e-989d-5521aad8516a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7e72bcd-09f2-40a8-9ee1-c80aabdcda2a"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gross}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="140" width="56" height="19" uuid="23f2e383-8d47-43d4-b0eb-80cbb20dd932">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d74c5131-fa50-4219-9ef7-6c12c16357c3"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cgst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="157" width="56" height="20" uuid="ec80463d-d9f4-43c9-b661-6f96fd3e276a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02978428-aed6-4e85-919b-c8888e998350"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sgst}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerBottom" x="427" y="172" width="56" height="19" uuid="8d5413d2-02e4-4647-ab42-3e53275d5bcc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5badafb6-d545-48d5-8405-5d8ac7d73663"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="270" y="173" width="261" height="1" uuid="090dffff-402e-4f86-b5e4-462e1542b51c"/>
+			</line>
+			<line>
+				<reportElement x="270" y="186" width="261" height="1" uuid="35eb98b3-7bce-481b-bda1-ff5fc8f512fc"/>
+			</line>
+			<textField>
+				<reportElement x="101" y="81" width="363" height="43" uuid="513945a2-ac16-4ff2-b40e-4593c8f3f107">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fb47a5c1-1f3e-4f23-867f-39308b0c6842"/>
+				</reportElement>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{details}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="-50" width="3" height="15" uuid="aaae938c-7ae4-4496-a61b-ae124d3c3b59"/>
+				<text><![CDATA[/]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="75" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="43" splitType="Stretch"/>
+	</summary>
+</jasperReport>
