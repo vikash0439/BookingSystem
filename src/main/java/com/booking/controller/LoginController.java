@@ -215,10 +215,21 @@ public class LoginController implements Initializable{
     	if(userService.authenticate(getEmail(), getPassword())){
     		LOG.info("New Log in the system");    		
     		stageManager.switchScene(FxmlView.DASHBOARD);
+//    		Alert alert = new Alert(AlertType.INFORMATION);
+//    		alert.setTitle("Login Sucessfull");
+//    		alert.setHeaderText("Shri Ram Centre of performing Arts");
+//    		alert.setContentText("Welcome "+getEmail() +"! ");
+//    		alert.show();
     		
     	}else{
     		lblLogin.setText("Login Failed.");
     		lblLogin.setStyle("-fx-text-fill: red");
+    		
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Login Failed");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Incorrect credentials! Please try again!");
+    		alert.showAndWait();
     	}
     }
     

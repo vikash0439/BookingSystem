@@ -413,7 +413,6 @@ public class CustomerController implements Initializable {
 	@FXML
 	private void repClient(ActionEvent event) {
 		
-
 		Long pos = customerTable.getSelectionModel().getSelectedItem().getCustomerid();
 		Customer c = customerService.find(pos);
 		System.out.println("From context menu table Customer ID :" + pos);
@@ -442,7 +441,7 @@ public class CustomerController implements Initializable {
 		
 	}
 	
-	private void reset1() {
+	private void reset1(){
 		
 		clientList.getSelectionModel().clearSelection();
 		repname1.clear();

@@ -177,7 +177,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="servicetable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="servicetable" prefHeight="810.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="colServiceID" maxWidth="700.0" prefWidth="20.0" text="ID" />
                 <TableColumn fx:id="colServiceName" maxWidth="4000.0" prefWidth="75.0" text="Service Name" />

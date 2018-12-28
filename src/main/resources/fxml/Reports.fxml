@@ -131,7 +131,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="reportTable" prefWidth="100.0">
+            <TableView fx:id="reportTable" prefHeight="810.0" prefWidth="100.0">
               <columns>
                 <TableColumn fx:id="colCustomerName" prefWidth="127.0" text="Custome Name" />
                 <TableColumn fx:id="colTotal" prefWidth="129.0" text="Total" />
