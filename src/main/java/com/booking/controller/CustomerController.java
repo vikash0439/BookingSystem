@@ -303,7 +303,7 @@ public class CustomerController implements Initializable {
 			alert.setHeaderText(null);
 			alert.setContentText("The customer " + customername.getText() + "  has been updated.");
 			alert.showAndWait();
-		}
+		  }
 		}
 		customertable();
 		reptable();
