@@ -253,7 +253,6 @@ public class UserController implements Initializable{
     		clearFields();
     		loadUserDetails();
     	}
-    	   	
     }
     
     @FXML
