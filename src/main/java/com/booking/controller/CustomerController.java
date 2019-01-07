@@ -326,7 +326,6 @@ public class CustomerController implements Initializable {
 		stateCodeList.clear();
 		stateCodeList.addAll(stateCodeService.StateName());
 		State.setItems(stateCodeList);
-
 	}
 
 	public void customertable() {
