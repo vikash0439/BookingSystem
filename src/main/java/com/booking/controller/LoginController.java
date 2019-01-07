@@ -43,9 +43,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.util.Callback;
 
 /**
@@ -271,8 +273,7 @@ public class LoginController implements Initializable{
     		
     		clearFields();
     		loadUserDetails();
-    	}
-    	
+    	}   	
     	
     }
     
@@ -365,6 +366,14 @@ public class LoginController implements Initializable{
 		
 		// Add all users into table
 //		loadUserDetails();
+		
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText("Email ID");	
+		email.setTooltip(tooltip);
+		
+		Tooltip tooltip2 = new Tooltip();
+		tooltip2.setText("Password");
+		password.setTooltip(tooltip2);
 	}
 	
 	

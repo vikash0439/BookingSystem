@@ -48,6 +48,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+
 /**
  * @author Vikash Kumar
  * @since 25-09-2018
@@ -344,10 +345,7 @@ public class UserController implements Initializable{
 		
 		// Add all users into table
 		loadUserDetails();
-	}
-	
-	
-	
+	}	
 	/*
 	 *  Set All userTable column properties
 	 */

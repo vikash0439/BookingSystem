@@ -316,6 +316,7 @@ public class ReceiptController implements Initializable {
 			alert.setContentText("Generating receipt....");
 			alert.showAndWait();
 
+			
 			try {
 				JasperReport jasperReport = null;
 				
@@ -413,8 +414,6 @@ public class ReceiptController implements Initializable {
 
 				JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
-				
-
 			} catch (JRException e) {
 				// TODO Auto-generated catch block
 				System.out.println("JR Exception");
@@ -497,6 +496,8 @@ public class ReceiptController implements Initializable {
 				}
 				File outDir = new File("Reports/Receipt");
 				outDir.mkdirs();
+				
+				
 
 				DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss+");
 				Date date = new java.util.Date();
