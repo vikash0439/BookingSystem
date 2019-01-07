@@ -324,8 +324,7 @@ public class ContractController implements Initializable {
 			            c = getDatae.get(date); 
 			            System.out.println("Date = " + date + ", Total = " + c); 
 			            super.updateItem(date, empty);
-			            
-			           
+			            		           
 			        } 
 					if(!empty) {
                         if(dates.contains(item)) {
