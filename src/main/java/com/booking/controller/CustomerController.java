@@ -34,6 +34,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -313,6 +314,33 @@ public class CustomerController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		
+		Tooltip tooltip = new Tooltip();
+		tooltip.setText("Customer name");	
+		customername.setTooltip(tooltip);
+		
+		tooltip.setText("Contact Number");
+		landline.setTooltip(tooltip);
+		
+		website.setTooltip(tooltip);
+		
+		address.setTooltip(tooltip);
+		
+		category.setTooltip(tooltip);
+		
+		gstno.setTooltip(tooltip);
+		
+		remark.setTooltip(tooltip);
+		
+		repname1.setTooltip(tooltip);
+		
+		repmobile1.setTooltip(tooltip);
+		
+		
+		
+		Tooltip tooltip2 = new Tooltip();
+		tooltip2.setText("Representative Emailid");	
+		repemail1.setTooltip(tooltip2);
 
 		customertable();
 		reptable();

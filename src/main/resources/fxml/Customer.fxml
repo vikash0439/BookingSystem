@@ -308,6 +308,16 @@
       </VBox>
    </right>
    <bottom>
-      <HBox prefHeight="60.0" prefWidth="1300.0" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="60.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" text="This is for demo text  Rep Detail (Select Clients from above table by Right Click)" textAlignment="CENTER">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <HBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </HBox.margin>
+            </Label>
+         </children></HBox>
    </bottom>
 </BorderPane>

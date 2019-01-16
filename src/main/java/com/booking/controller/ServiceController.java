@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,6 +201,8 @@ public class ServiceController implements Initializable {
 
 	@FXML
 	private void saveService(ActionEvent event) {
+		
+		if (emptyValidation("Service Name", ServiceName.getText().isEmpty())) {
 		if (ServiceID.getText() == null || ServiceID.getText() == "") {
 			Service service = new Service();
 			service.setServicename(ServiceName.getText());
@@ -232,7 +236,7 @@ public class ServiceController implements Initializable {
 			alert.setContentText("Service:  " + ServiceName.getText() + "  has been updated.");
 			alert.showAndWait();
 		}
-		
+	}
 		servicetable();
 		clearFields();
 	}
@@ -378,6 +382,47 @@ public class ServiceController implements Initializable {
 		alert.setContentText("Report downloaded successfully.");
 		alert.showAndWait();
 	}
+	
+	/*
+	 * Validations
+	 */
+	private boolean validate(String field, String value, String pattern){
+		if(!value.isEmpty()){
+			Pattern p = Pattern.compile(pattern);
+	        Matcher m = p.matcher(value);
+	        if(m.find() && m.group().equals(value)){
+	            return true;
+	        }else{
+	        	validationAlert(field, false);            
+	            return false;            
+	        }
+		}else{
+			validationAlert(field, true);            
+            return false;
+		}        
+    }
+	
+	private boolean emptyValidation(String field, boolean empty){
+        if(!empty){
+            return true;
+        }else{
+        	validationAlert(field, true);            
+            return false;            
+        }
+    }	
+	
+	private void validationAlert(String field, boolean empty){
+		Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Validation Error");
+        alert.setHeaderText(null);
+        if(field.equals("Client")) alert.setContentText("Please Select "+ field);
+        else{
+        	if(empty) alert.setContentText("Please Enter "+ field);
+        	else alert.setContentText("Please Enter Valid "+ field);
+        }
+        alert.showAndWait();
+	}
+
 
 	private void clearFields() {
 		ServiceID.setText(null);
