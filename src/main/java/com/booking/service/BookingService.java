@@ -48,7 +48,7 @@ private final BookingRepository bookingRepository;
 	}
 	
 	public String findDistinctSlot(String date) {			
-		System.out.println("Slot from Booking service "+bookingRepository.findByServicedate(date));
+		System.out.println("Slot from Booking table db : "+bookingRepository.findByServicedate(date));
 		return bookingRepository.findByServicedate(date);
 	}
 

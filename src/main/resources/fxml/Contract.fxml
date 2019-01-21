@@ -233,7 +233,7 @@
                <children>
                   <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0">
                      <children>
-                        <DatePicker fx:id="ServiceDate" prefHeight="31.0" prefWidth="335.0" promptText="Show Date">
+                        <DatePicker fx:id="ServiceDate" editable="false" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>

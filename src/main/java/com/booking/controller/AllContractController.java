@@ -2,7 +2,11 @@ package com.booking.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -275,7 +279,7 @@ public class AllContractController implements Initializable {
 		System.out.println("Add more button ");
 		
 		Booking b = new Booking();
-		b.setServicedate((String) ServiceDate.getEditor().getText());
+		b.setServicedate(convertDate(ServiceDate.getValue()));
 		b.setServicename(ServiceName.getValue());
 		b.setServicetime(ServiceTime.getText());
 		b.setSlot(Slot.getSelectionModel().getSelectedItem());
@@ -420,6 +424,56 @@ public class AllContractController implements Initializable {
 		serviceList.clear();
 		serviceList.addAll(serviceService.findName());
 		ServiceName.setItems(serviceList);
+
+	}
+	
+	/*
+	 * Validations
+	 */
+	private boolean validate(String field, String value, String pattern) {
+		if (!value.isEmpty()) {
+			Pattern p = Pattern.compile(pattern);
+			Matcher m = p.matcher(value);
+			if (m.find() && m.group().equals(value)) {
+				return true;
+			} else {
+				validationAlert(field, false);
+				return false;
+			}
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private boolean emptyValidation(String field, boolean empty) {
+		if (!empty) {
+			return true;
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private void validationAlert(String field, boolean empty) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Validation Error");
+		alert.setHeaderText(null);
+		if (field.equals("Client"))
+			alert.setContentText("Please Select " + field);
+		else {
+			if (empty)
+				alert.setContentText("Please Enter " + field);
+			else
+				alert.setContentText("Please Enter Valid " + field);
+		}
+		alert.showAndWait();
+	}
+
+	public String convertDate(LocalDate date) {
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dtf.format(date);
 
 	}
 

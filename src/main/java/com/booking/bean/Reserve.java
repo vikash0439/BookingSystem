@@ -1,7 +1,5 @@
 package com.booking.bean;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +20,7 @@ public class Reserve {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "reserveid", updatable = false, nullable = false)
 	private long reserveid;
-	private LocalDate Servicedate;
+	private String Servicedate;
 	private String Servicetime;
 	private String slot;
 	private String Serviceid;
@@ -55,11 +53,11 @@ public class Reserve {
 	}
 
 
-	public LocalDate getServicedate() {
+	public String getServicedate() {
 		return Servicedate;
 	}
-	public void setServicedate(LocalDate servicedate) {
-		Servicedate = servicedate;
+	public void setServicedate(String string) {
+		Servicedate = string;
 	}
 	public String getServicetime() {
 		return Servicetime;

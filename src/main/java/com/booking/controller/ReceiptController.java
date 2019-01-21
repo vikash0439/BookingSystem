@@ -8,6 +8,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -291,7 +292,7 @@ public class ReceiptController implements Initializable {
 	private void saveTax(ActionEvent event) {
 		if (ReceiptID.getText() == null || ReceiptID.getText() == "") {
 			Receipt receipt = new Receipt();
-			receipt.setReceiptdate((String) ReceiptDate.getEditor().getText());
+			receipt.setReceiptdate(convertDate(ReceiptDate.getValue()));
 			receipt.setPaidamount(PaidAmount.getText());
 			receipt.setTaxamount(TaxAmount.getText());
 			receipt.setPaymentmode(PaymentMode.getSelectionModel().getSelectedItem());
@@ -769,5 +770,12 @@ public class ReceiptController implements Initializable {
 
 	public ToggleGroup getCredit() {
 		return credit;
+	}
+	
+	public String convertDate(LocalDate date) {
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");		
+		return dtf.format(date);
+		
 	}
 }

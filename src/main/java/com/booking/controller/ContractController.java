@@ -315,56 +315,52 @@ public class ContractController implements Initializable {
 				@Override
 				public void updateItem(LocalDate item, boolean empty) {
 					Integer c = null;
-					Map<LocalDate, Integer > getDatae = countDates();
+					Map<LocalDate, Integer> getDatae = countDates();
 					List<LocalDate> dates = new ArrayList<LocalDate>();
-					for (LocalDate date : getDatae.keySet())  
-			        { 
+					for (LocalDate date : getDatae.keySet()) {
 						dates.add(date);
-			            // search  for value 
-			            c = getDatae.get(date); 
-			            System.out.println("Date = " + date + ", Total = " + c); 
-			            super.updateItem(date, empty);
-			            
-			           
-			        } 
-					if(!empty) {
-                        if(dates.contains(item)) {
-                        	
-                        	Integer co= getDatae.get(item);
-                        	System.out.println("Item Value here: "+item);
-                        	 System.out.println("Item = " + item + ", Total = " + co); 
-                        	 
-                        	 if(co == 1) {
-                        		 DateTimeFormatter  DateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        		 SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-                        		 String slot = bookingService.findDistinctSlot(item.format(DateFormat));
-                        		 System.out.println("Item Date : "+item.format(DateFormat)+ "&& Slot : "+slot);
-                        		 if(slot.equals("Morning")) {
-                        			 System.out.println("Condition 2");
-         							setTooltip(new Tooltip("Only Evening slot left"));
-         							setStyle("-fx-background-color: #008000;");
-                        		 }else {
-                        			 System.out.println("Condition 1");
-         			            	setTooltip(new Tooltip("Only Morning slot left"));
-         							setStyle("-fx-background-color: #FFFF00;");
-                        		 }
-                        		 
-                        		 
-                        	 }else if (co >= 1) {
-                        		 System.out.println("Condition 3");
-     							setTooltip(new Tooltip("Both slots booked"));
-     							setStyle("-fx-background-color: #FF0000;");
-                        	 }else {
-                        		 System.out.println("Condition 5");
-                        	 }
-                        }
-                    }  else {
-                    	setTooltip(new Tooltip("Both Slots Available"));
-						System.out.println("Condition 4");
-                    }
-				}
-				
+						// search for value
+						c = getDatae.get(date);
+						System.out.println("Date = " + date + ", Total = " + c);
+						super.updateItem(date, empty);
 
+					}
+					if (!empty) {
+						if (dates.contains(item)) {
+
+							Integer co = getDatae.get(item);
+							System.out.println("Item Value here: " + item);
+							System.out.println("Item = " + item + ", Total = " + co);
+                        /* count slot(Morning & Evening) each day */
+							if (co == 1) {
+								DateTimeFormatter DateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//								SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+								String slot = bookingService.findDistinctSlot(item.format(DateFormat));
+								System.out.println("Item Date : " + item.format(DateFormat) + "&& Slot : " + slot);
+								if (slot.equals("Morning")) {
+									System.out.println("Condition 2");
+									setTooltip(new Tooltip("Only Evening slot left"));
+									setStyle("-fx-background-color: #008000;");
+								} else {
+									System.out.println("Condition 1");
+									setTooltip(new Tooltip("Only Morning slot left"));
+									setStyle("-fx-background-color: #FFFF00;");
+								}
+
+							} else if (co >= 1) {
+								System.out.println("Condition 3");
+								setTooltip(new Tooltip("Both slots booked"));
+								setStyle("-fx-background-color: #FF0000;");
+								setDisable(true);
+							} else {
+								System.out.println("Condition 5");
+							}
+						}
+					} else {
+						setTooltip(new Tooltip("Both Slots Available"));
+						System.out.println("Condition 4");
+					}
+				}
 			};
 		}
 	};
@@ -376,10 +372,9 @@ public class ContractController implements Initializable {
 		repList.clear();
 		repList.addAll(repService.getRepnamebyCustomerid(customer));
 		repName.setItems(repList);
-		
 
 	}
-	
+
 	public void slotChange() {
 		Slot.getSelectionModel().getSelectedItem();
 		String time = slotService.slotTiming(Slot.getSelectionModel().getSelectedItem());
@@ -423,168 +418,167 @@ public class ContractController implements Initializable {
 
 	@FXML
 	private void saveContract(ActionEvent event) {
-		
-		if(emptyValidation("Client", CustomerName.getSelectionModel().getSelectedItem() == null) ){
 
-		Contract contract = new Contract();
-		contract.setBookingdate((String) BookingDate.getEditor().getText());
-		contract.setPurpose(Purpose.getSelectionModel().getSelectedItem());
-		contract.setBaseprice(baseprice.getText());
-		contract.setTaxamount(taxamount.getText());
-		contract.setPact(pact.getText());
-		contract.setNoc(NocYes.isSelected() ? "Yes" : "No");
-		contract.setPaymentstatus(paymentstatus.getSelectionModel().getSelectedItem());
-		contract.setRepname(repName.getSelectionModel().getSelectedItem());
+		if (emptyValidation("Client", CustomerName.getSelectionModel().getSelectedItem() == null)) {
 
-		Customer customer = customerService.findCustomer(CustomerName.getSelectionModel().getSelectedItem());
-		contract.setCustomer(customer);
+			Contract contract = new Contract();
+			contract.setBookingdate(convertDate(BookingDate.getValue()));
+			contract.setPurpose(Purpose.getSelectionModel().getSelectedItem());
+			contract.setBaseprice(baseprice.getText());
+			contract.setTaxamount(taxamount.getText());
+			contract.setPact(pact.getText());
+			contract.setNoc(NocYes.isSelected() ? "Yes" : "No");
+			contract.setPaymentstatus(paymentstatus.getSelectionModel().getSelectedItem());
+			contract.setRepname(repName.getSelectionModel().getSelectedItem());
 
-		Booking b = new Booking();
-		b.setServicedate((String) ServiceDate.getEditor().getText());
-		b.setServicename(ServiceName.getValue());
-		b.setServicetime(ServiceTime.getText());
-		b.setSlot(Slot.getSelectionModel().getSelectedItem());
-		b.setServicecost(ServiceCost.getText());
-		// b.setServiceused(ServiceUsed.getText());
-		b.setContract(contract);
+			Customer customer = customerService.findCustomer(CustomerName.getSelectionModel().getSelectedItem());
+			contract.setCustomer(customer);
 
-		Booking b2 = new Booking();
-		
-		
-		if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
+			Booking b = new Booking();
+			b.setServicedate(convertDate(ServiceDate.getValue()));
+			b.setServicename(ServiceName.getValue());
+			b.setServicetime(ServiceTime.getText());
+			b.setSlot(Slot.getSelectionModel().getSelectedItem());
+			b.setServicecost(ServiceCost.getText());
+			// b.setServiceused(ServiceUsed.getText());
+			b.setContract(contract);
 
-			b2.setServicedate((String) ServiceDate2.getEditor().getText());
-			b2.setServicename(ServiceName2.getValue());
-			b2.setServicetime(ServiceTime2.getText());
-			b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
-			b2.setServicecost(ServiceCost2.getText());
-			// b2.setServiceused(ServiceUsed.getText());
-			b2.setContract(contract);
-		}
+			Booking b2 = new Booking();
 
-		Booking b3 = new Booking();
-		if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
-			b3.setServicedate((String) ServiceDate3.getEditor().getText());
-			b3.setServicename(ServiceName3.getValue());
-			b3.setServicetime(ServiceTime3.getText());
-			b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
-			b3.setServicecost(ServiceCost3.getText());
-			// b2.setServiceused(ServiceUsed.getText());
-			b3.setContract(contract);
-		}
+			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
 
-		Booking b4 = new Booking();
-		if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
-			b4.setServicedate((String) ServiceDate4.getEditor().getText());
-			b4.setServicename(ServiceName4.getValue());
-			b4.setServicetime(ServiceTime4.getText());
-			b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
-			b4.setServicecost(ServiceCost4.getText());
-			// b2.setServiceused(ServiceUsed.getText());
-			b4.setContract(contract);
-		}
-
-		Booking b5 = new Booking();
-		if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
-			b5.setServicedate((String) ServiceDate5.getEditor().getText());
-			b5.setServicename(ServiceName5.getValue());
-			b5.setServicetime(ServiceTime5.getText());
-			b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
-			b5.setServicecost(ServiceCost5.getText());
-			// b2.setServiceused(ServiceUsed.getText());
-			b5.setContract(contract);
-		}
-
-		Booking b6 = new Booking();
-		if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
-			b6.setServicedate((String) ServiceDate6.getEditor().getText());
-			b6.setServicename(ServiceName6.getValue());
-			b6.setServicetime(ServiceTime6.getText());
-			b6.setSlot(Slot3.getSelectionModel().getSelectedItem());
-			b6.setServicecost(ServiceCost6.getText());
-			// b2.setServiceused(ServiceUsed.getText());
-			b6.setContract(contract);
-		}
-
-		// List<Booking> booking = new ArrayList<Booking>();
-		// booking.add(b);
-		// booking.add(b2);
-
-		Performance p = new Performance();
-		if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
-			p.setShowname(ShowName.getText());
-			p.setShowtime(ShowTime.getText());
-			p.setShowdetails(ShowDetails.getText());
-			p.setContract(contract);
-		}
-
-		Performance p2 = new Performance();
-		if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
-			p2.setShowname(ShowName2.getText());
-			p2.setShowtime(ShowTime2.getText());
-			p2.setShowdetails(ShowDetails2.getText());
-			p2.setContract(contract);
-		}
-
-		Performance p3 = new Performance();
-		if (ShowName3.getText() != null && !ShowName2.getText().trim().isEmpty()) {
-			p3.setShowname(ShowName3.getText());
-			p3.setShowtime(ShowTime3.getText());
-			p3.setShowdetails(ShowDetails3.getText());
-			p3.setContract(contract);
-		}
-
-		// List<Performance> performance = new ArrayList<Performance>();
-		// performance.add(p);
-
-		contractService.save(contract);
-		bookingService.save(b);
-
-		if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
-			bookingService.save(b2);
-		}
-		if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
-			bookingService.save(b3);
-		}
-		if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
-			bookingService.save(b4);
-		}
-		if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
-			bookingService.save(b5);
-		}
-		if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
-			bookingService.save(b6);
-		}
-
-		if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
-			performanceService.save(p);
-		}
-		if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
-			performanceService.save(p2);
-		}
-		if (ShowName3.getText() != null && !ShowName3.getText().trim().isEmpty()) {
-			performanceService.save(p3);
-		}
-
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Contract");
-		alert.setHeaderText(null);
-		alert.setContentText("Contract of  " + CustomerName.getSelectionModel().getSelectedItem()
-				+ " has been created of Amount: " + pact.getText() + ". Proceed to Payment..");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			try {
-				receipt(event);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				b2.setServicedate(convertDate(ServiceDate2.getValue()));
+				b2.setServicename(ServiceName2.getValue());
+				b2.setServicetime(ServiceTime2.getText());
+				b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
+				b2.setServicecost(ServiceCost2.getText());
+				// b2.setServiceused(ServiceUsed.getText());
+				b2.setContract(contract);
 			}
-		} else {
-			// ... user chose CANCEL or closed the dialog
+
+			Booking b3 = new Booking();
+			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
+				b3.setServicedate(convertDate(ServiceDate3.getValue()));
+				b3.setServicename(ServiceName3.getValue());
+				b3.setServicetime(ServiceTime3.getText());
+				b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
+				b3.setServicecost(ServiceCost3.getText());
+				// b2.setServiceused(ServiceUsed.getText());
+				b3.setContract(contract);
+			}
+
+			Booking b4 = new Booking();
+			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
+				b4.setServicedate(convertDate(ServiceDate4.getValue()));
+				b4.setServicename(ServiceName4.getValue());
+				b4.setServicetime(ServiceTime4.getText());
+				b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
+				b4.setServicecost(ServiceCost4.getText());
+				// b2.setServiceused(ServiceUsed.getText());
+				b4.setContract(contract);
+			}
+
+			Booking b5 = new Booking();
+			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
+				b5.setServicedate(convertDate(ServiceDate5.getValue()));
+				b5.setServicename(ServiceName5.getValue());
+				b5.setServicetime(ServiceTime5.getText());
+				b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
+				b5.setServicecost(ServiceCost5.getText());
+				// b2.setServiceused(ServiceUsed.getText());
+				b5.setContract(contract);
+			}
+
+			Booking b6 = new Booking();
+			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
+				b6.setServicedate(convertDate(ServiceDate6.getValue()));
+				b6.setServicename(ServiceName6.getValue());
+				b6.setServicetime(ServiceTime6.getText());
+				b6.setSlot(Slot3.getSelectionModel().getSelectedItem());
+				b6.setServicecost(ServiceCost6.getText());
+				// b2.setServiceused(ServiceUsed.getText());
+				b6.setContract(contract);
+			}
+
+			// List<Booking> booking = new ArrayList<Booking>();
+			// booking.add(b);
+			// booking.add(b2);
+
+			Performance p = new Performance();
+			if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
+				p.setShowname(ShowName.getText());
+				p.setShowtime(ShowTime.getText());
+				p.setShowdetails(ShowDetails.getText());
+				p.setContract(contract);
+			}
+
+			Performance p2 = new Performance();
+			if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
+				p2.setShowname(ShowName2.getText());
+				p2.setShowtime(ShowTime2.getText());
+				p2.setShowdetails(ShowDetails2.getText());
+				p2.setContract(contract);
+			}
+
+			Performance p3 = new Performance();
+			if (ShowName3.getText() != null && !ShowName2.getText().trim().isEmpty()) {
+				p3.setShowname(ShowName3.getText());
+				p3.setShowtime(ShowTime3.getText());
+				p3.setShowdetails(ShowDetails3.getText());
+				p3.setContract(contract);
+			}
+
+			// List<Performance> performance = new ArrayList<Performance>();
+			// performance.add(p);
+
+			contractService.save(contract);
+			bookingService.save(b);
+
+			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
+				bookingService.save(b2);
+			}
+			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
+				bookingService.save(b3);
+			}
+			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
+				bookingService.save(b4);
+			}
+			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
+				bookingService.save(b5);
+			}
+			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
+				bookingService.save(b6);
+			}
+
+			if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
+				performanceService.save(p);
+			}
+			if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
+				performanceService.save(p2);
+			}
+			if (ShowName3.getText() != null && !ShowName3.getText().trim().isEmpty()) {
+				performanceService.save(p3);
+			}
+
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Contract");
+			alert.setHeaderText(null);
+			alert.setContentText("Contract of  " + CustomerName.getSelectionModel().getSelectedItem()
+					+ " has been created of Amount: " + pact.getText() + ". Proceed to Payment..");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				try {
+					receipt(event);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				// ... user chose CANCEL or closed the dialog
+			}
+
 		}
-		
-		}	
 
 	}
 
@@ -724,93 +718,100 @@ public class ContractController implements Initializable {
 		ServiceDate4.setDayCellFactory(dateColorFactory);
 		ServiceDate5.setDayCellFactory(dateColorFactory);
 		ServiceDate6.setDayCellFactory(dateColorFactory);
-		
+
 	}
-	
+
 	public Map<LocalDate, Integer> countDates() {
-		
-		
+
 		List<String> datefromBooking = bookingService.getServiceDate();
 		List<LocalDate> dateList = new ArrayList<LocalDate>();
-		
-		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		 SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-		
-		 for (String dateString : datefromBooking) {
-		 try {
-		 simpleDateFormat2.format(simpleDateFormat.parse(dateString));
-		
-		 dateList.add(LocalDate.parse(simpleDateFormat2.format(simpleDateFormat.parse(dateString))));
-		
-		 } catch (ParseException e) {
-		 System.out.println("Date Exception");
-		 e.printStackTrace();
-		 }
-		 }
-		
-		 System.out.println("Date Picker final service date" + dateList);
-		 
-		 Map<LocalDate, Integer> noOfDates = new HashMap<LocalDate, Integer>();
-		 
-		 System.out.println("Dates counting : " +noOfDates);
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+
+		for (String dateString : datefromBooking) {
+			try {
+				simpleDateFormat2.format(simpleDateFormat.parse(dateString));
+
+				dateList.add(LocalDate.parse(simpleDateFormat2.format(simpleDateFormat.parse(dateString))));
+
+			} catch (ParseException e) {
+				System.out.println("Date Exception");
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println("Date Picker final service date" + dateList);
+
+		Map<LocalDate, Integer> noOfDates = new HashMap<LocalDate, Integer>();
+
+		System.out.println("Dates counting : " + noOfDates);
 
 		for (int i = 0; i < dateList.size(); i++) {
 			LocalDate ld = dateList.get(i);
 			Integer count = noOfDates.get(ld);
 			if (count != null) {
 				count++;
-				
+
 			} else {
 				count = 1;
 			}
 			noOfDates.put(ld, count);
 		}
-		
-		System.out.println("Return from method "+noOfDates);
+
+		System.out.println("Return from method " + noOfDates);
 		return noOfDates;
 
 	}
-	
+
 	/*
 	 * Validations
 	 */
-	private boolean validate(String field, String value, String pattern){
-		if(!value.isEmpty()){
+	private boolean validate(String field, String value, String pattern) {
+		if (!value.isEmpty()) {
 			Pattern p = Pattern.compile(pattern);
-	        Matcher m = p.matcher(value);
-	        if(m.find() && m.group().equals(value)){
-	            return true;
-	        }else{
-	        	validationAlert(field, false);            
-	            return false;            
-	        }
-		}else{
-			validationAlert(field, true);            
-            return false;
-		}        
-    }
-	
-	private boolean emptyValidation(String field, boolean empty){
-        if(!empty){
-            return true;
-        }else{
-        	validationAlert(field, true);            
-            return false;            
-        }
-    }	
-	
-	private void validationAlert(String field, boolean empty){
-		Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Validation Error");
-        alert.setHeaderText(null);
-        if(field.equals("Client")) alert.setContentText("Please Select "+ field);
-        else{
-        	if(empty) alert.setContentText("Please Enter "+ field);
-        	else alert.setContentText("Please Enter Valid "+ field);
-        }
-        alert.showAndWait();
+			Matcher m = p.matcher(value);
+			if (m.find() && m.group().equals(value)) {
+				return true;
+			} else {
+				validationAlert(field, false);
+				return false;
+			}
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
 	}
 
+	private boolean emptyValidation(String field, boolean empty) {
+		if (!empty) {
+			return true;
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
 
-	
+	private void validationAlert(String field, boolean empty) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Validation Error");
+		alert.setHeaderText(null);
+		if (field.equals("Client"))
+			alert.setContentText("Please Select " + field);
+		else {
+			if (empty)
+				alert.setContentText("Please Enter " + field);
+			else
+				alert.setContentText("Please Enter Valid " + field);
+		}
+		alert.showAndWait();
+	}
+
+	public String convertDate(LocalDate date) {
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dtf.format(date);
+
+	}
+
 }

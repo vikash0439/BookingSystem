@@ -16,7 +16,7 @@ private final ReserveRepository reserveRepository;
 		this.reserveRepository = reserveRepository;
 	}
 	
-	public Reserve save(Reserve reserve) {
+	public Reserve save(Reserve reserve){
 		return reserveRepository.save(reserve);
 		
 	}
@@ -30,5 +30,5 @@ private final ReserveRepository reserveRepository;
 	public Reserve find(Long reserveid) {
 		return reserveRepository.findAllByReserveid(reserveid);
 	}
-
+	
 }

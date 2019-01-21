@@ -6,12 +6,15 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -217,9 +220,10 @@ public class InvoiceController implements Initializable {
 
 	@FXML
 	private void saveInvoice(ActionEvent event) {
+		if(emptyValidation("Invoice Date", ((String)(InvoiceDate.getEditor().getText())).isEmpty())) {
 		if (InvoiceID.getText() == null || InvoiceID.getText() == "") {
 			Invoice invoice = new Invoice();
-			invoice.setInvoicedate((String) InvoiceDate.getEditor().getText());
+			invoice.setInvoicedate(convertDate(InvoiceDate.getValue()));
 			invoice.setCancelled(cancelled.getText());
 
 			Contract contract = contractService.find(Long.parseLong(contractid.getSelectionModel().getSelectedItem()));
@@ -459,6 +463,7 @@ public class InvoiceController implements Initializable {
 			}
 			
 			/* End duplicate receipt invoice code */
+		}
 
 		} else {
 			System.out.println("Nothing to update");
@@ -599,5 +604,56 @@ public class InvoiceController implements Initializable {
 		cgst.setText(null);
 		sgst.setText(null);
 		total.setText(null);
+	}
+	
+	/*
+	 * Validations
+	 */
+	private boolean validate(String field, String value, String pattern) {
+		if (!value.isEmpty()) {
+			Pattern p = Pattern.compile(pattern);
+			Matcher m = p.matcher(value);
+			if (m.find() && m.group().equals(value)) {
+				return true;
+			} else {
+				validationAlert(field, false);
+				return false;
+			}
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private boolean emptyValidation(String field, boolean empty) {
+		if (!empty) {
+			return true;
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private void validationAlert(String field, boolean empty) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Validation Error");
+		alert.setHeaderText(null);
+		if (field.equals("Client"))
+			alert.setContentText("Please Select " + field);
+		else {
+			if (empty)
+				alert.setContentText("Please Enter " + field);
+			else
+				alert.setContentText("Please Enter Valid " + field);
+		}
+		alert.showAndWait();
+	}
+	
+	
+public String convertDate(LocalDate date) {
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");		
+		return dtf.format(date);
+		
 	}
 }

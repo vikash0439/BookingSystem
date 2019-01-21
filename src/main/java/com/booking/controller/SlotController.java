@@ -148,7 +148,7 @@ public class SlotController implements Initializable{
 	
 	@FXML
 	private void saveTax(ActionEvent event) {
-		if(emptyValidation("Slot Name", SlotTiming.getText().isEmpty())) {
+		if(emptyValidation("Slot Name", Slot.getText().isEmpty())) {
 		if (SlotID.getText() == null || SlotID.getText() == "") {
 			com.booking.bean.Slot slot = new com.booking.bean.Slot();
 			slot.setSlot(Slot.getText());
@@ -294,8 +294,5 @@ public class SlotController implements Initializable{
         }
         alert.showAndWait();
 	}
-
-	
-	
 
 }

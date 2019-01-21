@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -191,9 +193,11 @@ public class ReserveController implements Initializable{
 	
 	@FXML
 	private void saveService(ActionEvent event) {
+		
+		if(emptyValidation("Reserve Date ", ((String)(ServiceDate.getEditor().getText())).isEmpty())) {
 		if (ReserveID.getText() == null || ReserveID.getText() == "") {
 			Reserve reserve = new Reserve();
-			reserve.setServicedate(ServiceDate.getValue());
+			reserve.setServicedate(convertDate(ServiceDate.getValue()));
 			reserve.setSlot(Slot.getSelectionModel().getSelectedItem());
 			reserve.setServicetime(ServiceTime.getText());
 			reserve.setReservetitle(ReserveTitle.getText());
@@ -220,7 +224,7 @@ public class ReserveController implements Initializable{
 			contract.setCustomer(customer);
 
 			Booking b = new Booking();
-			b.setServicedate((String)ServiceDate.getEditor().getText());
+			b.setServicedate(convertDate(ServiceDate.getValue()));
 			b.setServicename(ServiceID.getSelectionModel().getSelectedItem());
 			b.setServicetime(ServiceTime.getText());
 			b.setSlot(Slot.getSelectionModel().getSelectedItem());
@@ -252,6 +256,7 @@ public class ReserveController implements Initializable{
 			alert.setHeaderText(null);
 			alert.setContentText("Reserved:  " + ServiceDate.getValue() + "  has been reserved by: SRCPA.");
 			alert.showAndWait();
+		}
 		} else {
 			System.out.println("No update code available");
 		}
@@ -284,27 +289,27 @@ public class ReserveController implements Initializable{
 		/*
 		 * Set All userTable column properties
 		 */
-		colServiceDate.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
-			 String pattern = "dd-MM-yyyy";
-			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-		     @Override 
-		     public String toString(LocalDate date) {
-		         if (date != null) {
-		             return dateFormatter.format(date);
-		         } else {
-		             return "";
-		         }
-		     }
-
-		     @Override 
-		     public LocalDate fromString(String string) {
-		         if (string != null && !string.isEmpty()) {
-		             return LocalDate.parse(string, dateFormatter);
-		         } else {
-		             return null;
-		         }
-		     }
-		 }));
+//		colServiceDate.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<LocalDate>() {
+//			 String pattern = "dd-MM-yyyy";
+//			 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+//		     @Override 
+//		     public String toString(LocalDate date) {
+//		         if (date != null) {
+//		             return dateFormatter.format(date);
+//		         } else {
+//		             return "";
+//		         }
+//		     }
+//
+//		     @Override 
+//		     public LocalDate fromString(String string) {
+//		         if (string != null && !string.isEmpty()) {
+//		             return LocalDate.parse(string, dateFormatter);
+//		         } else {
+//		             return null;
+//		         }
+//		     }
+//		 }));
 		
 		
 		colReserveID.setCellValueFactory(new PropertyValueFactory<>("reserveid"));
@@ -375,6 +380,56 @@ public class ReserveController implements Initializable{
 
 		ReserveTitle.clear();
 		InternalUsage.clear();
+	}
+	
+	/*
+	 * Validations
+	 */
+	private boolean validate(String field, String value, String pattern) {
+		if (!value.isEmpty()) {
+			Pattern p = Pattern.compile(pattern);
+			Matcher m = p.matcher(value);
+			if (m.find() && m.group().equals(value)) {
+				return true;
+			} else {
+				validationAlert(field, false);
+				return false;
+			}
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private boolean emptyValidation(String field, boolean empty) {
+		if (!empty) {
+			return true;
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private void validationAlert(String field, boolean empty) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Validation Error");
+		alert.setHeaderText(null);
+		if (field.equals("Client"))
+			alert.setContentText("Please Select " + field);
+		else {
+			if (empty)
+				alert.setContentText("Please Enter " + field);
+			else
+				alert.setContentText("Please Enter Valid " + field);
+		}
+		alert.showAndWait();
+	}
+	
+	public String convertDate(LocalDate date) {
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dtf.format(date);
+
 	}
 
 }
