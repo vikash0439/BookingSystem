@@ -31,8 +31,7 @@ public class Reserve {
 	public Reserve() {
 		
 	}
-	
-  
+	 
 	public long getReserveid() {
 		return reserveid;
 	}

@@ -44,6 +44,21 @@ public class Booking implements Serializable{
 	private Contract contract;
 	
 	
+	
+	
+	public Booking(String servicedate, String slot,  String servicetime, String servicename, String servicecost){
+		super();
+		
+		this.servicename = servicename;
+		this.servicedate = servicedate;
+		this.servicetime = servicetime;
+		this.servicecost = servicecost;
+		this.slot = slot;
+		
+	}
+	public Booking() {
+		// TODO Auto-generated constructor stub
+	}
 	public Contract getContract() {
 		return contract;
 	}

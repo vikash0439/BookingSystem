@@ -30,7 +30,6 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 	
 //	@Query(value = "delete from booking b WHERE b.serviceid = ?1 ;", nativeQuery = true)
 //	public void deleteBooking(long serviceid);
-//
 
 	@Query(value = "delete from booking WHERE serviceid = ?1 ;", nativeQuery = true)
 	public void deleteByServiceid(Long serviceid);

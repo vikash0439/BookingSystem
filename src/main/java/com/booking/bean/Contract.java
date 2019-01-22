@@ -81,8 +81,6 @@ public class Contract implements Serializable{
 	@JoinColumn(name ="customerid")
 	private Customer customer;
 	
-	
-	
 	public List<Receipt> getReceipt() {
 		return receipt;
 	}

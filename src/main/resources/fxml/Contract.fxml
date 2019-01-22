@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -229,11 +230,11 @@
                   </Label>
                </children>
             </HBox>
-            <VBox fx:id="serviceVBox" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f2f2f2;">
+            <VBox fx:id="serviceVBox" prefHeight="400.0" prefWidth="994.0" style="-fx-background-color: #f2f2f2;">
                <children>
                   <HBox fx:id="serviceHBox" prefHeight="52.0" prefWidth="694.0">
                      <children>
-                        <DatePicker fx:id="ServiceDate" editable="false" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true">
+                        <DatePicker fx:id="ServiceDate" editable="false" onMouseDragReleased="#MouseDragged" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -268,7 +269,7 @@
                         </Button>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
                   <HBox fx:id="serviceHBox2" prefHeight="52.0" prefWidth="694.0" visible="false">
@@ -299,7 +300,7 @@
                         </TextField>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
                   <HBox fx:id="serviceHBox3" prefHeight="52.0" prefWidth="694.0" visible="false">
@@ -331,7 +332,7 @@
                         </TextField>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
                   <HBox fx:id="serviceHBox4" prefHeight="52.0" prefWidth="694.0" visible="false">
@@ -363,7 +364,7 @@
                         </TextField>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
                   <HBox fx:id="serviceHBox5" prefHeight="52.0" prefWidth="694.0" visible="false">
@@ -395,7 +396,7 @@
                         </TextField>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </HBox>
                   <HBox fx:id="serviceHBox6" prefHeight="52.0" prefWidth="694.0" visible="false">
@@ -432,6 +433,18 @@
                   </HBox>
                </children>
             </VBox>
+            <HBox fx:id="testDates" prefHeight="160.0" prefWidth="994.0">
+               <children>
+                  <TableView fx:id="services" prefHeight="34.0" prefWidth="579.0">
+                    <columns>
+                      <TableColumn fx:id="servicedate" prefWidth="129.0" text="Date" />
+                      <TableColumn fx:id="slot" prefWidth="93.0" text="Slot" />
+                        <TableColumn fx:id="time" prefWidth="126.0" text="Time" />
+                        <TableColumn fx:id="servicename" prefWidth="103.0" text="Service" />
+                        <TableColumn fx:id="cost" prefWidth="127.0" text="Cost" />
+                    </columns>
+                  </TableView>
+               </children></HBox>
             <HBox prefHeight="48.0" prefWidth="994.0">
                <children>
                   <Label prefHeight="32.0" prefWidth="217.0" text="Show Details (Performance)">
@@ -446,7 +459,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox fx:id="showVBox" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f2f2f2;">
+            <VBox fx:id="showVBox" prefHeight="113.0" prefWidth="994.0" style="-fx-background-color: #f2f2f2;">
                <children>
                   <HBox prefHeight="52.0" prefWidth="694.0">
                      <children>

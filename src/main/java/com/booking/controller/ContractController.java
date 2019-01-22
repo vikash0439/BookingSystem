@@ -41,19 +41,30 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 @Controller
@@ -202,6 +213,21 @@ public class ContractController implements Initializable {
 	@FXML
 	private TextField ShowDetails3;
 
+	@FXML
+	HBox testDates;
+	@FXML
+	private TableView<Booking> services;
+	@FXML
+	private TableColumn<Booking, String> servicedate;
+	@FXML
+	private TableColumn<Booking, String> servicename;
+	@FXML
+	private TableColumn<Booking, String> time;
+	@FXML
+	private TableColumn<Booking, String> cost;
+	@FXML
+	private TableColumn<Booking, String> slot; 
+
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
@@ -308,6 +334,90 @@ public class ContractController implements Initializable {
 	private void exit(ActionEvent event) {
 		Platform.exit();
 	}
+	
+	ObservableList<LocalDate> selectedDates = FXCollections.observableArrayList();
+    ListView<LocalDate>       dateList      = new ListView<>(selectedDates);
+    String                    pattern       = "dd-MM-yyyy";
+    DateTimeFormatter         dateFormatter = DateTimeFormatter.ofPattern(pattern);
+    DatePicker                datePicker    = new DatePicker();
+
+    Button  addButton     = new Button("+Add dates");
+    Button  removeButton  = new Button("-Remove dates");
+    Button  nextButton     = new Button("Next");
+    Button  addTable     = new Button("Update Services");
+    
+    
+
+private void createScene() {
+    	
+	ObservableList<LocalDate> selectedDates = FXCollections.observableArrayList();
+    ListView<LocalDate>       dateList      = new ListView<>(selectedDates);
+    String                    pattern       = "dd-MM-yyyy";
+    DateTimeFormatter         dateFormatter = DateTimeFormatter.ofPattern(pattern);
+        
+        datePicker.setShowWeekNumbers(true);
+        datePicker.setOnAction(event -> System.out.println("Selected date: " + datePicker.getValue()));
+        datePicker.setPromptText(pattern);
+        /*datePicker.setConverter(new StringConverter<LocalDate>() {
+            @Override
+            public String toString(LocalDate date) {
+                return (date == null) ? "" : dateFormatter.format(date);
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                return ((string == null) || string.isEmpty()) ? null : LocalDate.parse(string, dateFormatter);
+            }
+        }); */
+        datePicker.setOnAction(event -> selectedDates.add(datePicker.getValue()));
+
+        datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker param) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        boolean alreadySelected = selectedDates.contains(item);
+                        setDisable(alreadySelected);
+                        setStyle(alreadySelected ? "-fx-background-color: #09a30f;" : "");
+                    }
+                };
+            }
+        });
+
+        // TODO: Hide text field of the date picker combo. Show dropdown directly on clicking "+" button.
+        // TODO: Keep dropdown of the date picker combo open until intentionally clicking some other where.
+
+        dateList.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.DELETE) {
+                removeSelectedDates(selectedDates, dateList);
+            }
+        });
+        dateList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        removeButton.disableProperty().bind(dateList.getSelectionModel().selectedItemProperty().isNull());
+        addButton.setOnAction(event -> {
+            Popup popup = new Popup();
+            popup.getContent().add(datePicker);
+            popup.setAutoHide(true);
+            Window window = addButton.getScene().getWindow();
+            Bounds bounds = addButton.localToScene(addButton.getBoundsInLocal());
+            double x      = window.getX() + bounds.getMinX();
+            double y      = window.getY() + bounds.getMinY() + bounds.getHeight() + 5;
+            popup.show(addButton, x, y);
+            datePicker.show();
+        });
+        removeButton.setOnAction(event -> removeSelectedDates(selectedDates, dateList));
+
+//        testDates = new HBox(text, addButton, removeButton);
+        
+        
+        
+    }
+
+	private static boolean removeSelectedDates(ObservableList<LocalDate> selectedDates, ListView<LocalDate> dateList) {
+		return selectedDates.removeAll(dateList.getSelectionModel().getSelectedItems());
+	}
 
 	Callback<DatePicker, DateCell> dateColorFactory = new Callback<DatePicker, DateCell>() {
 		public DateCell call(final DatePicker datePicker) {
@@ -331,10 +441,10 @@ public class ContractController implements Initializable {
 							Integer co = getDatae.get(item);
 							System.out.println("Item Value here: " + item);
 							System.out.println("Item = " + item + ", Total = " + co);
-                        /* count slot(Morning & Evening) each day */
+							/* count slot(Morning & Evening) each day */
 							if (co == 1) {
 								DateTimeFormatter DateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//								SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+								// SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 								String slot = bookingService.findDistinctSlot(item.format(DateFormat));
 								System.out.println("Item Date : " + item.format(DateFormat) + "&& Slot : " + slot);
 								if (slot.equals("Morning")) {
@@ -372,7 +482,6 @@ public class ContractController implements Initializable {
 		repList.clear();
 		repList.addAll(repService.getRepnamebyCustomerid(customer));
 		repName.setItems(repList);
-
 	}
 
 	public void slotChange() {
@@ -402,6 +511,11 @@ public class ContractController implements Initializable {
 
 	}
 
+	public void MouseDragged(MouseEvent arg0) {
+		System.out.println("In mouse dragged box");
+
+	}
+
 	public void addMore() {
 		System.out.println("Add more button ");
 		serviceHBox2.setVisible(true);
@@ -415,7 +529,322 @@ public class ContractController implements Initializable {
 		ShowHBox2.setVisible(true);
 		ShowHBox3.setVisible(true);
 	}
+	
 
+	public void serviceDetail() {
+
+		String ser = ServiceName.getValue();
+		Service service = serviceService.getDetail(ser);
+		ServiceCost.setText(service.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+
+	public void serviceDetail2() {
+
+		String ser2 = ServiceName2.getValue();
+		Service service2 = serviceService.getDetail(ser2);
+		ServiceCost2.setText(service2.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+
+	public void serviceDetail3() {
+
+		String ser3 = ServiceName3.getValue();
+		Service service3 = serviceService.getDetail(ser3);
+		ServiceCost3.setText(service3.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+
+	public void serviceDetail4() {
+
+		String ser4 = ServiceName4.getValue();
+		Service service4 = serviceService.getDetail(ser4);
+		ServiceCost4.setText(service4.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText());
+
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+
+	public void serviceDetail5() {
+
+		String ser5 = ServiceName5.getValue();
+		Service service5 = serviceService.getDetail(ser5);
+		ServiceCost5.setText(service5.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
+				+ Long.parseLong(ServiceCost5.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+
+	public void serviceDetail6() {
+
+		String ser6 = ServiceName6.getValue();
+		Service service6 = serviceService.getDetail(ser6);
+		ServiceCost6.setText(service6.getServicecharges());
+
+		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
+				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
+				+ Long.parseLong(ServiceCost5.getText()) + Long.parseLong(ServiceCost6.getText());
+		baseprice.setText(bp.toString());
+
+		Double ta = 0.18 * bp;
+		Double t = bp + ta;
+		taxamount.setText(String.valueOf(ta));
+		pact.setText(String.valueOf(t));
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		purposeList.clear();
+		purposeList.addAll(purposeService.findPurpose());
+		Purpose.setItems(purposeList);
+
+		serviceList.clear();
+		serviceList.addAll(serviceService.findName());
+		ServiceName.setItems(serviceList);
+		ServiceName2.setItems(serviceList);
+		ServiceName3.setItems(serviceList);
+		ServiceName4.setItems(serviceList);
+		ServiceName5.setItems(serviceList);
+		ServiceName6.setItems(serviceList);
+
+		customerList.clear();
+		customerList.addAll(customerService.findName());
+		CustomerName.setItems(customerList);
+
+		slotList.clear();
+		slotList.addAll(slotService.findSlot());
+		Slot.setItems(slotList);
+		Slot2.setItems(slotList);
+		Slot3.setItems(slotList);
+		Slot4.setItems(slotList);
+		Slot5.setItems(slotList);
+		Slot6.setItems(slotList);
+
+		BookingDate.setValue(LocalDate.now());
+
+		paymentstatus.setItems(paymentStatusList);
+
+		ServiceDate.setDayCellFactory(dateColorFactory);
+		ServiceDate2.setDayCellFactory(dateColorFactory);
+		ServiceDate3.setDayCellFactory(dateColorFactory);
+		ServiceDate4.setDayCellFactory(dateColorFactory);
+		ServiceDate5.setDayCellFactory(dateColorFactory);
+		ServiceDate6.setDayCellFactory(dateColorFactory);
+
+		testDates.getChildren().addAll(addButton, removeButton, dateList, nextButton, addTable);
+		testDates.setSpacing(15);
+		
+		datePicker.setShowWeekNumbers(true);
+        datePicker.setOnAction(event -> System.out.println("Selected date: " + datePicker.getValue()));
+        datePicker.setPromptText(pattern);
+        /*datePicker.setConverter(new StringConverter<LocalDate>() {
+            @Override
+            public String toString(LocalDate date) {
+                return (date == null) ? "" : dateFormatter.format(date);
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                return ((string == null) || string.isEmpty()) ? null : LocalDate.parse(string, dateFormatter);
+            }
+        });*/
+        datePicker.setOnAction(event -> selectedDates.add(datePicker.getValue()));
+
+        datePicker.setDayCellFactory(dateColorFactory);
+
+        // TODO: Hide text field of the date picker combo. Show dropdown directly on clicking "+" button.
+        // TODO: Keep dropdown of the date picker combo open until intentionally clicking some other where.
+
+        dateList.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.DELETE) {
+                removeSelectedDates(selectedDates, dateList);
+            }
+        });
+        dateList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        removeButton.disableProperty().bind(dateList.getSelectionModel().selectedItemProperty().isNull());
+        addButton.setOnAction(event -> {
+            Popup popup = new Popup();
+            popup.getContent().add(datePicker);
+            popup.setAutoHide(true);
+            Window window = addButton.getScene().getWindow();
+            Bounds bounds = addButton.localToScene(addButton.getBoundsInLocal());
+            double x      = window.getX() + bounds.getMinX();
+            double y      = window.getY() + bounds.getMinY() + bounds.getHeight() + 5;
+            popup.show(addButton, x, y);
+            datePicker.show();
+            System.out.println("Selected dates are : "+dateList);
+        });
+        removeButton.setOnAction(event -> removeSelectedDates(selectedDates, dateList));
+        
+        ObservableList<Booking> data = FXCollections.observableArrayList();
+    	Booking b = new Booking();
+    	Booking b2 = new Booking();
+    	Booking b3 = new Booking();
+    	Booking b4 = new Booking();
+    	Booking b5 = new Booking();
+    	Booking b6 = new Booking();
+    	
+        nextButton.setOnAction(event -> {
+        	
+        	
+        	
+        	ObservableList<LocalDate> servicedates = dateList.getItems();      	
+    		for(LocalDate sdate : servicedates) {
+    			String d = convertDate(sdate);
+    			System.out.print("Booking Dates : ");
+    			System.out.println(d);
+    			
+    			ServiceDate.setValue(sdate);
+    			ServiceDate2.setValue(sdate);
+    			ServiceDate3.setValue(sdate);
+    			ServiceDate4.setValue(sdate);
+    			ServiceDate5.setValue(sdate);
+    			ServiceDate6.setValue(sdate);
+    			
+    			//b = new Booking(d, Slot.getSelectionModel().getSelectedItem(), ServiceTime.getText(), ServiceName.getValue(), ServiceCost.getText());
+    			if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
+
+    				b.setServicedate(convertDate(ServiceDate.getValue()));
+    				b.setServicename(ServiceName.getValue());
+    				b.setServicetime(ServiceTime.getText());
+    				b.setSlot(Slot.getSelectionModel().getSelectedItem());
+    				b.setServicecost(ServiceCost.getText());
+    				// b2.setServiceused(ServiceUsed.getText());
+    				//b2.setContract(contract);
+    			}
+    			
+
+    			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
+
+    				b2.setServicedate(convertDate(ServiceDate2.getValue()));
+    				b2.setServicename(ServiceName2.getValue());
+    				b2.setServicetime(ServiceTime2.getText());
+    				b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
+    				b2.setServicecost(ServiceCost2.getText());
+    				// b2.setServiceused(ServiceUsed.getText());
+    				//b2.setContract(contract);
+    			}
+
+    			
+    			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
+    				b3.setServicedate(convertDate(ServiceDate3.getValue()));
+    				b3.setServicename(ServiceName3.getValue());
+    				b3.setServicetime(ServiceTime3.getText());
+    				b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
+    				b3.setServicecost(ServiceCost3.getText());
+    				// b2.setServiceused(ServiceUsed.getText());
+    				//b3.setContract(contract);
+    			}
+
+    		
+    			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
+    				b4.setServicedate(convertDate(ServiceDate4.getValue()));
+    				b4.setServicename(ServiceName4.getValue());
+    				b4.setServicetime(ServiceTime4.getText());
+    				b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
+    				b4.setServicecost(ServiceCost4.getText());
+    				// b2.setServiceused(ServiceUsed.getText());
+    				//b4.setContract(contract);
+    			}
+
+    			
+    			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
+    				b5.setServicedate(convertDate(ServiceDate5.getValue()));
+    				b5.setServicename(ServiceName5.getValue());
+    				b5.setServicetime(ServiceTime5.getText());
+    				b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
+    				b5.setServicecost(ServiceCost5.getText());
+    				// b2.setServiceused(ServiceUsed.getText());
+    				//b5.setContract(contract);
+    			}
+
+    			
+    			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
+    				b6.setServicedate(convertDate(ServiceDate6.getValue()));
+    				b6.setServicename(ServiceName6.getValue());
+    				b6.setServicetime(ServiceTime6.getText());
+    				b6.setSlot(Slot3.getSelectionModel().getSelectedItem());
+    				b6.setServicecost(ServiceCost6.getText());
+    				// b2.setServiceused(ServiceUsed.getText());
+    				//b6.setContract(contract);
+    			}
+    			  			   				
+    		}
+    		   		
+        });
+        
+        addTable.setOnAction(event -> {
+
+			if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
+				data.add(b);
+			}
+			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
+				data.add(b2);
+			}
+			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
+				data.add(b3);
+			}
+			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
+				data.add(b4);
+			}
+			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
+				data.add(b5);
+			}
+			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
+				data.add(b6);
+			}
+			
+			servicedate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
+    		slot.setCellValueFactory(new PropertyValueFactory<>("slot"));
+    		time.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
+    		servicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+    		cost.setCellValueFactory(new PropertyValueFactory<>("servicecost"));
+    		
+    		services.setEditable(true);
+    		services.setItems(data);
+		});
+        
+                
+	}
+   /* End of initialize */
+	
 	@FXML
 	private void saveContract(ActionEvent event) {
 
@@ -581,146 +1010,8 @@ public class ContractController implements Initializable {
 		}
 
 	}
-
-	public void serviceDetail() {
-
-		String ser = ServiceName.getValue();
-		Service service = serviceService.getDetail(ser);
-		ServiceCost.setText(service.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-	}
-
-	public void serviceDetail2() {
-
-		String ser2 = ServiceName2.getValue();
-		Service service2 = serviceService.getDetail(ser2);
-		ServiceCost2.setText(service2.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-	}
-
-	public void serviceDetail3() {
-
-		String ser3 = ServiceName3.getValue();
-		Service service3 = serviceService.getDetail(ser3);
-		ServiceCost3.setText(service3.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-	}
-
-	public void serviceDetail4() {
-
-		String ser4 = ServiceName4.getValue();
-		Service service4 = serviceService.getDetail(ser4);
-		ServiceCost4.setText(service4.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText());
-
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-	}
-
-	public void serviceDetail5() {
-
-		String ser5 = ServiceName5.getValue();
-		Service service5 = serviceService.getDetail(ser5);
-		ServiceCost5.setText(service5.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
-				+ Long.parseLong(ServiceCost5.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-	}
-
-	public void serviceDetail6() {
-
-		String ser6 = ServiceName6.getValue();
-		Service service6 = serviceService.getDetail(ser6);
-		ServiceCost6.setText(service6.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
-				+ Long.parseLong(ServiceCost5.getText()) + Long.parseLong(ServiceCost6.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		purposeList.clear();
-		purposeList.addAll(purposeService.findPurpose());
-		Purpose.setItems(purposeList);
-
-		serviceList.clear();
-		serviceList.addAll(serviceService.findName());
-		ServiceName.setItems(serviceList);
-		ServiceName2.setItems(serviceList);
-		ServiceName3.setItems(serviceList);
-		ServiceName4.setItems(serviceList);
-		ServiceName5.setItems(serviceList);
-		ServiceName6.setItems(serviceList);
-
-		customerList.clear();
-		customerList.addAll(customerService.findName());
-		CustomerName.setItems(customerList);
-
-		slotList.clear();
-		slotList.addAll(slotService.findSlot());
-		Slot.setItems(slotList);
-		Slot2.setItems(slotList);
-		Slot3.setItems(slotList);
-		Slot4.setItems(slotList);
-		Slot5.setItems(slotList);
-		Slot6.setItems(slotList);
-
-		BookingDate.setValue(LocalDate.now());
-
-		paymentstatus.setItems(paymentStatusList);
-
-		ServiceDate.setDayCellFactory(dateColorFactory);
-		ServiceDate2.setDayCellFactory(dateColorFactory);
-		ServiceDate3.setDayCellFactory(dateColorFactory);
-		ServiceDate4.setDayCellFactory(dateColorFactory);
-		ServiceDate5.setDayCellFactory(dateColorFactory);
-		ServiceDate6.setDayCellFactory(dateColorFactory);
-
-	}
-
+	
+	
 	public Map<LocalDate, Integer> countDates() {
 
 		List<String> datefromBooking = bookingService.getServiceDate();
