@@ -414,6 +414,7 @@ public class DashboardController implements Initializable {
 
 						List<Receipt> receiptlist = currentRow.getItem().getContract().getReceipt();
 						double totalamount = 0;
+						
 						for (int i = 0; i < receiptlist.size(); i++) {
 							System.out.println(receiptlist.get(i).getReceiptid());
 							double receiptamount = Double.parseDouble(receiptService.PaidAmount(receiptlist.get(i).getReceiptid()));

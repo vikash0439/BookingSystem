@@ -359,8 +359,6 @@ public class AllContractController implements Initializable {
 		receipt.setText(contract.getReceipt().toString());	
 		invoice.setText(contract.getInvoice().toString());
 		
-		
-	
 	}
 	
 	Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>> delete = new Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>>() {

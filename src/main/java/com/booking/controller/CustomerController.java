@@ -286,6 +286,7 @@ public class CustomerController implements Initializable {
 			alert.setHeaderText(null);
 			alert.setContentText("The customer " + customername.getText() + "  has been saved.");
 			alert.showAndWait();
+			clearFields();
 			
 		} else {
 			Customer customer = customerService.find(Long.parseLong(customerid.getText()));
@@ -304,11 +305,13 @@ public class CustomerController implements Initializable {
 			alert.setHeaderText(null);
 			alert.setContentText("The customer " + customername.getText() + "  has been updated.");
 			alert.showAndWait();
+			
+			clearFields();
 		  }
 		}
 		customertable();
 		reptable();
-		clearFields();
+		
 	}
 
 	@Override

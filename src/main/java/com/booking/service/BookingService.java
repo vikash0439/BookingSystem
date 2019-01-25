@@ -40,11 +40,10 @@ private final BookingRepository bookingRepository;
 	}
 	
 	public void delete(Booking booking) {
-//		bookingRepository.delete(booking);
+		bookingRepository.delete(booking);
 		Long serviceid = booking.getServiceid();	
-		System.out.println("Booking deleted from BookingService class" +serviceid);
-		bookingRepository.deleteByServiceid(serviceid);
-	
+		System.out.println("Booking deleted from BookingService class: " +serviceid);
+		bookingRepository.deleteByServiceid(serviceid);	
 	}
 	
 	public String findDistinctSlot(String date) {			

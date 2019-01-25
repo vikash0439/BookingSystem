@@ -2,6 +2,7 @@ package com.booking.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -31,7 +32,7 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 //	@Query(value = "delete from booking b WHERE b.serviceid = ?1 ;", nativeQuery = true)
 //	public void deleteBooking(long serviceid);
 
-	@Query(value = "delete from booking WHERE serviceid = ?1 ;", nativeQuery = true)
+	@Modifying @Query(value = "delete from booking b WHERE b.serviceid = ?1", nativeQuery = true)
 	public void deleteByServiceid(Long serviceid);
 	   
 }
