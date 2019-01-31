@@ -121,6 +121,9 @@ public class DashboardController implements Initializable {
 	TableColumn<String, Boolean> colRemaining;
 	@FXML
 	TableColumn<Booking, Boolean> colEdit;
+	
+	@FXML TextField cancelAmount;
+	@FXML Button CancelButton;
 
 	@Lazy
 	@Autowired
@@ -196,6 +199,12 @@ public class DashboardController implements Initializable {
 		}
 
 	}
+	@FXML
+	private void CancelCharges(ActionEvent event) {
+		cancelAmount.setVisible(true);
+		CancelButton.setVisible(true);
+		System.out.println(cancelAmount.getText());
+	}
 
 	@FXML
 	private void cancel(ActionEvent event) throws IOException {
@@ -208,9 +217,7 @@ public class DashboardController implements Initializable {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK) {
-
 			String cid = ContractID.getText();
-
 			contractService.updateStatus(Long.parseLong((String) cid));
 
 		} else {

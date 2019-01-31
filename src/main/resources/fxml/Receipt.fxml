@@ -97,7 +97,7 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="cID" onAction="#getContractDetail" prefHeight="31.0" prefWidth="247.0" promptText="Select   --ContractID--">
+            <ComboBox fx:id="cID" editable="true" onAction="#getContractDetail" prefHeight="31.0" prefWidth="247.0" promptText="Select   --ContractID--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -131,6 +131,11 @@
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
+            <ComboBox prefHeight="31.0" prefWidth="247.0" promptText="Tax Applicable">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
                   <Label text="Base :" textFill="#f8f7f7">

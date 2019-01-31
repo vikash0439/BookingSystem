@@ -586,19 +586,19 @@
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
             </Button>
-            <TextField fx:id="ShowName2" promptText="Show name">
+            <TextField fx:id="ShowName2" promptText="Show name" visible="false">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="ShowTime2" promptText="Time">
+            <TextField fx:id="ShowTime2" promptText="Time" visible="false">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="ShowDetails2" promptText="Details">
+            <TextField fx:id="ShowDetails2" promptText="Details" visible="false">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin></TextField>
-            <Button mnemonicParsing="false" styleClass="btnGreen" text="Add More +" textFill="#f8f4f4">
+            <Button mnemonicParsing="false" styleClass="btnGreen" text="Add More +" textFill="#f8f4f4" visible="false">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
@@ -606,15 +606,15 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <TextField fx:id="ShowName3" promptText="Show name">
+            <TextField fx:id="ShowName3" promptText="Show name" visible="false">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="ShowTime3" promptText="Time">
+            <TextField fx:id="ShowTime3" promptText="Time" visible="false">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="ShowDetails3" promptText="Details">
+            <TextField fx:id="ShowDetails3" promptText="Details" visible="false">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
                </VBox.margin></TextField>

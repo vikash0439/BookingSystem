@@ -239,8 +239,8 @@ public class ReceiptController implements Initializable {
 	
 	@FXML
 	public void getContractDetail(ActionEvent event) {
-		Contract contract = contractService
-				.find(Long.parseLong(cID.getSelectionModel().getSelectedItem().toString()));
+		
+		Contract contract = contractService.find(Long.parseLong(cID.getSelectionModel().getSelectedItem().toString()));
 		
 		System.out.println(contract.getCustomer().getCustomername());
 		ClientName.setText(contract.getCustomer().getCustomername());

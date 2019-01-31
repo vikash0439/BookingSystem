@@ -78,6 +78,11 @@
             <Insets />
          </BorderPane.margin>
          <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="            PATTERNS" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
              <RadioButton mnemonicParsing="false" onAction="#getWeekday" text="WeekDays">
              <toggleGroup>
                         <ToggleGroup fx:id="c" />

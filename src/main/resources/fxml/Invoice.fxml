@@ -136,6 +136,11 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </HBox>
+            <ComboBox prefHeight="31.0" prefWidth="248.0" promptText="Tax Applicable">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ComboBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
                   <Label text="CGST : " textFill="#f8f7f7">

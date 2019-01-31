@@ -228,6 +228,9 @@ public class ContractController implements Initializable {
 	private TableColumn<Booking, String> cost;
 	@FXML
 	private TableColumn<Booking, String> slot;
+	
+	@FXML Button OkNextDay;
+	
 
 	@Lazy
 	@Autowired
@@ -258,6 +261,10 @@ public class ContractController implements Initializable {
 	ObservableList<Booking> data = FXCollections.observableArrayList();
 
 	Contract contract = new Contract();
+	
+	
+	
+	
 
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
@@ -341,6 +348,7 @@ public class ContractController implements Initializable {
 
 	ObservableList<LocalDate> selectedDates = FXCollections.observableArrayList();
 	ListView<LocalDate> dateList = new ListView<>(selectedDates);
+	ObservableList<LocalDate> servicedates = dateList.getItems();
 	String pattern = "dd-MM-yyyy";
 	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 	DatePicker datePicker = new DatePicker();
@@ -350,8 +358,12 @@ public class ContractController implements Initializable {
 	Button nextButton = new Button("Same Services");
 	Button nextButton2 = new Button("Different Services");
 	Button addTable = new Button("Add Services");
+	
+	public void nextProceed(){
+		System.out.println("Proceed ");
+	}
 
-	private void createScene() {
+	private void createScene(){
 
 		ObservableList<LocalDate> selectedDates = FXCollections.observableArrayList();
 		ListView<LocalDate> dateList = new ListView<>(selectedDates);
@@ -628,6 +640,8 @@ public class ContractController implements Initializable {
 		taxamount.setText(String.valueOf(ta));
 		pact.setText(String.valueOf(t));
 	}
+	
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -744,28 +758,9 @@ public class ContractController implements Initializable {
 		});
 		
 		nextButton2.setOnAction(event -> {
-			ObservableList<LocalDate> servicedates = dateList.getItems();
-			for (LocalDate sdate : servicedates){
-				String d = convertDate(sdate);
-				System.out.print("Booking Dates : ");
-				System.out.println(d);
-
-				ServiceDate.setValue(sdate);
-				ServiceDate2.setValue(sdate);
-				ServiceDate3.setValue(sdate);
-				ServiceDate4.setValue(sdate);
-				ServiceDate5.setValue(sdate);
-				ServiceDate6.setValue(sdate);
-
-				// b = new Booking(d, Slot.getSelectionModel().getSelectedItem(),
-				// ServiceTime.getText(), ServiceName.getValue(), ServiceCost.getText());
-				 // addTable.setOnAction(addServicestoTableVIew2());
-				
-				addServicestoTableVIew2();
-
-			}
-
-		});
+			    			
+				addServicestoTableVIew2(0);
+		});		 
 	}
 	/* End of initialize */
 
@@ -782,6 +777,7 @@ public class ContractController implements Initializable {
 
 			if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
 				b.setServicedate(convertDate(ServiceDate.getValue()));
+				System.out.println("Service date here: " +convertDate(ServiceDate.getValue()));
 				b.setServicename(ServiceName.getValue());
 				b.setServicetime(ServiceTime.getText());
 				b.setSlot(Slot.getSelectionModel().getSelectedItem());
@@ -873,8 +869,8 @@ public class ContractController implements Initializable {
 		services.setItems(data);
 		
 		//int total = services.getItems().stream().summingInt(Booking::getServicecost);
-		
 		int total = 0 ;
+		
 		for (Booking cost : services.getItems()) {
 		    total = total + Integer.parseInt(cost.getServicecost());
 		}
@@ -885,24 +881,37 @@ public class ContractController implements Initializable {
 		Double ta = 0.18 * total;
 		Double t = total + ta;
 		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
-		
+		pact.setText(String.valueOf(t));		
 		return null;
 	}
 	
-	public EventHandler<ActionEvent> addServicestoTableVIew2() {
-
-		Booking b = new Booking();
-		Booking b2 = new Booking();
-		Booking b3 = new Booking();
-		Booking b4 = new Booking();
-		Booking b5 = new Booking();
-		Booking b6 = new Booking();
-
-		if (emptyValidation("Service ", ServiceName.getSelectionModel().getSelectedItem() == null)){
+	
+	public EventHandler<ActionEvent> addServicestoTableVIew2(int i) {
+		do {
+			
+			System.out.println(servicedates.get(i));
+			
+			ServiceDate.setValue(servicedates.get(i));
+			ServiceDate2.setValue(servicedates.get(i));
+			ServiceDate3.setValue(servicedates.get(i));
+			ServiceDate4.setValue(servicedates.get(i));
+			ServiceDate5.setValue(servicedates.get(i));
+			ServiceDate6.setValue(servicedates.get(i));
+			
+			Booking b = new Booking();
+			Booking b2 = new Booking();
+			Booking b3 = new Booking();
+			Booking b4 = new Booking();
+			Booking b5 = new Booking();
+			Booking b6 = new Booking();
+			
+			
+		if (emptyValidation("Service Name ", ServiceName.getValue().isEmpty()))
+		{
 
 			if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
 				b.setServicedate(convertDate(ServiceDate.getValue()));
+				System.out.println("Service date here: " +convertDate(ServiceDate.getValue()));
 				b.setServicename(ServiceName.getValue());
 				b.setServicetime(ServiceTime.getText());
 				b.setSlot(Slot.getSelectionModel().getSelectedItem());
@@ -962,7 +971,7 @@ public class ContractController implements Initializable {
 				// b2.setServiceused(ServiceUsed.getText());
 				//b6.setContract(contract);
 			}
-		
+		}
 
 		if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
 			data.add(b);
@@ -983,11 +992,8 @@ public class ContractController implements Initializable {
 		if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 			data.add(b6);
 		}
-		}else {
-			
-			ServiceName.setFocusTraversable(false);
-			
-		}
+		
+		
 		servicedate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
 		slot.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		time.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
@@ -998,8 +1004,8 @@ public class ContractController implements Initializable {
 		services.setItems(data);
 		
 		//int total = services.getItems().stream().summingInt(Booking::getServicecost);
-		
 		int total = 0 ;
+	
 		for (Booking cost : services.getItems()) {
 		    total = total + Integer.parseInt(cost.getServicecost());
 		}
@@ -1045,8 +1051,12 @@ public class ContractController implements Initializable {
 		ServiceDate3.getEditor().clear();
 		ServiceDate4.getEditor().clear();
 		ServiceDate5.getEditor().clear();
-		ServiceDate6.getEditor().clear();
-
+		ServiceDate6.getEditor().clear(); 
+		
+		i++;
+			
+		}while(servicedates.get(i) != null);
+		 i=0;
 		return null;
 	}
 
@@ -1186,7 +1196,7 @@ public class ContractController implements Initializable {
 			}
 			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 				//bookingService.save(b6);
-			}
+			}*/
 
 			if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
 				performanceService.save(p);
@@ -1196,7 +1206,7 @@ public class ContractController implements Initializable {
 			}
 			if (ShowName3.getText() != null && !ShowName3.getText().trim().isEmpty()){
 				performanceService.save(p3);
-			}*/
+			}
 
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Contract");
@@ -1263,7 +1273,7 @@ public class ContractController implements Initializable {
 	/*
 	 * Validations
 	 */
-	private boolean validate(String field, String value, String pattern) {
+	private boolean validate(String field, String value, String pattern){
 		if (!value.isEmpty()) {
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(value);
@@ -1307,5 +1317,5 @@ public class ContractController implements Initializable {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return dtf.format(date);
 	}
-
+	
 }

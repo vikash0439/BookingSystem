@@ -397,7 +397,7 @@ public class AllContractController implements Initializable {
 				}
 
 				private void deletebooking(Booking booking) {
-					bookingService.delete(booking);
+					bookingService.deleteById(booking);
 					System.out.println("Deleted");
 					
 				}

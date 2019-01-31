@@ -216,7 +216,7 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #ff3333;" text="Cancel" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#CancelCharges" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #ff3333;" text="Cancel" textFill="WHITE">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
                      </effect>
@@ -240,6 +240,19 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
+            <TextField fx:id="cancelAmount" promptText="Enter Cancellation Amount" visible="false">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #ff3333;" text="Confirm" textFill="#fffdfd" visible="false">
+               <VBox.margin>
+                  <Insets left="180.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
            
          </children>
          <padding>
@@ -313,6 +326,11 @@
    <bottom>
       <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="1300.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="52.0" prefWidth="416.0" text="* Colors are indicated below " textFill="#e80e0e">
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </Label>
             <HBox prefHeight="53.0" prefWidth="194.0" style="-fx-border-color: black; -fx-background-color: white;">
                <children>
                   <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ff9999;">

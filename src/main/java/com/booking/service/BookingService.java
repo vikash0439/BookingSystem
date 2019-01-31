@@ -39,7 +39,7 @@ private final BookingRepository bookingRepository;
 		return bookingRepository.findServiceDate();
 	}
 	
-	public void delete(Booking booking) {
+	public void deleteById(Booking booking) {
 		bookingRepository.delete(booking);
 		Long serviceid = booking.getServiceid();	
 		System.out.println("Booking deleted from BookingService class: " +serviceid);
