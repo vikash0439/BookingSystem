@@ -389,7 +389,6 @@ public class AllContractController implements Initializable {
 						iv.setSmooth(true);
 						iv.setCache(true);
 						btnEdit.setGraphic(iv);
-
 						setGraphic(btnEdit);
 						setAlignment(Pos.CENTER);
 						setText(null);

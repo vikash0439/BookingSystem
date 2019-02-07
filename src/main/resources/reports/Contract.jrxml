@@ -30,7 +30,7 @@ Telephone: 011-23714307
 		</band>
 	</title>
 	<pageHeader>
-		<band height="55" splitType="Stretch">
+		<band height="58" splitType="Stretch">
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="10" width="46" height="13" uuid="db4015ca-0ef6-41c8-abef-396402f1fd95"/>
 				<textElement>
@@ -61,13 +61,13 @@ Telephone: 011-23714307
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="284" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="113" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="60" splitType="Stretch">
@@ -78,6 +78,11 @@ Telephone: 011-23714307
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="43" splitType="Stretch"/>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="105" y="20" width="315" height="56" uuid="26b01033-2c55-44e5-a45d-80ad89f316cf"/>
+				<text><![CDATA[* System Generated Contract, No signature Required]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

@@ -40,9 +40,12 @@ private final BookingRepository bookingRepository;
 	}
 	
 	public void deleteById(Booking booking) {
-		bookingRepository.delete(booking);
+//		bookingRepository.delete(booking);
 		Long serviceid = booking.getServiceid();	
 		System.out.println("Booking deleted from BookingService class: " +serviceid);
+//		int scost = Integer.parseInt(booking.getServicecost());
+//		int pact = Integer.parseInt(booking.getContract().getPact());
+		
 		bookingRepository.deleteByServiceid(serviceid);	
 	}
 	

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.booking.bean.Booking;
 
@@ -32,7 +33,8 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 //	@Query(value = "delete from booking b WHERE b.serviceid = ?1 ;", nativeQuery = true)
 //	public void deleteBooking(long serviceid);
 
-	@Modifying @Query(value = "delete from booking b WHERE b.serviceid = ?1 ;", nativeQuery = true)
+	@Transactional
+	@Modifying @Query(value = "delete from booking WHERE serviceid = ?1 ;", nativeQuery = true)
 	public void deleteByServiceid(Long serviceid);
 	   
 }

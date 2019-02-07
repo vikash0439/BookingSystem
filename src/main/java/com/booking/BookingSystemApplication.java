@@ -71,15 +71,15 @@ public class BookingSystemApplication extends Application{
 	public void DataBackup(){	
 		String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 
-		File f = new File("DB_backup\\");
+		File f = new File("DB_backup//");
 		if (!f.exists()) {
 			if (f.mkdir()) {
 				LOG.info("Directory created");
 			}
 		}
 		String path = f.getAbsolutePath();
-		path = path.replace('\\', '/');
-		path = path + "_" + date + ".sql";
+//		path = path.replace('\\', '/');
+		path = path + "/" + date + ".sql";
 
 		Process p = null;
 		try {

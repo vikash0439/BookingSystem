@@ -83,7 +83,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="73" splitType="Stretch">
+		<band height="84" splitType="Stretch">
 			<staticText>
 				<reportElement x="80" y="7" width="360" height="30" uuid="2e165705-b4ba-4b28-9431-ff25857ff596"/>
 				<textElement textAlignment="Center"/>
@@ -126,7 +126,7 @@ Telephone: 011-23714307
 				<text><![CDATA[Service Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="23" width="100" height="14" uuid="245ea026-f6fc-409a-8a85-f957e1200ba2">
+				<reportElement x="230" y="23" width="100" height="28" uuid="245ea026-f6fc-409a-8a85-f957e1200ba2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
 				</reportElement>
 				<textElement>
@@ -135,7 +135,7 @@ Telephone: 011-23714307
 				<text><![CDATA[In Use]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="340" y="11" width="100" height="30" uuid="990f09cb-c17b-44a7-b579-7185fc41f8e0">
+				<reportElement x="340" y="23" width="100" height="28" uuid="990f09cb-c17b-44a7-b579-7185fc41f8e0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="585132b5-222b-4455-893b-c7ec96ecd2d0"/>
 				</reportElement>
 				<textElement>
@@ -144,7 +144,7 @@ Telephone: 011-23714307
 				<text><![CDATA[Service Charges]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="15" width="100" height="30" uuid="c65fd1c3-d3f9-4901-a29a-3861a2ba88f6">
+				<reportElement x="450" y="23" width="100" height="28" uuid="c65fd1c3-d3f9-4901-a29a-3861a2ba88f6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ba41e88a-38fe-4e6e-a424-6a0b4733bd53"/>
 				</reportElement>
 				<textElement>
@@ -153,12 +153,12 @@ Telephone: 011-23714307
 				<text><![CDATA[Cancel Charges]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="10" y="8" width="541" height="41" uuid="ad628318-fe0b-4322-a761-d740fb0602e3"/>
+				<reportElement mode="Transparent" x="11" y="21" width="541" height="29" uuid="ad628318-fe0b-4322-a761-d740fb0602e3"/>
 			</rectangle>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="41" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<textField isBlankWhenNull="true">
 				<reportElement positionType="FixRelativeToBottom" x="30" y="0" width="100" height="30" uuid="ecd954d1-a675-483f-9dfb-002d72f567c1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2fba4056-75ab-4734-8ac2-96e89410c49e"/>
@@ -172,7 +172,7 @@ Telephone: 011-23714307
 				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="240" y="0" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
+				<reportElement x="240" y="-4" width="100" height="30" uuid="64c0c2d8-8ba2-4560-8323-22aecbbd2be6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38a61589-8b00-4ccd-8b23-f621c16f718d"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{serviceinuse}]]></textFieldExpression>
@@ -192,28 +192,29 @@ Telephone: 011-23714307
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="77" splitType="Stretch">
+		<band height="37" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="32" width="570" height="16" uuid="a6d110ae-903e-445c-9ea6-066655f5ea0e"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="false" isItalic="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[This report is generated according to the data available in the Auditorium Booking Software Database.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="90" y="14" width="350" height="14" uuid="9b0d3364-fe78-4fc4-a1ca-7423e61ed1b5"/>
+				<reportElement x="90" y="4" width="350" height="14" uuid="9b0d3364-fe78-4fc4-a1ca-7423e61ed1b5"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[shriramcentre@srcpa.in || www.srcpa.in]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="257" y="47" width="100" height="13" uuid="7319a2cc-ef45-4fb4-8827-eb9d13dc3abd"/>
+				<reportElement x="257" y="20" width="100" height="13" uuid="7319a2cc-ef45-4fb4-8827-eb9d13dc3abd"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="43" splitType="Stretch"/>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="10" width="570" height="20" uuid="4395696c-9590-4adc-90e1-9e4c1c03bae0"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[This report is generated according to the data available in the Auditorium Booking Software Database.]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>
