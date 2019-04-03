@@ -74,7 +74,7 @@
    <bottom>
       <VBox prefHeight="109.0" prefWidth="1316.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="108.0" prefWidth="1316.0" text="  Ver 1.02" textAlignment="CENTER" textFill="WHITE">
+            <Label prefHeight="108.0" prefWidth="1316.0" text="  Ver 2.00" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>

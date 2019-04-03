@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.booking.bean.Invoice;
 import com.booking.bean.Receipt;
-import com.booking.bean.Reserve;
 import com.booking.repository.InvoiceRepository;
 import com.booking.repository.ReceiptRepository;
 

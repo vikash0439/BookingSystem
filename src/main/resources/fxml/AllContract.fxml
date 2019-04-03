@@ -53,15 +53,15 @@
                   <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Service">
+            <Menu mnemonicParsing="false" text="Utility">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="Service" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
-                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
                   <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
                   <MenuItem mnemonicParsing="false" onAction="#statecode" text="State Code" />
                   <MenuItem mnemonicParsing="false" onAction="#reports" text="Reports" />
@@ -83,7 +83,7 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text="Booking Date" textFill="#f8f7f7">
+                  <Label text="Contract Date: " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -91,9 +91,9 @@
                         <Insets left="10.0" right="10.0" top="2.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="bookingdate">
+                  <Label fx:id="bookingdate" prefHeight="21.0" prefWidth="129.0">
                      <HBox.margin>
-                        <Insets left="25.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                </children>
@@ -349,12 +349,14 @@
                   </Text>
                   <TableView fx:id="bookingtable" prefHeight="257.0" prefWidth="984.0">
                     <columns>
-                        <TableColumn fx:id="serviceid" maxWidth="4000.0" prefWidth="75.0" text="ServiceID" />
-                        <TableColumn fx:id="servicedate" maxWidth="4000.0" prefWidth="75.0" text="Date" />
-                        <TableColumn fx:id="slot" maxWidth="4000.0" prefWidth="94.0" text="Slot" />
-                        <TableColumn fx:id="time" maxWidth="4000.0" prefWidth="131.0" text="Time" />
-                        <TableColumn fx:id="servicename" maxWidth="4000.0" prefWidth="148.0" text="Service" />
-                        <TableColumn fx:id="cost" maxWidth="4000.0" prefWidth="110.0" text="Cost" />
+                        <TableColumn fx:id="colBookingid" maxWidth="4000.0" prefWidth="75.0" text="BookingID" />
+                        <TableColumn fx:id="colBookingdate" maxWidth="4000.0" prefWidth="75.0" text="Boookingdate" />
+                        <TableColumn fx:id="colServicename" maxWidth="4000.0" prefWidth="148.0" text="Service" />
+                        <TableColumn fx:id="colVenuename" maxWidth="4000.0" prefWidth="131.0" text="Venue" />
+                        <TableColumn fx:id="colSlotname" maxWidth="4000.0" prefWidth="94.0" text="Slot" />
+                        <TableColumn fx:id="colPrice" maxWidth="4000.0" prefWidth="110.0" text="Cost" />
+                        <TableColumn fx:id="colBooked" prefWidth="75.0" text="Active" />
+                        <TableColumn fx:id="colDoc" prefWidth="75.0" text="Date of Cancel" />
                         <TableColumn fx:id="colDelete" maxWidth="4000.0" prefWidth="48.0" text="Action" />
                     </columns>
                      <VBox.margin>
@@ -373,33 +375,14 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </DatePicker>
-                        <ComboBox fx:id="Slot" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceTime" promptText="Time">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceCost" promptText="Charges">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
+                        <ComboBox fx:id="ServiceName" onAction="#serviceDetail" prefHeight="31.0" prefWidth="157.0" promptText="Services" />
+                        <TextField fx:id="Price" promptText="Price" />
+                        <TextField fx:id="SlotName" promptText="Slot " />
+                        <TextField fx:id="VenueName" promptText="Venue " />
                         <Button fx:id="Service" mnemonicParsing="false" onAction="#addMore" prefHeight="31.0" prefWidth="113.0" styleClass="btnGreen" text="Add+" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
                         </Button>
                      </children>
                      <VBox.margin>
@@ -413,10 +396,11 @@
                   </Text>
                   <TableView fx:id="showtable" prefHeight="134.0" prefWidth="984.0">
                     <columns>
-                        <TableColumn fx:id="performanceid" prefWidth="75.0" text="Performance ID" />
-                      <TableColumn fx:id="showname" prefWidth="215.0" text="Show name" />
-                      <TableColumn fx:id="showtime" prefWidth="122.0" text="Show Time" />
-                        <TableColumn fx:id="showdetails" prefWidth="249.0" text="Details" />
+                        <TableColumn fx:id="colPerformanceid" maxWidth="3500.0" prefWidth="75.0" text="Performance ID" />
+                        <TableColumn fx:id="colShowdate" maxWidth="3500.0" prefWidth="215.0" text="Show Date" />
+                      <TableColumn fx:id="colShowname" maxWidth="3500.0" prefWidth="215.0" text="Show name" />
+                      <TableColumn fx:id="colShowtime" maxWidth="3500.0" prefWidth="122.0" text="Show Time" />
+                        <TableColumn fx:id="colShowdetails" maxWidth="3500.0" prefWidth="249.0" text="Details" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />

@@ -1,6 +1,5 @@
 package com.booking.bean;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,21 +8,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- * @author Vikash Kumar
- * @since 17-09-2018
- */
-
 @Entity
-@Table(name="performance" , schema = "srcpa")
+@Table
 public class Performance {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "performanceid")
 	private long performanceid;
 	private String showname;
 	private String showtime;
 	private String showdetails;
+	private String showdate;
 	
 	@ManyToOne
 	@JoinColumn(name ="contractid")
@@ -61,18 +56,20 @@ public class Performance {
 		this.showdetails = showdetails;
 	}
 
+	public String getShowdate() {
+		return showdate;
+	}
+
+	public void setShowdate(String showdate) {
+		this.showdate = showdate;
+	}
+
 	public Contract getContract() {
 		return contract;
 	}
 
 	public void setContract(Contract contract) {
 		this.contract = contract;
-	}
-
-	@Override
-	public String toString() {
-		return "Performance [performanceid=" + performanceid + ", showname=" + showname + ", showtime=" + showtime
-				+ ", showdetails=" + showdetails + ", contract=" + contract + "]";
 	}
 	
 }

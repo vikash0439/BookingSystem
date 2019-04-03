@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.booking.bean.Slot;
 import com.booking.bean.Tax;
 import com.booking.repository.TaxRepository;
 
@@ -12,26 +13,32 @@ import com.booking.repository.TaxRepository;
 public class TaxService {
 	
 	private final TaxRepository taxRepository;
-
+	
 	public TaxService(TaxRepository taxRepository) {
 		this.taxRepository = taxRepository;
 	}
-	
-	public Tax save(Tax tax) {
+
+	public  Tax save(Tax tax) {
+		// TODO Auto-generated method stub
 		return taxRepository.save(tax);
-		
+	}
+
+	public Tax find(long taxid) {
+		// TODO Auto-generated method stub
+		return taxRepository.findAllByTaxid(taxid);
 	}
 	
-	public List<Tax> getService(){
+	public List<Tax> getTax(){
 		List<Tax> c = new ArrayList<Tax>();
 		taxRepository.findAll().forEach(c :: add);
 		return c;
 	}
-
-	public Tax find(Long taxid) {
-		return taxRepository.findAllByTaxid(taxid);
+	public List<String> findSaccode(){
+		// TODO Auto-generated method stub
+		List<String> saccode = new ArrayList<String>();
+		taxRepository.findSac().forEach(saccode :: add);;
+		return saccode;
 	}
-
 	
 
 }

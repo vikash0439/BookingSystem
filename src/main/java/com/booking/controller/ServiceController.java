@@ -24,6 +24,9 @@ import org.springframework.stereotype.Controller;
 import com.booking.bean.Service;
 import com.booking.config.StageManager;
 import com.booking.service.ServiceService;
+import com.booking.service.SlotService;
+import com.booking.service.TaxService;
+import com.booking.service.VenueService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -36,6 +39,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -66,38 +70,29 @@ public class ServiceController implements Initializable {
 	private TextField ServiceName;
 
 	@FXML
-	private TextField ServiceInUse;
-
+	private TextField Price;
+    @FXML ComboBox<String> slot;
+    @FXML ComboBox<String> venue;
+    @FXML ComboBox<String> SacCode;
 	@FXML
-	private TextField ServiceCharges;
+	private TextField UnitOfMeasurement;
 	
-	@FXML
-	private TextField Unit;
-
-	@FXML
-	private TextField CancelCharges;
-
 	@FXML
 	private TableView<Service> servicetable;
 
 	@FXML
 	private TableColumn<Service, Long> colServiceID;
-
 	@FXML
 	private TableColumn<Service, String> colServiceName;
-
 	@FXML
-	private TableColumn<Service, String> colServiceInUse;
-
+	private TableColumn<Service, String> colPrice;
 	@FXML
-	private TableColumn<Service, String> colServiceCharges;
-	
+	private TableColumn<Service, String> colSlot;
 	@FXML
-	private TableColumn<Service, String> colUnit;
-
+	private TableColumn<Service, String> colVenue;
 	@FXML
-	private TableColumn<Service, String> colCancelCharges;
-
+	private TableColumn<Service, String> colUnitOfMeasurement;
+    @FXML private TableColumn<Service, String> colSaccode; 
 	@FXML
 	private TableColumn<Service, Boolean> colEdit;
 
@@ -110,8 +105,17 @@ public class ServiceController implements Initializable {
 
 	@Autowired
 	private ServiceService serviceService;
+	@Autowired
+	private SlotService slotService;
+	@Autowired
+	private VenueService venueService;
+	@Autowired
+	private TaxService taxService;
 
 	private ObservableList<Service> serviceList = FXCollections.observableArrayList();
+	private ObservableList<String> slotList = FXCollections.observableArrayList();
+	private ObservableList<String> venueList = FXCollections.observableArrayList();
+	private ObservableList<String> sacList = FXCollections.observableArrayList();
 
 	/* Event methods */
 
@@ -198,6 +202,10 @@ public class ServiceController implements Initializable {
 	public void reports(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.REPORTS);
 	}
+	@FXML
+	public void venue(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.VENUE); 		
+	}
 
 	@FXML
 	private void saveService(ActionEvent event) {
@@ -206,10 +214,11 @@ public class ServiceController implements Initializable {
 		if (ServiceID.getText() == null || ServiceID.getText() == "") {
 			Service service = new Service();
 			service.setServicename(ServiceName.getText());
-			service.setServiceinuse(ServiceInUse.getText());
-			service.setServicecharges(ServiceCharges.getText());
-			service.setUnit(Unit.getText());
-			service.setCancelcharges(CancelCharges.getText());
+			service.setPrice(Price.getText());
+			service.setUnitofmeasurement(UnitOfMeasurement.getText());
+			service.setSlot(slot.getSelectionModel().getSelectedItem());
+			service.setVenue(venue.getSelectionModel().getSelectedItem());
+			service.setSaccode(SacCode.getSelectionModel().getSelectedItem());
 
 			serviceService.save(service);
 
@@ -223,10 +232,11 @@ public class ServiceController implements Initializable {
 
 			Service service = serviceService.find(Long.parseLong(ServiceID.getText()));
 			service.setServicename(ServiceName.getText());
-			service.setServiceinuse(ServiceInUse.getText());
-			service.setServicecharges(ServiceCharges.getText());
-			service.setUnit(Unit.getText());
-			service.setCancelcharges(CancelCharges.getText());
+			service.setPrice(Price.getText());
+			service.setUnitofmeasurement(UnitOfMeasurement.getText());
+			service.setSlot(slot.getSelectionModel().getSelectedItem());
+			service.setVenue(venue.getSelectionModel().getSelectedItem());
+			service.setSaccode(SacCode.getSelectionModel().getSelectedItem());
 
 			serviceService.save(service);
 
@@ -246,6 +256,19 @@ public class ServiceController implements Initializable {
 		// TODO Auto-generated method stub
 		servicetable();
 		clearFields();
+		
+		slotList.clear();
+		slotList.addAll(slotService.findSlot());
+		slot.setItems(slotList);
+		
+		venueList.clear();
+		venueList.addAll(venueService.findVenue());
+		venue.setItems(venueList);
+		
+		sacList.clear();
+		sacList.addAll(taxService.findSaccode());
+		SacCode.setItems(sacList);
+		
 	}
 
 	public void servicetable() {
@@ -254,10 +277,11 @@ public class ServiceController implements Initializable {
 		 */
 		colServiceID.setCellValueFactory(new PropertyValueFactory<>("serviceid"));
 		colServiceName.setCellValueFactory(new PropertyValueFactory<>("servicename"));
-		colServiceInUse.setCellValueFactory(new PropertyValueFactory<>("serviceinuse"));
-		colServiceCharges.setCellValueFactory(new PropertyValueFactory<>("servicecharges"));
-		colUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-		colCancelCharges.setCellValueFactory(new PropertyValueFactory<>("cancelcharges"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+		colVenue.setCellValueFactory(new PropertyValueFactory<>("venue"));
+		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colUnitOfMeasurement.setCellValueFactory(new PropertyValueFactory<>("unitofmeasurement"));
+		colSaccode.setCellValueFactory(new PropertyValueFactory<>("saccode"));
 		colEdit.setCellFactory(cellFactory);
 
 		serviceList.clear();
@@ -301,10 +325,8 @@ public class ServiceController implements Initializable {
 				private void updateService(Service service) {
 					ServiceID.setText(Long.toString(service.getServiceid()));
 					ServiceName.setText(service.getServicename());
-					ServiceInUse.setText(service.getServiceinuse());
-					ServiceCharges.setText(service.getServicecharges());
-					Unit.setText(service.getUnit());
-					CancelCharges.setText(service.getCancelcharges());
+					Price.setText(service.getPrice());
+					UnitOfMeasurement.setText(service.getUnitofmeasurement());
 
 				}
 			};
@@ -339,9 +361,7 @@ public class ServiceController implements Initializable {
 			Map<String, Object> m = new HashMap<String, Object>();
 			m.put("serviceid", s.getServiceid());
 			m.put("servicename", s.getServicename());
-			m.put("serviceinuse", s.getServiceinuse());
-			m.put("servicecharges", s.getServicecharges());
-			m.put("cancelcharges", s.getCancelcharges());
+			
 			list.add(m);
 
 			LOG.info("After Map Loop ");
@@ -427,10 +447,9 @@ public class ServiceController implements Initializable {
 	private void clearFields() {
 		ServiceID.setText(null);
 		ServiceName.clear();
-		ServiceInUse.clear();
-		ServiceCharges.clear();
-		Unit.clear();
-		CancelCharges.clear();
+		Price.clear();
+		UnitOfMeasurement.clear();
+		SacCode.getSelectionModel().clearSelection();
 
 	}
 

@@ -6,6 +6,7 @@
 		<![CDATA[]]>
 	</queryString>
 	<field name="contractid" class="java.lang.Long"/>
+	<field name="bookingdate" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -32,11 +33,11 @@ Telephone: 011-23714307
 	<pageHeader>
 		<band height="58" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="10" width="46" height="13" uuid="db4015ca-0ef6-41c8-abef-396402f1fd95"/>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="10" width="70" height="13" uuid="db4015ca-0ef6-41c8-abef-396402f1fd95"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ref No :]]></text>
+				<text><![CDATA[Contract ID:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement stretchType="RelativeToBandHeight" x="441" y="10" width="32" height="13" uuid="854a675a-8d2f-4662-9be9-f70f326d5923"/>
@@ -55,7 +56,7 @@ Telephone: 011-23714307
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="42" y="10" width="100" height="13" uuid="96cac946-2ed9-485c-b128-c83d7bccb935"/>
+				<reportElement x="66" y="10" width="100" height="13" uuid="96cac946-2ed9-485c-b128-c83d7bccb935"/>
 				<textFieldExpression><![CDATA[$F{contractid}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -64,25 +65,351 @@ Telephone: 011-23714307
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="284" splitType="Stretch"/>
+		<band height="438" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement x="-1" y="2" width="181" height="18" uuid="69ed7cb8-e75a-4deb-851e-5f166da3d4e3"/>
+				<text><![CDATA[This agreement is executed at Delhi on ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="187" y="0" width="100" height="20" uuid="503bfe7e-fba5-4cd2-b72b-a0c25e6ee720"/>
+				<textFieldExpression><![CDATA["+$F{bookingdate}+"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="36" width="541" height="34" uuid="0e4f7018-9e12-4ed3-b45e-00090212a02c"/>
+				<text><![CDATA[BETWEEN
+INDIAN NATIONAL THEATRE TRUST, Shri Ram Centre, 4 Safdar Hashmi Marg, New Delhi-110001, through it’s Authorized Representative ____________________________________, (hereinafter called "INTT") 
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="108" width="555" height="330" uuid="089287af-b64d-4086-aec9-b1a18cbeff40"/>
+				<text><![CDATA[The expressions, “INTT” and “Organizer” are hereinafter jointly referred to as the “Parties” sometime individually referred to as “Party”.
+WHEREAS the INTT is the owner of the building at 4, Safdar Hashmi Marg, New Delhi-110001, hereinafter referred to as “PREMISES” and has an Auditorium in it which is herein after referred to as “Auditorium”.
+WHEREAS Organizer being the event organizer has approached the INTT for the permission to use the Auditorium for its Event as detailed in Annexure I. INTT agrees to license the use of the “Auditorium” to the Organizer on the date and time specified upon the terms and conditions hereinafter set out;
+NOW THE PARTIES MUTUALLY AGREE AND THIS AGREEMENT WITNESSETH AS FOLLOWS:  
+1.	Definitions
+A)	Auditorium – A venue comprising of a stage, where artists performs, and audience seating capacity at Main floor - 300 seats; Balcony - 75, where an audience comes to watch the said performance. 
+
+B)	Booking Slot/Timing – The specifically defined timings for use of the auditorium, as detailed in Annexure I, which is sold to the booking party.
+
+C)	Box office – The defined place near the auditorium venue and inside the premises where the booking party tickets can sell or reserve tickets to the performance.
+
+D)	Control Room – A room inside the auditorium where all primary controls of the light and sound systems of the auditorium can be operated by trained staff, in accordance with performance requirements.
+
+E)	Event - As detailed in Annexure I
+
+F)	Green Room (Ladies, Gents) – Designated rooms (Ladies, Gents) in the auditorium premises where artists, for a performance, can use when they are not engaged on stage as per the hours of hours of rental.
+
+G)	Rehearsal – Performance carried out by artists in the auditorium which does not included guests seated in the auditorium seating capacity by means of an entry ticket or invitation.
+
+H)	Set-Up – This refers to the installation of items to be placed in the Auditorium stage as per the booking slot taken for the specified time.
+
+I)	Stage – A designated space for the performance of artists in the auditorium and also a focal point for members of all audience seated in the auditorium.
+2.	That the INTT hereby grants the Organizer license to use the Auditorium for the period ______________
+ ___________________________________________ herein after referred to as “Event Date”, to organize the event as per the terms detailed and slot agreed in Annexure I. The Organizer in consideration of using and occupying the “Auditorium”, as mentioned hereinabove shall pay to the INTT total License Fees as agreed and detailed in Annexure II for the usage of the Auditorium. It is agreed between the parties that if organizer wants or wish to conduct more performance than as specified in Annexure I, he shall be charged extra license fees for the same by the INTT.
+
+3.	Booking Amount
+The Organizer shall deposit 50% of the total License Fees as booking amount with INTT in accordance with instructions of the Auditorium Manager.
+
+4.	Booking Slip
+That the Organizer will submit Total License fees for booking and security deposit amount latest one month prior to the show date. Upon clearing the above, the Organizer will be handed over a Booking Slip containing all relevant details pertaining to their performance(s). 
+
+5.	Security Deposit
+a)	That the Organizer shall deposit interest free security deposit of Rs 15000/- with INTT, at the time of the signing of the agreement, towards its commitment to fulfil its obligations etc. under this agreement. The security deposit shall be refunded by the INTT to the Organizer after venue evaluation on completion of the Event as per the terms of this agreement stated hereinunder.
+b)	If the Organizer fails to adhere the terms and conditions of this agreement and / or any of the reason stated herein below, INTT shall forfeit the Security Deposit:
+I.	Failure to return premises to the condition they were when it was handed over to organizer for use.
+II.	Failure to maintain safety standards by blocking or covering up the hallways, walkways or doorways to any emergency exit which are to remain free and clear at all times.
+III.	Possession/Consumption of alcohol in the premises.
+IV.	Damage/loss to the premises and auditorium.
+
+6.	No Objection Certificate (NOC) for Performance
+That the Organizer will submit all necessary NOC(s) at least One week before the show date to the Auditorium Manager. INTT reserves the right to deny a performance if the Organizer fails to submit the mandatory NOCs.
+
+7.	INTT agrees to provide the following deliverables to the Organizer on the days of the booking and/or performance(s) –
+a.	Stage lighting, house lighting (as per Auditorium Light Plan).
+b.	Sound system (as per Auditorium Sound Plan).
+c.	Green rooms (Ladies and Gents).
+d.	Auditorium air conditioning for 3 hours per show.
+e.	Auditorium staff (Control Room Technician and Stage Hand).
+f.	One banner space, as per booking, at the banner display area one week prior to show date.
+g.	Box office for ticket sales on the day of the show (as per booking slot).
+h.	Performance details mentioned in Shri Ram Centre events calendar (Emailers, Website)
+i.	Security guard at the first checkpoint for entry of guests inside Auditorium Foyer.
+8.	The Organizer can access the stage a day before the booked date for set-up of equipment and/or rehearsal, if required, subject to the availability and prior approval from the Auditorium Manager.
+9.	REPRESENTATIONS, WARRANTIES AND COVENANTS OF THE ORGANIZER
+a)	Organizer shall provide full names of all cast and crew coming to the venue on the performance date to the Auditorium Manager latest one week prior to the show date via email. Organizer shall also inform all group members and crew that entry will be permitted by security guards as per the names available on the list. The main organizer must sign out on with security guards upon completion of the event and exit from the venue. Failure to adhere this term or any unauthorized entry recorded will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+b)	Organizer shall ensure that the auditorium shall be used only for the Event as per the schedule detailed in Annexure I. 
+c)	It shall be the sole responsibility of the Organizer to ensure that number of occupants should not be more than the number of seats as specified in 1.A. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+d)	Organizer shall ensure that the event must not contain vulgarity or anti - national content in any respect. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+e)	Organizer shall ensure that the entry of the audience carrying entry ticket or invitation shall be allowed to enter the premises and in case of non-ticketed event also audience carrying invitation cards shall only be allowed to enter the premises for the event.
+f)	Organizer shall ensure that pathways to emergency exit doors must be free and clear at all times. The stair ways should be free and clear of all tables, chairs, and/or other obstructions. Doorways will not be blocked and pathways not hindered in any way. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+g)	Organizer shall ensure that Walls, windows, and woodwork are not to come in contact with tape, glue, nails, screws, or staples. Paint is not allowed on the premises. The Organizer is responsible for the care and supervision of the facility, during their time of usage, and accepts any liability of any accidents or property damage during the time the facility is being in its use. Any damage caused of this nature will be billed to the Organizer as per actual in addition to forfeit of security deposit.
+h)	The Organizer shall have no right to use the seat no 16-25 in Row E as the same are reserved exclusively for the Management of INTT. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+i)	The Organizer shall comply with all the applicable laws, ordinances, rules and orders of appropriate Government authorities pertaining to organizing the Event and with respect to INTT.
+j)	That Open flames are not allowed within the premises and Organizer should ensure that there will be no use of articles or things of a dangerous, flammable, or explosive character that can lead to the danger of fire in or around the premises.
+k)	Organizer shall ensure that INTT’s promotional materials, furniture or fixtures shall not be moved or removed or covered in any way. The Organizer shall make no alterations or any other changes without prior consent of the INTT.
+l)	The Organizer shall not use any other space within the premises, other than allocated. Use of additional space, other than the allocated space, requires prior approval from INTT. Failure to adhere this term will make the INTT entitled to forfeit the security deposit
+m)	The Organizer is not allowed bring alcoholic beverages into premises for consumption by members of the public and it shall also ensure that none of its representatives, participants, and/or contractors have alcoholic beverages in and around premises. Failure to follow the same will make the INTT entitled to cancel upcoming contracts/dates, result in the loss of security deposit and blacklisting of the group.
+n)	As a principal policy of the INTT, Smoking is strictly prohibited in the premises and therefore it shall be the responsibility of the Organizer to ensure strict adherence to it by its representatives, participants, and/or contractor.
+o)	Carrying food is prohibited in the auditorium. Use of solid and liquid food must be restricted to designated spaces in the premises. The volunteers of the group who will be present in the auditorium must advise guests of this policy if they see to be eating or drinking.
+p)	The Organizer is responsible for crowd management at the Premises and accepts any liability of any accidents during the time the facility is in use for the Event and is in its occupation.
+q)	The Organizer must ensure that the venue is surrendered and the set/marketing collaterals taken off immediately after the show, not exceeding 10pm. Failure to do so will lead to the forfeiture of security deposit. If the performing group has a booking the next day as well from the morning slot, only then is this point not applicable.
+r)	The Organizer shall ensure that all the items used for Event will be arranged and managed by themselves and shall not use any material in the possession/premises of INTT. 
+s)	Organizer is under strict obligation to apply and procure all necessary permissions, No Objection Certificates and Licenses from the appropriate authority for conducting the Event and submit the same at least a month prior to the Event. Management reserves the rights to cancel the Event if the necessary documents are not produced on time.
+t)	In case of a non-ticketed event, organizer shall ensure that all the invitations, both digital and print, must clearly highlight that seating will be as per availability. Crowd management, as mentioned above, shall be the sole responsibility of the Organizer and management of INTT shall not be responsible for the same.
+u)	Organizer and/or any of its representatives and/or their contractor(s)/sponsor(s) are not allowed to sell any merchandise in the premises.
+
+10.	MARKETING
+a)	The list of branding and marketing collaterals should be provided well in advance, latest two weeks before the performance date, for approval. If done so after the deadline mentioned above, INTT reserves the right to accept or decline the same.
+b)	An allocated space, a week prior to the show, will be provided for one banner at the banner display area. Printing, installation and removal of the same is the sole responsibility of the Organizer. The instructed size of the frame should be strictly followed. The banner should be removed immediately upon completion of the event. 
+
+11.	TICKETS AT BOX OFFICE
+Organizer is authorized to sell tickets of the Event at the Box Office only on the Event Date and Organizer can sell tickets prior to the Event Date only after obtaining prior permission of the INTT. 
+
+12.	CANCELLATION POLICY
+a)	In the event of cancellation of a Contract by the Organizer, INTT reserves the right to impose a cancellation fee based on the date(s) cancelled and the date of request of cancellation from the show date. 
+b)	Failure to adhere to the above policy, should it be in effect, will result in blacklisting of Organizers on the sole discretion of INTT.
+
+13.	INDEMNIFICATION
+Organizer agrees to indemnify INTT and shall hold INTT harmless for any claims, demand or suits of any kind in nature resulting from accident or injuries occurring in the premises to self or others during the Event Date.
+
+14.	FORCE MAJEURE 
+If INTT is prevented, restricted or interfered in performance of any of its obligations hereunder as a consequence of any Act of God including, war, civil disturbances, fire, earthquake, famine riots, strikes, etc. natural calamities or any law or regulation of any Government or any change of Government policy, statue, rule or equivalent act or condition whatsoever beyond its reasonable control (each such occurrence hereinafter referred to as Force Majeure/Act of God), then it shall be excused from such performance to the extent of such prevention, restriction or interference and cannot be held responsible for any losses suffered by the Organizer, provided however that it shall serve prompt notice to the Organizer of such Force Majeure including a description in reasonable details of the cause of the Force Majeure, and shall use reasonable efforts to avoid or remove such cause and non-performance.
+
+15.	GOVERNING LAW AND JURISDICTION
+The Parties agree that the AGREEMENT shall be construed in accordance with the Laws of India and the Courts at New Delhi shall have exclusive jurisdiction with regard to any dispute/differences arising out of this Agreement.
+
+16.	INTERPRETATIONS 
+i.	Heading and bold typeface are only for convenience and shall be ignored for the purpose of interpretation.
+ii.	Reference to the word ‘include’ shall be construed without limitation.
+iii.	All attachments hereto shall constitute an integral part of this Agreement.
+
+
+IN WITNESS THEREOF, the Parties have entered into this Agreement on the day and year first above mentioned.
+
+
+INTT ___________________________								
+
+
+
+ORGANIZER ________________________
+
+]]></text>
+			</staticText>
+		</band>
+		<band height="681">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="681" uuid="e4963ce4-2a41-4b38-aa83-02eea6ec8a49"/>
+				<text><![CDATA[G)	Rehearsal – Performance carried out by artists in the auditorium which does not included guests seated in the auditorium seating capacity by means of an entry ticket or invitation.
+
+H)	Set-Up – This refers to the installation of items to be placed in the Auditorium stage as per the booking slot taken for the specified time.
+
+I)	Stage – A designated space for the performance of artists in the auditorium and also a focal point for members of all audience seated in the auditorium.
+2.	That the INTT hereby grants the Organizer license to use the Auditorium for the period ______________
+ ___________________________________________ herein after referred to as “Event Date”, to organize the event as per the terms detailed and slot agreed in Annexure I. The Organizer in consideration of using and occupying the “Auditorium”, as mentioned hereinabove shall pay to the INTT total License Fees as agreed and detailed in Annexure II for the usage of the Auditorium. It is agreed between the parties that if organizer wants or wish to conduct more performance than as specified in Annexure I, he shall be charged extra license fees for the same by the INTT.
+
+3.	Booking Amount
+The Organizer shall deposit 50% of the total License Fees as booking amount with INTT in accordance with instructions of the Auditorium Manager.
+
+4.	Booking Slip
+That the Organizer will submit Total License fees for booking and security deposit amount latest one month prior to the show date. Upon clearing the above, the Organizer will be handed over a Booking Slip containing all relevant details pertaining to their performance(s). 
+
+5.	Security Deposit
+a)	That the Organizer shall deposit interest free security deposit of Rs 15000/- with INTT, at the time of the signing of the agreement, towards its commitment to fulfil its obligations etc. under this agreement. The security deposit shall be refunded by the INTT to the Organizer after venue evaluation on completion of the Event as per the terms of this agreement stated hereinunder.
+b)	If the Organizer fails to adhere the terms and conditions of this agreement and / or any of the reason stated herein below, INTT shall forfeit the Security Deposit:
+I.	Failure to return premises to the condition they were when it was handed over to organizer for use.
+II.	Failure to maintain safety standards by blocking or covering up the hallways, walkways or doorways to any emergency exit which are to remain free and clear at all times.
+III.	Possession/Consumption of alcohol in the premises.
+IV.	Damage/loss to the premises and auditorium.
+
+6.	No Objection Certificate (NOC) for Performance
+That the Organizer will submit all necessary NOC(s) at least One week before the show date to the Auditorium Manager. INTT reserves the right to deny a performance if the Organizer fails to submit the mandatory NOCs.
+
+7.	INTT agrees to provide the following deliverables to the Organizer on the days of the booking and/or performance(s) –
+a.	Stage lighting, house lighting (as per Auditorium Light Plan).
+b.	Sound system (as per Auditorium Sound Plan).
+c.	Green rooms (Ladies and Gents).
+d.	Auditorium air conditioning for 3 hours per show.
+e.	Auditorium staff (Control Room Technician and Stage Hand).
+f.	One banner space, as per booking, at the banner display area one week prior to show date.
+g.	Box office for ticket sales on the day of the show (as per booking slot).
+h.	Performance details mentioned in Shri Ram Centre events calendar (Emailers, Website)
+i.	Security guard at the first checkpoint for entry of guests inside Auditorium Foyer.
+8.	The Organizer can access the stage a day before the booked date for set-up of equipment and/or rehearsal, if required, subject to the availability and prior approval from the Auditorium Manager.
+9.	REPRESENTATIONS, WARRANTIES AND COVENANTS OF THE ORGANIZER
+a)	Organizer shall provide full names of all cast and crew coming to the venue on the performance date to the Auditorium Manager latest one week prior to the show date via email. Organizer shall also inform all group members and crew that entry will be permitted by security guards as per the names available on the list. The main organizer must sign out on with security guards upon completion of the event and exit from the venue. Failure to adhere this term or any unauthorized entry recorded will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+b)	Organizer shall ensure that the auditorium shall be used only for the Event as per the schedule detailed in Annexure I. 
+c)	It shall be the sole responsibility of the Organizer to ensure that number of occupants should not be more than the number of seats as specified in 1.A. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+d)	Organizer shall ensure that the event must not contain vulgarity or anti - national content in any respect. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+e)	Organizer shall ensure that the entry of the audience carrying entry ticket or invitation shall be allowed to enter the premises and in case of non-ticketed event also audience carrying invitation cards shall only be allowed to enter the premises for the event.
+f)	Organizer shall ensure that pathways to emergency exit doors must be free and clear at all times. The stair ways should be free and clear of all tables, chairs, and/or other obstructions. Doorways will not be blocked and pathways not hindered in any way. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+g)	Organizer shall ensure that Walls, windows, and woodwork are not to come in contact with tape, glue, nails, screws, or staples. Paint is not allowed on the premises. The Organizer is responsible for the care and supervision of the facility, during their time of usage, and accepts any liability of any accidents or property damage during the time the facility is being in its use. Any damage caused of this nature will be billed to the Organizer as per actual in addition to forfeit of security deposit.
+h)	The Organizer shall have no right to use the seat no 16-25 in Row E as the same are reserved exclusively for the Management of INTT. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+i)	The Organizer shall comply with all the applicable laws, ordinances, rules and orders of appropriate Government authorities pertaining to organizing the Event and with respect to INTT.
+j)	That Open flames are not allowed within the premises and Organizer should ensure that there will be no use of articles or things of a dangerous, flammable, or explosive character that can lead to the danger of fire in or around the premises.
+k)	Organizer shall ensure that INTT’s promotional materials, furniture or fixtures shall not be moved or removed or covered in any way. The Organizer shall make no alterations or any other changes without prior consent of the INTT.
+l)	The Organizer shall not use any other space within the premises, other than allocated. Use of additional space, other than the allocated space, requires prior approval from INTT. Failure to adhere this term will make the INTT entitled to forfeit the security deposit
+m)	The Organizer is not allowed bring alcoholic beverages into premises for consumption by members of the public and it shall also ensure that none of its representatives, participants, and/or contractors have alcoholic beverages in and around premises. Failure to follow the same will make the INTT entitled to cancel upcoming contracts/dates, result in the loss of security deposit and blacklisting of the group.
+n)	As a principal policy of the INTT, Smoking is strictly prohibited in the premises and therefore it shall be the responsibility of the Organizer to ensure strict adherence to it by its representatives, participants, and/or contractor.
+o)	Carrying food is prohibited in the auditorium. Use of solid and liquid food must be restricted to designated spaces in the premises. The volunteers of the group who will be present in the auditorium must advise guests of this policy if they see to be eating or drinking.
+p)	The Organizer is responsible for crowd management at the Premises and accepts any liability of any accidents during the time the facility is in use for the Event and is in its occupation.
+q)	The Organizer must ensure that the venue is surrendered and the set/marketing collaterals taken off immediately after the show, not exceeding 10pm. Failure to do so will lead to the forfeiture of security deposit. If the performing group has a booking the next day as well from the morning slot, only then is this point not applicable.
+r)	The Organizer shall ensure that all the items used for Event will be arranged and managed by themselves and shall not use any material in the possession/premises of INTT. 
+s)	Organizer is under strict obligation to apply and procure all necessary permissions, No Objection Certificates and Licenses from the appropriate authority for conducting the Event and submit the same at least a month prior to the Event. Management reserves the rights to cancel the Event if the necessary documents are not produced on time.
+t)	In case of a non-ticketed event, organizer shall ensure that all the invitations, both digital and print, must clearly highlight that seating will be as per availability. Crowd management, as mentioned above, shall be the sole responsibility of the Organizer and management of INTT shall not be responsible for the same.
+u)	Organizer and/or any of its representatives and/or their contractor(s)/sponsor(s) are not allowed to sell any merchandise in the premises.
+
+10.	MARKETING
+a)	The list of branding and marketing collaterals should be provided well in advance, latest two weeks before the performance date, for approval. If done so after the deadline mentioned above, INTT reserves the right to accept or decline the same.
+b)	An allocated space, a week prior to the show, will be provided for one banner at the banner display area. Printing, installation and removal of the same is the sole responsibility of the Organizer. The instructed size of the frame should be strictly followed. The banner should be removed immediately upon completion of the event. 
+
+11.	TICKETS AT BOX OFFICE
+Organizer is authorized to sell tickets of the Event at the Box Office only on the Event Date and Organizer can sell tickets prior to the Event Date only after obtaining prior permission of the INTT. 
+
+12.	CANCELLATION POLICY
+a)	In the event of cancellation of a Contract by the Organizer, INTT reserves the right to impose a cancellation fee based on the date(s) cancelled and the date of request of cancellation from the show date. 
+b)	Failure to adhere to the above policy, should it be in effect, will result in blacklisting of Organizers on the sole discretion of INTT.
+
+13.	INDEMNIFICATION
+Organizer agrees to indemnify INTT and shall hold INTT harmless for any claims, demand or suits of any kind in nature resulting from accident or injuries occurring in the premises to self or others during the Event Date.
+
+14.	FORCE MAJEURE 
+If INTT is prevented, restricted or interfered in performance of any of its obligations hereunder as a consequence of any Act of God including, war, civil disturbances, fire, earthquake, famine riots, strikes, etc. natural calamities or any law or regulation of any Government or any change of Government policy, statue, rule or equivalent act or condition whatsoever beyond its reasonable control (each such occurrence hereinafter referred to as Force Majeure/Act of God), then it shall be excused from such performance to the extent of such prevention, restriction or interference and cannot be held responsible for any losses suffered by the Organizer, provided however that it shall serve prompt notice to the Organizer of such Force Majeure including a description in reasonable details of the cause of the Force Majeure, and shall use reasonable efforts to avoid or remove such cause and non-performance.
+
+15.	GOVERNING LAW AND JURISDICTION
+The Parties agree that the AGREEMENT shall be construed in accordance with the Laws of India and the Courts at New Delhi shall have exclusive jurisdiction with regard to any dispute/differences arising out of this Agreement.
+
+16.	INTERPRETATIONS 
+i.	Heading and bold typeface are only for convenience and shall be ignored for the purpose of interpretation.
+ii.	Reference to the word ‘include’ shall be construed without limitation.
+iii.	All attachments hereto shall constitute an integral part of this Agreement.
+
+
+IN WITNESS THEREOF, the Parties have entered into this Agreement on the day and year first above mentioned.
+
+
+INTT ___________________________								
+
+
+
+ORGANIZER ________________________
+]]></text>
+			</staticText>
+		</band>
+		<band height="681">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="670" uuid="11e89937-94d5-4b80-ab2f-ac9e99661f53"/>
+				<text><![CDATA[9.	REPRESENTATIONS, WARRANTIES AND COVENANTS OF THE ORGANIZER
+a)	Organizer shall provide full names of all cast and crew coming to the venue on the performance date to the Auditorium Manager latest one week prior to the show date via email. Organizer shall also inform all group members and crew that entry will be permitted by security guards as per the names available on the list. The main organizer must sign out on with security guards upon completion of the event and exit from the venue. Failure to adhere this term or any unauthorized entry recorded will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+b)	Organizer shall ensure that the auditorium shall be used only for the Event as per the schedule detailed in Annexure I. 
+c)	It shall be the sole responsibility of the Organizer to ensure that number of occupants should not be more than the number of seats as specified in 1.A. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+d)	Organizer shall ensure that the event must not contain vulgarity or anti - national content in any respect. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+e)	Organizer shall ensure that the entry of the audience carrying entry ticket or invitation shall be allowed to enter the premises and in case of non-ticketed event also audience carrying invitation cards shall only be allowed to enter the premises for the event.
+f)	Organizer shall ensure that pathways to emergency exit doors must be free and clear at all times. The stair ways should be free and clear of all tables, chairs, and/or other obstructions. Doorways will not be blocked and pathways not hindered in any way. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+g)	Organizer shall ensure that Walls, windows, and woodwork are not to come in contact with tape, glue, nails, screws, or staples. Paint is not allowed on the premises. The Organizer is responsible for the care and supervision of the facility, during their time of usage, and accepts any liability of any accidents or property damage during the time the facility is being in its use. Any damage caused of this nature will be billed to the Organizer as per actual in addition to forfeit of security deposit.
+h)	The Organizer shall have no right to use the seat no 16-25 in Row E as the same are reserved exclusively for the Management of INTT. Failure to adhere this term will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
+i)	The Organizer shall comply with all the applicable laws, ordinances, rules and orders of appropriate Government authorities pertaining to organizing the Event and with respect to INTT.
+j)	That Open flames are not allowed within the premises and Organizer should ensure that there will be no use of articles or things of a dangerous, flammable, or explosive character that can lead to the danger of fire in or around the premises.
+k)	Organizer shall ensure that INTT’s promotional materials, furniture or fixtures shall not be moved or removed or covered in any way. The Organizer shall make no alterations or any other changes without prior consent of the INTT.
+l)	The Organizer shall not use any other space within the premises, other than allocated. Use of additional space, other than the allocated space, requires prior approval from INTT. Failure to adhere this term will make the INTT entitled to forfeit the security deposit
+m)	The Organizer is not allowed bring alcoholic beverages into premises for consumption by members of the public and it shall also ensure that none of its representatives, participants, and/or contractors have alcoholic beverages in and around premises. Failure to follow the same will make the INTT entitled to cancel upcoming contracts/dates, result in the loss of security deposit and blacklisting of the group.
+n)	As a principal policy of the INTT, Smoking is strictly prohibited in the premises and therefore it shall be the responsibility of the Organizer to ensure strict adherence to it by its representatives, participants, and/or contractor.
+o)	Carrying food is prohibited in the auditorium. Use of solid and liquid food must be restricted to designated spaces in the premises. The volunteers of the group who will be present in the auditorium must advise guests of this policy if they see to be eating or drinking.
+p)	The Organizer is responsible for crowd management at the Premises and accepts any liability of any accidents during the time the facility is in use for the Event and is in its occupation.
+q)	The Organizer must ensure that the venue is surrendered and the set/marketing collaterals taken off immediately after the show, not exceeding 10pm. Failure to do so will lead to the forfeiture of security deposit. If the performing group has a booking the next day as well from the morning slot, only then is this point not applicable.
+r)	The Organizer shall ensure that all the items used for Event will be arranged and managed by themselves and shall not use any material in the possession/premises of INTT. 
+s)	Organizer is under strict obligation to apply and procure all necessary permissions, No Objection Certificates and Licenses from the appropriate authority for conducting the Event and submit the same at least a month prior to the Event. Management reserves the rights to cancel the Event if the necessary documents are not produced on time.
+t)	In case of a non-ticketed event, organizer shall ensure that all the invitations, both digital and print, must clearly highlight that seating will be as per availability. Crowd management, as mentioned above, shall be the sole responsibility of the Organizer and management of INTT shall not be responsible for the same.
+u)	Organizer and/or any of its representatives and/or their contractor(s)/sponsor(s) are not allowed to sell any merchandise in the premises.
+
+10.	MARKETING
+a)	The list of branding and marketing collaterals should be provided well in advance, latest two weeks before the performance date, for approval. If done so after the deadline mentioned above, INTT reserves the right to accept or decline the same.
+b)	An allocated space, a week prior to the show, will be provided for one banner at the banner display area. Printing, installation and removal of the same is the sole responsibility of the Organizer. The instructed size of the frame should be strictly followed. The banner should be removed immediately upon completion of the event. 
+
+11.	TICKETS AT BOX OFFICE
+Organizer is authorized to sell tickets of the Event at the Box Office only on the Event Date and Organizer can sell tickets prior to the Event Date only after obtaining prior permission of the INTT. 
+
+12.	CANCELLATION POLICY
+a)	In the event of cancellation of a Contract by the Organizer, INTT reserves the right to impose a cancellation fee based on the date(s) cancelled and the date of request of cancellation from the show date. 
+b)	Failure to adhere to the above policy, should it be in effect, will result in blacklisting of Organizers on the sole discretion of INTT.
+
+13.	INDEMNIFICATION
+Organizer agrees to indemnify INTT and shall hold INTT harmless for any claims, demand or suits of any kind in nature resulting from accident or injuries occurring in the premises to self or others during the Event Date.
+
+14.	FORCE MAJEURE 
+If INTT is prevented, restricted or interfered in performance of any of its obligations hereunder as a consequence of any Act of God including, war, civil disturbances, fire, earthquake, famine riots, strikes, etc. natural calamities or any law or regulation of any Government or any change of Government policy, statue, rule or equivalent act or condition whatsoever beyond its reasonable control (each such occurrence hereinafter referred to as Force Majeure/Act of God), then it shall be excused from such performance to the extent of such prevention, restriction or interference and cannot be held responsible for any losses suffered by the Organizer, provided however that it shall serve prompt notice to the Organizer of such Force Majeure including a description in reasonable details of the cause of the Force Majeure, and shall use reasonable efforts to avoid or remove such cause and non-performance.
+
+15.	GOVERNING LAW AND JURISDICTION
+The Parties agree that the AGREEMENT shall be construed in accordance with the Laws of India and the Courts at New Delhi shall have exclusive jurisdiction with regard to any dispute/differences arising out of this Agreement.
+
+16.	INTERPRETATIONS 
+i.	Heading and bold typeface are only for convenience and shall be ignored for the purpose of interpretation.
+ii.	Reference to the word ‘include’ shall be construed without limitation.
+iii.	All attachments hereto shall constitute an integral part of this Agreement.
+]]></text>
+			</staticText>
+		</band>
+		<band height="681">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="670" uuid="7eea0b1b-2b46-41ff-a5f3-78bae1544610"/>
+				<text><![CDATA[s)	Organizer is under strict obligation to apply and procure all necessary permissions, No Objection Certificates and Licenses from the appropriate authority for conducting the Event and submit the same at least a month prior to the Event. Management reserves the rights to cancel the Event if the necessary documents are not produced on time.
+t)	In case of a non-ticketed event, organizer shall ensure that all the invitations, both digital and print, must clearly highlight that seating will be as per availability. Crowd management, as mentioned above, shall be the sole responsibility of the Organizer and management of INTT shall not be responsible for the same.
+u)	Organizer and/or any of its representatives and/or their contractor(s)/sponsor(s) are not allowed to sell any merchandise in the premises.
+
+10.	MARKETING
+a)	The list of branding and marketing collaterals should be provided well in advance, latest two weeks before the performance date, for approval. If done so after the deadline mentioned above, INTT reserves the right to accept or decline the same.
+b)	An allocated space, a week prior to the show, will be provided for one banner at the banner display area. Printing, installation and removal of the same is the sole responsibility of the Organizer. The instructed size of the frame should be strictly followed. The banner should be removed immediately upon completion of the event. 
+
+11.	TICKETS AT BOX OFFICE
+Organizer is authorized to sell tickets of the Event at the Box Office only on the Event Date and Organizer can sell tickets prior to the Event Date only after obtaining prior permission of the INTT. 
+
+12.	CANCELLATION POLICY
+a)	In the event of cancellation of a Contract by the Organizer, INTT reserves the right to impose a cancellation fee based on the date(s) cancelled and the date of request of cancellation from the show date. 
+b)	Failure to adhere to the above policy, should it be in effect, will result in blacklisting of Organizers on the sole discretion of INTT.
+
+13.	INDEMNIFICATION
+Organizer agrees to indemnify INTT and shall hold INTT harmless for any claims, demand or suits of any kind in nature resulting from accident or injuries occurring in the premises to self or others during the Event Date.
+
+14.	FORCE MAJEURE 
+If INTT is prevented, restricted or interfered in performance of any of its obligations hereunder as a consequence of any Act of God including, war, civil disturbances, fire, earthquake, famine riots, strikes, etc. natural calamities or any law or regulation of any Government or any change of Government policy, statue, rule or equivalent act or condition whatsoever beyond its reasonable control (each such occurrence hereinafter referred to as Force Majeure/Act of God), then it shall be excused from such performance to the extent of such prevention, restriction or interference and cannot be held responsible for any losses suffered by the Organizer, provided however that it shall serve prompt notice to the Organizer of such Force Majeure including a description in reasonable details of the cause of the Force Majeure, and shall use reasonable efforts to avoid or remove such cause and non-performance.
+
+15.	GOVERNING LAW AND JURISDICTION
+The Parties agree that the AGREEMENT shall be construed in accordance with the Laws of India and the Courts at New Delhi shall have exclusive jurisdiction with regard to any dispute/differences arising out of this Agreement.
+
+16.	INTERPRETATIONS 
+i.	Heading and bold typeface are only for convenience and shall be ignored for the purpose of interpretation.
+ii.	Reference to the word ‘include’ shall be construed without limitation.
+iii.	All attachments hereto shall constitute an integral part of this Agreement.
+
+
+IN WITNESS THEREOF, the Parties have entered into this Agreement on the day and year first above mentioned.
+]]></text>
+			</staticText>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="113" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="0" width="180" height="20" uuid="d11a9b98-8727-47fb-b393-efcf1945cc9f"/>
+				<textElement>
+					<font isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Organizer Initial ____________]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="60" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement x="264" y="46" width="100" height="14" uuid="a1b2ad3f-a3aa-4e23-99c3-3e6e50b1d8ce"/>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				<reportElement x="182" y="0" width="100" height="23" uuid="44908c78-4b9d-4b95-a5a8-117355c710bb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="282" y="0" width="100" height="23" uuid="00cd9b98-2d8d-49dd-b9e0-9bd53f9040de"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="76" splitType="Stretch">
-			<staticText>
-				<reportElement x="105" y="20" width="315" height="56" uuid="26b01033-2c55-44e5-a45d-80ad89f316cf"/>
-				<text><![CDATA[* System Generated Contract, No signature Required]]></text>
-			</staticText>
-		</band>
-	</summary>
 </jasperReport>

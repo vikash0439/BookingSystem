@@ -1,31 +1,21 @@
 package com.booking.bean;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author Vikash Kumar
- * @since 05-09-2018
- */
-
 @Entity
-@Table(name="service" , schema = "srcpa")
+@Table
 public class Service {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "serviceid", updatable = false, nullable = false)
 	private long serviceid;
 	private String servicename;
-	private String serviceinuse;
-	private String servicecharges;
-	private String unit;
-	private String cancelcharges;
-	
+	private String price;
+	private String unitofmeasurement;
+	private String slot;
+	private String venue;
+	private String saccode;
 	
 	public long getServiceid() {
 		return serviceid;
@@ -39,31 +29,36 @@ public class Service {
 	public void setServicename(String servicename) {
 		this.servicename = servicename;
 	}
-	public String getServiceinuse() {
-		return serviceinuse;
+	public String getPrice() {
+		return price;
 	}
-	public void setServiceinuse(String serviceinuse) {
-		this.serviceinuse = serviceinuse;
+	public void setPrice(String price) {
+		this.price = price;
 	}
-	public String getServicecharges() {
-		return servicecharges;
+	public String getUnitofmeasurement() {
+		return unitofmeasurement;
 	}
-	public void setServicecharges(String servicecharges) {
-		this.servicecharges = servicecharges;
+	public void setUnitofmeasurement(String unitofmeasurement) {
+		this.unitofmeasurement = unitofmeasurement;
 	}
-	public String getUnit() {
-		return unit;
+	public String getSlot() {
+		return slot;
 	}
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setSlot(String slot) {
+		this.slot = slot;
 	}
-	public String getCancelcharges() {
-		return cancelcharges;
+	public String getVenue() {
+		return venue;
 	}
-	public void setCancelcharges(String cancelcharges) {
-		this.cancelcharges = cancelcharges;
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+	public String getSaccode() {
+		return saccode;
+	}
+	public void setSaccode(String saccode) {
+		this.saccode = saccode;
 	}
 	
 	
-
 }

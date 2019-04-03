@@ -97,31 +97,11 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="cID" editable="true" onAction="#getContractDetail" prefHeight="31.0" prefWidth="247.0" promptText="Select   --ContractID--">
+            <ComboBox fx:id="cname" editable="true" prefHeight="31.0" prefWidth="247.0" promptText="Select   -CUSTOMER-">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
-            <HBox prefHeight="30.0" prefWidth="265.0">
-               <children>
-                  <Label text="Client: :" textFill="#f8f7f7">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="ClientName">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </HBox>
             <DatePicker fx:id="ReceiptDate" prefHeight="31.0" prefWidth="251.0" promptText="Receipt Date">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.booking.bean.Venue;
 import com.booking.config.StageManager;
 import com.booking.service.SlotService;
+import com.booking.service.VenueService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -35,31 +37,31 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
 @Controller
-public class SlotController implements Initializable{
+public class VenueController implements Initializable{
 	
 	@FXML 
-	private Label SlotID;
+	private Label VenueID;
 	@FXML
-	private TextField Slot; 
+	private TextField Date; 
 	@FXML
-	private TextField StartTime;
+	private TextField VenueName;
 	@FXML
-	private TextField EndTime;
+	private TextField Booked;
 	
 	@FXML
-	private TableView<com.booking.bean.Slot> slottable;
+	private TableView<Venue> venuetable;
 
 	@FXML
-	private TableColumn<com.booking.bean.Slot, Long> colSlotID;
+	private TableColumn<Venue, Long> colVenueID;
 	
 	@FXML
-	private TableColumn<com.booking.bean.Slot, String> colSlot;
+	private TableColumn<Venue, String> colVenueName;
 	@FXML
-	private TableColumn<com.booking.bean.Slot, String> colStartTime;
+	private TableColumn<Venue, String> colDate;
 	@FXML
-	private TableColumn<com.booking.bean.Slot, String> colEndTime;
+	private TableColumn<Venue, String> colBooked;
 	@FXML
-	private TableColumn<com.booking.bean.Slot, Boolean> colEdit;
+	private TableColumn<Venue, Boolean> colEdit;
 
 	@FXML
 	private Button reset;
@@ -67,9 +69,9 @@ public class SlotController implements Initializable{
 	@Autowired
 	private StageManager stageManager;
 	@Autowired 
-	private SlotService slotService;
+	private VenueService venueService;
 	
-    private ObservableList<com.booking.bean.Slot> slotList = FXCollections.observableArrayList();
+    private ObservableList<Venue> venueList = FXCollections.observableArrayList();
 	
 	/* Tax Event methods */
 
@@ -99,6 +101,10 @@ public class SlotController implements Initializable{
 	@FXML
 	public void service(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.SERVICE); 		
+	}
+	@FXML
+	public void venue(ActionEvent event) throws IOException {	
+		stageManager.switchScene(FxmlView.VENUE); 		
 	}	
 	@FXML
 	public void tax(ActionEvent event) throws IOException {	
@@ -149,39 +155,39 @@ public class SlotController implements Initializable{
 	public void reports(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.REPORTS);
 	}
-	@FXML
-	public void venue(ActionEvent event) throws IOException {	
-		stageManager.switchScene(FxmlView.VENUE); 		
-	}
 	
 	@FXML
-	private void saveSlot(ActionEvent event) {
-		if(emptyValidation("Slot Name", Slot.getText().isEmpty())) {
-		if (SlotID.getText() == null || SlotID.getText() == "") {
-			com.booking.bean.Slot slot = new com.booking.bean.Slot();
-			slot.setSlotname(Slot.getText());
-			slot.setStarttime(StartTime.getText());
-			slot.setEndtime(EndTime.getText());
-						
-			slotService.save(slot);
+	private void saveVenue(ActionEvent event) {
+		if(emptyValidation("Venue Name", VenueName.getText().isEmpty())) {
+		if (VenueID.getText() == null || VenueID.getText() == "") {
+			Venue venue = new Venue();
+			venue.setVenuename(VenueName.getText());
+			venue.setDate(Date.getText());
+			venue.setBooked(Booked.getText());
+			
+			venueService.save(venue);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Slot added.");
 			alert.setHeaderText(null);
-			alert.setContentText("Slot:  " + Slot.getText() + "  has been added.");
+			alert.setContentText("Venue:  " + VenueName.getText() + "  has been added.");
 			alert.showAndWait();
 		} else {
-			com.booking.bean.Slot slot = slotService.find(Long.parseLong(SlotID.getText()));
-			slot.setSlotname(Slot.getText());
-			slotService.save(slot);
+			Venue venue = new Venue();
+			venue.setVenuename(VenueName.getText());
+			venue.setDate(Date.getText());
+			venue.setBooked(Booked.getText());
+			
+			venueService.save(venue);
+			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Slot added.");
 			alert.setHeaderText(null);
-			alert.setContentText("Slot:  " + Slot.getText() + "  has been added.");
+			alert.setContentText("Venue:  " + VenueName.getText() + "  has been updated.");
 			alert.showAndWait();
 		 }
 		}
-		slottable();
+		venuetable();
 		clearFields();
 		
 	}
@@ -192,30 +198,30 @@ public class SlotController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
-		slottable();
+		venuetable();
 		clearFields();
 		
 	}
 	
-	public void slottable() {
+	public void venuetable() {
 		/*
 		 * Set All userTable column properties
 		 */
-		colSlotID.setCellValueFactory(new PropertyValueFactory<>("slotid"));
-		colSlot.setCellValueFactory(new PropertyValueFactory<>("slotname"));
-		colStartTime.setCellValueFactory(new PropertyValueFactory<>("starttime"));
-		colEndTime.setCellValueFactory(new PropertyValueFactory<>("endtime"));
+		colVenueID.setCellValueFactory(new PropertyValueFactory<>("venueid"));
+		colVenueName.setCellValueFactory(new PropertyValueFactory<>("venuename"));
+		colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+		colBooked.setCellValueFactory(new PropertyValueFactory<>("booked"));
 		colEdit.setCellFactory(cellFactory);
 
-		slotList.clear();
-		slotList.addAll(slotService.getSlot());
-		slottable.setItems(slotList);
+		venueList.clear();
+		venueList.addAll(venueService.getAllVenue());
+		venuetable.setItems(venueList);
 	}
 
-	Callback<TableColumn<com.booking.bean.Slot, Boolean>, TableCell<com.booking.bean.Slot, Boolean>> cellFactory = new Callback<TableColumn<com.booking.bean.Slot, Boolean>, TableCell<com.booking.bean.Slot, Boolean>>() {
+	Callback<TableColumn<Venue, Boolean>, TableCell<Venue, Boolean>> cellFactory = new Callback<TableColumn<Venue, Boolean>, TableCell<Venue, Boolean>>() {
 		@Override
-		public TableCell<com.booking.bean.Slot, Boolean> call(final TableColumn<com.booking.bean.Slot, Boolean> param) {
-			final TableCell<com.booking.bean.Slot, Boolean> cell = new TableCell<com.booking.bean.Slot, Boolean>() {
+		public TableCell<Venue, Boolean> call(final TableColumn<Venue, Boolean> param) {
+			final TableCell<Venue, Boolean> cell = new TableCell<Venue, Boolean>() {
 				Image imgEdit = new Image(getClass().getResourceAsStream("/images/edit.png"));
 				final Button btnEdit = new Button();
 
@@ -227,8 +233,8 @@ public class SlotController implements Initializable{
 						setText(null);
 					} else {
 						btnEdit.setOnAction(e -> {
-							com.booking.bean.Slot slot = getTableView().getItems().get(getIndex());
-							updateSlot(slot);
+							Venue venue = getTableView().getItems().get(getIndex());
+							updateVenue(venue);
 						});
 
 						btnEdit.setStyle("-fx-background-color: transparent;");
@@ -245,12 +251,12 @@ public class SlotController implements Initializable{
 					}
 				}
 
-				private void updateSlot(com.booking.bean.Slot slot) {
-					SlotID.setText(Long.toString(slot.getSlotid()));
-					Slot.setText(slot.getSlotname());
-					StartTime.setText(slot.getStarttime());
-					EndTime.setText(slot.getEndtime());
+				private void updateVenue(Venue venue) {
 					
+					VenueID.setText(Long.toString(venue.getVenueid()));
+				    Date.setText(venue.getDate());
+					VenueName.setText(venue.getVenuename());
+					Booked.setText(venue.getBooked());
 				
 				}
 			};
@@ -261,10 +267,10 @@ public class SlotController implements Initializable{
 
 	
 	private void clearFields() {
-		SlotID.setText(null);
-		Slot.clear();
-		StartTime.clear();
-		EndTime.clear();
+		VenueID.setText(null);
+		Date.clear();
+		VenueName.clear();
+		Booked.clear();
 
 	}
 	

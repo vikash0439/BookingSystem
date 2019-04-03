@@ -277,15 +277,15 @@ public class InvoiceController implements Initializable {
 
 				for (i = 0; i < allbookings.size(); i++) {
 
-					String name = allbookings.get(i).getServicename();
+					String name = allbookings.get(i).getService();
 					buffername = buffername.append(" ").append(name);
 					stringname = buffername.toString();
 
-					String date = allbookings.get(i).getServicedate();
+					String date = allbookings.get(i).getBookingdates();
 					bufferdate = bufferdate.append(" ").append(date);
 					stringdate = bufferdate.toString();
 
-					String cost = allbookings.get(i).getServicecost();
+					String cost = allbookings.get(i).getPrice();
 					buffercost = buffercost.append(" ").append(cost);
 					stringcost = buffercost.toString();
 					
@@ -387,15 +387,15 @@ public class InvoiceController implements Initializable {
 
 				for (i = 0; i < allbookings.size(); i++) {
 
-					String name = allbookings.get(i).getServicename();
+					String name = allbookings.get(i).getService();
 					buffername = buffername.append(" ").append(name);
 					stringname = buffername.toString();
 
-					String date = allbookings.get(i).getServicedate();
+					String date = allbookings.get(i).getService();
 					bufferdate = bufferdate.append(" ").append(date);
 					stringdate = bufferdate.toString();
 
-					String cost = allbookings.get(i).getServicecost();
+					String cost = allbookings.get(i).getService();
 					buffercost = buffercost.append(" ").append(cost);
 					stringcost = buffercost.toString();
 					

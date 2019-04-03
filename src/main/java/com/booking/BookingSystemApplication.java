@@ -28,7 +28,7 @@ public class BookingSystemApplication extends Application{
 	protected ConfigurableApplicationContext springContext;
     protected StageManager stageManager;
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args){
     	LOG.info("Main application started");
         Application.launch(args);
     }

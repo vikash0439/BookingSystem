@@ -1,69 +1,61 @@
 package com.booking.bean;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author Vikash Kumar
- * @since 07-09-2018
- */
-
 @Entity
-@Table(name="tax", schema = "srcpa")
+@Table
 public class Tax {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "taxid", updatable = false, nullable = false)
-	private long taxid;
-	private String taxname;
-	private String taxform;
-	private String taxcharges;
-	private String applied;
-	private String taxinuse;
+	@GeneratedValue
+	private Long taxid;
+	private String saccode;
+	private String description;
+	private String igst;
+	private String sgst;
+	private String cgst;
 	
-	
-	public long getTaxid() {
+	public Long getTaxid() {
 		return taxid;
 	}
-	public void setTaxid(long taxid) {
+	public void setTaxid(Long taxid) {
 		this.taxid = taxid;
 	}
-	public String getTaxname() {
-		return taxname;
+	public String getSaccode() {
+		return saccode;
 	}
-	public void setTaxname(String taxname) {
-		this.taxname = taxname;
+	public void setSaccode(String saccode) {
+		this.saccode = saccode;
 	}
-	public String getTaxform() {
-		return taxform;
+	public String getDescription() {
+		return description;
 	}
-	public void setTaxform(String taxform) {
-		this.taxform = taxform;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getTaxcharges() {
-		return taxcharges;
+	public String getIgst() {
+		return igst;
 	}
-	public void setTaxcharges(String taxcharges) {
-		this.taxcharges = taxcharges;
+	public void setIgst(String igst) {
+		this.igst = igst;
 	}
-	public String getApplied() {
-		return applied;
+	public String getSgst() {
+		return sgst;
 	}
-	public void setApplied(String applied) {
-		this.applied = applied;
+	public void setSgst(String sgst) {
+		this.sgst = sgst;
 	}
-	public String getTaxinuse() {
-		return taxinuse;
+	public String getCgst() {
+		return cgst;
 	}
-	public void setTaxinuse(String taxinuse) {
-		this.taxinuse = taxinuse;
+	public void setCgst(String cgst) {
+		this.cgst = cgst;
 	}
 	
 	
-
+	
+	
 }

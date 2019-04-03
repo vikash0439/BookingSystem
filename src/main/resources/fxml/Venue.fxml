@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.SlotController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.VenueController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
          <menus>
@@ -52,10 +52,9 @@
                   <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Utility">
+            <Menu mnemonicParsing="false" text="Service">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#service" text="Service" />
-                  <MenuItem mnemonicParsing="false" onAction="#venue" text="Venue" />
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
@@ -73,7 +72,7 @@
    <left>
       <VBox prefHeight="571.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Add New Slot" textFill="WHITE">
+            <Label text="Add New Venue" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -83,12 +82,12 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text="Slot ID - " textFill="#f8f7f7">
+                  <Label text="Venue ID - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="SlotID">
+                  <Label fx:id="VenueID">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -98,16 +97,16 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="Slot" prefHeight="30.0" prefWidth="246.0" promptText="Slot Detail">
+            <TextField fx:id="VenueName" prefHeight="30.0" prefWidth="246.0" promptText="VenueID">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="StartTime" prefHeight="30.0" prefWidth="246.0" promptText="Start Time">
+            <TextField fx:id="Date" prefHeight="30.0" prefWidth="246.0" promptText="Date">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="EndTime" prefHeight="30.0" prefWidth="246.0" promptText="End Time">
+            <TextField fx:id="Booked" prefHeight="30.0" prefWidth="246.0" promptText="Booked">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -119,7 +118,7 @@
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveSlot" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveVenue" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -170,12 +169,12 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="slottable" prefHeight="810.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="venuetable" prefHeight="810.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colSlotID" maxWidth="700.0" prefWidth="20.0" text="ID" />
-                  <TableColumn fx:id="colSlot" maxWidth="4000.0" prefWidth="75.0" text="Slot " />
-                  <TableColumn fx:id="colStartTime" maxWidth="4000.0" prefWidth="75.0" text="Start Time" />
-                  <TableColumn fx:id="colEndTime" maxWidth="4000.0" prefWidth="75.0" text="End Time" />
+                <TableColumn fx:id="colVenueID" maxWidth="700.0" prefWidth="20.0" text="ID" />
+                  <TableColumn fx:id="colVenueName" maxWidth="4000.0" prefWidth="75.0" text="Venue Name" />
+                  <TableColumn fx:id="colDate" maxWidth="4000.0" prefWidth="75.0" text="Date" />
+                  <TableColumn fx:id="colBooked" maxWidth="4000.0" prefWidth="75.0" text="Booked" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>

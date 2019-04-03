@@ -82,12 +82,12 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text="Service ID - " textFill="#f8f7f7">
+                  <Label text="Tax ID - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="TaxID">
+                  <Label fx:id="taxid">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -97,76 +97,29 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="TaxName" prefHeight="30.0" prefWidth="246.0" promptText="Tax Name">
+            <TextField fx:id="saccode" prefHeight="30.0" prefWidth="246.0" promptText="SAC Code">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="255.0" spacing="15.0">
-               <children>
-                  <Label text="Tax Form" textFill="WHITE" />
-                  <RadioButton fx:id="Percentage" mnemonicParsing="false" selected="true" text="\%" textFill="WHITE">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="TaxForm" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="Amount" mnemonicParsing="false" text="Amount" textFill="WHITE" toggleGroup="$TaxForm">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </RadioButton>
-               </children>
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </HBox>
-            <TextField fx:id="TaxCharges" prefHeight="30.0" prefWidth="246.0" promptText="Tax Charges">
+            <TextField fx:id="description" prefHeight="30.0" prefWidth="246.0" promptText="Description">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="255.0" spacing="15.0">
-               <children>
-                  <Label text="Applied" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <RadioButton fx:id="Directly" mnemonicParsing="false" selected="true" text="Directly" textFill="WHITE">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Applied" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="OnTax" mnemonicParsing="false" text="On Tax" textFill="WHITE" toggleGroup="$Applied">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </RadioButton>
-               </children>
+            <TextField fx:id="igst" prefHeight="30.0" prefWidth="246.0" promptText="IGST">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="255.0" spacing="15.0">
-               <children>
-                  <Label text="In Use" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <RadioButton fx:id="Yes" mnemonicParsing="false" selected="true" text="Yes" textFill="WHITE">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="TaxInUse" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="No" mnemonicParsing="false" text="No" textFill="WHITE" toggleGroup="$TaxInUse">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </RadioButton>
-               </children>
+            </TextField>
+            <TextField fx:id="cgst" prefHeight="30.0" prefWidth="246.0" promptText="CGST">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
-            </HBox>
+            </TextField>
+            <TextField fx:id="sgst" prefHeight="30.0" prefWidth="246.0" promptText="SGST">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
                   <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">

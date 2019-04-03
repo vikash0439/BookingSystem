@@ -19,16 +19,13 @@ public class SlotService {
 	
 	
 	public Slot save(Slot slot) {
-		return slotRepository.save(slot);
-		
-	}
-	
+		return slotRepository.save(slot);		
+	}	
 	public List<Slot> getSlot(){
 		List<Slot> c = new ArrayList<Slot>();
 		slotRepository.findAll().forEach(c :: add);
 		return c;
 	}
-
 	public Slot find(Long slotid) {
 		return slotRepository.findAllBySlotid(slotid);
 	}
@@ -40,10 +37,10 @@ public class SlotService {
 		return sname;
 	}
 	
-	public String slotTiming(String timing) {
-		System.out.println(timing);
-		System.out.println(slotRepository.findBySLot(timing));
-		return slotRepository.findBySLot(timing);
+	public Slot slotTiming(String slotname) {
+		System.out.println(slotname);
+		System.out.println(slotRepository.findBySLot(slotname));
+		return slotRepository.findBySLot(slotname);
 		
 	}
 

@@ -15,7 +15,6 @@ import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
 import com.booking.service.RepService;
-import com.booking.service.StateCodeService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -121,8 +120,6 @@ public class CustomerController implements Initializable {
 	private CustomerService customerService;
 	@Autowired
 	private RepService repService;
-	@Autowired
-	private StateCodeService stateCodeService;
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
@@ -220,8 +217,8 @@ public class CustomerController implements Initializable {
 	
 	public void getStateCode() {
 		String state = State.getSelectionModel().getSelectedItem();
-		String sc = state.concat(" (").concat(stateCodeService.find(state)).concat(")");
-		statecode.setText(sc);
+		
+		statecode.setText(null);
 		
 	}
 	@FXML
@@ -251,7 +248,7 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private void saveCustomer(ActionEvent event) {
-		
+	    System.out.println(customername.getText());
 		if(validate("Client Name", customername.getText(), "[a-zA-Z]+") &&
 		    	   validate("Address", address.getText(), "[a-zA-Z]+") ){
 
@@ -265,21 +262,9 @@ public class CustomerController implements Initializable {
 			customer.setCategory(category.getText());
 			customer.setGstno(gstno.getText());
 			customer.setRemark(remark.getText());
- 
-/*			Rep r = new Rep();
-			r.setRepname(repname.getText());
-			r.setRepmobile(repmobile.getText());
-			r.setRepemail(repemail.getText());
 
-			List<Rep> rep = new ArrayList<Rep>();
-			rep.add(r);
-
-			/* establishing link in onetomany and manytoone way 
-			r.setCustomer(customer);
-			customer.setRep(rep);  */
 
 			customerService.save(customer);
-	/*		repService.save(r); */
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Customer updated successfully.");
@@ -355,7 +340,6 @@ public class CustomerController implements Initializable {
 		clientList.setItems(customerNameList);
 		
 		stateCodeList.clear();
-		stateCodeList.addAll(stateCodeService.StateName());
 		State.setItems(stateCodeList);
 	}
 

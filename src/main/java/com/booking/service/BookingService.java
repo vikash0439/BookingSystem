@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 import com.booking.bean.Booking;
 import com.booking.repository.BookingRepository;
 
@@ -28,30 +27,30 @@ private final BookingRepository bookingRepository;
 	}
 
 	public Booking find(Long serviceid) {
-		return bookingRepository.findAllByServiceid(serviceid);
+		return bookingRepository.findAllByBookingid(serviceid);
 	}
 	
 	public List<Long> getBookingID() {
-		return bookingRepository.findServiceID();
+		return bookingRepository.findBookingID();
 	}
 	
 	public List<String> getServiceDate() {
-		return bookingRepository.findServiceDate();
+		return bookingRepository.findBookingDates();
 	}
 	
 	public void deleteById(Booking booking) {
 //		bookingRepository.delete(booking);
-		Long serviceid = booking.getServiceid();	
-		System.out.println("Booking deleted from BookingService class: " +serviceid);
+		Long bookingid = booking.getBookingid();	
+		System.out.println("Booking deleted from BookingService class: " +bookingid);
 //		int scost = Integer.parseInt(booking.getServicecost());
 //		int pact = Integer.parseInt(booking.getContract().getPact());
 		
-		bookingRepository.deleteByServiceid(serviceid);	
+		bookingRepository.deleteByServiceid(bookingid);	
 	}
 	
 	public String findDistinctSlot(String date) {			
-		System.out.println("Slot from Booking table db : "+bookingRepository.findByServicedate(date));
-		return bookingRepository.findByServicedate(date);
+		System.out.println("Slot from Booking table db : "+bookingRepository.findByBookingdates(date));
+		return bookingRepository.findByBookingdates(date);
 	}
 
 }

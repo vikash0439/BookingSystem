@@ -1,27 +1,20 @@
 package com.booking.bean;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author Vikash Kumar
- * @since 11-09-2018
- */
+
 
 @Entity
-@Table(name="slot" , schema = "srcpa")
+@Table
 public class Slot {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "slotid", updatable = false, nullable = false)
 	private long slotid;
-	private String slot;
-	private String timings;
+	private String slotname;
+	private String starttime;
+	private String endtime;
 	
 	
 	public long getSlotid() {
@@ -30,19 +23,24 @@ public class Slot {
 	public void setSlotid(long slotid) {
 		this.slotid = slotid;
 	}
-	public String getSlot() {
-		return slot;
+	public String getSlotname() {
+		return slotname;
 	}
-	public void setSlot(String slot) {
-		this.slot = slot;
+	public void setSlotname(String slotname) {
+		this.slotname = slotname;
 	}
-	public String getTimings() {
-		return timings;
+	public String getStarttime() {
+		return starttime;
 	}
-	public void setTimings(String timings) {
-		this.timings = timings;
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
 	}
-	
+	public String getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
 	
 	
 	

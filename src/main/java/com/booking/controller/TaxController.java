@@ -40,30 +40,13 @@ import javafx.util.Callback;
 @Controller
 public class TaxController implements Initializable{
 	
-	@FXML 
-	private Label TaxID;
-	@FXML
-	private TextField TaxName;
-	@FXML 
-	private ToggleGroup TaxForm;
-	@FXML 
-	private RadioButton Percentage;
-	@FXML 
-	private RadioButton Amount;
-	@FXML
-	private TextField TaxCharges;
-	@FXML 
-	private ToggleGroup Applied;
-	@FXML 
-	private RadioButton Directly;
-	@FXML 
-	private RadioButton OnTax;
-	@FXML 
-	private ToggleGroup TaxInUse;
-	@FXML 
-	private RadioButton Yes;
-	@FXML 
-	private RadioButton No;
+	@FXML private Label taxid;
+	@FXML private TextField saccode;
+	@FXML private TextField description;
+	@FXML private TextField igst;
+	@FXML private TextField cgst;
+	@FXML private TextField sgst;
+	
 	@FXML
 	private TableView<Tax> taxtable;
 
@@ -177,35 +160,35 @@ public class TaxController implements Initializable{
 	
 	@FXML
 	private void saveTax(ActionEvent event) {
-		if(emptyValidation("Tax name", TaxName.getText().isEmpty())) {
-		if (TaxID.getText() == null || TaxID.getText() == "") {
+		if(emptyValidation("SAC Code", saccode.getText().isEmpty())) {
+		if (taxid.getText() == null || taxid.getText() == "") {
 			Tax tax = new Tax();
-			tax.setTaxname(TaxName.getText());
-			tax.setTaxform(Percentage.isSelected() ? "Percentage" : "Amount");
-			tax.setTaxcharges(TaxCharges.getText());
-			tax.setApplied(Directly.isSelected() ? "Directly" : "Tax");
-			tax.setTaxinuse(Yes.isSelected() ? "Yes"  : "No");
+			tax.setSaccode(saccode.getText());
+			tax.setDescription(description.getText());
+			tax.setIgst(igst.getText());
+			tax.setCgst(cgst.getText());
+			tax.setSgst(sgst.getText());
 			
 			taxService.save(tax);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Tax updated successfully.");
 			alert.setHeaderText(null);
-			alert.setContentText("Tax:  " + TaxName.getText() + "  has been created.");
+			alert.setContentText("Tax:  " + saccode.getText() + "  has been created.");
 			alert.showAndWait();
 		} else {
-			Tax tax = taxService.find(Long.parseLong(TaxID.getText()));
-			tax.setTaxname(TaxName.getText());
-			tax.setTaxform(Percentage.isSelected() ? "Percentage" : "Amount");
-			tax.setTaxcharges(TaxCharges.getText());
-			tax.setApplied(Directly.isSelected() ? "Directly" : "On Tax");
-			tax.setTaxinuse(Yes.isSelected() ? "Yes"  : "No");
+			Tax tax = taxService.find(Long.parseLong(taxid.getText()));
+			tax.setSaccode(saccode.getText());
+			tax.setDescription(description.getText());
+			tax.setIgst(igst.getText());
+			tax.setCgst(cgst.getText());
+			tax.setSgst(sgst.getText());
 			
 			taxService.save(tax);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Tax updated successfully.");
 			alert.setHeaderText(null);
-			alert.setContentText("Tax:  " + TaxName.getText() + "  has been updated.");
+			alert.setContentText("Tax:  " + saccode.getText() + "  has been updated.");
 			alert.showAndWait();
 		}
 		}
@@ -237,7 +220,7 @@ public class TaxController implements Initializable{
 		colEdit.setCellFactory(cellFactory);
 
 		taxList.clear();
-		taxList.addAll(taxService.getService());
+		taxList.addAll(taxService.getTax());
 		taxtable.setItems(taxList);
 	}
 
@@ -275,13 +258,12 @@ public class TaxController implements Initializable{
 				}
 
 				private void updateTax(Tax tax) {
-					TaxID.setText(Long.toString(tax.getTaxid()));
-					TaxName.setText(tax.getTaxname());
-					if(tax.getTaxform().equals("Percentage")) Percentage.setSelected(true);else Amount.setSelected(true);
-					TaxCharges.setText(tax.getTaxcharges());
-					if(tax.getApplied().equals("Directly")) Directly.setSelected(true); else OnTax.setSelected(true);
-					if(tax.getTaxinuse().equals("Yes")) Yes.setSelected(true); else No.setSelected(true);
-					
+					taxid.setText(Long.toString(tax.getTaxid()));
+					saccode.setText(tax.getSaccode());
+					description.setText(description.getText());
+					igst.setText(tax.getIgst());
+					sgst.setText(tax.getSgst());
+					cgst.setText(tax.getSgst());
 				}
 			};
 			return cell;
@@ -289,12 +271,12 @@ public class TaxController implements Initializable{
 	};
 	
 	private void clearFields() {
-		TaxID.setText(null);
-		TaxName.clear();
-		Percentage.setSelected(true);
-		TaxCharges.clear();
-		Directly.setSelected(true);
-		Yes.setSelected(true);
+		taxid.setText(null);
+		saccode.clear();
+		description.clear();
+		igst.clear();
+		cgst.clear();
+		sgst.clear();
 
 	}
 	

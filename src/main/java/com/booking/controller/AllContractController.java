@@ -14,9 +14,8 @@ import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
 import com.booking.bean.Contract;
-import com.booking.bean.Rep;
+import com.booking.bean.Performance;
 import com.booking.bean.Service;
-import com.booking.bean.*;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
 import com.booking.service.ContractService;
@@ -33,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -43,7 +43,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -93,28 +92,34 @@ public class AllContractController implements Initializable {
     @FXML
     private TableView<Performance> showtable;
     @FXML
-	private TableColumn<Performance, String> showname;
+	private TableColumn<Performance, String> colShowname;
     @FXML
-	private TableColumn<Performance, String> showtime;
+	private TableColumn<Performance, String> colShowtime;
     @FXML
-	private TableColumn<Performance, String> showdetails;
+	private TableColumn<Performance, String> colShowdetails;
 	@FXML
-	private TableColumn<Performance, String> performanceid;
+	private TableColumn<Performance, String> colPerformanceid;
+	@FXML
+	private TableColumn<Performance, String> colShowdate;
 
 	@FXML
 	private TableView<Booking> bookingtable;
 	@FXML
-	private TableColumn<Booking, String> servicedate;
+	private TableColumn<Booking, Long> colBookingid;
 	@FXML
-	private TableColumn<Booking, String> servicename;
+	private TableColumn<Booking, String> colBooked;
 	@FXML
-	private TableColumn<Booking, String> time;
+	private TableColumn<Booking, String> colBookingdate;
 	@FXML
-	private TableColumn<Booking, Long> serviceid;
+	private TableColumn<Booking, String> colDoc;
 	@FXML
-	private TableColumn<Booking, String> cost;
+	private TableColumn<Booking, String> colServicename;
 	@FXML
-	private TableColumn<Booking, String> slot; 
+	private TableColumn<Booking, String> colVenuename; 
+	@FXML
+	private TableColumn<Booking, String> colSlotname; 
+	@FXML
+	private TableColumn<Booking, String> colPrice; 
 	@FXML
 	private TableColumn<Booking, Boolean> colDelete;
 
@@ -122,7 +127,9 @@ public class AllContractController implements Initializable {
 	@FXML
 	private DatePicker ServiceDate;
 	@FXML
-	private TextField ServiceTime;
+	private TextField StartTime;
+	@FXML
+	private TextField EndTime;
 	@FXML
 	private ComboBox<String> Slot;
 	@FXML
@@ -131,6 +138,12 @@ public class AllContractController implements Initializable {
 	private TextField ServiceUsed;
 	@FXML
 	private ComboBox<String> ServiceName;
+	@FXML
+	private TextField Price;
+	@FXML
+	private TextField SlotName;
+	@FXML
+	private TextField VenueName;
 
 	@Autowired
 	private RepService repService;
@@ -242,8 +255,7 @@ public class AllContractController implements Initializable {
 		contractService.updateNoc(Long.parseLong((String) ContractID.getEditor().getText()), noc);
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Contract");
-		
+		alert.setTitle("Contract");	
 		alert.setContentText("Noc updated!");
 		alert.show();
 		
@@ -251,15 +263,16 @@ public class AllContractController implements Initializable {
 
 	public void slotChange() {
 		Slot.getSelectionModel().getSelectedItem();
-		String time = slotService.slotTiming(Slot.getSelectionModel().getSelectedItem());
-		ServiceTime.setText(time);
+		com.booking.bean.Slot time = slotService.slotTiming(Slot.getSelectionModel().getSelectedItem());
+		StartTime.setText(time.getStarttime());
+		EndTime.setText(time.getEndtime());
 	}
 
 	public void serviceDetail() {
 
 		String ser = ServiceName.getValue();
 		Service service = serviceService.getDetail(ser);
-		ServiceCost.setText(service.getServicecharges());
+		ServiceCost.setText(service.getPrice());
 
 		Long bp = Long.parseLong(baseprice.getText()) + Long.parseLong(ServiceCost.getText());
 		baseprice.setText(bp.toString());
@@ -279,12 +292,10 @@ public class AllContractController implements Initializable {
 		System.out.println("Add more button ");
 		
 		Booking b = new Booking();
-		b.setServicedate(convertDate(ServiceDate.getValue()));
-		b.setServicename(ServiceName.getValue());
-		b.setServicetime(ServiceTime.getText());
+		b.setBookingdates(convertDate(ServiceDate.getValue()));
+		b.setService(ServiceName.getValue());
 		b.setSlot(Slot.getSelectionModel().getSelectedItem());
-		b.setServicecost(ServiceCost.getText());
-		// b.setServiceused(ServiceUsed.getText());
+//		b.setDateofcancel(dateofcancel);
 		Contract contract = contractService.find(Long.parseLong((String) ContractID.getEditor().getText()));
 		b.setContract(contract);
 		
@@ -297,7 +308,8 @@ public class AllContractController implements Initializable {
 		
 		ServiceDate.getEditor().clear();
 		ServiceName.getSelectionModel().clearSelection();
-		ServiceTime.clear();
+		StartTime.clear();
+		EndTime.clear();
 		Slot.getSelectionModel().clearSelection();
 		ServiceCost.clear();
 		
@@ -317,47 +329,38 @@ public class AllContractController implements Initializable {
 		/* Booking table */
 		System.out.println("Booking table size: " + contract.getBookings().size());
 
-		serviceid.setCellValueFactory(new PropertyValueFactory<Booking, Long>("serviceid"));
-		servicedate.setCellValueFactory(new PropertyValueFactory<Booking, String>("servicedate"));
-		servicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
-		cost.setCellValueFactory(new PropertyValueFactory<>("servicecost"));
-		slot.setCellValueFactory(new PropertyValueFactory<>("slot"));
-		time.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
+		colBookingid.setCellValueFactory(new PropertyValueFactory<Booking, Long>("bookingid"));
+		colBooked.setCellValueFactory(new PropertyValueFactory<Booking, String>("booked"));
+		colBookingdate.setCellValueFactory(new PropertyValueFactory<>("bookingdates"));
+		colDoc.setCellValueFactory(new PropertyValueFactory<>("dateofcancel"));
+		colServicename.setCellValueFactory(new PropertyValueFactory<>("service"));
+		colVenuename.setCellValueFactory(new PropertyValueFactory<>("venue"));
+		colSlotname.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 		colDelete.setCellFactory(delete);
-		
-		
+				
 		contractbookingList.clear();
 		contractbookingList.addAll(contract.getBookings());
 		bookingtable.setItems(contractbookingList);
 		
-		performanceid.setCellValueFactory(new PropertyValueFactory<>("performanceid"));
-		showname.setCellValueFactory(new PropertyValueFactory<>("showname"));
-		showtime.setCellValueFactory(new PropertyValueFactory<>("showtime"));
-		showdetails.setCellValueFactory(new PropertyValueFactory<>("showdetails"));
+		
+		colPerformanceid.setCellValueFactory(new PropertyValueFactory<>("performanceid"));
+		colShowdate.setCellValueFactory(new PropertyValueFactory<>("showdate"));
+		colShowname.setCellValueFactory(new PropertyValueFactory<>("showname"));
+		colShowtime.setCellValueFactory(new PropertyValueFactory<>("showtime"));
+		colShowdetails.setCellValueFactory(new PropertyValueFactory<>("showdetails"));
 		
 		contractshowList.clear();
 		contractshowList.addAll(contract.getPerformances());
 		showtable.setItems(contractshowList);
 
-		bookingdate.setText(contract.getBookingdate());
-		contractid.setText(String.valueOf((contract.getContractid())));
-		purpose.setText(contract.getPurpose());
+		bookingdate.setText(contract.getContractdate());
+		contractid.setText(String.valueOf(contract.getContractid()));
 		baseprice.setText(contract.getBaseprice());
-		taxamount.setText(contract.getTaxamount());
-		pact.setText(contract.getPact());
-		if(contract.getNoc().equals("Yes")) NocYes.setSelected(true);
-		else NocNo.setSelected(true);
 		
 		client.setText(contract.getCustomer().getCustomername());
-		repname.setText(contract.getRepname());
 		
-		Rep r = repService.findbyName(contract.getRepname());
 		
-		repemail.setText(r.getRepemail());
-		repmobile.setText(r.getRepmobile());
-
-		receipt.setText(contract.getReceipt().toString());	
-		invoice.setText(contract.getInvoice().toString());
 		
 	}
 	
@@ -398,6 +401,7 @@ public class AllContractController implements Initializable {
 				private void deletebooking(Booking booking) {
 					bookingService.deleteById(booking);
 					System.out.println("Deleted");
+					bookingtable.refresh();
 					
 				}
 			};
@@ -414,9 +418,7 @@ public class AllContractController implements Initializable {
 		cIDList.addAll(contractService.getContractID());
 		ContractID.setItems(cIDList);
 		
-		slotList.clear();
-		slotList.addAll(slotService.findSlot());
-		Slot.setItems(slotList);
+		
 		
 		serviceList.clear();
 		serviceList.addAll(serviceService.findName());
@@ -468,7 +470,6 @@ public class AllContractController implements Initializable {
 	}
 
 	public String convertDate(LocalDate date) {
-
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return dtf.format(date);
 

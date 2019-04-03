@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="services" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9760220a-8bd4-4043-a503-d977fd86f81f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="contractid" class="java.lang.Long"/>
+	<field name="bookingdate" class="java.lang.String"/>
+	<field name="servicedate" class="java.lang.String"/>
+	<field name="servicename" class="java.lang.String"/>
+	<field name="servicetime" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="14" width="330" height="30" uuid="89101a0b-5928-466e-96f2-7169ca13c6d8"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Indian National Theatre Trust
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="41" width="360" height="30" uuid="2e165705-b4ba-4b28-9431-ff25857ff596"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[4, Safdar Hashmi Marg, New Delhi-110001
+Telephone: 011-23714307
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="10" width="70" height="13" uuid="db4015ca-0ef6-41c8-abef-396402f1fd95"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contract ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="441" y="10" width="32" height="13" uuid="854a675a-8d2f-4662-9be9-f70f326d5923"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="23" width="100" height="17" uuid="e275f8e1-c2d3-4cd8-b541-9465d07ac594"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DECLARATION SLIP]]></text>
+			</staticText>
+			<textField pattern="d/M/yy">
+				<reportElement positionType="FixRelativeToBottom" x="474" y="10" width="100" height="13" uuid="fb63e89e-3701-4b2b-8ab1-9905fbc0fc16"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="10" width="100" height="13" uuid="96cac946-2ed9-485c-b128-c83d7bccb935"/>
+				<textFieldExpression><![CDATA[$F{contractid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="451" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement x="12" y="70" width="532" height="381" uuid="b1acc2c4-2db4-417f-bbfd-bd3c7a5eb520"/>
+				<text><![CDATA[Performing Group: ________________________________________________________
+Address: _______________________________________________________________
+_______________________________________________________________________
+GSTIN: ______________________________
+Contract ID: __________________________
+
+Dear Mr/Mrs ________________,
+
+This is to confirm your booking at Shri Ram Centre Auditorium as per below mentioned date(s) and timing(s) -
+
+DATE	TIMING
+	
+	
+
+Kindly submit the necessary clearances (NOCs) for your performance and clear your balance dues, if any, well ahead of your show date(s). 
+
+We wish you all the very best. 
+
+Thanking you.
+
+Yours Sincerely,
+(Indian National Theatre Trust)
+Shri Ram Centre Auditorium
+
+
+
+Anuj Antony
+Manager
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="10" width="100" height="30" uuid="cc599920-212f-44e0-8e61-7b77d082581c"/>
+				<textFieldExpression><![CDATA[$F{servicedate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="10" width="100" height="30" uuid="c282b9b3-e066-4e9b-af76-cfdf05555be6"/>
+				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="10" width="100" height="30" uuid="e4891d23-182f-498a-9ac9-94743bf0c2ad"/>
+				<textFieldExpression><![CDATA[$F{servicetime}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="350" y="10" width="200" height="49" uuid="5ca629b8-b712-4e6b-9d91-ad0bde2659a5"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["Declaration2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="182" y="0" width="100" height="23" uuid="44908c78-4b9d-4b95-a5a8-117355c710bb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="282" y="0" width="100" height="23" uuid="00cd9b98-2d8d-49dd-b9e0-9bd53f9040de"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

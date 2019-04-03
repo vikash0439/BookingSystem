@@ -1,67 +1,27 @@
 package com.booking.bean;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/**
- * @author Vikash Kumar
- * @since 10-09-2018
- */
-
 @Entity
-@Table(name="receipt" , schema = "srcpa")
-public class Receipt{
+@Table
+public class Receipt {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "receiptid", updatable = false, nullable = false)
 	private long receiptid;
 	private String receiptdate;
-	private String paidamount;
-	private String taxamount;
-	private String paymentmode;
-	private String finalpayment;
-	
-	/* Mappings */
+	private String amount;
+	private String mode;
+	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name ="contractid")
-	private Contract contract;
+	private Customer customer;
 	
-	@OneToOne
-	@JoinColumn
-	private PaymentDetails pdetails;
-	
-	public PaymentDetails getPdetails() {
-		return pdetails;
-	}
-
-
-	public void setPdetails(PaymentDetails pdetails) {
-		this.pdetails = pdetails;
-	}
-
-
-	/* Constructors */
-	public Receipt() {
-		super();
-	}
-	
-	
-	public Contract getContract() {
-		return contract;
-	}
-	
-	public void setContract(Contract contract) {
-		this.contract = contract;
-	}
 	public long getReceiptid() {
 		return receiptid;
 	}
@@ -74,37 +34,31 @@ public class Receipt{
 	public void setReceiptdate(String receiptdate) {
 		this.receiptdate = receiptdate;
 	}
-	public String getPaidamount() {
-		return paidamount;
+	public String getAmount() {
+		return amount;
 	}
-	public void setPaidamount(String paidamount) {
-		this.paidamount = paidamount;
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
-	public String getTaxamount() {
-		return taxamount;
+	public String getMode() {
+		return mode;
 	}
-	public void setTaxamount(String taxamount) {
-		this.taxamount = taxamount;
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
-	public String getPaymentmode() {
-		return paymentmode;
+	public String getDescription() {
+		return description;
 	}
-	public void setPaymentmode(String paymentmode) {
-		this.paymentmode = paymentmode;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getFinalpayment() {
-		return finalpayment;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setFinalpayment(String finalpayment) {
-		this.finalpayment = finalpayment;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
-
-
-	@Override
-	public String toString() {
-		return  paidamount;
-	}	
 	
 	
-
+	
 }

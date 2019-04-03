@@ -1,5 +1,7 @@
 package com.booking.controller;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,17 +17,15 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
-import com.booking.bean.Receipt;
-import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
 import com.booking.service.ContractService;
-import com.booking.service.ReceiptService;
 import com.booking.service.RepService;
 import com.booking.view.FxmlView;
 
@@ -65,6 +65,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class DashboardController implements Initializable {
+	
+	private static final Logger LOG = getLogger(DashboardController.class);
 
 	@FXML
 	private Label ContractID;
@@ -133,8 +135,6 @@ public class DashboardController implements Initializable {
 	@Autowired
 	private BookingService bookingService;
 	@Autowired
-	private ReceiptService receiptService;
-	@Autowired
 	private ContractService contractService;
 
 	private ObservableList<Booking> bookingList = FXCollections.observableArrayList();
@@ -164,11 +164,14 @@ public class DashboardController implements Initializable {
 				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jasper"));
 			}
 
+			// Map to put in JRDatasource
 			Map<String, Object> parameters = new HashMap<String, Object>();
 
+			//Hashmap to add each value 
 			HashMap<String, Object> cont = new HashMap<String, Object>();
 			cont.put("contractid", Long.valueOf(ContractID.getText()));
 
+			// Adding each value into list to send through map to JRDatasource
 			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
 			list.add(cont);
 
@@ -198,6 +201,87 @@ public class DashboardController implements Initializable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+	@FXML
+	private void Slip(ActionEvent event) {
+		
+		try {
+
+			System.out.println("From Contract Declaration slip try block");
+			JasperReport jasperReport;
+			try {
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration.jrxml"));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration.jasper"));
+			}
+
+			Map<String, Object> parameters = new HashMap<String, Object>(); // Parameters for report .
+			
+			HashMap<String, Object> cont = new HashMap<String, Object>();
+			cont.put("contractid", Long.valueOf(ContractID.getText()));
+			
+			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
+			list.add(cont);
+			
+			JasperReport SubJasperReport;
+			try {
+				SubJasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration2.jrxml"));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				SubJasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration2.jasper"));
+			}
+
+			// Map to put in JRDatasource
+			Map<String, Object> p = new HashMap<String, Object>();
+			
+
+			// Adding each value into list to send through map to JRDatasource
+			
+			for (Booking s : bookingService.getBooking()) {
+
+				LOG.info("In Map Loop ");
+
+				Map<String, Object> m2 = new HashMap<String, Object>();
+				
+				
+				list.add(m2);
+
+				LOG.info("After Map Loop ");
+			}
+			
+			
+			JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
+			parameters.put("jRDataSource", parameters);
+			
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+			File outDir = new File("Reports/Slip");
+			outDir.mkdirs();
+
+			DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+			Date date = new java.util.Date();
+			System.out.println(date);
+			String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+			JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+			Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+			alert.setTitle("Report");
+			alert.setHeaderText("Declaration Slip");
+			alert.setContentText("Declaration Slip downloaded successfully");
+			alert.showAndWait();
+			
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			System.out.println("JR Exception");
+			e.printStackTrace();
+		}
+		
 	}
 	@FXML
 	private void CancelCharges(ActionEvent event) {
@@ -296,6 +380,10 @@ public class DashboardController implements Initializable {
 	public void reports(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.REPORTS);
 	}
+	@FXML
+	public void venue(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.VENUE);
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -308,10 +396,10 @@ public class DashboardController implements Initializable {
 		 * Set All userTable column properties
 		 */
 
-		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
+		colServiceDate.setCellValueFactory(new PropertyValueFactory<>("bookingdates"));
 		colDay.setCellFactory(dateday);
 		colSlot.setCellValueFactory(new PropertyValueFactory<>("slot"));
-		colService.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+		colService.setCellValueFactory(new PropertyValueFactory<>("service"));
 		colClient.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
@@ -329,45 +417,13 @@ public class DashboardController implements Initializable {
 
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-				return new SimpleStringProperty(param.getValue().getContract().getBookingdate());
+				return new SimpleStringProperty(param.getValue().getContract().getContractdate());
 			}
 		});
-		colPact.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
-
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-				return new SimpleStringProperty(param.getValue().getContract().getPact());
-			}
-		});
-		colNOC
-				.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
-
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-						return new SimpleStringProperty(param.getValue().getContract().getNoc());
-					}
-				});
-
-		colReceipt.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
-
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-				return new SimpleStringProperty(param.getValue().getContract().getReceipt().toString());
-			}
-		});
-		colRemaining.setCellFactory(remainingAmount);
-		colInvoice.setCellValueFactory(new Callback<CellDataFeatures<Booking, String>, ObservableValue<String>>() {
-
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
-				try {
-					return new SimpleStringProperty(param.getValue().getContract().getInvoice().getInvoicedate());
-				} catch (Exception e) {
-					System.out.println("No invoice created");
-				}
-				return null;
-			}
-		});
+		
+		
+		colRemaining.setId(null);
+		
 		colEdit.setCellFactory(cellFactory);
 
 		bookingList.clear();
@@ -383,12 +439,6 @@ public class DashboardController implements Initializable {
 					}
 					if (Long.toString(booking.getContract().getContractid()).contains(newValue)) {
 						return true;
-					} else if (booking.getServicedate().contains(newValue)) {
-						return true;
-					} else if (booking.getSlot().toLowerCase().contains(newValue)) {
-						return true;
-					} else if (booking.getServicename().toLowerCase().contains(newValue)) {
-						return true;
 					} else if (booking.getContract().getCustomer().getCustomername().toLowerCase().contains(newValue)) {
 						return true;
 					}
@@ -402,44 +452,6 @@ public class DashboardController implements Initializable {
 		});
 	}
 
-	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> remainingAmount = new Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>>() {
-
-		@Override
-		public TableCell<String, Boolean> call(final TableColumn<String, Boolean> param) {
-			final TableCell<String, Boolean> cell = new TableCell<String, Boolean>() {
-
-				@Override
-				public void updateItem(Boolean check, boolean empty) {
-					super.updateItem(check, empty);
-					if (empty) {
-						setGraphic(null);
-						setText(null);
-					} else {
-
-						TableRow<Booking> currentRow = getTableRow();
-						String pact = currentRow.getItem().getContract().getPact();
-
-						List<Receipt> receiptlist = currentRow.getItem().getContract().getReceipt();
-						double totalamount = 0;
-						
-						for (int i = 0; i < receiptlist.size(); i++) {
-							System.out.println(receiptlist.get(i).getReceiptid());
-							double receiptamount = Double.parseDouble(receiptService.PaidAmount(receiptlist.get(i).getReceiptid()));
-							System.out.println("Paid Amount : " + receiptamount);
-							totalamount = receiptamount + totalamount;
-						}
-
-						double remaining = Double.parseDouble(pact) - totalamount;
-
-						colDay.setStyle("-fx-background-color: transparent;");
-						setAlignment(Pos.CENTER);
-						setText(String.valueOf(remaining));
-					}
-				}
-			};
-			return cell;
-		}
-	};
 
 	public Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>> dateday = new Callback<TableColumn<String, Boolean>, TableCell<String, Boolean>>() {
 
@@ -456,7 +468,7 @@ public class DashboardController implements Initializable {
 					} else {
 
 						TableRow<Booking> currentRow = getTableRow();
-						String servicedate = currentRow.getItem().getServicedate();
+						String servicedate = currentRow.getItem().getBookingdates();
 						Date date1;
 						try {
 							date1 = new SimpleDateFormat("dd/MM/yyyy").parse(servicedate);
@@ -501,13 +513,7 @@ public class DashboardController implements Initializable {
 						if (currentRow.getItem().getContract().getCustomer().getCustomername()
 								.equalsIgnoreCase("SRCPA")) { // indicates srcpa
 							currentRow.setStyle("-fx-background-color:#ffffcc");
-						} else if (currentRow.getItem().getContract().getInvoice() != null && currentRow.getItem().getContract().getOverride() == null) { // indicates invoice																								// created
-							currentRow.setStyle("-fx-background-color:#b3c6ff");
-						} else if (currentRow.getItem().getContract().getOverride() != null && currentRow.getItem().getContract().getInvoice() != null) { // indicates cancelled
-							currentRow.setStyle("-fx-background-color: #ff9999");
-						}
-						else if (currentRow.getItem().getContract().getOverride() != null) { // indicates cancelled
-							currentRow.setStyle("-fx-background-color: #ff9999");
+						
 						}else {
 
 						}
@@ -528,15 +534,7 @@ public class DashboardController implements Initializable {
 
 				private void updateBooking(Booking booking) {
 					ContractID.setText(Long.toString(booking.getContract().getContractid()));
-					Purpose.setText(booking.getContract().getPurpose());
 					CustomerName.setText(booking.getContract().getCustomer().getCustomername());
-                    noc.setText(booking.getContract().getNoc());
-					repname.setText(booking.getContract().getRepname());
-
-					Rep r = repService.findbyName(booking.getContract().getRepname());
-
-					repemail.setText(r.getRepemail());
-					repmobile.setText(r.getRepmobile());
 
 				}
 			};

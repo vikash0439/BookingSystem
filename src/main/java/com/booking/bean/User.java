@@ -9,11 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author Vikash Kumar
- * @since 04-09-2018
- */
-
 @Entity
 @Table(name="User" , schema = "srcpa")
 public class User {

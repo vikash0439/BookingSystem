@@ -29,10 +29,10 @@ import com.booking.service.BookingService;
 import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
 import com.booking.service.PerformanceService;
-import com.booking.service.PurposeService;
 import com.booking.service.RepService;
 import com.booking.service.ServiceService;
 import com.booking.service.SlotService;
+import com.booking.service.VenueService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -83,10 +83,7 @@ public class ContractController implements Initializable {
 	private HBox serviceHBox5;
 	@FXML
 	private HBox serviceHBox6;
-	@FXML
-	private HBox ShowHBox2;
-	@FXML
-	private HBox ShowHBox3;
+	
 	@FXML
 	private VBox serviceVBox;
 	@FXML
@@ -98,13 +95,11 @@ public class ContractController implements Initializable {
 	@FXML
 	private Label ContractID;
 	@FXML
-	private DatePicker BookingDate;
+	private DatePicker ContractDate;
 	@FXML
 	private ComboBox<String> Purpose;
 	@FXML
 	private ComboBox<String> CustomerName;
-	@FXML
-	private ComboBox<String> paymentstatus;
 	@FXML
 	private Label baseprice;
 	@FXML
@@ -122,75 +117,77 @@ public class ContractController implements Initializable {
 
 	/* Booking table */
 	@FXML
-	private DatePicker ServiceDate;
+	private DatePicker BookingDate;
 	@FXML
-	private TextField ServiceTime;
+	private TextField VenueName;
 	@FXML
-	private ComboBox<String> Slot;
+	private TextField StartTime;
 	@FXML
-	private TextField ServiceCost;
+	private TextField EndTime;
 	@FXML
-	private TextField ServiceUsed;
+	private TextField SlotName;
+	@FXML
+	private TextField Price;
 	@FXML
 	private ComboBox<String> ServiceName;
 	@FXML
-	private DatePicker ServiceDate2;
+	private DatePicker BookingDate2;
 	@FXML
-	private TextField ServiceTime2;
+	private TextField StartTime2;
+	@FXML
+	private TextField EndTime2;
 	@FXML
 	private ComboBox<String> Slot2;
 	@FXML
-	private TextField ServiceCost2;
-	@FXML
-	private TextField ServiceUsed2;
+	private TextField Price2;
 	@FXML
 	private ComboBox<String> ServiceName2;
 	@FXML
-	private DatePicker ServiceDate3;
+	private DatePicker BookingDate3;
 	@FXML
-	private TextField ServiceTime3;
+	private TextField StartTime3;
+	@FXML
+	private TextField EndTime3;
 	@FXML
 	private ComboBox<String> Slot3;
 	@FXML
-	private TextField ServiceCost3;
-	@FXML
-	private TextField ServiceUsed3;
+	private TextField Price3;
 	@FXML
 	private ComboBox<String> ServiceName3;
 	@FXML
-	private DatePicker ServiceDate4;
+	private DatePicker BookingDate4;
 	@FXML
-	private TextField ServiceTime4;
+	private TextField StartTime4;
+	@FXML
+	private TextField EndTime4;
 	@FXML
 	private ComboBox<String> Slot4;
 	@FXML
-	private TextField ServiceCost4;
-	@FXML
-	private TextField ServiceUsed4;
+	private TextField Price4;
 	@FXML
 	private ComboBox<String> ServiceName4;
 	@FXML
-	private DatePicker ServiceDate5;
+	private DatePicker BookingDate5;
 	@FXML
-	private TextField ServiceTime5;
+	private TextField StartTime5;
+	@FXML
+	private TextField EndTime5;
 	@FXML
 	private ComboBox<String> Slot5;
 	@FXML
-	private TextField ServiceCost5;
-	@FXML
-	private TextField ServiceUsed5;
+	private TextField Price5;
 	@FXML
 	private ComboBox<String> ServiceName5;
 	@FXML
-	private DatePicker ServiceDate6;
+	private DatePicker BookingDate6;
 	@FXML
-	private TextField ServiceTime6;
+	private TextField StartTime6;
+	@FXML
+	private TextField EndTime6;
 	@FXML
 	private ComboBox<String> Slot6;
 	@FXML
-	private TextField ServiceCost6;
-	@FXML
-	private TextField ServiceUsed6;
+	private TextField Price6;
 	@FXML
 	private ComboBox<String> ServiceName6;
 
@@ -202,32 +199,22 @@ public class ContractController implements Initializable {
 	@FXML
 	private TextField ShowDetails;
 	@FXML
-	private TextField ShowName2;
-	@FXML
-	private TextField ShowTime2;
-	@FXML
-	private TextField ShowDetails2;
-	@FXML
-	private TextField ShowName3;
-	@FXML
-	private TextField ShowTime3;
-	@FXML
-	private TextField ShowDetails3;
+	private TextField ShowDate;
 
 	@FXML
 	HBox testDates;
 	@FXML
 	private TableView<Booking> services;
 	@FXML
-	private TableColumn<Booking, String> servicedate;
+	private TableColumn<Booking, String> colBookingdate;
 	@FXML
-	private TableColumn<Booking, String> servicename;
+	private TableColumn<Booking, String> colServicename;
 	@FXML
-	private TableColumn<Booking, String> time;
+	private TableColumn<Booking, String> colPrice;
 	@FXML
-	private TableColumn<Booking, String> cost;
+	private TableColumn<Booking, String> colSlotname;
 	@FXML
-	private TableColumn<Booking, String> slot;
+	private TableColumn<Booking, String> colVenuename;
 	
 	@FXML Button OkNextDay;
 	
@@ -238,11 +225,11 @@ public class ContractController implements Initializable {
 	@Autowired
 	private ContractService contractService;
 	@Autowired
-	private PurposeService purposeService;
-	@Autowired
 	private CustomerService customerService;
 	@Autowired
 	private SlotService slotService;
+	@Autowired
+	private VenueService venueService;
 	@Autowired
 	private ServiceService serviceService;
 	@Autowired
@@ -255,15 +242,13 @@ public class ContractController implements Initializable {
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
 	private ObservableList<String> slotList = FXCollections.observableArrayList();
+	private ObservableList<String> venueList = FXCollections.observableArrayList();
 	private ObservableList<String> serviceList = FXCollections.observableArrayList();
 	private ObservableList<String> repList = FXCollections.observableArrayList();
 	private ObservableList<String> paymentStatusList = FXCollections.observableArrayList("Advanced", "Final Payment");
 	ObservableList<Booking> data = FXCollections.observableArrayList();
 
 	Contract contract = new Contract();
-	
-	
-	
 	
 
 	@FXML
@@ -339,6 +324,10 @@ public class ContractController implements Initializable {
 	@FXML
 	public void reports(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.REPORTS);
+	}
+	@FXML
+	public void venue(ActionEvent event) throws IOException {
+		stageManager.switchScene(FxmlView.VENUE);
 	}
 
 	@FXML
@@ -423,7 +412,6 @@ public class ContractController implements Initializable {
 			double y = window.getY() + bounds.getMinY() + bounds.getHeight() + 5;
 			popup.show(addButton, x, y);
 			datePicker.show();
-
 		});
 		removeButton.setOnAction(event -> removeSelectedDates(selectedDates, dateList));
 		// testDates = new HBox(text, addButton, removeButton);
@@ -433,61 +421,7 @@ public class ContractController implements Initializable {
 		return selectedDates.removeAll(dateList.getSelectionModel().getSelectedItems());
 	}
 
-	Callback<DatePicker, DateCell> dateColorFactory = new Callback<DatePicker, DateCell>() {
-		public DateCell call(final DatePicker datePicker) {
-			return new DateCell() {
-				@Override
-				public void updateItem(LocalDate item, boolean empty) {
-					Integer c = null;
-					Map<LocalDate, Integer> getDatae = countDates();
-					List<LocalDate> dates = new ArrayList<LocalDate>();
-					for (LocalDate date : getDatae.keySet()) {
-						dates.add(date);
-						// search for value
-						c = getDatae.get(date);
-						System.out.println("Date = " + date + ", Total = " + c);
-						super.updateItem(date, empty);
-
-					}
-					if (!empty) {
-						if (dates.contains(item)) {
-
-							Integer co = getDatae.get(item);
-							System.out.println("Item Value here: " + item);
-							System.out.println("Item = " + item + ", Total = " + co);
-							/* count slot(Morning & Evening) each day */
-							if (co == 1) {
-								DateTimeFormatter DateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-								// SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-								String slot = bookingService.findDistinctSlot(item.format(DateFormat));
-								System.out.println("Item Date : " + item.format(DateFormat) + "&& Slot : " + slot);
-								if (slot.equals("Morning")) {
-									System.out.println("Condition 2");
-									setTooltip(new Tooltip("Only Evening slot left"));
-									setStyle("-fx-background-color: #008000;");
-								} else {
-									System.out.println("Condition 1");
-									setTooltip(new Tooltip("Only Morning slot left"));
-									setStyle("-fx-background-color: #FFFF00;");
-								}
-
-							} else if (co >= 1) {
-								System.out.println("Condition 3");
-								setTooltip(new Tooltip("Both slots booked"));
-								setStyle("-fx-background-color: #FF0000;");
-								setDisable(true);
-							} else {
-								System.out.println("Condition 5");
-							}
-						}
-					} else {
-						setTooltip(new Tooltip("Both Slots Available"));
-						System.out.println("Condition 4");
-					}
-				}
-			};
-		}
-	};
+	
 
 	public void getAllRep() {
 		String cname = CustomerName.getSelectionModel().getSelectedItem();
@@ -499,11 +433,12 @@ public class ContractController implements Initializable {
 	}
 
 	public void slotChange() {
-		Slot.getSelectionModel().getSelectedItem();
-		String time = slotService.slotTiming(Slot.getSelectionModel().getSelectedItem());
-		ServiceTime.setText(time);
+		com.booking.bean.Slot time = slotService.slotTiming(SlotName.getText());
+		System.out.println("Start Time : " +time.getStarttime());
+		StartTime.setText(time.getStarttime());
+		EndTime.setText(time.getEndtime());
 
-		Slot2.getSelectionModel().getSelectedItem();
+	/*	Slot2.getSelectionModel().getSelectedItem();
 		String time2 = slotService.slotTiming(Slot2.getSelectionModel().getSelectedItem());
 		ServiceTime2.setText(time2);
 
@@ -522,7 +457,7 @@ public class ContractController implements Initializable {
 		Slot6.getSelectionModel().getSelectedItem();
 		String time6 = slotService.slotTiming(Slot6.getSelectionModel().getSelectedItem());
 		ServiceTime6.setText(time6);
-
+*/
 	}
 
 	public void MouseDragged(MouseEvent arg0) {
@@ -539,18 +474,16 @@ public class ContractController implements Initializable {
 		serviceHBox6.setVisible(true);
 	}
 
-	public void addMoreShow() {
-		ShowHBox2.setVisible(true);
-		ShowHBox3.setVisible(true);
-	}
 
 	public void serviceDetail() {
 
 		String ser = ServiceName.getValue();
 		Service service = serviceService.getDetail(ser);
-		ServiceCost.setText(service.getServicecharges());
+		Price.setText(service.getPrice());
+		VenueName.setText(service.getVenue());
+		SlotName.setText(service.getSlot());
 
-		Long bp = Long.parseLong(ServiceCost.getText());
+		Long bp = Long.parseLong(Price.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -563,9 +496,7 @@ public class ContractController implements Initializable {
 
 		String ser2 = ServiceName2.getValue();
 		Service service2 = serviceService.getDetail(ser2);
-		ServiceCost2.setText(service2.getServicecharges());
-
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText());
+		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -578,10 +509,9 @@ public class ContractController implements Initializable {
 
 		String ser3 = ServiceName3.getValue();
 		Service service3 = serviceService.getDetail(ser3);
-		ServiceCost3.setText(service3.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText());
+		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
+				+ Long.parseLong(Price3.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -594,10 +524,9 @@ public class ContractController implements Initializable {
 
 		String ser4 = ServiceName4.getValue();
 		Service service4 = serviceService.getDetail(ser4);
-		ServiceCost4.setText(service4.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText());
+		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
+				+ Long.parseLong(Price3.getText()) + Long.parseLong(Price4.getText());
 
 		baseprice.setText(bp.toString());
 
@@ -611,11 +540,10 @@ public class ContractController implements Initializable {
 
 		String ser5 = ServiceName5.getValue();
 		Service service5 = serviceService.getDetail(ser5);
-		ServiceCost5.setText(service5.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
-				+ Long.parseLong(ServiceCost5.getText());
+		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
+				+ Long.parseLong(Price3.getText()) + Long.parseLong(Price4.getText())
+				+ Long.parseLong(Price5.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -628,11 +556,10 @@ public class ContractController implements Initializable {
 
 		String ser6 = ServiceName6.getValue();
 		Service service6 = serviceService.getDetail(ser6);
-		ServiceCost6.setText(service6.getServicecharges());
 
-		Long bp = Long.parseLong(ServiceCost.getText()) + Long.parseLong(ServiceCost2.getText())
-				+ Long.parseLong(ServiceCost3.getText()) + Long.parseLong(ServiceCost4.getText())
-				+ Long.parseLong(ServiceCost5.getText()) + Long.parseLong(ServiceCost6.getText());
+		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
+				+ Long.parseLong(Price3.getText()) + Long.parseLong(Price4.getText())
+				+ Long.parseLong(Price5.getText()) + Long.parseLong(Price6.getText());
 		baseprice.setText(bp.toString());
 
 		Double ta = 0.18 * bp;
@@ -646,9 +573,8 @@ public class ContractController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		purposeList.clear();
-		purposeList.addAll(purposeService.findPurpose());
-		Purpose.setItems(purposeList);
+		
+		ShowDetails.setPrefHeight(100);
 
 		serviceList.clear();
 		serviceList.addAll(serviceService.findName());
@@ -665,26 +591,21 @@ public class ContractController implements Initializable {
 
 		slotList.clear();
 		slotList.addAll(slotService.findSlot());
-		Slot.setItems(slotList);
+//		Slot.setItems(slotList);
 		Slot2.setItems(slotList);
 		Slot3.setItems(slotList);
 		Slot4.setItems(slotList);
 		Slot5.setItems(slotList);
 		Slot6.setItems(slotList);
+		
+		venueList.clear();
+		venueList.addAll(venueService.findVenue());
+	//	venue.setItems(venueList);
 
 		dateList.getItems().clear();
 		data.clear();
 
-		BookingDate.setValue(LocalDate.now());
-
-		paymentstatus.setItems(paymentStatusList);
-
-		ServiceDate.setDayCellFactory(dateColorFactory);
-		ServiceDate2.setDayCellFactory(dateColorFactory);
-		ServiceDate3.setDayCellFactory(dateColorFactory);
-		ServiceDate4.setDayCellFactory(dateColorFactory);
-		ServiceDate5.setDayCellFactory(dateColorFactory);
-		ServiceDate6.setDayCellFactory(dateColorFactory);
+		ContractDate.setValue(LocalDate.now());
 
 		testDates.getChildren().addAll(addButton, removeButton, dateList, nextButton, nextButton2);
 		testDates.setSpacing(15);
@@ -741,12 +662,12 @@ public class ContractController implements Initializable {
 				System.out.print("Booking Dates : ");
 				System.out.println(d);
 
-				ServiceDate.setValue(sdate);
-				ServiceDate2.setValue(sdate);
-				ServiceDate3.setValue(sdate);
-				ServiceDate4.setValue(sdate);
-				ServiceDate5.setValue(sdate);
-				ServiceDate6.setValue(sdate);
+				BookingDate.setValue(sdate);
+				BookingDate2.setValue(sdate);
+				BookingDate3.setValue(sdate);
+				BookingDate4.setValue(sdate);
+				BookingDate5.setValue(sdate);
+				BookingDate6.setValue(sdate);
 
 				// b = new Booking(d, Slot.getSelectionModel().getSelectedItem(),
 				// ServiceTime.getText(), ServiceName.getValue(), ServiceCost.getText());
@@ -772,16 +693,15 @@ public class ContractController implements Initializable {
 		Booking b4 = new Booking();
 		Booking b5 = new Booking();
 		Booking b6 = new Booking();
-
+		
 		if (emptyValidation("Service ", ServiceName.getValue().isEmpty())) {
 
 			if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
-				b.setServicedate(convertDate(ServiceDate.getValue()));
-				System.out.println("Service date here: " +convertDate(ServiceDate.getValue()));
-				b.setServicename(ServiceName.getValue());
-				b.setServicetime(ServiceTime.getText());
-				b.setSlot(Slot.getSelectionModel().getSelectedItem());
-				b.setServicecost(ServiceCost.getText());
+				b.setBookingdates(convertDate(BookingDate.getValue()));
+				b.setSlot(SlotName.getText());
+				b.setVenue(VenueName.getText());
+				b.setPrice(Price.getText());
+				b.setService(ServiceName.getValue());
 				// b2.setServiceused(ServiceUsed.getText());
 				System.out.println("Contract value here : " +contract.toString());
 				b.setContract(contract);
@@ -789,55 +709,43 @@ public class ContractController implements Initializable {
 
 			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
 
-				b2.setServicedate(convertDate(ServiceDate2.getValue()));
-				b2.setServicename(ServiceName2.getValue());
-				b2.setServicetime(ServiceTime2.getText());
+				b2.setBookingdates(convertDate(BookingDate2.getValue()));
 				b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
-				b2.setServicecost(ServiceCost2.getText());
 				// b2.setServiceused(ServiceUsed.getText());
 				b2.setContract(contract);
 			}
 
 			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
-				b3.setServicedate(convertDate(ServiceDate3.getValue()));
-				b3.setServicename(ServiceName3.getValue());
-				b3.setServicetime(ServiceTime3.getText());
+				b3.setBookingdates(convertDate(BookingDate3.getValue()));
 				b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
-				b3.setServicecost(ServiceCost3.getText());
 				// b2.setServiceused(ServiceUsed.getText());
 				b3.setContract(contract);
 			}
 
 			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
-				b4.setServicedate(convertDate(ServiceDate4.getValue()));
-				b4.setServicename(ServiceName4.getValue());
-				b4.setServicetime(ServiceTime4.getText());
+				b4.setBookingdates(convertDate(BookingDate4.getValue()));
 				b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
-				b4.setServicecost(ServiceCost4.getText());
 				// b2.setServiceused(ServiceUsed.getText());
 				b4.setContract(contract);
 			}
 
 			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
-				b5.setServicedate(convertDate(ServiceDate5.getValue()));
-				b5.setServicename(ServiceName5.getValue());
-				b5.setServicetime(ServiceTime5.getText());
+				b5.setBookingdates(convertDate(BookingDate5.getValue()));
 				b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
-				b5.setServicecost(ServiceCost5.getText());
 				// b2.setServiceused(ServiceUsed.getText());
 				b5.setContract(contract);
 			}
 
 			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
-				b6.setServicedate(convertDate(ServiceDate6.getValue()));
-				b6.setServicename(ServiceName6.getValue());
-				b6.setServicetime(ServiceTime6.getText());
-				b6.setSlot(Slot3.getSelectionModel().getSelectedItem());
-				b6.setServicecost(ServiceCost6.getText());
+				b6.setBookingdates(convertDate(BookingDate6.getValue()));
+				b6.setSlot(Slot6.getSelectionModel().getSelectedItem());
 				// b2.setServiceused(ServiceUsed.getText());
 				b6.setContract(contract);
 			}
 		}
+
+
+		
 
 		if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
 			data.add(b);
@@ -858,12 +766,11 @@ public class ContractController implements Initializable {
 		if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 			data.add(b6);
 		}
-
-		servicedate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
-		slot.setCellValueFactory(new PropertyValueFactory<>("slot"));
-		time.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
-		servicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
-		cost.setCellValueFactory(new PropertyValueFactory<>("servicecost"));
+		colBookingdate.setCellValueFactory(new PropertyValueFactory<>("bookingdates"));
+		colSlotname.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+		colServicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+		colVenuename.setCellValueFactory(new PropertyValueFactory<>("venue"));
 		
 		services.setEditable(true);
 		services.setItems(data);
@@ -871,9 +778,6 @@ public class ContractController implements Initializable {
 		//int total = services.getItems().stream().summingInt(Booking::getServicecost);
 		int total = 0 ;
 		
-		for (Booking cost : services.getItems()) {
-		    total = total + Integer.parseInt(cost.getServicecost());
-		}
 		System.out.println("Total Amount "+total);
 		
 		baseprice.setText(String.valueOf(total));
@@ -891,12 +795,12 @@ public class ContractController implements Initializable {
 			
 			System.out.println(servicedates.get(i));
 			
-			ServiceDate.setValue(servicedates.get(i));
-			ServiceDate2.setValue(servicedates.get(i));
-			ServiceDate3.setValue(servicedates.get(i));
-			ServiceDate4.setValue(servicedates.get(i));
-			ServiceDate5.setValue(servicedates.get(i));
-			ServiceDate6.setValue(servicedates.get(i));
+			BookingDate.setValue(servicedates.get(i));
+			BookingDate2.setValue(servicedates.get(i));
+			BookingDate3.setValue(servicedates.get(i));
+			BookingDate4.setValue(servicedates.get(i));
+			BookingDate5.setValue(servicedates.get(i));
+			BookingDate6.setValue(servicedates.get(i));
 			
 			Booking b = new Booking();
 			Booking b2 = new Booking();
@@ -905,73 +809,57 @@ public class ContractController implements Initializable {
 			Booking b5 = new Booking();
 			Booking b6 = new Booking();
 			
-			
-		if (emptyValidation("Service Name ", ServiceName.getValue().isEmpty()))
-		{
+			if (emptyValidation("Service ", ServiceName.getValue().isEmpty())) {
 
-			if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
-				b.setServicedate(convertDate(ServiceDate.getValue()));
-				System.out.println("Service date here: " +convertDate(ServiceDate.getValue()));
-				b.setServicename(ServiceName.getValue());
-				b.setServicetime(ServiceTime.getText());
-				b.setSlot(Slot.getSelectionModel().getSelectedItem());
-				b.setServicecost(ServiceCost.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				System.out.println("Contract value here : " +contract.toString());
-				//b.setContract(contract);
-			}
+				if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
+					b.setBookingdates(convertDate(BookingDate.getValue()));
+					b.setSlot(SlotName.getText());
+					b.setService(ServiceName.getValue());
+					b.setVenue(VenueName.getText());
+					b.setPrice(Price.getText());
+					b.setService(ServiceName.getValue());
+					// b2.setServiceused(ServiceUsed.getText());
+					System.out.println("Contract value here : " +contract.toString());
+					b.setContract(contract);
+				}
 
-			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
+				if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
 
-				b2.setServicedate(convertDate(ServiceDate2.getValue()));
-				b2.setServicename(ServiceName2.getValue());
-				b2.setServicetime(ServiceTime2.getText());
-				b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
-				b2.setServicecost(ServiceCost2.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				//b2.setContract(contract);
-			}
+					b2.setBookingdates(convertDate(BookingDate2.getValue()));
+					b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
+					// b2.setServiceused(ServiceUsed.getText());
+					b2.setContract(contract);
+				}
 
-			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
-				b3.setServicedate(convertDate(ServiceDate3.getValue()));
-				b3.setServicename(ServiceName3.getValue());
-				b3.setServicetime(ServiceTime3.getText());
-				b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
-				b3.setServicecost(ServiceCost3.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				//b3.setContract(contract);
-			}
+				if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
+					b3.setBookingdates(convertDate(BookingDate3.getValue()));
+					b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
+					// b2.setServiceused(ServiceUsed.getText());
+					b3.setContract(contract);
+				}
 
-			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
-				b4.setServicedate(convertDate(ServiceDate4.getValue()));
-				b4.setServicename(ServiceName4.getValue());
-				b4.setServicetime(ServiceTime4.getText());
-				b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
-				b4.setServicecost(ServiceCost4.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				//b4.setContract(contract);
-			}
+				if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
+					b4.setBookingdates(convertDate(BookingDate4.getValue()));
+					b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
+					// b2.setServiceused(ServiceUsed.getText());
+					b4.setContract(contract);
+				}
 
-			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
-				b5.setServicedate(convertDate(ServiceDate5.getValue()));
-				b5.setServicename(ServiceName5.getValue());
-				b5.setServicetime(ServiceTime5.getText());
-				b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
-				b5.setServicecost(ServiceCost5.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				//b5.setContract(contract);
-			}
+				if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
+					b5.setBookingdates(convertDate(BookingDate5.getValue()));
+					b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
+					// b2.setServiceused(ServiceUsed.getText());
+					b5.setContract(contract);
+				}
 
-			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
-				b6.setServicedate(convertDate(ServiceDate6.getValue()));
-				b6.setServicename(ServiceName6.getValue());
-				b6.setServicetime(ServiceTime6.getText());
-				b6.setSlot(Slot3.getSelectionModel().getSelectedItem());
-				b6.setServicecost(ServiceCost6.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				//b6.setContract(contract);
-			}
-		}
+				if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
+					b6.setBookingdates(convertDate(BookingDate6.getValue()));
+					b6.setSlot(Slot6.getSelectionModel().getSelectedItem());
+					// b2.setServiceused(ServiceUsed.getText());
+					b6.setContract(contract);
+				}
+			}	
+		
 
 		if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
 			data.add(b);
@@ -994,11 +882,11 @@ public class ContractController implements Initializable {
 		}
 		
 		
-		servicedate.setCellValueFactory(new PropertyValueFactory<>("servicedate"));
-		slot.setCellValueFactory(new PropertyValueFactory<>("slot"));
-		time.setCellValueFactory(new PropertyValueFactory<>("servicetime"));
-		servicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
-		cost.setCellValueFactory(new PropertyValueFactory<>("servicecost"));
+		colBookingdate.setCellValueFactory(new PropertyValueFactory<>("bookingdates"));
+		colSlotname.setCellValueFactory(new PropertyValueFactory<>("slot"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+		colServicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+		colVenuename.setCellValueFactory(new PropertyValueFactory<>("venue"));
 		
 		services.setEditable(true);
 		services.setItems(data);
@@ -1006,9 +894,7 @@ public class ContractController implements Initializable {
 		//int total = services.getItems().stream().summingInt(Booking::getServicecost);
 		int total = 0 ;
 	
-		for (Booking cost : services.getItems()) {
-		    total = total + Integer.parseInt(cost.getServicecost());
-		}
+		
 		System.out.println("Total Amount "+total);
 		
 		baseprice.setText(String.valueOf(total));
@@ -1025,33 +911,33 @@ public class ContractController implements Initializable {
 		ServiceName5.getSelectionModel().clearSelection();
 		ServiceName6.getSelectionModel().clearSelection();
 		
-		ServiceTime.clear();
-		ServiceTime2.clear();
-		ServiceTime3.clear();
-		ServiceTime4.clear();
-		ServiceTime5.clear();
-		ServiceTime6.clear();
+		StartTime.clear();
+		StartTime2.clear();
+		StartTime3.clear();
+		StartTime4.clear();
+		StartTime5.clear();
+		StartTime6.clear();
 		
-		Slot.getSelectionModel().clearSelection();
+//		Slot.getSelectionModel().clearSelection();
 		Slot2.getSelectionModel().clearSelection();
 		Slot3.getSelectionModel().clearSelection();
 		Slot4.getSelectionModel().clearSelection();
 		Slot5.getSelectionModel().clearSelection();
 		Slot6.getSelectionModel().clearSelection();
 		
-		ServiceCost.clear();
-		ServiceCost2.clear();
-		ServiceCost3.clear();
-		ServiceCost4.clear();
-		ServiceCost5.clear();
-		ServiceCost6.clear();
+		Price.clear();
+		Price2.clear();
+		Price3.clear();
+		Price4.clear();
+		Price5.clear();
+		Price6.clear();
 		
-		ServiceDate.getEditor().clear();
-		ServiceDate2.getEditor().clear();
-		ServiceDate3.getEditor().clear();
-		ServiceDate4.getEditor().clear();
-		ServiceDate5.getEditor().clear();
-		ServiceDate6.getEditor().clear(); 
+		BookingDate.getEditor().clear();
+		BookingDate2.getEditor().clear();
+		BookingDate3.getEditor().clear();
+		BookingDate4.getEditor().clear();
+		BookingDate5.getEditor().clear();
+		BookingDate6.getEditor().clear(); 
 		
 		i++;
 			
@@ -1059,155 +945,89 @@ public class ContractController implements Initializable {
 		 i=0;
 		return null;
 	}
+	
+	Callback<DatePicker, DateCell> dateColorFactory = new Callback<DatePicker, DateCell>() {
+		public DateCell call(final DatePicker datePicker) {
+			return new DateCell() {
+				@Override
+				public void updateItem(LocalDate item, boolean empty) {
+					Integer c = null;
+					Map<LocalDate, Integer> getDatae = countDates();
+					List<LocalDate> dates = new ArrayList<LocalDate>();
+					for (LocalDate date : getDatae.keySet()) {
+						dates.add(date);
+						// search for value
+						c = getDatae.get(date);
+						System.out.println("Date = " + date + ", Total = " + c);
+						super.updateItem(date, empty);
+
+					}
+					if (!empty) {
+						if (dates.contains(item)) {
+
+							Integer co = getDatae.get(item);
+							System.out.println("Item Value here: " + item);
+							System.out.println("Item = " + item + ", Total = " + co);
+							/* count slot(Morning & Evening) each day */
+							if (co == 1) {
+								DateTimeFormatter DateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+								// SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+								String slot = bookingService.findDistinctSlot(item.format(DateFormat));
+								System.out.println("Item Date : " + item.format(DateFormat) + "&& Slot : " + slot);
+								if (slot.equals("Morning")) {
+									System.out.println("Condition 2");
+									setTooltip(new Tooltip("Only Evening slot left"));
+									setStyle("-fx-background-color: #008000;");
+								} else {
+									System.out.println("Condition 1");
+									setTooltip(new Tooltip("Only Morning slot left"));
+									setStyle("-fx-background-color: #FFFF00;");
+								}
+
+							} else if (co >= 1) {
+								System.out.println("Condition 3");
+								setTooltip(new Tooltip("Both slots booked"));
+								setStyle("-fx-background-color: #FF0000;");
+								setDisable(true);
+							} else {
+								System.out.println("Condition 5");
+							}
+						}
+					} else {
+						setTooltip(new Tooltip("Both Slots Available"));
+						System.out.println("Condition 4");
+					}
+				}
+			};
+		}
+	};
 
 	@FXML
 	private void saveContract(ActionEvent event) {
 
 		if (emptyValidation("Client", CustomerName.getSelectionModel().getSelectedItem() == null)) {
-
-			contract.setBookingdate(convertDate(BookingDate.getValue()));
-			contract.setPurpose(Purpose.getSelectionModel().getSelectedItem());
-			contract.setBaseprice(baseprice.getText());
-			contract.setTaxamount(taxamount.getText());
-			contract.setPact(pact.getText());
-			contract.setNoc(NocYes.isSelected() ? "Yes" : "No");
-			contract.setPaymentstatus(paymentstatus.getSelectionModel().getSelectedItem());
-			contract.setRepname(repName.getSelectionModel().getSelectedItem());
-
+			
+			Contract contract = new Contract();
+			contract.setContractdate(convertDate(ContractDate.getValue()));
 			Customer customer = customerService.findCustomer(CustomerName.getSelectionModel().getSelectedItem());
 			contract.setCustomer(customer);
-
-			Booking b = new Booking();
-			b.setServicedate(convertDate(ServiceDate.getValue()));
-			b.setServicename(ServiceName.getValue());
-			b.setServicetime(ServiceTime.getText());
-			b.setSlot(Slot.getSelectionModel().getSelectedItem());
-			b.setServicecost(ServiceCost.getText());
-			// b.setServiceused(ServiceUsed.getText());
-			b.setContract(contract);
-
-			Booking b2 = new Booking();
-
-			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
-
-				b2.setServicedate(convertDate(ServiceDate2.getValue()));
-				b2.setServicename(ServiceName2.getValue());
-				b2.setServicetime(ServiceTime2.getText());
-				b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
-				b2.setServicecost(ServiceCost2.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				b2.setContract(contract);
-			}
-
-			Booking b3 = new Booking();
-			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
-				b3.setServicedate(convertDate(ServiceDate3.getValue()));
-				b3.setServicename(ServiceName3.getValue());
-				b3.setServicetime(ServiceTime3.getText());
-				b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
-				b3.setServicecost(ServiceCost3.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				b3.setContract(contract);
-			}
-
-			Booking b4 = new Booking();
-			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
-				b4.setServicedate(convertDate(ServiceDate4.getValue()));
-				b4.setServicename(ServiceName4.getValue());
-				b4.setServicetime(ServiceTime4.getText());
-				b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
-				b4.setServicecost(ServiceCost4.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				b4.setContract(contract);
-			}
-
-			Booking b5 = new Booking();
-			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
-				b5.setServicedate(convertDate(ServiceDate5.getValue()));
-				b5.setServicename(ServiceName5.getValue());
-				b5.setServicetime(ServiceTime5.getText());
-				b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
-				b5.setServicecost(ServiceCost5.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				b5.setContract(contract);
-			}
-
-			Booking b6 = new Booking();
-			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
-				b6.setServicedate(convertDate(ServiceDate6.getValue()));
-				b6.setServicename(ServiceName6.getValue());
-				b6.setServicetime(ServiceTime6.getText());
-				b6.setSlot(Slot3.getSelectionModel().getSelectedItem());
-				b6.setServicecost(ServiceCost6.getText());
-				// b2.setServiceused(ServiceUsed.getText());
-				b6.setContract(contract);
-			}
-
-			// List<Booking> booking = new ArrayList<Booking>();
-			// booking.add(b);
-			// booking.add(b2);
-
-			Performance p = new Performance();
-			if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
-				p.setShowname(ShowName.getText());
-				p.setShowtime(ShowTime.getText());
-				p.setShowdetails(ShowDetails.getText());
-				p.setContract(contract);
-			}
-
-			Performance p2 = new Performance();
-			if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
-				p2.setShowname(ShowName2.getText());
-				p2.setShowtime(ShowTime2.getText());
-				p2.setShowdetails(ShowDetails2.getText());
-				p2.setContract(contract);
-			}
-
-			Performance p3 = new Performance();
-			if (ShowName3.getText() != null && !ShowName2.getText().trim().isEmpty()) {
-				p3.setShowname(ShowName3.getText());
-				p3.setShowtime(ShowTime3.getText());
-				p3.setShowdetails(ShowDetails3.getText());
-				p3.setContract(contract);
-			}
-
-			// List<Performance> performance = new ArrayList<Performance>();
-			// performance.add(p);
-
 			contractService.save(contract);
 			//bookingService.save(b);
-			for (Booking d : data) {
+			for (Booking d : data){
 				System.out.println("Contract value here d : " +contract.toString());
 				d.setContract(contract);
 				bookingService.save(d);
 			}
-
-		/*	if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
-				//bookingService.save(b2);
-			}
-			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
-				//bookingService.save(b3);
-			}
-			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
-				//bookingService.save(b4);
-			}
-			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
-				//bookingService.save(b5);
-			}
-			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
-				//bookingService.save(b6);
-			}*/
-
-			if (ShowName.getText() != null && !ShowName.getText().trim().isEmpty()) {
-				performanceService.save(p);
-			}
-			if (ShowName2.getText() != null && !ShowName2.getText().trim().isEmpty()) {
-				performanceService.save(p2);
-			}
-			if (ShowName3.getText() != null && !ShowName3.getText().trim().isEmpty()){
-				performanceService.save(p3);
-			}
-
+			Performance p = new Performance();
+			p.setShowdate(ShowDate.getText());
+			p.setShowdetails(ShowDetails.getText());
+			p.setShowname(ShowName.getText());
+			p.setShowtime(ShowTime.getText());
+			
+			p.setContract(contract);
+			performanceService.save(p);
+			
+		
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Contract");
 			alert.setHeaderText(null);
@@ -1216,12 +1036,6 @@ public class ContractController implements Initializable {
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
-				try {
-					receipt(event);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			} else {
 				// ... user chose CANCEL or closed the dialog
 			}

@@ -52,9 +52,11 @@
               <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Service">
+            <Menu mnemonicParsing="false" text="Utility">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+                <MenuItem mnemonicParsing="false" onAction="#service" text="Service" />
+                  <MenuItem mnemonicParsing="false" onAction="#venue" text="Venue" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
@@ -224,8 +226,16 @@
                         <Font size="15.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="100.0" />
+                        <Insets left="15.0" />
                      </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#Slip" style="-fx-background-color: #00e600;" text="Slip" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                   </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#report" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: black;" styleClass="btnGreen" text="Report" textFill="WHITE">
                      <effect>
@@ -303,9 +313,6 @@
                   <TableColumn fx:id="colClient" maxWidth="4000.0" prefWidth="75.0" text="Client" />
                   <TableColumn fx:id="ColContractid" maxWidth="4000.0" prefWidth="75.0" text="ContractID" />
                   <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="75.0" text="Booking Date" />
-                  <TableColumn fx:id="colPact" maxWidth="4000.0" prefWidth="75.0" text="Pact" />
-                  <TableColumn fx:id="colReceipt" maxWidth="4000.0" prefWidth="75.0" text="Receipts" />
-                  <TableColumn fx:id="colInvoice" maxWidth="4000.0" prefWidth="75.0" text="Invoice" />
                   <TableColumn fx:id="colRemaining" maxWidth="4000.0" prefWidth="111.0" text="Remaining" />
                   <TableColumn fx:id="colNOC" maxWidth="4000.0" prefWidth="38.0" text="NOC" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />
