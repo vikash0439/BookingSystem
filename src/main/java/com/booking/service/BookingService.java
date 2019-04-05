@@ -1,6 +1,8 @@
 package com.booking.service;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -38,19 +40,26 @@ private final BookingRepository bookingRepository;
 		return bookingRepository.findBookingDates();
 	}
 	
-	public void deleteById(Booking booking) {
-//		bookingRepository.delete(booking);
-		Long bookingid = booking.getBookingid();	
-		System.out.println("Booking deleted from BookingService class: " +bookingid);
-//		int scost = Integer.parseInt(booking.getServicecost());
-//		int pact = Integer.parseInt(booking.getContract().getPact());
-		
-		bookingRepository.deleteByServiceid(bookingid);	
+	public void updateBookingById(Booking booking) {
+
+//		Long bookingid = booking.getBookingid();	
+//		System.out.println("Booking deleted from BookingService class: " +bookingid);	
+//		bookingRepository.deleteByServiceid(serviceid);
+		 Date d = new Date();
+		 
+		booking.setBooked("Cancelled");
+		booking.setDateofcancel(d.toString());
+		bookingRepository.save(booking);
 	}
 	
 	public String findDistinctSlot(String date) {			
 		System.out.println("Slot from Booking table db : "+bookingRepository.findByBookingdates(date));
 		return bookingRepository.findByBookingdates(date);
+	}
+
+	public List<String> getAllService(String item) {
+		// TODO Auto-generated method stub
+		return bookingRepository.findAllServices(item);
 	}
 
 }

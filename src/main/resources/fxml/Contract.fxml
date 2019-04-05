@@ -225,12 +225,16 @@
                <children>
                   <TableView fx:id="services" prefHeight="500.0" prefWidth="579.0">
                     <columns>
-                      <TableColumn fx:id="colBookingdate" prefWidth="129.0" text="Date" />
-                        <TableColumn fx:id="colServicename" prefWidth="103.0" text="Service" />
-                        <TableColumn fx:id="colVenuename" prefWidth="126.0" text="Venue" />
-                      <TableColumn fx:id="colSlotname" prefWidth="93.0" text="Slot" />
-                        <TableColumn fx:id="colPrice" prefWidth="127.0" text="Price" />
+                      <TableColumn fx:id="colBookingdate" prefWidth="81.0" text="Date" />
+                        <TableColumn fx:id="colServicename" prefWidth="119.0" text="Service" />
+                        <TableColumn fx:id="colVenuename" prefWidth="101.0" text="Venue" />
+                      <TableColumn fx:id="colSlotname" prefWidth="103.0" text="Slot" />
+                        <TableColumn fx:id="colPrice" prefWidth="97.0" text="Price" />
+                        <TableColumn fx:id="colDelete" prefWidth="77.0" text="Delete" />
                     </columns>
+                     <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy> 
                   </TableView>
                </children></HBox>
             <VBox fx:id="serviceVBox" prefHeight="195.0" prefWidth="678.0" style="-fx-background-color: #f2f2f2;">
@@ -468,7 +472,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label text="Both Slot Available">
+                  <Label text="No Bookings">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -485,7 +489,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label text="Only Morning left">
+                  <Label text="Single">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -502,7 +506,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label text="Only Evening left">
+                  <Label text="Double">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -522,7 +526,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label text="Both Slots Booked">
+                  <Label text="More than two">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

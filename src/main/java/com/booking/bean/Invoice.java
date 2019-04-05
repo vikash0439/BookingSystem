@@ -39,7 +39,7 @@ public class Invoice{
 		this.invoiceid = invoiceid;
 	}
 
-	public String getInvoicedate() {
+	public String getInvoicedate(){
 		return invoicedate;
 	}
 
@@ -64,12 +64,9 @@ public class Invoice{
 	}
 
 	@Override
-	public String toString() {
+	public String toString(){
 		return "Invoice [invoiceid=" + invoiceid + ", invoicedate=" + invoicedate + ", cancelled=" + cancelled
 				+ ", contract=" + contract + "]";
 	}
-
-	
-	
 	
 }

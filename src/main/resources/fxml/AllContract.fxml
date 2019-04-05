@@ -37,7 +37,6 @@
                   <MenuItem mnemonicParsing="false" text="Dashboard" />
                   <MenuItem mnemonicParsing="false" onAction="#allcontract" text="Contracts" />
                   <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
-                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
                   <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
                </items>
             </Menu>
@@ -347,21 +346,24 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </Text>
-                  <TableView fx:id="bookingtable" prefHeight="257.0" prefWidth="984.0">
+                  <TableView fx:id="bookingtable" tableMenuButtonVisible="true">
                     <columns>
                         <TableColumn fx:id="colBookingid" maxWidth="4000.0" prefWidth="75.0" text="BookingID" />
-                        <TableColumn fx:id="colBookingdate" maxWidth="4000.0" prefWidth="75.0" text="Boookingdate" />
+                        <TableColumn fx:id="colBookingdate" maxWidth="4000.0" prefWidth="131.0" text="Boookingdate" />
                         <TableColumn fx:id="colServicename" maxWidth="4000.0" prefWidth="148.0" text="Service" />
                         <TableColumn fx:id="colVenuename" maxWidth="4000.0" prefWidth="131.0" text="Venue" />
                         <TableColumn fx:id="colSlotname" maxWidth="4000.0" prefWidth="94.0" text="Slot" />
                         <TableColumn fx:id="colPrice" maxWidth="4000.0" prefWidth="110.0" text="Cost" />
-                        <TableColumn fx:id="colBooked" prefWidth="75.0" text="Active" />
-                        <TableColumn fx:id="colDoc" prefWidth="75.0" text="Date of Cancel" />
+                        <TableColumn fx:id="colBooked" maxWidth="4000.0" prefWidth="131.0" text="Active" />
+                        <TableColumn fx:id="colDoc" maxWidth="4000.0" prefWidth="131.0" text="Date of Cancel" />
                         <TableColumn fx:id="colDelete" maxWidth="4000.0" prefWidth="48.0" text="Action" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
+                      <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy> 
                   </TableView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add More Booking services:-">
                      <VBox.margin>
@@ -405,6 +407,9 @@
                      <VBox.margin>
                         <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
+                      <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy> 
                   </TableView>
                   <HBox prefHeight="70.0" prefWidth="984.0">
                      <children>

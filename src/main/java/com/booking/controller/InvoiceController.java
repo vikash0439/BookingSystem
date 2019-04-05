@@ -345,8 +345,7 @@ public class InvoiceController implements Initializable {
 				// TODO Auto-generated catch block
 				System.out.println("JR Exception");
 				e.printStackTrace();
-			}
-			
+			}			
 			
 			/* Duplicate report invoice code */
 			try {

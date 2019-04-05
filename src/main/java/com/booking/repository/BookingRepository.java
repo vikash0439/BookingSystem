@@ -1,5 +1,6 @@
 package com.booking.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,7 +28,7 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 	@Query(value = "select * from booking Order by contractid Desc;", nativeQuery = true)
 	List<Booking> findAllByOrder();
 	
-	@Query(value = "select slot from booking WHERE servicedate = ?1 ;", nativeQuery = true)
+	@Query(value = "select slot from booking WHERE bookingdates = ?1 ;", nativeQuery = true)
 	String findByBookingdates(String date);
 	
 //	@Query(value = "delete from booking b WHERE b.serviceid = ?1 ;", nativeQuery = true)
@@ -36,5 +37,8 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 	@Transactional
 	@Modifying @Query(value = "delete from booking WHERE bookingid = ?1 ;", nativeQuery = true)
 	public void deleteByServiceid(Long serviceid);
+
+	@Query(value = "select service from booking where bookingdates = ?1 ;", nativeQuery = true)
+	List<String> findAllServices(String item);
 	   
 }

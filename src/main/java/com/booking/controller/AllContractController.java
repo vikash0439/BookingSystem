@@ -158,6 +158,9 @@ public class AllContractController implements Initializable {
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
+	@Autowired private ContractController contractController;
+	
+	
 
 	private ObservableList cIDList = FXCollections.observableArrayList();
 	private ObservableList contractbookingList = FXCollections.observableArrayList();
@@ -272,7 +275,9 @@ public class AllContractController implements Initializable {
 
 		String ser = ServiceName.getValue();
 		Service service = serviceService.getDetail(ser);
-		ServiceCost.setText(service.getPrice());
+		Price.setText(service.getPrice());
+		SlotName.setText(service.getSlot());
+		VenueName.setText(service.getVenue());
 
 		Long bp = Long.parseLong(baseprice.getText()) + Long.parseLong(ServiceCost.getText());
 		baseprice.setText(bp.toString());
@@ -282,19 +287,20 @@ public class AllContractController implements Initializable {
 		Double t = bp + ta;
 		taxamount.setText(String.valueOf(ta));
 		pact.setText(String.valueOf(t));
-		
-		
+				
 		contractService.updateCost(Long.parseLong((String) ContractID.getEditor().getText()), bp.toString(), String.valueOf(ta), String.valueOf(t));
 		
 	}
 	
-	public void addMore() {
+	public void addMore(ActionEvent event) {
 		System.out.println("Add more button ");
 		
 		Booking b = new Booking();
 		b.setBookingdates(convertDate(ServiceDate.getValue()));
 		b.setService(ServiceName.getValue());
-		b.setSlot(Slot.getSelectionModel().getSelectedItem());
+		b.setSlot(SlotName.getText());
+		b.setVenue(VenueName.getText());
+		b.setPrice(Price.getText());
 //		b.setDateofcancel(dateofcancel);
 		Contract contract = contractService.find(Long.parseLong((String) ContractID.getEditor().getText()));
 		b.setContract(contract);
@@ -308,10 +314,9 @@ public class AllContractController implements Initializable {
 		
 		ServiceDate.getEditor().clear();
 		ServiceName.getSelectionModel().clearSelection();
-		StartTime.clear();
-		EndTime.clear();
-		Slot.getSelectionModel().clearSelection();
-		ServiceCost.clear();
+		Price.clear();
+		VenueName.clear();
+		SlotName.clear();
 		
 		contractbookingList.clear();
 		contractbookingList.addAll(contract.getBookings());
@@ -382,7 +387,13 @@ public class AllContractController implements Initializable {
 							Booking booking = getTableView().getItems().get(getIndex());
 //							updateBooking(booking);
 							System.out.println(booking);
-							deletebooking(booking);					
+							updateBooking(booking);	
+//							Booking b = bookingtable.getSelectionModel().getSelectedItem();
+//							bookingtable.getItems().remove(b);
+//							System.out.println("Deleted "+b.toString());
+							
+							bookingtable.refresh();
+							
 						});
 						
 						btnEdit.setStyle("-fx-background-color: transparent;");
@@ -398,8 +409,8 @@ public class AllContractController implements Initializable {
 					}
 				}
 
-				private void deletebooking(Booking booking) {
-					bookingService.deleteById(booking);
+				private void updateBooking(Booking booking) {
+					bookingService.updateBookingById(booking);					
 					System.out.println("Deleted");
 					bookingtable.refresh();
 					
@@ -423,6 +434,8 @@ public class AllContractController implements Initializable {
 		serviceList.clear();
 		serviceList.addAll(serviceService.findName());
 		ServiceName.setItems(serviceList);
+		
+		ServiceDate.setDayCellFactory(contractController.dateColorFactory);
 
 	}
 	

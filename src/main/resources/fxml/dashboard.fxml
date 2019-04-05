@@ -36,7 +36,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#dashboard" text="Dashboard" />
                   <MenuItem mnemonicParsing="false" onAction="#allcontract" text="Contracts" />
                   <MenuItem mnemonicParsing="false" onAction="#contract" text="New Contract" />
-                  <MenuItem mnemonicParsing="false" onAction="#reserve" text="Reserved Dates" />
               <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
             </items>
           </Menu>
@@ -313,7 +312,7 @@
                   <TableColumn fx:id="colClient" maxWidth="4000.0" prefWidth="75.0" text="Client" />
                   <TableColumn fx:id="ColContractid" maxWidth="4000.0" prefWidth="75.0" text="ContractID" />
                   <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="75.0" text="Booking Date" />
-                  <TableColumn fx:id="colRemaining" maxWidth="4000.0" prefWidth="111.0" text="Remaining" />
+                  <TableColumn fx:id="colRemaining" maxWidth="4000.0" prefWidth="100.0" text="Remaining" />
                   <TableColumn fx:id="colNOC" maxWidth="4000.0" prefWidth="38.0" text="NOC" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />
               </columns>

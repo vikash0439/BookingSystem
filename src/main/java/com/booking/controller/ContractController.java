@@ -43,6 +43,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -54,12 +55,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -82,8 +86,7 @@ public class ContractController implements Initializable {
 	@FXML
 	private HBox serviceHBox5;
 	@FXML
-	private HBox serviceHBox6;
-	
+	private HBox serviceHBox6;	
 	@FXML
 	private VBox serviceVBox;
 	@FXML
@@ -215,10 +218,10 @@ public class ContractController implements Initializable {
 	private TableColumn<Booking, String> colSlotname;
 	@FXML
 	private TableColumn<Booking, String> colVenuename;
+	@FXML private TableColumn<Booking, Boolean> colDelete;
 	
 	@FXML Button OkNextDay;
 	
-
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
@@ -238,6 +241,12 @@ public class ContractController implements Initializable {
 	private PerformanceService performanceService;
 	@Autowired
 	private RepService repService;
+	
+	/* Variables */
+	final String ONE_BOOKING = "-fx-background-color: #FFFF00;";
+	final String TWO_BOOKING = "-fx-background-color: #008000;";
+	final String MORE_BOOKING = "-fx-background-color: #FF0000;";
+	final int COUNT_DATES= 0; 
 
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
@@ -744,9 +753,6 @@ public class ContractController implements Initializable {
 			}
 		}
 
-
-		
-
 		if (ServiceName.getValue() != null && ServiceName.getValue() != "") {
 			data.add(b);
 		}
@@ -769,8 +775,9 @@ public class ContractController implements Initializable {
 		colBookingdate.setCellValueFactory(new PropertyValueFactory<>("bookingdates"));
 		colSlotname.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		colServicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+		colServicename.setCellValueFactory(new PropertyValueFactory<>("service"));
 		colVenuename.setCellValueFactory(new PropertyValueFactory<>("venue"));
+		colDelete.setCellFactory(delete);
 		
 		services.setEditable(true);
 		services.setItems(data);
@@ -885,8 +892,9 @@ public class ContractController implements Initializable {
 		colBookingdate.setCellValueFactory(new PropertyValueFactory<>("bookingdates"));
 		colSlotname.setCellValueFactory(new PropertyValueFactory<>("slot"));
 		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		colServicename.setCellValueFactory(new PropertyValueFactory<>("servicename"));
+		colServicename.setCellValueFactory(new PropertyValueFactory<>("service"));
 		colVenuename.setCellValueFactory(new PropertyValueFactory<>("venue"));
+		colDelete.setCellFactory(delete);
 		
 		services.setEditable(true);
 		services.setItems(data);
@@ -950,57 +958,114 @@ public class ContractController implements Initializable {
 		public DateCell call(final DatePicker datePicker) {
 			return new DateCell() {
 				@Override
-				public void updateItem(LocalDate item, boolean empty) {
+				public void updateItem(LocalDate item, boolean empty){
 					Integer c = null;
 					Map<LocalDate, Integer> getDatae = countDates();
 					List<LocalDate> dates = new ArrayList<LocalDate>();
+					
 					for (LocalDate date : getDatae.keySet()) {
 						dates.add(date);
 						// search for value
 						c = getDatae.get(date);
 						System.out.println("Date = " + date + ", Total = " + c);
 						super.updateItem(date, empty);
-
 					}
+					
 					if (!empty) {
 						if (dates.contains(item)) {
 
-							Integer co = getDatae.get(item);
+							int COUNT_DATES = getDatae.get(item);
+							
 							System.out.println("Item Value here: " + item);
-							System.out.println("Item = " + item + ", Total = " + co);
+							System.out.println("Item = " + item + ", Total = " + COUNT_DATES);
+							
+							SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+							SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+							
+							List<String> allservice = null;
+							try {
+								allservice = bookingService.getAllService(simpleDateFormat.format(simpleDateFormat2.parse(item.toString())));
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								
+								System.out.println("Exception in all services");
+							} 
+							System.out.println("All Services on date :"+item+ "are : "+allservice);
+							
 							/* count slot(Morning & Evening) each day */
-							if (co == 1) {
+							if (COUNT_DATES == 1) {
 								DateTimeFormatter DateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 								// SimpleDateFormat DateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-								String slot = bookingService.findDistinctSlot(item.format(DateFormat));
-								System.out.println("Item Date : " + item.format(DateFormat) + "&& Slot : " + slot);
-								if (slot.equals("Morning")) {
-									System.out.println("Condition 2");
-									setTooltip(new Tooltip("Only Evening slot left"));
-									setStyle("-fx-background-color: #008000;");
-								} else {
-									System.out.println("Condition 1");
-									setTooltip(new Tooltip("Only Morning slot left"));
-									setStyle("-fx-background-color: #FFFF00;");
-								}
+								
+								System.out.println("Item Date : " + item.format(DateFormat));
+								System.out.println("Condition 1");
+								setTooltip(new Tooltip(allservice.toString()));
+								setStyle(ONE_BOOKING);
 
-							} else if (co >= 1) {
+							}else if (COUNT_DATES == 2) {
+								System.out.println("Condition 2");
+								setTooltip(new Tooltip(allservice.toString()));
+								setStyle(TWO_BOOKING);
+	//							setDisable(true);
+							} 
+							else if (COUNT_DATES >= 2){
 								System.out.println("Condition 3");
-								setTooltip(new Tooltip("Both slots booked"));
-								setStyle("-fx-background-color: #FF0000;");
-								setDisable(true);
+								setTooltip(new Tooltip(allservice.toString()));
+								setStyle(MORE_BOOKING);
+	//							setDisable(true);
 							} else {
-								System.out.println("Condition 5");
+								System.out.println("Condition 4");
+								setTooltip(new Tooltip("Available"));							
 							}
 						}
 					} else {
-						setTooltip(new Tooltip("Both Slots Available"));
-						System.out.println("Condition 4");
+						setTooltip(new Tooltip("No Bookings"));
+						System.out.println("Condition 5");
 					}
 				}
 			};
 		}
 	};
+	
+	Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>> delete = new Callback<TableColumn<Booking, Boolean>, TableCell<Booking, Boolean>>() {
+		@Override
+		public TableCell<Booking, Boolean> call(final TableColumn<Booking, Boolean> param) {
+			final TableCell<Booking, Boolean> cell = new TableCell<Booking, Boolean>() {
+				Image imgEdit = new Image(getClass().getResourceAsStream("/images/delete.png"));
+				final Button btnEdit = new Button();
+
+				@Override
+				public void updateItem(Boolean check, boolean empty) {
+					super.updateItem(check, empty);
+					if (empty) {
+						setGraphic(null);
+						setText(null);
+					} else {
+						btnEdit.setOnAction(e -> {
+							Booking b = services.getSelectionModel().getSelectedItem();
+							services.getItems().remove(b);
+							System.out.println("Deleted "+b.toString());
+				
+						});
+						
+						btnEdit.setStyle("-fx-background-color: transparent;");
+						ImageView iv = new ImageView();
+						iv.setImage(imgEdit);
+						iv.setPreserveRatio(true);
+						iv.setSmooth(true);
+						iv.setCache(true);
+						btnEdit.setGraphic(iv);
+						setGraphic(btnEdit);
+						setAlignment(Pos.CENTER);
+						setText(null);
+					}
+				}
+			};
+			return cell;
+		}
+	};
+
 
 	@FXML
 	private void saveContract(ActionEvent event) {
@@ -1055,7 +1120,7 @@ public class ContractController implements Initializable {
 				simpleDateFormat2.format(simpleDateFormat.parse(dateString));
 				dateList.add(LocalDate.parse(simpleDateFormat2.format(simpleDateFormat.parse(dateString))));
 
-			} catch (ParseException e) {
+			}catch (ParseException e) {
 				System.out.println("Date Exception");
 				e.printStackTrace();
 			}
