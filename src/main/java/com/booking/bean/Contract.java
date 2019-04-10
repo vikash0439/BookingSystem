@@ -24,6 +24,7 @@ public class Contract{
 	private long contractid;
 	private String contractdate;
 	private String baseprice;
+	private String repname;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Booking.class, mappedBy = "contract", cascade=CascadeType.ALL)
@@ -73,6 +74,12 @@ public class Contract{
 	}
 	public void setPerformances(List<Performance> performances) {
 		this.performances = performances;
+	}
+	public String getRepname() {
+		return repname;
+	}
+	public void setRepname(String repname) {
+		this.repname = repname;
 	}
 	
 	

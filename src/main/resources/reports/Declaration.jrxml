@@ -7,9 +7,10 @@
 	</queryString>
 	<field name="contractid" class="java.lang.Long"/>
 	<field name="bookingdate" class="java.lang.String"/>
-	<field name="servicedate" class="java.lang.String"/>
-	<field name="servicename" class="java.lang.String"/>
-	<field name="servicetime" class="java.lang.String"/>
+	<field name="customername" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="gstin" class="java.lang.String"/>
+	<field name="repname" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -71,23 +72,9 @@ Telephone: 011-23714307
 		<band height="451" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<staticText>
-				<reportElement x="12" y="70" width="532" height="381" uuid="b1acc2c4-2db4-417f-bbfd-bd3c7a5eb520"/>
-				<text><![CDATA[Performing Group: ________________________________________________________
-Address: _______________________________________________________________
-_______________________________________________________________________
-GSTIN: ______________________________
-Contract ID: __________________________
-
-Dear Mr/Mrs ________________,
-
-This is to confirm your booking at Shri Ram Centre Auditorium as per below mentioned date(s) and timing(s) -
-
-DATE	TIMING
-	
-	
-
+				<reportElement x="12" y="190" width="532" height="250" uuid="b1acc2c4-2db4-417f-bbfd-bd3c7a5eb520"/>
+				<text><![CDATA[This is to confirm your booking at Shri Ram Centre Auditorium as per above mentioned date(s) and services(s) -	
 Kindly submit the necessary clearances (NOCs) for your performance and clear your balance dues, if any, well ahead of your show date(s). 
-
 We wish you all the very best. 
 
 Thanking you.
@@ -102,23 +89,46 @@ Anuj Antony
 Manager
 ]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="12" y="8" width="88" height="13" uuid="3c7c30f1-5776-45d0-865a-d0887e97825d"/>
+				<text><![CDATA[Performing Group: ]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="10" y="10" width="100" height="30" uuid="cc599920-212f-44e0-8e61-7b77d082581c"/>
-				<textFieldExpression><![CDATA[$F{servicedate}]]></textFieldExpression>
+				<reportElement x="100" y="8" width="430" height="13" uuid="0db29b46-9047-4445-9e54-ce83aa98515d"/>
+				<textFieldExpression><![CDATA[$F{customername}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="120" y="10" width="100" height="30" uuid="c282b9b3-e066-4e9b-af76-cfdf05555be6"/>
-				<textFieldExpression><![CDATA[$F{servicename}]]></textFieldExpression>
+				<reportElement x="81" y="22" width="449" height="38" uuid="651fcc1d-1b0d-4fba-84fd-3d3b4d2bcad6"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="12" y="22" width="68" height="20" uuid="cbd07d20-d7fe-40b4-afb9-65b6f18f50ed"/>
+				<text><![CDATA[Address:]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="230" y="10" width="100" height="30" uuid="e4891d23-182f-498a-9ac9-94743bf0c2ad"/>
-				<textFieldExpression><![CDATA[$F{servicetime}]]></textFieldExpression>
+				<reportElement x="81" y="60" width="449" height="20" uuid="8852cef0-b133-4c75-8604-f91d3c01f363"/>
+				<textFieldExpression><![CDATA[$F{gstin}]]></textFieldExpression>
 			</textField>
-			<subreport>
-				<reportElement x="350" y="10" width="200" height="49" uuid="5ca629b8-b712-4e6b-9d91-ad0bde2659a5"/>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["Declaration2.jasper"]]></subreportExpression>
-			</subreport>
+			<staticText>
+				<reportElement x="12" y="60" width="68" height="20" uuid="407e0654-a30c-418a-a38f-3a1c96b28621"/>
+				<text><![CDATA[GSTIN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="80" width="449" height="70" uuid="0a1fef5f-a187-4fbc-853d-571748e10205"/>
+				<textFieldExpression><![CDATA[$F{bookingdate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="80" width="68" height="20" uuid="59b28c15-2fc5-4a7b-b767-1a7e86726631"/>
+				<text><![CDATA[Bookings: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="160" width="201" height="20" uuid="4c054435-8819-4d12-a878-0fcb86752e0f"/>
+				<textFieldExpression><![CDATA[$F{repname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="160" width="70" height="20" uuid="9733877d-d271-4980-96f0-83c1b3e159f9"/>
+				<text><![CDATA[Dear Mr/Mrs ]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>

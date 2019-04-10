@@ -15,6 +15,7 @@ import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.CustomerService;
 import com.booking.service.RepService;
+import com.booking.service.StateCodeService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -100,7 +101,6 @@ public class CustomerController implements Initializable {
 	private TableColumn<Customer, String> colcategory;
 	@FXML
 	private TableColumn<Customer, String> colgstno;
-
 	@FXML
 	private TableColumn<Customer, String> colremark;
 	@FXML
@@ -120,6 +120,7 @@ public class CustomerController implements Initializable {
 	private CustomerService customerService;
 	@Autowired
 	private RepService repService;
+	@Autowired private StateCodeService statecodeService;
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
@@ -216,9 +217,8 @@ public class CustomerController implements Initializable {
 	}
 	
 	public void getStateCode() {
-		String state = State.getSelectionModel().getSelectedItem();
-		
-		statecode.setText(null);
+		String state = State.getSelectionModel().getSelectedItem();		
+		statecode.setText(state);
 		
 	}
 	@FXML
@@ -340,6 +340,7 @@ public class CustomerController implements Initializable {
 		clientList.setItems(customerNameList);
 		
 		stateCodeList.clear();
+		stateCodeList.addAll(statecodeService.StateName());
 		State.setItems(stateCodeList);
 	}
 

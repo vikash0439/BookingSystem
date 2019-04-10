@@ -147,169 +147,7 @@ public class DashboardController implements Initializable {
 	@FXML
 	private void exit(ActionEvent event) {
 		Platform.exit();
-	}
-
-	@FXML
-	private void report(ActionEvent event) throws IOException {
-
-		try {
-
-			System.out.println("From Contract report try block");
-			JasperReport jasperReport;
-			try {
-				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jrxml"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jasper"));
-			}
-
-			// Map to put in JRDatasource
-			Map<String, Object> parameters = new HashMap<String, Object>();
-
-			//Hashmap to add each value 
-			HashMap<String, Object> cont = new HashMap<String, Object>();
-			cont.put("contractid", Long.valueOf(ContractID.getText()));
-
-			// Adding each value into list to send through map to JRDatasource
-			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
-			list.add(cont);
-
-			JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
-			parameters.put("jRDataSource", list);
-
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
-			File outDir = new File("Reports/Contract");
-			outDir.mkdirs();
-
-			DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-			Date date = new java.util.Date();
-			System.out.println(date);
-			String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
-
-			JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-
-			Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-			alert.setTitle("Report");
-			alert.setHeaderText("Contract");
-			alert.setContentText("Contract report downloaded successfully");
-			alert.showAndWait();
-			
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			System.out.println("JR Exception");
-			e.printStackTrace();
-		}
-
-	}
-	
-	
-	@FXML
-	private void Slip(ActionEvent event) {
-		
-		try {
-
-			System.out.println("From Contract Declaration slip try block");
-			JasperReport jasperReport;
-			try {
-				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration.jrxml"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration.jasper"));
-			}
-
-			Map<String, Object> parameters = new HashMap<String, Object>(); // Parameters for report .
-			
-			HashMap<String, Object> cont = new HashMap<String, Object>();
-			cont.put("contractid", Long.valueOf(ContractID.getText()));
-			
-			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
-			list.add(cont);
-			
-			JasperReport SubJasperReport;
-			try {
-				SubJasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration2.jrxml"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				SubJasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration2.jasper"));
-			}
-
-			// Map to put in JRDatasource
-			Map<String, Object> p = new HashMap<String, Object>();
-			
-
-			// Adding each value into list to send through map to JRDatasource
-			
-			for (Booking s : bookingService.getBooking()) {
-
-				LOG.info("In Map Loop ");
-
-				Map<String, Object> m2 = new HashMap<String, Object>();
-				
-				
-				list.add(m2);
-
-				LOG.info("After Map Loop ");
-			}
-			
-			
-			JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
-			parameters.put("jRDataSource", parameters);
-			
-
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
-			File outDir = new File("Reports/Slip");
-			outDir.mkdirs();
-
-			DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-			Date date = new java.util.Date();
-			System.out.println(date);
-			String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
-
-			JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-
-			Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-			alert.setTitle("Report");
-			alert.setHeaderText("Declaration Slip");
-			alert.setContentText("Declaration Slip downloaded successfully");
-			alert.showAndWait();
-			
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			System.out.println("JR Exception");
-			e.printStackTrace();
-		}
-		
-	}
-	@FXML
-	private void CancelCharges(ActionEvent event) {
-		cancelAmount.setVisible(true);
-		CancelButton.setVisible(true);
-		System.out.println(cancelAmount.getText());
-	}
-
-	@FXML
-	private void cancel(ActionEvent event) throws IOException {
-		System.out.println("Cancel");
-
-		Alert alert = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation!");
-		alert.setHeaderText("All booking in this contract will be cancelled.");
-		alert.setContentText("Are you sure you want to cancel the contract?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			String cid = ContractID.getText();
-			contractService.updateStatus(Long.parseLong((String) cid));
-
-		} else {
-			// ... user chose CANCEL or closed the dialog
-		}
-		dashboard(event);
-
-	}
+	}	
 
 	@FXML
 	private void dashboard(ActionEvent event) throws IOException {
@@ -419,13 +257,10 @@ public class DashboardController implements Initializable {
 			public ObservableValue<String> call(CellDataFeatures<Booking, String> param) {
 				return new SimpleStringProperty(param.getValue().getContract().getContractdate());
 			}
-		});
-		
-		
+		});		
 		colRemaining.setId(null);
 		
 		colEdit.setCellFactory(cellFactory);
-
 		bookingList.clear();
 		bookingList.addAll(bookingService.getBooking());
 		bookingtable.setItems(bookingList);
@@ -437,9 +272,15 @@ public class DashboardController implements Initializable {
 					if (newValue == null || newValue.isEmpty()) {
 						return true;
 					}
-					if (Long.toString(booking.getContract().getContractid()).contains(newValue)) {
+					if (Long.toString(booking.getContract().getContractid()).contains(newValue)) {  //search using contract id
 						return true;
-					} else if (booking.getContract().getCustomer().getCustomername().toLowerCase().contains(newValue)) {
+					} else if (booking.getContract().getCustomer().getCustomername().toLowerCase().contains(newValue)) { //search using customer
+						return true;
+					} else if (booking.getService().toLowerCase().contains(newValue)) { //search using service
+						return true;
+					}else if (booking.getSlot().toLowerCase().contains(newValue)) { //search using slot
+						return true;
+					}else if (booking.getBookingdates().toLowerCase().contains(newValue)) { //search using booking dates
 						return true;
 					}
 					return false;
@@ -541,5 +382,142 @@ public class DashboardController implements Initializable {
 			return cell;
 		}
 	};
+	
+	@FXML
+	private void report(ActionEvent event) throws IOException {
+
+		try {
+
+			System.out.println("From Contract report try block");
+			JasperReport jasperReport;
+			try {
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jrxml"));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Contract.jasper"));
+			}
+
+			// Map to put in JRDatasource
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			//Hashmap to add each value 
+			HashMap<String, Object> cont = new HashMap<String, Object>();
+			cont.put("contractid", Long.valueOf(ContractID.getText()));
+
+			// Adding each value into list to send through map to JRDatasource
+			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
+			list.add(cont);
+
+			JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
+			parameters.put("jRDataSource", list);
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+			File outDir = new File("Reports/Contract");
+			outDir.mkdirs();
+
+			DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+			Date date = new java.util.Date();
+			System.out.println(date);
+			String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+			JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+			Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+			alert.setTitle("Report");
+			alert.setHeaderText("Contract");
+			alert.setContentText("Contract report downloaded successfully");
+			alert.showAndWait();
+			
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			System.out.println("JR Exception");
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void Slip(ActionEvent event) {
+		
+		try {
+
+			System.out.println("From Contract Declaration slip try block");
+			JasperReport jasperReport;
+			try {
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration.jrxml"));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/Declaration.jasper"));
+			}
+
+			Map<String, Object> parameters = new HashMap<String, Object>(); // Parameters for report .
+			
+			HashMap<String, Object> cont = new HashMap<String, Object>();
+			cont.put("contractid", Long.valueOf(ContractID.getText()));
+			cont.put("customername", contractService.getContractDetails(Long.valueOf(ContractID.getText())).getCustomer().getCustomername());
+			cont.put("address", contractService.getContractDetails(Long.valueOf(ContractID.getText())).getCustomer().getAddress());
+			cont.put("gstin", contractService.getContractDetails(Long.valueOf(ContractID.getText())).getCustomer().getGstno());
+			cont.put("bookingdate", contractService.getContractDetails(Long.valueOf(ContractID.getText())).getBookings().toString());
+			cont.put("repname", contractService.getContractDetails(Long.valueOf(ContractID.getText())).getRepname());
+
+			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
+			list.add(cont);
+
+			JRDataSource jRDataSource = new JRBeanCollectionDataSource(list);
+			parameters.put("jRDataSource", parameters);
+			
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jRDataSource);
+			File outDir = new File("Reports/Slip");
+			outDir.mkdirs();
+
+			DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+			Date date = new java.util.Date();
+			System.out.println(date);
+			String path = outDir.toString().concat("/").concat(dateFormat.format(date)).concat(".pdf");
+
+			JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+			Alert alert = new Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+			alert.setTitle("Report");
+			alert.setHeaderText("Declaration Slip");
+			alert.setContentText("Declaration Slip downloaded successfully");
+			alert.showAndWait();
+			
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			System.out.println("JR Exception");
+			e.printStackTrace();
+		}
+		
+	}
+	@FXML
+	private void CancelCharges(ActionEvent event) {
+		cancelAmount.setVisible(true);
+		CancelButton.setVisible(true);
+		System.out.println(cancelAmount.getText());
+	}
+
+	@FXML
+	private void cancel(ActionEvent event) throws IOException {
+		System.out.println("Cancel");
+
+		Alert alert = new Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation!");
+		alert.setHeaderText("All booking in this contract will be cancelled.");
+		alert.setContentText("Are you sure you want to cancel the contract?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			String cid = ContractID.getText();
+			contractService.updateStatus(Long.parseLong((String) cid));
+
+		} else {
+			// ... user chose CANCEL or closed the dialog
+		}
+		dashboard(event);
+
+	}
 
 }

@@ -3,16 +3,14 @@ package com.booking.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
-import com.booking.bean.Tax;
 import com.booking.config.StageManager;
-import com.booking.service.TaxService;
+import com.booking.service.PurposeService;
+import com.booking.service.SlotService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -36,37 +34,23 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
 @Controller
-public class TaxController implements Initializable{
+public class PurposeController implements Initializable{
 	
-	@FXML private Label taxid;
-	@FXML private TextField saccode;
-	@FXML private TextField description;
-	@FXML private TextField igst;
-	@FXML private TextField cgst;
-	@FXML private TextField sgst;
-	
+	@FXML 
+	private Label PurposeID;
 	@FXML
-	private TableView<Tax> taxtable;
+	private TextField Purpose; 	
+	@FXML
+	private TableView<com.booking.bean.Purpose> purposetable;
 
 	@FXML
-	private TableColumn<Tax, Long> colTaxID;
+	private TableColumn<com.booking.bean.Purpose, Long> colPurposeID;
 	
 	@FXML
-	private TableColumn<Tax, String> colSaccode;
+	private TableColumn<com.booking.bean.Purpose, String> colPurpose;
 	
 	@FXML
-	private TableColumn<Tax, String> colDescription;
-	
-	@FXML
-	private TableColumn<Tax, String> colIgst;
-	
-	@FXML
-	private TableColumn<Tax, String> colCgst;
-	
-	@FXML
-	private TableColumn<Tax, String> colSgst;
-	@FXML
-	private TableColumn<Tax, Boolean> colEdit;
+	private TableColumn<com.booking.bean.Purpose, Boolean> colEdit;
 
 	@FXML
 	private Button reset;
@@ -74,9 +58,9 @@ public class TaxController implements Initializable{
 	@Autowired
 	private StageManager stageManager;
 	@Autowired 
-	private TaxService taxService;
+	private PurposeService purposeService;
 	
-    private ObservableList<Tax> taxList = FXCollections.observableArrayList();
+    private ObservableList<com.booking.bean.Purpose> purposeList = FXCollections.observableArrayList();
 	
 	/* Tax Event methods */
 
@@ -141,6 +125,7 @@ public class TaxController implements Initializable{
 	public void purpose(ActionEvent event) throws IOException {	
 		stageManager.switchScene(FxmlView.PURPOSE);		
 	}
+	
 	@FXML
 	public void statecode(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.STATECODE);
@@ -155,42 +140,31 @@ public class TaxController implements Initializable{
 	public void reports(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.REPORTS);
 	}
-	
 	@FXML
-	private void saveTax(ActionEvent event) {
-		if(emptyValidation("SAC Code", saccode.getText().isEmpty())) {
-		if (taxid.getText() == null || taxid.getText() == "") {
-			Tax tax = new Tax();
-			tax.setSaccode(saccode.getText());
-			tax.setDescription(description.getText());
-			tax.setIgst(igst.getText());
-			tax.setCgst(cgst.getText());
-			tax.setSgst(sgst.getText());
+	private void savePurpose(ActionEvent event) {
+		if (PurposeID.getText() == null || PurposeID.getText() == "") {
+			com.booking.bean.Purpose purpose = new com.booking.bean.Purpose();
+			purpose.setPurpose(Purpose.getText());
 			
-			taxService.save(tax);
+			purposeService.save(purpose);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Tax updated successfully.");
+			alert.setTitle("Purpose added.");
 			alert.setHeaderText(null);
-			alert.setContentText("Tax:  " + saccode.getText() + "  has been created.");
+			alert.setContentText("Purpose:  " + Purpose.getText() + "  has been added.");
 			alert.showAndWait();
 		} else {
-			Tax tax = taxService.find(Long.parseLong(taxid.getText()));
-			tax.setSaccode(saccode.getText());
-			tax.setDescription(description.getText());
-			tax.setIgst(igst.getText());
-			tax.setCgst(cgst.getText());
-			tax.setSgst(sgst.getText());
+			com.booking.bean.Purpose purpose = purposeService.find(Long.parseLong(PurposeID.getText()));
+			purpose.setPurpose(Purpose.getText());
 			
-			taxService.save(tax);
+			purposeService.save(purpose);
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Tax updated successfully.");
+			alert.setTitle("Purpose updated.");
 			alert.setHeaderText(null);
-			alert.setContentText("Tax:  " + saccode.getText() + "  has been updated.");
+			alert.setContentText("Slot:  " + Purpose.getText() + "  has been updated.");
 			alert.showAndWait();
 		}
-		}
-		taxtable();
+		purposetable();
 		clearFields();
 	}
 
@@ -200,32 +174,28 @@ public class TaxController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
-		taxtable();
+		purposetable();
 		clearFields();
 		
 	}
 	
-	public void taxtable() {
+	public void purposetable() {
 		/*
 		 * Set All userTable column properties
 		 */
-		colTaxID.setCellValueFactory(new PropertyValueFactory<>("taxid"));
-		colSaccode.setCellValueFactory(new PropertyValueFactory<>("saccode"));
-		colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-		colIgst.setCellValueFactory(new PropertyValueFactory<>("igst"));
-		colCgst.setCellValueFactory(new PropertyValueFactory<>("cgst"));
-		colSgst.setCellValueFactory(new PropertyValueFactory<>("sgst"));
+		colPurposeID.setCellValueFactory(new PropertyValueFactory<>("purposeid"));
+		colPurpose.setCellValueFactory(new PropertyValueFactory<>("purpose"));
 		colEdit.setCellFactory(cellFactory);
 
-		taxList.clear();
-		taxList.addAll(taxService.getTax());
-		taxtable.setItems(taxList);
+		purposeList.clear();
+		purposeList.addAll(purposeService.getPurpose());
+		purposetable.setItems(purposeList);
 	}
 
-	Callback<TableColumn<Tax, Boolean>, TableCell<Tax, Boolean>> cellFactory = new Callback<TableColumn<Tax, Boolean>, TableCell<Tax, Boolean>>() {
+	Callback<TableColumn<com.booking.bean.Purpose, Boolean>, TableCell<com.booking.bean.Purpose, Boolean>> cellFactory = new Callback<TableColumn<com.booking.bean.Purpose, Boolean>, TableCell<com.booking.bean.Purpose, Boolean>>() {
 		@Override
-		public TableCell<Tax, Boolean> call(final TableColumn<Tax, Boolean> param) {
-			final TableCell<Tax, Boolean> cell = new TableCell<Tax, Boolean>() {
+		public TableCell<com.booking.bean.Purpose, Boolean> call(final TableColumn<com.booking.bean.Purpose, Boolean> param) {
+			final TableCell<com.booking.bean.Purpose, Boolean> cell = new TableCell<com.booking.bean.Purpose, Boolean>() {
 				Image imgEdit = new Image(getClass().getResourceAsStream("/images/edit.png"));
 				final Button btnEdit = new Button();
 
@@ -237,8 +207,8 @@ public class TaxController implements Initializable{
 						setText(null);
 					} else {
 						btnEdit.setOnAction(e -> {
-							Tax tax = getTableView().getItems().get(getIndex());
-							updateTax(tax);
+							com.booking.bean.Purpose purpose = getTableView().getItems().get(getIndex());
+							updateSlot(purpose);
 						});
 
 						btnEdit.setStyle("-fx-background-color: transparent;");
@@ -255,13 +225,10 @@ public class TaxController implements Initializable{
 					}
 				}
 
-				private void updateTax(Tax tax) {
-					taxid.setText(Long.toString(tax.getTaxid()));
-					saccode.setText(tax.getSaccode());
-					description.setText(description.getText());
-					igst.setText(tax.getIgst());
-					sgst.setText(tax.getSgst());
-					cgst.setText(tax.getSgst());
+				private void updateSlot(com.booking.bean.Purpose purpose) {
+					PurposeID.setText(Long.toString(purpose.getPurposeid()));
+					Purpose.setText(purpose.getPurpose());
+				
 				}
 			};
 			return cell;
@@ -269,56 +236,10 @@ public class TaxController implements Initializable{
 	};
 	
 	private void clearFields() {
-		taxid.setText(null);
-		saccode.clear();
-		description.clear();
-		igst.clear();
-		cgst.clear();
-		sgst.clear();
+		PurposeID.setText(null);
+		Purpose.clear();
+		
 
-	}
-	
-	/*
-	 * Validations
-	 */
-	private boolean validate(String field, String value, String pattern) {
-		if (!value.isEmpty()) {
-			Pattern p = Pattern.compile(pattern);
-			Matcher m = p.matcher(value);
-			if (m.find() && m.group().equals(value)) {
-				return true;
-			} else {
-				validationAlert(field, false);
-				return false;
-			}
-		} else {
-			validationAlert(field, true);
-			return false;
-		}
-	}
-
-	private boolean emptyValidation(String field, boolean empty) {
-		if (!empty) {
-			return true;
-		} else {
-			validationAlert(field, true);
-			return false;
-		}
-	}
-
-	private void validationAlert(String field, boolean empty) {
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Validation Error");
-		alert.setHeaderText(null);
-		if (field.equals("Client"))
-			alert.setContentText("Please Select " + field);
-		else {
-			if (empty)
-				alert.setContentText("Please Enter " + field);
-			else
-				alert.setContentText("Please Enter Valid " + field);
-		}
-		alert.showAndWait();
 	}
 
 }

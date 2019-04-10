@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -73,7 +74,7 @@ import javafx.stage.Window;
 import javafx.util.Callback;
 
 @Controller
-public class ContractController implements Initializable {
+public class ContractController implements Initializable{
 
 	@FXML
 	private HBox serviceHBox;
@@ -119,80 +120,41 @@ public class ContractController implements Initializable {
 	private RadioButton NocNo;
 
 	/* Booking table */
-	@FXML
-	private DatePicker BookingDate;
-	@FXML
-	private TextField VenueName;
-	@FXML
-	private TextField StartTime;
-	@FXML
-	private TextField EndTime;
-	@FXML
-	private TextField SlotName;
-	@FXML
-	private TextField Price;
-	@FXML
-	private ComboBox<String> ServiceName;
-	@FXML
-	private DatePicker BookingDate2;
-	@FXML
-	private TextField StartTime2;
-	@FXML
-	private TextField EndTime2;
-	@FXML
-	private ComboBox<String> Slot2;
-	@FXML
-	private TextField Price2;
-	@FXML
-	private ComboBox<String> ServiceName2;
-	@FXML
-	private DatePicker BookingDate3;
-	@FXML
-	private TextField StartTime3;
-	@FXML
-	private TextField EndTime3;
-	@FXML
-	private ComboBox<String> Slot3;
-	@FXML
-	private TextField Price3;
-	@FXML
-	private ComboBox<String> ServiceName3;
-	@FXML
-	private DatePicker BookingDate4;
-	@FXML
-	private TextField StartTime4;
-	@FXML
-	private TextField EndTime4;
-	@FXML
-	private ComboBox<String> Slot4;
-	@FXML
-	private TextField Price4;
-	@FXML
-	private ComboBox<String> ServiceName4;
-	@FXML
-	private DatePicker BookingDate5;
-	@FXML
-	private TextField StartTime5;
-	@FXML
-	private TextField EndTime5;
-	@FXML
-	private ComboBox<String> Slot5;
-	@FXML
-	private TextField Price5;
-	@FXML
-	private ComboBox<String> ServiceName5;
-	@FXML
-	private DatePicker BookingDate6;
-	@FXML
-	private TextField StartTime6;
-	@FXML
-	private TextField EndTime6;
-	@FXML
-	private ComboBox<String> Slot6;
-	@FXML
-	private TextField Price6;
-	@FXML
-	private ComboBox<String> ServiceName6;
+	@FXML private DatePicker BookingDate;
+	@FXML private TextField VenueName;
+	@FXML private TextField SlotName;
+	@FXML private TextField Price;
+	@FXML private ComboBox<String> ServiceName;
+
+	@FXML private DatePicker BookingDate2;
+	@FXML private TextField VenueName2;
+	@FXML private TextField SlotName2;
+	@FXML private TextField Price2;
+	@FXML private ComboBox<String> ServiceName2;
+	
+	@FXML private DatePicker BookingDate3;
+	@FXML private TextField VenueName3;
+	@FXML private TextField SlotName3;
+	@FXML private TextField Price3;
+	@FXML private ComboBox<String> ServiceName3;
+	
+	@FXML private DatePicker BookingDate4;
+	@FXML private TextField VenueName4;
+	@FXML private TextField SlotName4;
+	@FXML private TextField Price4;
+	@FXML private ComboBox<String> ServiceName4;
+	
+	@FXML private DatePicker BookingDate5;
+	@FXML private TextField VenueName5;
+	@FXML private TextField SlotName5;
+	@FXML private TextField Price5;
+	@FXML private ComboBox<String> ServiceName5;
+	
+	@FXML private DatePicker BookingDate6;
+	@FXML private TextField VenueName6;
+	@FXML private TextField SlotName6;
+	@FXML private TextField Price6;
+	@FXML private ComboBox<String> ServiceName6;
 
 	/* Performance Table */
 	@FXML
@@ -221,6 +183,7 @@ public class ContractController implements Initializable {
 	@FXML private TableColumn<Booking, Boolean> colDelete;
 	
 	@FXML Button OkNextDay;
+	static int i = 0;
 	
 	@Lazy
 	@Autowired
@@ -229,10 +192,6 @@ public class ContractController implements Initializable {
 	private ContractService contractService;
 	@Autowired
 	private CustomerService customerService;
-	@Autowired
-	private SlotService slotService;
-	@Autowired
-	private VenueService venueService;
 	@Autowired
 	private ServiceService serviceService;
 	@Autowired
@@ -259,7 +218,6 @@ public class ContractController implements Initializable {
 
 	Contract contract = new Contract();
 	
-
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.LOGIN);
@@ -441,34 +399,6 @@ public class ContractController implements Initializable {
 		repName.setItems(repList);
 	}
 
-	public void slotChange() {
-		com.booking.bean.Slot time = slotService.slotTiming(SlotName.getText());
-		System.out.println("Start Time : " +time.getStarttime());
-		StartTime.setText(time.getStarttime());
-		EndTime.setText(time.getEndtime());
-
-	/*	Slot2.getSelectionModel().getSelectedItem();
-		String time2 = slotService.slotTiming(Slot2.getSelectionModel().getSelectedItem());
-		ServiceTime2.setText(time2);
-
-		Slot3.getSelectionModel().getSelectedItem();
-		String time3 = slotService.slotTiming(Slot3.getSelectionModel().getSelectedItem());
-		ServiceTime3.setText(time3);
-
-		Slot4.getSelectionModel().getSelectedItem();
-		String time4 = slotService.slotTiming(Slot4.getSelectionModel().getSelectedItem());
-		ServiceTime4.setText(time4);
-
-		Slot5.getSelectionModel().getSelectedItem();
-		String time5 = slotService.slotTiming(Slot5.getSelectionModel().getSelectedItem());
-		ServiceTime5.setText(time5);
-
-		Slot6.getSelectionModel().getSelectedItem();
-		String time6 = slotService.slotTiming(Slot6.getSelectionModel().getSelectedItem());
-		ServiceTime6.setText(time6);
-*/
-	}
-
 	public void MouseDragged(MouseEvent arg0) {
 		System.out.println("In mouse dragged box");
 
@@ -492,89 +422,51 @@ public class ContractController implements Initializable {
 		VenueName.setText(service.getVenue());
 		SlotName.setText(service.getSlot());
 
-		Long bp = Long.parseLong(Price.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
 	}
 
 	public void serviceDetail2() {
 
 		String ser2 = ServiceName2.getValue();
 		Service service2 = serviceService.getDetail(ser2);
-		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
+		Price2.setText(service2.getPrice());
+		VenueName2.setText(service2.getVenue());
+		SlotName2.setText(service2.getSlot());
 	}
 
 	public void serviceDetail3() {
 
 		String ser3 = ServiceName3.getValue();
 		Service service3 = serviceService.getDetail(ser3);
-
-		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
-				+ Long.parseLong(Price3.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
+		Price3.setText(service3.getPrice());
+		VenueName3.setText(service3.getVenue());
+		SlotName3.setText(service3.getSlot());
 	}
 
 	public void serviceDetail4() {
 
 		String ser4 = ServiceName4.getValue();
 		Service service4 = serviceService.getDetail(ser4);
-
-		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
-				+ Long.parseLong(Price3.getText()) + Long.parseLong(Price4.getText());
-
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
+		Price4.setText(service4.getPrice());
+		VenueName4.setText(service4.getVenue());
+		SlotName4.setText(service4.getSlot());
 	}
 
 	public void serviceDetail5() {
 
 		String ser5 = ServiceName5.getValue();
 		Service service5 = serviceService.getDetail(ser5);
-
-		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
-				+ Long.parseLong(Price3.getText()) + Long.parseLong(Price4.getText())
-				+ Long.parseLong(Price5.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
+		Price5.setText(service5.getPrice());
+		VenueName5.setText(service5.getVenue());
+		SlotName5.setText(service5.getSlot());
 	}
 
 	public void serviceDetail6() {
 
 		String ser6 = ServiceName6.getValue();
 		Service service6 = serviceService.getDetail(ser6);
-
-		Long bp = Long.parseLong(Price.getText()) + Long.parseLong(Price2.getText())
-				+ Long.parseLong(Price3.getText()) + Long.parseLong(Price4.getText())
-				+ Long.parseLong(Price5.getText()) + Long.parseLong(Price6.getText());
-		baseprice.setText(bp.toString());
-
-		Double ta = 0.18 * bp;
-		Double t = bp + ta;
-		taxamount.setText(String.valueOf(ta));
-		pact.setText(String.valueOf(t));
+		Price6.setText(service6.getPrice());
+		VenueName6.setText(service6.getVenue());
+		SlotName6.setText(service6.getSlot());
 	}
 	
 	
@@ -598,18 +490,6 @@ public class ContractController implements Initializable {
 		customerList.addAll(customerService.findName());
 		CustomerName.setItems(customerList);
 
-		slotList.clear();
-		slotList.addAll(slotService.findSlot());
-//		Slot.setItems(slotList);
-		Slot2.setItems(slotList);
-		Slot3.setItems(slotList);
-		Slot4.setItems(slotList);
-		Slot5.setItems(slotList);
-		Slot6.setItems(slotList);
-		
-		venueList.clear();
-		venueList.addAll(venueService.findVenue());
-	//	venue.setItems(venueList);
 
 		dateList.getItems().clear();
 		data.clear();
@@ -682,14 +562,26 @@ public class ContractController implements Initializable {
 				// ServiceTime.getText(), ServiceName.getValue(), ServiceCost.getText());
 				//addTable.setOnAction(addServicestoTableVIew());
 				addServicestoTableVIew();
-
 			}
 
 		});
 		
 		nextButton2.setOnAction(event -> {
+			ObservableList<LocalDate> servicedates = dateList.getItems();
+			for (LocalDate sdate : servicedates) {
+				String d = convertDate(sdate);
+				System.out.print("Booking Dates : ");
+				System.out.println(d);
+
+				BookingDate.setValue(sdate);
+				BookingDate2.setValue(sdate);
+				BookingDate3.setValue(sdate);
+				BookingDate4.setValue(sdate);
+				BookingDate5.setValue(sdate);
+				BookingDate6.setValue(sdate);
 			    			
-				addServicestoTableVIew2(0);
+				addServicestoTableVIew2();
+			}
 		});		 
 	}
 	/* End of initialize */
@@ -716,38 +608,53 @@ public class ContractController implements Initializable {
 				b.setContract(contract);
 			}
 
-			if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
+			if (ServiceName2.getValue() != null && ServiceName2.getValue() != ""){
 
 				b2.setBookingdates(convertDate(BookingDate2.getValue()));
-				b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
+				b2.setSlot(SlotName2.getText());
+				b2.setVenue(VenueName2.getText());
+				b2.setPrice(Price2.getText());
+				b2.setService(ServiceName2.getValue());
 				// b2.setServiceused(ServiceUsed.getText());
 				b2.setContract(contract);
 			}
 
 			if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
 				b3.setBookingdates(convertDate(BookingDate3.getValue()));
-				b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
+				b3.setSlot(SlotName3.getText());
+				b3.setVenue(VenueName3.getText());
+				b3.setPrice(Price3.getText());
+				b3.setService(ServiceName3.getValue());
 				// b2.setServiceused(ServiceUsed.getText());
 				b3.setContract(contract);
 			}
 
 			if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
 				b4.setBookingdates(convertDate(BookingDate4.getValue()));
-				b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
+				b4.setSlot(SlotName4.getText());
+				b4.setVenue(VenueName4.getText());
+				b4.setPrice(Price4.getText());
+				b4.setService(ServiceName4.getValue());
 				// b2.setServiceused(ServiceUsed.getText());
 				b4.setContract(contract);
 			}
 
 			if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
 				b5.setBookingdates(convertDate(BookingDate5.getValue()));
-				b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
+				b5.setSlot(SlotName5.getText());
+				b5.setVenue(VenueName5.getText());
+				b5.setPrice(Price5.getText());
+				b5.setService(ServiceName5.getValue());
 				// b2.setServiceused(ServiceUsed.getText());
 				b5.setContract(contract);
 			}
 
 			if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 				b6.setBookingdates(convertDate(BookingDate6.getValue()));
-				b6.setSlot(Slot6.getSelectionModel().getSelectedItem());
+				b6.setSlot(SlotName6.getText());
+				b6.setVenue(VenueName6.getText());
+				b6.setPrice(Price6.getText());
+				b6.setService(ServiceName6.getValue());
 				// b2.setServiceused(ServiceUsed.getText());
 				b6.setContract(contract);
 			}
@@ -782,7 +689,7 @@ public class ContractController implements Initializable {
 		services.setEditable(true);
 		services.setItems(data);
 		
-		//int total = services.getItems().stream().summingInt(Booking::getServicecost);
+//  	int total = services.getItems().stream().mapToInt(Integer::intValue).sum();
 		int total = 0 ;
 		
 		System.out.println("Total Amount "+total);
@@ -797,10 +704,10 @@ public class ContractController implements Initializable {
 	}
 	
 	
-	public EventHandler<ActionEvent> addServicestoTableVIew2(int i) {
+	public EventHandler<ActionEvent> addServicestoTableVIew2() {
 		do {
 			
-			System.out.println(servicedates.get(i));
+			System.out.println("From addServicestoTableVIew2 method: " +servicedates.get(i));
 			
 			BookingDate.setValue(servicedates.get(i));
 			BookingDate2.setValue(servicedates.get(i));
@@ -824,7 +731,6 @@ public class ContractController implements Initializable {
 					b.setService(ServiceName.getValue());
 					b.setVenue(VenueName.getText());
 					b.setPrice(Price.getText());
-					b.setService(ServiceName.getValue());
 					// b2.setServiceused(ServiceUsed.getText());
 					System.out.println("Contract value here : " +contract.toString());
 					b.setContract(contract);
@@ -833,35 +739,50 @@ public class ContractController implements Initializable {
 				if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
 
 					b2.setBookingdates(convertDate(BookingDate2.getValue()));
-					b2.setSlot(Slot2.getSelectionModel().getSelectedItem());
+					b2.setSlot(SlotName2.getText());
+					b2.setVenue(VenueName2.getText());
+					b2.setPrice(Price2.getText());
+					b2.setService(ServiceName2.getValue());
 					// b2.setServiceused(ServiceUsed.getText());
 					b2.setContract(contract);
 				}
 
 				if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
 					b3.setBookingdates(convertDate(BookingDate3.getValue()));
-					b3.setSlot(Slot3.getSelectionModel().getSelectedItem());
+					b3.setSlot(SlotName3.getText());
+					b3.setVenue(VenueName3.getText());
+					b3.setPrice(Price3.getText());
+					b3.setService(ServiceName3.getValue());
 					// b2.setServiceused(ServiceUsed.getText());
 					b3.setContract(contract);
 				}
 
 				if (ServiceName4.getValue() != null && ServiceName4.getValue() != "") {
 					b4.setBookingdates(convertDate(BookingDate4.getValue()));
-					b4.setSlot(Slot4.getSelectionModel().getSelectedItem());
+					b4.setSlot(SlotName4.getText());
+					b4.setVenue(VenueName4.getText());
+					b4.setPrice(Price4.getText());
+					b4.setService(ServiceName4.getValue());
 					// b2.setServiceused(ServiceUsed.getText());
 					b4.setContract(contract);
 				}
 
 				if (ServiceName5.getValue() != null && ServiceName5.getValue() != "") {
 					b5.setBookingdates(convertDate(BookingDate5.getValue()));
-					b5.setSlot(Slot5.getSelectionModel().getSelectedItem());
+					b5.setSlot(SlotName5.getText());
+					b5.setVenue(VenueName5.getText());
+					b5.setPrice(Price5.getText());
+					b5.setService(ServiceName5.getValue());
 					// b2.setServiceused(ServiceUsed.getText());
 					b5.setContract(contract);
 				}
 
 				if (ServiceName6.getValue() != null && ServiceName6.getValue() != "") {
 					b6.setBookingdates(convertDate(BookingDate6.getValue()));
-					b6.setSlot(Slot6.getSelectionModel().getSelectedItem());
+					b6.setSlot(SlotName6.getText());
+					b6.setVenue(VenueName6.getText());
+					b6.setPrice(Price6.getText());
+					b6.setService(ServiceName6.getValue());
 					// b2.setServiceused(ServiceUsed.getText());
 					b6.setContract(contract);
 				}
@@ -918,21 +839,7 @@ public class ContractController implements Initializable {
 		ServiceName4.getSelectionModel().clearSelection();
 		ServiceName5.getSelectionModel().clearSelection();
 		ServiceName6.getSelectionModel().clearSelection();
-		
-		StartTime.clear();
-		StartTime2.clear();
-		StartTime3.clear();
-		StartTime4.clear();
-		StartTime5.clear();
-		StartTime6.clear();
-		
-//		Slot.getSelectionModel().clearSelection();
-		Slot2.getSelectionModel().clearSelection();
-		Slot3.getSelectionModel().clearSelection();
-		Slot4.getSelectionModel().clearSelection();
-		Slot5.getSelectionModel().clearSelection();
-		Slot6.getSelectionModel().clearSelection();
-		
+				
 		Price.clear();
 		Price2.clear();
 		Price3.clear();
@@ -947,10 +854,25 @@ public class ContractController implements Initializable {
 		BookingDate5.getEditor().clear();
 		BookingDate6.getEditor().clear(); 
 		
+		SlotName.clear();
+		SlotName2.clear();
+		SlotName3.clear();
+		SlotName4.clear();
+		SlotName5.clear();
+		SlotName6.clear();
+		
+		VenueName.clear();
+		VenueName2.clear();
+		VenueName3.clear();
+		VenueName4.clear();
+		VenueName5.clear();
+		VenueName6.clear();
+		
 		i++;
 			
 		}while(servicedates.get(i) != null);
-		 i=0;
+		
+		 
 		return null;
 	}
 	
@@ -1076,13 +998,16 @@ public class ContractController implements Initializable {
 			contract.setContractdate(convertDate(ContractDate.getValue()));
 			Customer customer = customerService.findCustomer(CustomerName.getSelectionModel().getSelectedItem());
 			contract.setCustomer(customer);
+			contract.setRepname(repName.getSelectionModel().getSelectedItem());
+
 			contractService.save(contract);
-			//bookingService.save(b);
+
 			for (Booking d : data){
 				System.out.println("Contract value here d : " +contract.toString());
 				d.setContract(contract);
 				bookingService.save(d);
 			}
+			
 			Performance p = new Performance();
 			p.setShowdate(ShowDate.getText());
 			p.setShowdetails(ShowDetails.getText());
@@ -1101,6 +1026,13 @@ public class ContractController implements Initializable {
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
+				try {
+					i=0;
+					receipt(event);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else {
 				// ... user chose CANCEL or closed the dialog
 			}

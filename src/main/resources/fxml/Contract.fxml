@@ -272,163 +272,64 @@
                      </padding>
                   </HBox>
                   <HBox fx:id="serviceHBox2" prefHeight="52.0" prefWidth="694.0" visible="false">
-                     <children>
-                        <DatePicker fx:id="BookingDate2" prefHeight="31.0" prefWidth="335.0" promptText="Show Date">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </DatePicker>
-                        <ComboBox fx:id="Slot2" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceTime2" promptText="Time">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin></TextField>
-                        <ComboBox fx:id="ServiceName2" onAction="#serviceDetail2" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceCost2" promptText="Charges">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
                      <padding>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <children>
+                        <DatePicker fx:id="BookingDate2" onMouseDragReleased="#MouseDragged" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true" />
+                        <ComboBox fx:id="ServiceName2" onAction="#serviceDetail2" prefHeight="31.0" prefWidth="157.0" promptText="Services" />
+                        <TextField fx:id="VenueName2" promptText="Venue " />
+                        <TextField fx:id="SlotName2" promptText="Slot " />
+                        <TextField fx:id="Price2" promptText="Price" />
+                     </children>
                   </HBox>
                   <HBox fx:id="serviceHBox3" prefHeight="52.0" prefWidth="694.0" visible="false">
-                     <children>
-                        <DatePicker fx:id="BookingDate3" prefHeight="31.0" prefWidth="335.0" promptText="Show Date">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </DatePicker>
-                        <ComboBox fx:id="Slot3" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceTime3" promptText="Time">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="ServiceName3" onAction="#serviceDetail3" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceCost3" promptText="Charges">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
                      <padding>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <children>
+                        <DatePicker fx:id="BookingDate3" onMouseDragReleased="#MouseDragged" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true" />
+                        <ComboBox fx:id="ServiceName3" onAction="#serviceDetail3" prefHeight="31.0" prefWidth="157.0" promptText="Services" />
+                        <TextField fx:id="VenueName3" promptText="Venue " />
+                        <TextField fx:id="SlotName3" promptText="Slot " />
+                        <TextField fx:id="Price3" promptText="Price" />
+                     </children>
                   </HBox>
                   <HBox fx:id="serviceHBox4" prefHeight="52.0" prefWidth="694.0" visible="false">
-                     <children>
-                        <DatePicker fx:id="BookingDate4" prefHeight="31.0" prefWidth="335.0" promptText="Show Date">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </DatePicker>
-                        <ComboBox fx:id="Slot4" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceTime4" promptText="Time">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="ServiceName4" onAction="#serviceDetail4" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceCost4" promptText="Charges">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
                      <padding>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <children>
+                        <DatePicker fx:id="BookingDate4" onMouseDragReleased="#MouseDragged" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true" />
+                        <ComboBox fx:id="ServiceName4" onAction="#serviceDetail4" prefHeight="31.0" prefWidth="157.0" promptText="Services" />
+                        <TextField fx:id="VenueName4" promptText="Venue " />
+                        <TextField fx:id="SlotName4" promptText="Slot " />
+                        <TextField fx:id="Price4" promptText="Price" />
+                     </children>
                   </HBox>
                   <HBox fx:id="serviceHBox5" prefHeight="52.0" prefWidth="694.0" visible="false">
-                     <children>
-                        <DatePicker fx:id="BookingDate5" prefHeight="31.0" prefWidth="335.0" promptText="Show Date">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </DatePicker>
-                        <ComboBox fx:id="Slot5" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceTime5" promptText="Time">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="ServiceName5" onAction="#serviceDetail5" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceCost5" promptText="Charges">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
                      <padding>
                         <Insets left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <children>
+                        <DatePicker fx:id="BookingDate5" onMouseDragReleased="#MouseDragged" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true" />
+                        <ComboBox fx:id="ServiceName5" onAction="#serviceDetail5" prefHeight="31.0" prefWidth="157.0" promptText="Services" />
+                        <TextField fx:id="VenueName5" promptText="Venue " />
+                        <TextField fx:id="SlotName5" promptText="Slot " />
+                        <TextField fx:id="Price5" promptText="Price" />
+                     </children>
                   </HBox>
                   <HBox fx:id="serviceHBox6" prefHeight="52.0" prefWidth="694.0" visible="false">
-                     <children>
-                        <DatePicker fx:id="BookingDate6" prefHeight="31.0" prefWidth="335.0" promptText="Show Date">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </DatePicker>
-                        <ComboBox fx:id="Slot6" onAction="#slotChange" prefHeight="31.0" prefWidth="103.0" promptText="Slot">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceTime6" promptText="Time">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="ServiceName6" onAction="#serviceDetail6" prefHeight="31.0" prefWidth="157.0" promptText="Services">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <TextField fx:id="ServiceCost6" promptText="Charges">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
+                     <children>
+                        <DatePicker fx:id="BookingDate6" onMouseDragReleased="#MouseDragged" prefHeight="31.0" prefWidth="335.0" promptText="Show Date" showWeekNumbers="true" />
+                        <ComboBox fx:id="ServiceName6" onAction="#serviceDetail6" prefHeight="31.0" prefWidth="157.0" promptText="Services" />
+                        <TextField fx:id="VenueName6" promptText="Venue " />
+                        <TextField fx:id="SlotName6" promptText="Slot " />
+                        <TextField fx:id="Price6" promptText="Price" />
+                     </children>
                   </HBox>
                </children>
             </VBox>
@@ -462,9 +363,9 @@
       </VBox>
    </center>
    <bottom>
-      <HBox prefHeight="41.0" prefWidth="1300.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <HBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="535.0" text="* Two types booking : Same services all day &amp; Different services each day.    " textFill="#e80e0e" />
+            <Label alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="535.0" text="* Types of booking : Same services all day &amp; Different services each day.   |  Select row in the service table and click on delete to Delete booking" textFill="#e80e0e" />
             <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="228.0" style="-fx-border-color: black; -fx-background-color: white;">
                <children>
                   <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #ffff;" textFill="WHITE">

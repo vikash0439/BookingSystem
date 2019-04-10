@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.TaxController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.booking.controller.StateCodeController">
    <top>
       <MenuBar BorderPane.alignment="TOP_LEFT">
          <menus>
@@ -52,7 +52,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Utility">
+            <Menu mnemonicParsing="false" text="Service">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
                </items>
@@ -72,7 +72,7 @@
    <left>
       <VBox prefHeight="571.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Add New Tax" textFill="WHITE">
+            <Label text="Add New StateCOde" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -82,12 +82,12 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text="Tax ID - " textFill="#f8f7f7">
+                  <Label text="Sr No - " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="taxid">
+                  <Label fx:id="StateCodeID">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -97,25 +97,11 @@
                   <Insets left="25.0" />
                </VBox.margin>
             </HBox>
-            <TextField fx:id="saccode" prefHeight="30.0" prefWidth="246.0" promptText="SAC Code">
+            <TextField fx:id="StateName" prefHeight="30.0" prefWidth="246.0" promptText="State Name">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="description" prefHeight="30.0" prefWidth="246.0" promptText="Description">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin></TextField>
-            <TextField fx:id="igst" prefHeight="30.0" prefWidth="246.0" promptText="IGST">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="cgst" prefHeight="30.0" prefWidth="246.0" promptText="CGST">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="sgst" prefHeight="30.0" prefWidth="246.0" promptText="SGST">
+            <TextField fx:id="StateCode" prefHeight="30.0" prefWidth="246.0" promptText="State Code">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -127,7 +113,7 @@
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveTax" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#savePurpose" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -157,7 +143,7 @@
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="640.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tax">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All Purpose">
                      <HBox.margin>
                         <Insets right="500.0" top="7.0" />
                      </HBox.margin>
@@ -178,14 +164,11 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="taxtable" prefHeight="505.0" prefWidth="679.0" tableMenuButtonVisible="true">
+            <TableView fx:id="statecodetable" prefHeight="810.0" prefWidth="679.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colTaxID" maxWidth="700.0" prefWidth="20.0" text="ID" />
-                <TableColumn fx:id="colSaccode" maxWidth="4000.0" prefWidth="75.0" text="SAC Code" />
-                  <TableColumn fx:id="colDescription" maxWidth="4000.0" prefWidth="75.0" text="Description" />
-                  <TableColumn fx:id="colIgst" maxWidth="4000.0" prefWidth="75.0" text="IGST" />
-                  <TableColumn fx:id="colCgst" maxWidth="4000.0" prefWidth="60.0" text="CGST" />
-                  <TableColumn fx:id="colSgst" maxWidth="4000.0" prefWidth="60.0" text="SGST" />
+                <TableColumn fx:id="colSateCodeID" maxWidth="700.0" prefWidth="20.0" text="Sr. No" />
+                  <TableColumn fx:id="colStateName" maxWidth="4000.0" prefWidth="75.0" text="State Name" />
+                  <TableColumn fx:id="colStateCode" maxWidth="4000.0" prefWidth="75.0" text="State Code" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>

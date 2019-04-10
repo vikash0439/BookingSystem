@@ -42,7 +42,6 @@ public class ContractService {
 		contractRepository.save(contract);
 
 		System.out.println("Contract status updated");
-
 	}
 
 	public void updateCost(long contractid, String baseprice, String taxamount, String pact) {
@@ -69,6 +68,11 @@ public class ContractService {
 	public Long getContractCount(Long contractid) {
 		// TODO Auto-generated method stub
 		return contractRepository.CountContract(contractid);
+	}
+
+	public Contract getContractDetails(Long contractid) {
+		// TODO Auto-generated method stub
+		return contractRepository.getDetail(contractid);
 	}
 
 }
