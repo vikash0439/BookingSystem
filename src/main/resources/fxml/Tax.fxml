@@ -105,17 +105,7 @@
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin></TextField>
-            <TextField fx:id="igst" prefHeight="30.0" prefWidth="246.0" promptText="IGST">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="cgst" prefHeight="30.0" prefWidth="246.0" promptText="CGST">
-               <VBox.margin>
-                  <Insets left="25.0" right="25.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="sgst" prefHeight="30.0" prefWidth="246.0" promptText="SGST">
+            <TextField fx:id="gst" prefHeight="30.0" prefWidth="246.0" promptText="GST">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -183,9 +173,7 @@
                 <TableColumn fx:id="colTaxID" maxWidth="700.0" prefWidth="20.0" text="ID" />
                 <TableColumn fx:id="colSaccode" maxWidth="4000.0" prefWidth="75.0" text="SAC Code" />
                   <TableColumn fx:id="colDescription" maxWidth="4000.0" prefWidth="75.0" text="Description" />
-                  <TableColumn fx:id="colIgst" maxWidth="4000.0" prefWidth="75.0" text="IGST" />
-                  <TableColumn fx:id="colCgst" maxWidth="4000.0" prefWidth="60.0" text="CGST" />
-                  <TableColumn fx:id="colSgst" maxWidth="4000.0" prefWidth="60.0" text="SGST" />
+                  <TableColumn fx:id="colgst" maxWidth="4000.0" prefWidth="75.0" text="GST" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="Edit" />
               </columns>
                <VBox.margin>

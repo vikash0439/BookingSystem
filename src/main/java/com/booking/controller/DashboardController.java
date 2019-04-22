@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import com.booking.bean.Booking;
+import com.booking.bean.Rep;
 import com.booking.config.StageManager;
 import com.booking.service.BookingService;
 import com.booking.service.ContractService;
@@ -94,7 +95,8 @@ public class DashboardController implements Initializable {
 	private Label repmobile;
 	@FXML
 	private Label noc;
-
+    @FXML private Label BasePrice;
+    
 	@FXML
 	TableView<Booking> bookingtable;
 	@FXML
@@ -317,7 +319,7 @@ public class DashboardController implements Initializable {
 							colDay.setStyle("-fx-background-color: transparent;");
 							setAlignment(Pos.CENTER);
 							setText(simpleDateformat.format(date1));
-						} catch (ParseException e) {
+						} catch (ParseException e){
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
@@ -374,9 +376,20 @@ public class DashboardController implements Initializable {
 				}
 
 				private void updateBooking(Booking booking) {
+					
+					clearfields();
 					ContractID.setText(Long.toString(booking.getContract().getContractid()));
+					//Purpose.setText(booking.getContract().getPurpose());
 					CustomerName.setText(booking.getContract().getCustomer().getCustomername());
+                 //   noc.setText(booking.getContract().getNoc());
+					repname.setText(booking.getContract().getRepname());
 
+					Rep r = repService.findbyName(booking.getContract().getRepname());
+
+					repemail.setText(r.getRepemail());
+					repmobile.setText(r.getRepmobile());
+					
+					BasePrice.setText(bookingService.getBasePrice(booking.getContract().getContractid()));
 				}
 			};
 			return cell;
@@ -401,9 +414,10 @@ public class DashboardController implements Initializable {
 			// Map to put in JRDatasource
 			Map<String, Object> parameters = new HashMap<String, Object>();
 
-			//Hashmap to add each value 
+			//HashMap to add each value 
 			HashMap<String, Object> cont = new HashMap<String, Object>();
 			cont.put("contractid", Long.valueOf(ContractID.getText()));
+			cont.put("bookingdate", Long.valueOf(ContractID.getText()));
 
 			// Adding each value into list to send through map to JRDatasource
 			List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
@@ -437,10 +451,10 @@ public class DashboardController implements Initializable {
 	}
 	
 	@FXML
-	private void Slip(ActionEvent event) {
+	private void Slip(ActionEvent event){
 		
 		try {
-
+			LOG.info("Slip method event");
 			System.out.println("From Contract Declaration slip try block");
 			JasperReport jasperReport;
 			try {
@@ -509,15 +523,23 @@ public class DashboardController implements Initializable {
 		alert.setContentText("Are you sure you want to cancel the contract?");
 
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
+		if (result.get() == ButtonType.OK){
 			String cid = ContractID.getText();
 			contractService.updateStatus(Long.parseLong((String) cid));
-
 		} else {
 			// ... user chose CANCEL or closed the dialog
 		}
 		dashboard(event);
-
 	}
-
+	
+	private void clearfields() {
+		// TODO Auto-generated method stub
+		ContractID.setText("");
+		CustomerName.setText("");
+		repname.setText("");
+		repname.setText("");
+		repemail.setText("");
+		repmobile.setText("");
+		BasePrice.setText("");
+	}
 }

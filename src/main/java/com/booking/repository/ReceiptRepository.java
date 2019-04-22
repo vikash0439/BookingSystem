@@ -1,5 +1,7 @@
 package com.booking.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,5 +13,8 @@ public interface ReceiptRepository extends JpaRepository<Receipt, Integer>{
 
 	@Query(value = "select paidamount from receipt where receiptid = ?1 ;", nativeQuery = true)
 	String findAmount(long receiptid);
+	
+	@Query(value = "select receiptid from receipt;", nativeQuery = true)
+	public List<Long> getAllReceiptNo();
 
 }

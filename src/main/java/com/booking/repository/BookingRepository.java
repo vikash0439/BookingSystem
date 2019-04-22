@@ -1,6 +1,5 @@
 package com.booking.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -40,5 +39,8 @@ public interface BookingRepository extends CrudRepository<Booking, Integer>{
 
 	@Query(value = "select service from booking where bookingdates = ?1 ;", nativeQuery = true)
 	List<String> findAllServices(String item);
+
+	@Query(value = "select SUM(price) from booking where contractid = ?1 AND booked is NULL ;", nativeQuery = true)
+	String getTotalBasePrice(long contractid);
 	   
 }

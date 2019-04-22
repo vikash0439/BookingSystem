@@ -41,9 +41,8 @@ public class TaxController implements Initializable{
 	@FXML private Label taxid;
 	@FXML private TextField saccode;
 	@FXML private TextField description;
-	@FXML private TextField igst;
-	@FXML private TextField cgst;
-	@FXML private TextField sgst;
+	@FXML private TextField gst;
+	
 	
 	@FXML
 	private TableView<Tax> taxtable;
@@ -58,13 +57,7 @@ public class TaxController implements Initializable{
 	private TableColumn<Tax, String> colDescription;
 	
 	@FXML
-	private TableColumn<Tax, String> colIgst;
-	
-	@FXML
-	private TableColumn<Tax, String> colCgst;
-	
-	@FXML
-	private TableColumn<Tax, String> colSgst;
+	private TableColumn<Tax, String> colgst;
 	@FXML
 	private TableColumn<Tax, Boolean> colEdit;
 
@@ -163,9 +156,8 @@ public class TaxController implements Initializable{
 			Tax tax = new Tax();
 			tax.setSaccode(saccode.getText());
 			tax.setDescription(description.getText());
-			tax.setIgst(igst.getText());
-			tax.setCgst(cgst.getText());
-			tax.setSgst(sgst.getText());
+			tax.setGst(gst.getText());
+		
 			
 			taxService.save(tax);
 
@@ -178,9 +170,8 @@ public class TaxController implements Initializable{
 			Tax tax = taxService.find(Long.parseLong(taxid.getText()));
 			tax.setSaccode(saccode.getText());
 			tax.setDescription(description.getText());
-			tax.setIgst(igst.getText());
-			tax.setCgst(cgst.getText());
-			tax.setSgst(sgst.getText());
+			tax.setGst(gst.getText());
+			
 			
 			taxService.save(tax);
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -212,9 +203,7 @@ public class TaxController implements Initializable{
 		colTaxID.setCellValueFactory(new PropertyValueFactory<>("taxid"));
 		colSaccode.setCellValueFactory(new PropertyValueFactory<>("saccode"));
 		colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-		colIgst.setCellValueFactory(new PropertyValueFactory<>("igst"));
-		colCgst.setCellValueFactory(new PropertyValueFactory<>("cgst"));
-		colSgst.setCellValueFactory(new PropertyValueFactory<>("sgst"));
+		colgst.setCellValueFactory(new PropertyValueFactory<>("gst"));
 		colEdit.setCellFactory(cellFactory);
 
 		taxList.clear();
@@ -259,9 +248,7 @@ public class TaxController implements Initializable{
 					taxid.setText(Long.toString(tax.getTaxid()));
 					saccode.setText(tax.getSaccode());
 					description.setText(description.getText());
-					igst.setText(tax.getIgst());
-					sgst.setText(tax.getSgst());
-					cgst.setText(tax.getSgst());
+					gst.setText(tax.getGst());
 				}
 			};
 			return cell;
@@ -272,9 +259,7 @@ public class TaxController implements Initializable{
 		taxid.setText(null);
 		saccode.clear();
 		description.clear();
-		igst.clear();
-		cgst.clear();
-		sgst.clear();
+		gst.clear();
 
 	}
 	

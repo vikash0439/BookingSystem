@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -32,8 +31,6 @@ import com.booking.service.CustomerService;
 import com.booking.service.PerformanceService;
 import com.booking.service.RepService;
 import com.booking.service.ServiceService;
-import com.booking.service.SlotService;
-import com.booking.service.VenueService;
 import com.booking.view.FxmlView;
 
 import javafx.application.Platform;
@@ -183,7 +180,6 @@ public class ContractController implements Initializable{
 	@FXML private TableColumn<Booking, Boolean> colDelete;
 	
 	@FXML Button OkNextDay;
-	static int i = 0;
 	
 	@Lazy
 	@Autowired
@@ -204,8 +200,9 @@ public class ContractController implements Initializable{
 	/* Variables */
 	final String ONE_BOOKING = "-fx-background-color: #FFFF00;";
 	final String TWO_BOOKING = "-fx-background-color: #008000;";
-	final String MORE_BOOKING = "-fx-background-color: #FF0000;";
+	final String MORE_BOOKING ="-fx-background-color: #FF0000;";
 	final int COUNT_DATES= 0; 
+	static int i = 0;
 
 	private ObservableList<String> purposeList = FXCollections.observableArrayList();
 	private ObservableList<String> customerList = FXCollections.observableArrayList();
@@ -393,7 +390,6 @@ public class ContractController implements Initializable{
 	public void getAllRep() {
 		String cname = CustomerName.getSelectionModel().getSelectedItem();
 		Customer customer = customerService.findCustomer(cname);
-
 		repList.clear();
 		repList.addAll(repService.getRepnamebyCustomerid(customer));
 		repName.setItems(repList);
@@ -665,7 +661,6 @@ public class ContractController implements Initializable{
 		}
 		if (ServiceName2.getValue() != null && ServiceName2.getValue() != "") {
 			data.add(b2);
-
 		}
 		if (ServiceName3.getValue() != null && ServiceName3.getValue() != "") {
 			data.add(b3);
@@ -690,7 +685,7 @@ public class ContractController implements Initializable{
 		services.setItems(data);
 		
 //  	int total = services.getItems().stream().mapToInt(Integer::intValue).sum();
-		int total = 0 ;
+		int total = 0;
 		
 		System.out.println("Total Amount "+total);
 		

@@ -95,7 +95,7 @@ public class Booking{
 	
 	@Override
 	public String toString() {
-		return "Date=" + bookingdates + ", Service=" + service;
+		return "Date=" + bookingdates + ", Service booked =" + service;
 	}	
 	
 }

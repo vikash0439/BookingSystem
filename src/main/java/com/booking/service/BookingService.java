@@ -62,4 +62,9 @@ private final BookingRepository bookingRepository;
 		return bookingRepository.findAllServices(item);
 	}
 
+	public String getBasePrice(long contractid) {
+		// TODO Auto-generated method stub
+		return bookingRepository.getTotalBasePrice(contractid);
+	}
+
 }

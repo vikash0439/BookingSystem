@@ -72,7 +72,7 @@ Telephone: 011-23714307
 		<band height="451" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<staticText>
-				<reportElement x="12" y="190" width="532" height="250" uuid="b1acc2c4-2db4-417f-bbfd-bd3c7a5eb520"/>
+				<reportElement x="12" y="177" width="532" height="250" uuid="b1acc2c4-2db4-417f-bbfd-bd3c7a5eb520"/>
 				<text><![CDATA[This is to confirm your booking at Shri Ram Centre Auditorium as per above mentioned date(s) and services(s) -	
 Kindly submit the necessary clearances (NOCs) for your performance and clear your balance dues, if any, well ahead of your show date(s). 
 We wish you all the very best. 

@@ -68,7 +68,7 @@ Telephone: 011-23714307
 		<band height="438" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<staticText>
-				<reportElement x="-1" y="2" width="181" height="18" uuid="69ed7cb8-e75a-4deb-851e-5f166da3d4e3"/>
+				<reportElement x="10" y="2" width="170" height="18" uuid="69ed7cb8-e75a-4deb-851e-5f166da3d4e3"/>
 				<text><![CDATA[This agreement is executed at Delhi on ]]></text>
 			</staticText>
 			<textField>
@@ -82,9 +82,8 @@ INDIAN NATIONAL THEATRE TRUST, Shri Ram Centre, 4 Safdar Hashmi Marg, New Delhi-
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="108" width="555" height="330" uuid="089287af-b64d-4086-aec9-b1a18cbeff40"/>
-				<text><![CDATA[The expressions, “INTT” and “Organizer” are hereinafter jointly referred to as the “Parties” sometime individually referred to as “Party”.
-WHEREAS the INTT is the owner of the building at 4, Safdar Hashmi Marg, New Delhi-110001, hereinafter referred to as “PREMISES” and has an Auditorium in it which is herein after referred to as “Auditorium”.
+				<reportElement positionType="Float" x="10" y="108" width="530" height="330" uuid="089287af-b64d-4086-aec9-b1a18cbeff40"/>
+				<text><![CDATA[The expressions, “INTT” and “Organizer” are hereinafter jointly referred to as the “Parties” sometime individually referred to as “Party”. WHEREAS the INTT is the owner of the building at 4, Safdar Hashmi Marg, New Delhi-110001, hereinafter referred to as “PREMISES” and has an Auditorium in it which is herein after referred to as “Auditorium”.  
 WHEREAS Organizer being the event organizer has approached the INTT for the permission to use the Auditorium for its Event as detailed in Annexure I. INTT agrees to license the use of the “Auditorium” to the Organizer on the date and time specified upon the terms and conditions hereinafter set out;
 NOW THE PARTIES MUTUALLY AGREE AND THIS AGREEMENT WITNESSETH AS FOLLOWS:  
 1.	Definitions
@@ -199,7 +198,7 @@ ORGANIZER ________________________
 		</band>
 		<band height="681">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="681" uuid="e4963ce4-2a41-4b38-aa83-02eea6ec8a49"/>
+				<reportElement x="10" y="0" width="530" height="681" uuid="e4963ce4-2a41-4b38-aa83-02eea6ec8a49"/>
 				<text><![CDATA[G)	Rehearsal – Performance carried out by artists in the auditorium which does not included guests seated in the auditorium seating capacity by means of an entry ticket or invitation.
 
 H)	Set-Up – This refers to the installation of items to be placed in the Auditorium stage as per the booking slot taken for the specified time.
@@ -298,7 +297,7 @@ ORGANIZER ________________________
 		</band>
 		<band height="681">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="670" uuid="11e89937-94d5-4b80-ab2f-ac9e99661f53"/>
+				<reportElement x="10" y="0" width="530" height="670" uuid="11e89937-94d5-4b80-ab2f-ac9e99661f53"/>
 				<text><![CDATA[9.	REPRESENTATIONS, WARRANTIES AND COVENANTS OF THE ORGANIZER
 a)	Organizer shall provide full names of all cast and crew coming to the venue on the performance date to the Auditorium Manager latest one week prior to the show date via email. Organizer shall also inform all group members and crew that entry will be permitted by security guards as per the names available on the list. The main organizer must sign out on with security guards upon completion of the event and exit from the venue. Failure to adhere this term or any unauthorized entry recorded will make the INTT entitled to cancel upcoming contracts/dates and forfeit the security deposit.
 b)	Organizer shall ensure that the auditorium shall be used only for the Event as per the schedule detailed in Annexure I. 
@@ -351,7 +350,7 @@ iii.	All attachments hereto shall constitute an integral part of this Agreement.
 		</band>
 		<band height="681">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="670" uuid="7eea0b1b-2b46-41ff-a5f3-78bae1544610"/>
+				<reportElement x="10" y="-9" width="530" height="670" uuid="7eea0b1b-2b46-41ff-a5f3-78bae1544610"/>
 				<text><![CDATA[s)	Organizer is under strict obligation to apply and procure all necessary permissions, No Objection Certificates and Licenses from the appropriate authority for conducting the Event and submit the same at least a month prior to the Event. Management reserves the rights to cancel the Event if the necessary documents are not produced on time.
 t)	In case of a non-ticketed event, organizer shall ensure that all the invitations, both digital and print, must clearly highlight that seating will be as per availability. Crowd management, as mentioned above, shall be the sole responsibility of the Organizer and management of INTT shall not be responsible for the same.
 u)	Organizer and/or any of its representatives and/or their contractor(s)/sponsor(s) are not allowed to sell any merchandise in the premises.

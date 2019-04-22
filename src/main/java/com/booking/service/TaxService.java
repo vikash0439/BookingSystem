@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.booking.bean.Slot;
 import com.booking.bean.Tax;
 import com.booking.repository.TaxRepository;
 

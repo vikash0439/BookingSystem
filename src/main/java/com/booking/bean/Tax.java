@@ -14,9 +14,7 @@ public class Tax {
 	private Long taxid;
 	private String saccode;
 	private String description;
-	private String igst;
-	private String sgst;
-	private String cgst;
+	private String gst;
 	
 	public Long getTaxid() {
 		return taxid;
@@ -36,26 +34,10 @@ public class Tax {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getIgst() {
-		return igst;
+	public String getGst() {
+		return gst;
 	}
-	public void setIgst(String igst) {
-		this.igst = igst;
+	public void setGst(String gst) {
+		this.gst = gst;
 	}
-	public String getSgst() {
-		return sgst;
-	}
-	public void setSgst(String sgst) {
-		this.sgst = sgst;
-	}
-	public String getCgst() {
-		return cgst;
-	}
-	public void setCgst(String cgst) {
-		this.cgst = cgst;
-	}
-	
-	
-	
-	
 }

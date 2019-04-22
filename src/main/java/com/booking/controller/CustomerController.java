@@ -222,7 +222,7 @@ public class CustomerController implements Initializable {
 		
 	}
 	@FXML
-	private void saveRep(ActionEvent event) {
+	private void saveRep(ActionEvent event){
 		
 		if(emptyValidation("Client", clientList.getSelectionModel().getSelectedItem() == null)) {
 			
@@ -242,6 +242,8 @@ public class CustomerController implements Initializable {
 		alert.showAndWait();
 		
 		reset1();
+		customertable();
+		reptable();
 		
 		}	
 	}
@@ -249,8 +251,7 @@ public class CustomerController implements Initializable {
 	@FXML
 	private void saveCustomer(ActionEvent event) {
 	    System.out.println(customername.getText());
-		if(validate("Client Name", customername.getText(), "[a-zA-Z]+") &&
-		    	   validate("Address", address.getText(), "[a-zA-Z]+") ){
+		if(emptyValidation("Client Name", customername.getText().isEmpty())){
 
 		if (customerid.getText() == null || customerid.getText() == "") {
 			Customer customer = new Customer();

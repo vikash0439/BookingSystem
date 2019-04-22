@@ -12,24 +12,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
-import com.booking.bean.Booking;
-import com.booking.bean.Contract;
+import com.booking.bean.Allocation;
 import com.booking.bean.Customer;
+import com.booking.bean.PaymentDetails;
 import com.booking.bean.Receipt;
 import com.booking.config.StageManager;
+import com.booking.service.AllocationService;
 import com.booking.service.ContractService;
 import com.booking.service.CustomerService;
+import com.booking.service.PaymentDetailsService;
 import com.booking.service.ReceiptService;
 import com.booking.view.FxmlView;
 
@@ -67,7 +69,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class ReceiptController implements Initializable {
@@ -89,10 +90,6 @@ public class ReceiptController implements Initializable {
 	@FXML
 	private ComboBox<String> PaymentMode;
 	@FXML
-	private ComboBox<String> MultiplecID;
-	@FXML
-	private Label labelContractid;
-	@FXML
 	private Label ClientName;
 
 	/* Payment Table */
@@ -113,10 +110,20 @@ public class ReceiptController implements Initializable {
 	@FXML
 	private RadioButton CreditNo;
 
+	/* Allocation amount */
+	@FXML
+	private TextField Allocationamount;
+	@FXML
+	private ComboBox<String> ReceiptNo;
+	@FXML
+	private Label AllocationID;
+	@FXML
+	private ComboBox<String> MultiplecID;
+
 	@FXML
 	private TableView<Receipt> receipttable;
 	@FXML
-	private TableColumn<Receipt, String> colcontractid;
+	private TableColumn<Receipt, String> colCustomer;
 	@FXML
 	private TableColumn<Receipt, Long> colReceiptID;
 	@FXML
@@ -133,8 +140,7 @@ public class ReceiptController implements Initializable {
 	private TableColumn<Receipt, String> colCredit;
 	@FXML
 	private TableColumn<Receipt, Boolean> colEdit;
-	@FXML
-	private Button reset;
+
 	@Lazy
 	@Autowired
 	private StageManager stageManager;
@@ -142,14 +148,21 @@ public class ReceiptController implements Initializable {
 	private ReceiptService receiptService;
 	@Autowired
 	private ContractService contractService;
-	@Autowired CustomerService customerService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private PaymentDetailsService paymentDetailsService;
+	@Autowired
+	private AllocationService allocationService;
 
 	private ObservableList<Receipt> receiptList = FXCollections.observableArrayList();
 	private ObservableList cIDList = FXCollections.observableArrayList();
-	private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "Cheque", "NEFT/RTGS", "DD","Others");
+	private ObservableList<String> modeList = FXCollections.observableArrayList("Cash", "Cheque", "NEFT/RTGS", "DD",
+			"Others");
+	private ObservableList CustomerList = FXCollections.observableArrayList();
+	private ObservableList ReceiptNoList = FXCollections.observableArrayList();
 
 	/* Tax Event methods */
-
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.LOGIN);
@@ -163,6 +176,11 @@ public class ReceiptController implements Initializable {
 	@FXML
 	void reset(ActionEvent event) {
 		clearFields();
+	}
+
+	@FXML
+	void reset1(ActionEvent event) {
+		clearFields2();
 	}
 
 	@FXML
@@ -219,7 +237,7 @@ public class ReceiptController implements Initializable {
 	public void purpose(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.PURPOSE);
 	}
-	
+
 	@FXML
 	public void statecode(ActionEvent event) throws IOException {
 		stageManager.switchScene(FxmlView.STATECODE);
@@ -272,8 +290,27 @@ public class ReceiptController implements Initializable {
 		System.out.println("From setLabelText method: " + a);
 		List<String> lcid = new ArrayList<String>();
 		lcid.add(a);
-		labelContractid.setText(a);
 
+	}
+
+	@FXML
+	private void updateAllocation(ActionEvent event) {
+
+		if (emptyValidation("Allocation amount ", Allocationamount.getText().isEmpty())) {
+			Allocation allocation = new Allocation();
+			allocation.setAllocatedamount(Allocationamount.getText());
+			allocation.setContractid(MultiplecID.getSelectionModel().getSelectedItem());
+			allocation.setReceiptno(ReceiptNo.getSelectionModel().getSelectedItem());
+
+			allocationService.saveAllocation(allocation);
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Allocation");
+			alert.setContentText("Amount:  " + Allocationamount.getText() + "  allocated successfully.");
+			alert.showAndWait();
+
+			clearFields2();
+		}
 	}
 
 	@FXML
@@ -285,18 +322,27 @@ public class ReceiptController implements Initializable {
 			receipt.setMode(PaymentMode.getSelectionModel().getSelectedItem());
 			Customer customer = customerService.findCustomer(cname.getSelectionModel().getSelectedItem());
 			receipt.setCustomer(customer);
-			
+
+			/* Payment table */
+			PaymentDetails payment = new PaymentDetails();
+			payment.setModeid(TxnID.getText());
+			payment.setModedate((String) TxnDate.getEditor().getText());
+			payment.setModebank(Bank.getText());
+			payment.setPaidby(PaidBy.getText());
+			payment.setCredit(CreditYes.isSelected() ? "Yes" : "No");
+			paymentDetailsService.save(payment);
+
+			receipt.setPdetails(payment);
+
 			receiptService.save(receipt);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Receipt.");
 			alert.setHeaderText("Amount:  " + PaidAmount.getText() + "  receipt created.");
 			alert.setContentText("Generating receipt....");
 			alert.showAndWait();
-			
-			
-			
+
 			/* report for duplicate */
-			
+
 			/* End receipt duplicate code */
 
 		} else {
@@ -307,7 +353,7 @@ public class ReceiptController implements Initializable {
 			receipt.setMode(PaymentMode.getSelectionModel().getSelectedItem());
 			Customer customer = customerService.findCustomer(cname.getSelectionModel().getSelectedItem());
 			receipt.setCustomer(customer);
-			
+
 			receiptService.save(receipt);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Receipt.");
@@ -322,10 +368,17 @@ public class ReceiptController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		CustomerList.clear();
+		CustomerList.addAll(customerService.findName());
+		cname.setItems(CustomerList);
+
 		cIDList.clear();
-		cIDList.addAll(customerService.findName());
-		cname.setItems(cIDList);
+		cIDList.addAll(contractService.getContractID());
 		MultiplecID.setItems(cIDList);
+
+		ReceiptNoList.clear();
+		ReceiptNoList.addAll(receiptService.getReceiptNo());
+		ReceiptNo.setItems(ReceiptNoList);
 
 		PaymentMode.setItems(modeList);
 
@@ -339,7 +392,7 @@ public class ReceiptController implements Initializable {
 		 * Set All userTable column properties
 		 */
 
-		colcontractid.setCellValueFactory(new Callback<CellDataFeatures<Receipt, String>, ObservableValue<String>>() {
+		colCustomer.setCellValueFactory(new Callback<CellDataFeatures<Receipt, String>, ObservableValue<String>>() {
 
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Receipt, String> param) {
@@ -348,11 +401,11 @@ public class ReceiptController implements Initializable {
 		});
 		colReceiptID.setCellValueFactory(new PropertyValueFactory<>("receiptid"));
 		colReceiptDate.setCellValueFactory(new PropertyValueFactory<>("receiptdate"));
-		colPaidAmount.setCellValueFactory(new PropertyValueFactory<>("paidamount"));
+		colPaidAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 		colTaxAmount.setCellValueFactory(new PropertyValueFactory<>("taxamount"));
-		colPaymentMode.setCellValueFactory(new PropertyValueFactory<>("paymentmode"));
-		
-		
+		colPaymentMode.setCellValueFactory(new PropertyValueFactory<>("mode"));
+		colTxnID.setCellValueFactory(new PropertyValueFactory<>("mode"));
+		colCredit.setCellValueFactory(new PropertyValueFactory<>("mode"));
 		colEdit.setCellFactory(cellFactory);
 
 		receiptList.clear();
@@ -403,11 +456,11 @@ public class ReceiptController implements Initializable {
 					PaidAmount.setText(receipt.getAmount());
 					;
 
-					BaseAmount.setText(String
-							.valueOf(Long.valueOf(receipt.getAmount()) - Long.valueOf(receipt.getAmount())));
+					BaseAmount.setText(
+							String.valueOf(Long.valueOf(receipt.getAmount()) - Long.valueOf(receipt.getAmount())));
 					TaxAmount.setText(receipt.getAmount());
 					TxnID.setText(receipt.getMode());
-					
+
 					TxnDate.getEditor().setText(receipt.getMode());
 				}
 			};
@@ -419,7 +472,6 @@ public class ReceiptController implements Initializable {
 
 		// First, compile jrxml file.
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/receipt.jrxml");
-		
 
 		// Parameters for report .
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -495,8 +547,62 @@ public class ReceiptController implements Initializable {
 		return convert(n / 10000000) + " Crore" + ((n % 10000000 != 0) ? " " : "") + convert(n % 10000000);
 	}
 
+	public ToggleGroup getCredit() {
+		return credit;
+	}
+
+	public String convertDate(LocalDate date) {
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return dtf.format(date);
+
+	}
+
+	/*
+	 * Validations
+	 */
+	private boolean validate(String field, String value, String pattern) {
+		if (!value.isEmpty()) {
+			Pattern p = Pattern.compile(pattern);
+			Matcher m = p.matcher(value);
+			if (m.find() && m.group().equals(value)) {
+				return true;
+			} else {
+				validationAlert(field, false);
+				return false;
+			}
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private boolean emptyValidation(String field, boolean empty) {
+		if (!empty) {
+			return true;
+		} else {
+			validationAlert(field, true);
+			return false;
+		}
+	}
+
+	private void validationAlert(String field, boolean empty) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Validation Error");
+		alert.setHeaderText(null);
+		if (field.equals("Client"))
+			alert.setContentText("Please Select " + field);
+		else {
+			if (empty)
+				alert.setContentText("Please Enter " + field);
+			else
+				alert.setContentText("Please Enter Valid " + field);
+		}
+		alert.showAndWait();
+	}
+
 	private void clearFields(){
-		
+
 		cname.getSelectionModel().clearSelection();
 		ReceiptID.setText(null);
 		ReceiptDate.getEditor().clear();
@@ -512,14 +618,11 @@ public class ReceiptController implements Initializable {
 		CreditNo.setSelected(true);
 	}
 
-	public ToggleGroup getCredit() {
-		return credit;
+	private void clearFields2() {
+		// TODO Auto-generated method stub
+		Allocationamount.clear();
+		MultiplecID.getSelectionModel().clearSelection();
+		ReceiptNo.getSelectionModel().clearSelection();
 	}
-	
-	public String convertDate(LocalDate date) {
-		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");		
-		return dtf.format(date);
-		
-	}
+
 }

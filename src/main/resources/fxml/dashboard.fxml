@@ -74,7 +74,7 @@
          <children>
             <Label text="Contract Detail" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" top="30.0" />
@@ -215,6 +215,26 @@
                   <Insets left="25.0" right="25.0" />
                </padding>
             </HBox>
+            <HBox prefHeight="30.0" prefWidth="265.0">
+               <children>
+                  <Label text="Base Price - " textFill="#f8f7f7">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="BasePrice">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="25.0" right="25.0" />
+               </padding>
+            </HBox>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#CancelCharges" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #ff3333;" text="Cancel" textFill="WHITE">
@@ -305,13 +325,13 @@
             </HBox>
             <TableView fx:id="bookingtable" editable="true" prefHeight="810.0" prefWidth="959.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="colServiceDate" maxWidth="4000.0" prefWidth="75.0" text="Booked Date" />
                 <TableColumn fx:id="colDay" maxWidth="4000.0" prefWidth="86.0" text="Day" />
                   <TableColumn fx:id="colSlot" maxWidth="4000.0" prefWidth="75.0" text="Slot" />
                   <TableColumn fx:id="colService" maxWidth="4000.0" prefWidth="75.0" text="Service" />
                   <TableColumn fx:id="colClient" maxWidth="4000.0" prefWidth="75.0" text="Client" />
                   <TableColumn fx:id="ColContractid" maxWidth="4000.0" prefWidth="75.0" text="ContractID" />
-                  <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="75.0" text="Booking Date" />
+                  <TableColumn fx:id="colBookingDate" maxWidth="4000.0" prefWidth="75.0" text="Contract" />
                   <TableColumn fx:id="colRemaining" maxWidth="4000.0" prefWidth="100.0" text="Remaining" />
                   <TableColumn fx:id="colNOC" maxWidth="4000.0" prefWidth="38.0" text="NOC" />
                   <TableColumn fx:id="colEdit" maxWidth="3500.0" prefWidth="75.0" text="View" />

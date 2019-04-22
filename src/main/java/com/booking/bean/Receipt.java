@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +23,17 @@ public class Receipt {
 	
 	@ManyToOne
 	private Customer customer;
+	
+	@OneToOne
+	@JoinColumn
+	private PaymentDetails pdetails;
+	
+	public PaymentDetails getPdetails() {
+		return pdetails;
+	}
+	public void setPdetails(PaymentDetails pdetails) {
+		this.pdetails = pdetails;
+	}
 	
 	public long getReceiptid() {
 		return receiptid;
@@ -58,7 +71,5 @@ public class Receipt {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
-	
+		
 }

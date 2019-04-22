@@ -52,15 +52,15 @@
                   <MenuItem mnemonicParsing="false" onAction="#customer" text="View" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Service">
+            <Menu mnemonicParsing="false" text="Utility">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#service" text="View" />
+                  <MenuItem mnemonicParsing="false" onAction="#service" text="Service" />
+                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Miscellanous">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#users" text="Users" />
-                  <MenuItem mnemonicParsing="false" onAction="#slot" text="Slot" />
                   <MenuItem mnemonicParsing="false" onAction="#purpose" text="Purpose" />
                   <MenuItem mnemonicParsing="false" onAction="#statecode" text="State Code" />
                   <MenuItem mnemonicParsing="false" onAction="#reports" text="Reports" />
@@ -72,9 +72,9 @@
    <left>
       <VBox prefHeight="571.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Add New Receipt (Single)" textFill="WHITE">
+            <Label text="Add New Receipt" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" top="30.0" />
@@ -211,7 +211,7 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
+                  <Button mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
@@ -269,7 +269,7 @@
             </HBox>
             <TableView fx:id="receipttable" prefHeight="810.0" prefWidth="677.0" tableMenuButtonVisible="true">
               <columns>
-                  <TableColumn fx:id="colcontractid" maxWidth="3000.0" prefWidth="116.0" text="Contract ID" />
+                  <TableColumn fx:id="colCustomer" maxWidth="3000.0" prefWidth="116.0" text="Customer" />
                   <TableColumn fx:id="colReceiptID" maxWidth="3000.0" prefWidth="79.0" text="Receipt No" />
                   <TableColumn fx:id="colReceiptDate" maxWidth="4000.0" prefWidth="75.0" text="Receipt date" />
                   <TableColumn fx:id="colPaidAmount" maxWidth="4000.0" prefWidth="75.0" text="Paid Amount" />
@@ -295,9 +295,9 @@
    <right>
       <VBox prefHeight="571.0" prefWidth="306.0" spacing="10.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Add Receipts (Multiple)" textFill="WHITE">
+            <Label text="Receipts Allocation" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" top="30.0" />
@@ -305,12 +305,12 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="265.0">
                <children>
-                  <Label text="Receipt No - " textFill="#f8f7f7">
+                  <Label text="Allocation no: " textFill="#f8f7f7">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="ReceiptID1">
+                  <Label fx:id="AllocationID">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -320,24 +320,29 @@
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox fx:id="MultiplecID" editable="true" onAction="#setLabelText" prefHeight="31.0" prefWidth="247.0" promptText="Select all--ContractID--">
+            <ComboBox fx:id="ReceiptNo" editable="true" onAction="#setLabelText" prefHeight="31.0" prefWidth="247.0" promptText="Select --Receipt ID--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
-            <Label fx:id="labelContractid" prefHeight="95.0" prefWidth="251.0" style="-fx-background-color: white;">
+            <ComboBox fx:id="MultiplecID" editable="true" onAction="#setLabelText" prefHeight="31.0" prefWidth="247.0" promptText="Select --ContractID--">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
-            </Label>
+            </ComboBox>
+            <TextField fx:id="Allocationamount" promptText="Allocation Amount">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </TextField>
             <HBox prefHeight="30.0" prefWidth="250.0" spacing="10.0">
                <children>
-                  <Button fx:id="reset1" mnemonicParsing="false" onAction="#reset" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: white;" text="Reset">
+                  <Button mnemonicParsing="false" onAction="#reset1" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: white;" text="Reset">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#1965d0" />
                      </effect>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveTax" prefHeight="30.0" prefWidth="75.0" styleClass="btnGreen" text="Save" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateAllocation" prefHeight="31.0" prefWidth="118.0" styleClass="btnGreen" text="Allocate" textFill="WHITE">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#6468b2" />
                      </effect>
@@ -350,7 +355,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="125.0" right="25.0" top="10.0" />
+                  <Insets left="100.0" right="35.0" top="10.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="265.0">
@@ -362,7 +367,6 @@
                   </Label>
                </children>
             </HBox>
-            <ComboBox prefWidth="150.0" />
          </children>
       </VBox>
    </right>

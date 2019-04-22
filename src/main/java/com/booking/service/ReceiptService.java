@@ -36,4 +36,9 @@ private final ReceiptRepository receiptRepository;
 		return receiptRepository.findAmount(receiptid);
 	}
 
+	public List<Long> getReceiptNo() {
+		// TODO Auto-generated method stub
+		return receiptRepository.getAllReceiptNo();
+	}
+
 }

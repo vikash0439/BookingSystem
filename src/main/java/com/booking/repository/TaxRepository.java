@@ -17,5 +17,4 @@ public interface TaxRepository extends JpaRepository<Tax, Integer>{
 	@Query(value = "select saccode from tax;", nativeQuery = true)
 	List<String> findSac();
 
-
 }

@@ -44,26 +44,26 @@ public class Contract{
 	public void setContractid(long contractid) {
 		this.contractid = contractid;
 	}
-	public String getContractdate() {
+	public String getContractdate(){
 		return contractdate;
 	}
 	public void setContractdate(String contractdate) {
 		this.contractdate = contractdate;
 	}
 	
-	public String getBaseprice() {
+	public String getBaseprice(){
 		return baseprice;
 	}
 	public void setBaseprice(String baseprice) {
 		this.baseprice = baseprice;
 	}
-	public List<Booking> getBookings() {
+	public List<Booking> getBookings(){
 		return bookings;
 	}
 	public void setBookings(List<Booking> bookings) {
 		this.bookings = bookings;
 	}
-	public Customer getCustomer() {
+	public Customer getCustomer(){
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
@@ -72,7 +72,7 @@ public class Contract{
 	public List<Performance> getPerformances() {
 		return performances;
 	}
-	public void setPerformances(List<Performance> performances) {
+	public void setPerformances(List<Performance> performances){
 		this.performances = performances;
 	}
 	public String getRepname() {
@@ -80,7 +80,5 @@ public class Contract{
 	}
 	public void setRepname(String repname) {
 		this.repname = repname;
-	}
-	
-	
+	}	
 }
